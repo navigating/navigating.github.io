@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>创建对象的两种方式 | On the Open Way</title>
+  <title>BIGDATA Update 201507 | On the Open Way</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="One is to create a object with a rich constructor so that its at least created with allleast created with all its mandatory data.The other is to create o object an empty object and then populate it wi">
+  <meta name="description" content="HortonworksHDP 2.3发布：HDP 2.3新增加组件Apache Atlas、Apache Calcitehttp://hortonworks.com/blog/available-now-hdp-2-3/http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/http://hortonworks.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建对象的两种方式">
-<meta property="og:url" content="http://navigating.github.io/2004/创建对象的两种方式/index.html">
+<meta property="og:title" content="BIGDATA Update 201507">
+<meta property="og:url" content="http://navigating.github.io/2015/BIGDATA-Update-201507/index.html">
 <meta property="og:site_name" content="On the Open Way">
-<meta property="og:description" content="One is to create a object with a rich constructor so that its at least created with allleast created with all its mandatory data.The other is to create o object an empty object and then populate it wi">
-<meta property="og:updated_time" content="2015-07-28T15:00:30.879Z">
+<meta property="og:description" content="HortonworksHDP 2.3发布：HDP 2.3新增加组件Apache Atlas、Apache Calcitehttp://hortonworks.com/blog/available-now-hdp-2-3/http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/http://hortonworks.">
+<meta property="og:updated_time" content="2015-07-30T08:23:19.853Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="创建对象的两种方式">
-<meta name="twitter:description" content="One is to create a object with a rich constructor so that its at least created with allleast created with all its mandatory data.The other is to create o object an empty object and then populate it wi">
+<meta name="twitter:title" content="BIGDATA Update 201507">
+<meta name="twitter:description" content="HortonworksHDP 2.3发布：HDP 2.3新增加组件Apache Atlas、Apache Calcitehttp://hortonworks.com/blog/available-now-hdp-2-3/http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/http://hortonworks.">
 <meta name="twitter:creator" content="@xujinghui">
   
     <link rel="alternative" href="/atom.xml" title="On the Open Way" type="application/atom+xml">
@@ -67,10 +67,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2004/创建对象的两种方式" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2015/BIGDATA-Update-201507" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/创建对象的两种方式/" class="article-date">
-  <time datetime="2004-10-11T14:10:50.000Z" itemprop="datePublished">2004-10-11</time>
+    <a href="/2015/BIGDATA-Update-201507/" class="article-date">
+  <time datetime="2015-07-30T08:22:01.000Z" itemprop="datePublished">2015-07-30</time>
 </a>
     
   <div class="article-category">
@@ -85,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      创建对象的两种方式
+      BIGDATA Update 201507
     </h1>
   
 
@@ -93,34 +93,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>One is to create a object with a rich constructor so that its at least created with all<br>least created with all its mandatory data.<br>The other is to create o object an empty object and then populate it with the mandatory<br>data.<br>The former could have a well-formed object from the start.This aslo meants that, if you<br>have an immutable field, you can enforce it by not providing any method to change its<br>value.<br>The problem with a rich constructor is that you have to be aware of cyclic references.<br>Avoiding this requires special case code, often usingg lazy load.<br>You can do this creating an empty object.Use a non-arg constructor to create a blank object<br>and insert that empty object immediately into other object.The way,if you have a cycle,<br>other object will return an object to stop the recursive loading that two objects reference<br>each other.<br>Using an empty object like this means you may need some setters for values that are truely<br>immutalbe when the object is loaded.A combination of a naming convention and perhaps some<br>status-checking guards can fix this.You can alse use reflection for loading data.</p>
-<p>(Spring supports Setter Injection very nice.Sometimes using rich constructor to create a object<br> is preferable after you evaluating.)</p>
+        <p>Hortonworks<br>HDP 2.3发布：<br>HDP 2.3新增加组件Apache Atlas、Apache Calcite<br><a href="http://hortonworks.com/blog/available-now-hdp-2-3/" target="_blank" rel="external">http://hortonworks.com/blog/available-now-hdp-2-3/</a><br><a href="http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/" target="_blank" rel="external">http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/</a><br><a href="http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/" target="_blank" rel="external">http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/</a> </p>
+<p>Cloudera<br>HBase 1.0 开始支持Thrift客户端鉴权<br><a href="http://blog.cloudera.com/blog/2015/07/thrift-client-authentication-support-in-apache-hbase-1-0/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/thrift-client-authentication-support-in-apache-hbase-1-0/</a><br>Pig on MR优化<br><a href="http://blog.cloudera.com/blog/2015/07/how-to-tune-mapreduce-parallelism-in-apache-pig-jobs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/how-to-tune-mapreduce-parallelism-in-apache-pig-jobs/</a><br>Apache Zeppelin on CDH<br><a href="http://blog.cloudera.com/blog/2015/07/how-to-install-apache-zeppelin-on-cdh/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/how-to-install-apache-zeppelin-on-cdh/</a> </p>
+<p>MapR<br>YARN资源管理实践<br><a href="https://www.mapr.com/blog/best-practices-yarn-resource-management" target="_blank" rel="external">https://www.mapr.com/blog/best-practices-yarn-resource-management</a><br>Hive 1.0对Transaction的支持<br><a href="https://www.mapr.com/blog/hive-transaction-feature-hive-10" target="_blank" rel="external">https://www.mapr.com/blog/hive-transaction-feature-hive-10</a> </p>
+<p>Databricks<br>从Spark 1.2开始支持ORC<br><a href="https://databricks.com/blog/2015/07/16/joint-blog-post-bringing-orc-support-into-apache-spark.html" target="_blank" rel="external">https://databricks.com/blog/2015/07/16/joint-blog-post-bringing-orc-support-into-apache-spark.html</a><br>从Spark 1.4开始支持窗口函数<br><a href="https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html" target="_blank" rel="external">https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html</a><br>从Spark 1.4开始新的Web UI<br><a href="https://databricks.com/blog/2015/07/08/new-visualizations-for-understanding-spark-streaming-applications.html" target="_blank" rel="external">https://databricks.com/blog/2015/07/08/new-visualizations-for-understanding-spark-streaming-applications.html</a> </p>
+<p>Phoenix对join的支持，TCP in Apache Phoenix<br><a href="https://blogs.apache.org/phoenix/entry/tpc_in_apache_phoenix" target="_blank" rel="external">https://blogs.apache.org/phoenix/entry/tpc_in_apache_phoenix</a> </p>
+<p>Cassandra<br><a href="http://cassandra.apache.org/" target="_blank" rel="external">http://cassandra.apache.org/</a> </p>
+<p>mongoDB<br><a href="https://www.mongodb.org/" target="_blank" rel="external">https://www.mongodb.org/</a> </p>
+<p>Confluent<br>基于Kafka的实时流处理<br><a href="http://www.confluent.io/" target="_blank" rel="external">http://www.confluent.io/</a><br>大数据生态系统之Kafka价值<br><a href="http://www.confluent.io/blog/the-value-of-apache-kafka-in-big-data-ecosystem/" target="_blank" rel="external">http://www.confluent.io/blog/the-value-of-apache-kafka-in-big-data-ecosystem/</a> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/创建对象的两种方式/" data-id="cicpxpyfm000ufklmisesz379" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/BIGDATA-Update-201507/" data-id="cicpxpyew000efklmwfdeiez2" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cassandra/">Cassandra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongoDB/">mongoDB</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          转：《敏捷软件开发：原则、模式与实践》中文版序
-        
-      </div>
-    </a>
   
-  
-    <a href="/2004/Eclipse之Workspace路径修改/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/使用Hexo搭建Github静态博客/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Eclipse之Workspace路径修改</div>
+      <div class="article-nav-title">使用Hexo搭建Github静态博客</div>
     </a>
   
 </nav>
