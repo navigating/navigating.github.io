@@ -119,6 +119,56 @@
   </entry>
   
   <entry>
+    <title><![CDATA[Hadoop 2.7.1 发布]]></title>
+    <link href="http://navigating.github.io/2015/Hadoop-2-7-1-%E5%8F%91%E5%B8%83/"/>
+    <id>http://navigating.github.io/2015/Hadoop-2-7-1-发布/</id>
+    <published>2015-07-09T13:49:30.000Z</published>
+    <updated>2015-07-30T13:50:50.764Z</updated>
+    <content type="html"><![CDATA[<p>2015年7月6日，Apache Hadoop的稳定版本 2.7.1 正式发布。<br><a href="http://hadoop.apache.org/releases.html#Release+Notes" target="_blank" rel="external">http://hadoop.apache.org/releases.html#Release+Notes</a> </p>
+<p>Hadoop 2.7的一个小版本发布了，本版本属于稳定版本。<br>修复了2.7.0中存在的131个bug。<br>这是2.7.x第一个稳定版本，增强的功能列表请通过2.7.0版本部分查看。<br>按着计划，下一个2.7.x的小版本是2.7.2.</p>
+<p>原文：<br>06 July, 2015: Release 2.7.1 (stable) availableA point release for the 2.7 line. This release is now considered stable.<br>Please see the Hadoop 2.7.1 Release Notes for the list of 131 bug fixes and patches since the previous release 2.7.0. Please look at the 2.7.0 section below for the list of enhancements enabled by this first stable release of 2.7.x.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>2015年7月6日，Apache Hadoop的稳定版本 2.7.1 正式发布。<br><a href="http://hadoop.apache.org/releases.html#Release+Notes" target="_blank" rel="external"]]>
+    </summary>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[大数据动态201506]]></title>
+    <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81201506/"/>
+    <id>http://navigating.github.io/2015/大数据动态201506/</id>
+    <published>2015-06-09T13:52:23.000Z</published>
+    <updated>2015-07-30T13:53:38.918Z</updated>
+    <content type="html"><![CDATA[<p>Pinot：LinkedIn的实时数据分析系统<br><a href="http://www.infoq.com/cn/news/2014/10/linkdln" target="_blank" rel="external">http://www.infoq.com/cn/news/2014/10/linkdln</a><br><a href="https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot" target="_blank" rel="external">https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot</a></p>
+<p>Twitter Heron：Twitter发布新的大数据实时分析系统Heron<br><a href="http://geek.csdn.net/news/detail/33750" target="_blank" rel="external">http://geek.csdn.net/news/detail/33750</a><br><a href="http://www.longda.us/?p=529" target="_blank" rel="external">http://www.longda.us/?p=529</a> </p>
+<p>Cloudera<br>HBase对MOBs( Moderate Objects, 主要是大小100K到10M的对象存储 )的支持<br><a href="http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/</a><br>准实时计算架构模式<br><a href="http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/</a><br>(翻译：<a href="http://zhuanlan.zhihu.com/donglaoshi/20082628" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20082628</a> )<br>CDH 5.4 新功能：敏感数据处理(Sensitive Data Redaction)<br><a href="http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/</a> </p>
+<p>Hortonworks<br>YARN的CapacityScheduler对Resource-preemption的支持<br><a href="http://hortonworks.com/blog/better-slas-via-resource-preemption-in-yarns-capacityscheduler/" target="_blank" rel="external">http://hortonworks.com/blog/better-slas-via-resource-preemption-in-yarns-capacityscheduler/</a><br>Hadoop集群对Multihoming的支持<br><a href="http://hortonworks.com/blog/multihoming-on-hadoop-yarn-clusters/" target="_blank" rel="external">http://hortonworks.com/blog/multihoming-on-hadoop-yarn-clusters/</a><br>HDP 2.3企业级HDFS数据加密<br><a href="http://hortonworks.com/blog/new-in-hdp-2-3-enterprise-grade-hdfs-data-at-rest-encryption/" target="_blank" rel="external">http://hortonworks.com/blog/new-in-hdp-2-3-enterprise-grade-hdfs-data-at-rest-encryption/</a><br>Apache Slider 0.80.0版本发布<br><a href="http://hortonworks.com/blog/announcing-apache-slider-0-80-0/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-apache-slider-0-80-0/</a><br>Apache Spark 1.3.1 on HDP 2.2<br><a href="http://hortonworks.com/blog/apache-spark-on-hdp-learn-try-and-do/" target="_blank" rel="external">http://hortonworks.com/blog/apache-spark-on-hdp-learn-try-and-do/</a><br><a href="http://hortonworks.com/hadoop-tutorial/using-apache-spark-technical-preview-with-hdp-2-2/" target="_blank" rel="external">http://hortonworks.com/hadoop-tutorial/using-apache-spark-technical-preview-with-hdp-2-2/</a><br>Ambari 2.0.1 和 HDP 2.2.6 发布<br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.6/bk_HDP_RelNotes/content/ch_relnotes_v226.html" target="_blank" rel="external">http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.6/bk_HDP_RelNotes/content/ch_relnotes_v226.html</a><br><a href="http://docs.hortonworks.com/HDPDocuments/Ambari-2.0.1.0/bk_releasenotes_ambari_2.0.1.0/content/ch_relnotes-ambari-2.0.1.0.html" target="_blank" rel="external">http://docs.hortonworks.com/HDPDocuments/Ambari-2.0.1.0/bk_releasenotes_ambari_2.0.1.0/content/ch_relnotes-ambari-2.0.1.0.html</a></p>
+<p>其他：<br>Graphite的百万Metrics实践之路<br><a href="http://calvin1978.blogcn.com/articles/graphite.html" target="_blank" rel="external">http://calvin1978.blogcn.com/articles/graphite.html</a><br>HBaseCon 2015 大会幻灯片 &amp; 视频<br><a href="http://hbasecon.com/archive.html" target="_blank" rel="external">http://hbasecon.com/archive.html</a><br>HBase在腾讯大数据的应用实践<br><a href="http://www.d1net.com/bigdata/news/353500.html" target="_blank" rel="external">http://www.d1net.com/bigdata/news/353500.html</a><br>从Spark到Hadoop的架构实践<br><a href="http://www.csdn.net/article/2015-06-08/2824889" target="_blank" rel="external">http://www.csdn.net/article/2015-06-08/2824889</a><br>56网大数据<br><a href="http://share.csdn.net/slides/10903" target="_blank" rel="external">http://share.csdn.net/slides/10903</a><br>七牛技术总监陈超：记Spark Summit China 2015<br><a href="http://www.csdn.net/article/2015-04-30/2824594-spark-summit-china-2015" target="_blank" rel="external">http://www.csdn.net/article/2015-04-30/2824594-spark-summit-china-2015</a><br>唯品会美研中心郭安琪：2015 Hadoop Summit见闻<br><a href="http://zhuanlan.zhihu.com/donglaoshi/20072576" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20072576</a><br>华为叶琪：论Spark Streaming的数据可靠性和一致性<br><a href="http://www.csdn.net/article/2015-06-12/2824938" target="_blank" rel="external">http://www.csdn.net/article/2015-06-12/2824938</a><br>Hadoop Summit 2015<br><a href="http://2015.hadoopsummit.org/san-jose/agenda/" target="_blank" rel="external">http://2015.hadoopsummit.org/san-jose/agenda/</a><br>Spark Summit 2015<br><a href="https://spark-summit.org/2015/" target="_blank" rel="external">https://spark-summit.org/2015/</a> </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Pinot：LinkedIn的实时数据分析系统<br><a href="http://www.infoq.com/cn/news/2014/10/linkdln" target="_blank" rel="external">http://www.infoq.com/cn/]]>
+    </summary>
+    
+      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
+    
+      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[XP极限编程]]></title>
     <link href="http://navigating.github.io/2004/XP%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B/"/>
     <id>http://navigating.github.io/2004/XP极限编程/</id>
