@@ -139,11 +139,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[大数据动态201506]]></title>
-    <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81201506/"/>
-    <id>http://navigating.github.io/2015/大数据动态201506/</id>
+    <title><![CDATA[BIGDATA Update 201506]]></title>
+    <link href="http://navigating.github.io/2015/BIGDATA-Update-201506/"/>
+    <id>http://navigating.github.io/2015/BIGDATA-Update-201506/</id>
     <published>2015-06-09T13:52:23.000Z</published>
-    <updated>2015-07-30T13:53:38.918Z</updated>
+    <updated>2015-07-30T14:09:27.343Z</updated>
     <content type="html"><![CDATA[<p>Pinot：LinkedIn的实时数据分析系统<br><a href="http://www.infoq.com/cn/news/2014/10/linkdln" target="_blank" rel="external">http://www.infoq.com/cn/news/2014/10/linkdln</a><br><a href="https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot" target="_blank" rel="external">https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot</a></p>
 <p>Twitter Heron：Twitter发布新的大数据实时分析系统Heron<br><a href="http://geek.csdn.net/news/detail/33750" target="_blank" rel="external">http://geek.csdn.net/news/detail/33750</a><br><a href="http://www.longda.us/?p=529" target="_blank" rel="external">http://www.longda.us/?p=529</a> </p>
 <p>Cloudera<br>HBase对MOBs( Moderate Objects, 主要是大小100K到10M的对象存储 )的支持<br><a href="http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/</a><br>准实时计算架构模式<br><a href="http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/</a><br>(翻译：<a href="http://zhuanlan.zhihu.com/donglaoshi/20082628" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20082628</a> )<br>CDH 5.4 新功能：敏感数据处理(Sensitive Data Redaction)<br><a href="http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/</a> </p>
@@ -157,6 +157,34 @@
       <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
     
       <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[BIGDATA Update 201502]]></title>
+    <link href="http://navigating.github.io/2015/BIGDATA-Update-201502/"/>
+    <id>http://navigating.github.io/2015/BIGDATA-Update-201502/</id>
+    <published>2015-03-24T14:10:07.000Z</published>
+    <updated>2015-07-30T14:12:04.632Z</updated>
+    <content type="html"><![CDATA[<p>本月Hadoop技术动态：<br>1.经过6年的孵化，Hive 1.0 发布了。<br>2.经过7年的孵化，HBase 1.0 发布了。<br>3.Cloudera 开始提供 Hive-on-Spark Beta版的下载。</p>
+<p>HBase 1.0 需要特别关注的特性：<br>1.API的重新组织和变更；<br>2.读的高可用；<br>3.在线配置变更；</p>
+<p>HDP 2.2 发布有一段时间：<br><a href="http://hortonworks.com/blog/announcing-hive-1-0-stable-moment-time/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-hive-1-0-stable-moment-time/</a><br><a href="http://hortonworks.com/blog/start-new-era-apache-hbase-1-0/" target="_blank" rel="external">http://hortonworks.com/blog/start-new-era-apache-hbase-1-0/</a><br><a href="http://blog.cloudera.com/blog/2015/02/apache-hbase-1-0-is-released/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/02/apache-hbase-1-0-is-released/</a><br><a href="http://blog.cloudera.com/blog/2015/02/download-the-hive-on-spark-beta/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/02/download-the-hive-on-spark-beta/</a><br><a href="https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf" target="_blank" rel="external">https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf</a></p>
+<p>Cluster Manager Framework:<br>1.YARN<br>2.Apache Helix</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>本月Hadoop技术动态：<br>1.经过6年的孵化，Hive 1.0 发布了。<br>2.经过7年的孵化，HBase 1.0 发布了。<br>3.Cloudera 开始提供 Hive-on-Spark Beta版的下载。</p>
+<p>HBase 1.0 需要特别关注的特]]>
+    </summary>
+    
+      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
     
       <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
     
