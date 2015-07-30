@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://navigating.github.io/2015/%E8%AF%BB%E3%80%8ADeploying-Apache-Kafka-A-Practical-FAQ%E3%80%8B/</loc>
+    <lastmod>2015-07-30T15:01:55.553Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://navigating.github.io/2015/BIGDATA-Update-201502/</loc>
     <lastmod>2015-07-30T14:12:04.632Z</lastmod>
   </url>

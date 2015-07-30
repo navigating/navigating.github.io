@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>On the Open Way</title>
+  <title>On The Open Way</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
-<meta property="og:title" content="On the Open Way">
+<meta property="og:title" content="On The Open Way">
 <meta property="og:url" content="http://navigating.github.io/page/3/index.html">
-<meta property="og:site_name" content="On the Open Way">
+<meta property="og:site_name" content="On The Open Way">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="On the Open Way">
+<meta name="twitter:title" content="On The Open Way">
 <meta name="twitter:description">
 <meta name="twitter:creator" content="@xujinghui">
   
-    <link rel="alternative" href="/atom.xml" title="On the Open Way" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="On The Open Way" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -45,7 +45,7 @@ var _hmt = _hmt || [];
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">On the Open Way</a>
+        <a href="/" id="logo">On The Open Way</a>
       </h1>
       
         <h2 id="subtitle-wrap">
@@ -79,6 +79,48 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2004/创建对象的两种方式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2004/创建对象的两种方式/" class="article-date">
+  <time datetime="2004-10-11T14:10:50.000Z" itemprop="datePublished">2004-10-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2004/创建对象的两种方式/">创建对象的两种方式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>One is to create a object with a rich constructor so that its at least created with all<br>least created with all its mandatory data.<br>The other is to create o object an empty object and then populate it with the mandatory<br>data.<br>The former could have a well-formed object from the start.This aslo meants that, if you<br>have an immutable field, you can enforce it by not providing any method to change its<br>value.<br>The problem with a rich constructor is that you have to be aware of cyclic references.<br>Avoiding this requires special case code, often usingg lazy load.<br>You can do this creating an empty object.Use a non-arg constructor to create a blank object<br>and insert that empty object immediately into other object.The way,if you have a cycle,<br>other object will return an object to stop the recursive loading that two objects reference<br>each other.<br>Using an empty object like this means you may need some setters for values that are truely<br>immutalbe when the object is loaded.A combination of a naming convention and perhaps some<br>status-checking guards can fix this.You can alse use reflection for loading data.</p>
+<p>(Spring supports Setter Injection very nice.Sometimes using rich constructor to create a object<br> is preferable after you evaluating.)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2004/创建对象的两种方式/" data-id="cicqbu1yf001ipwlmj75zz267" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2004/Eclipse之Workspace路径修改" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2004/Eclipse之Workspace路径修改/" class="article-date">
@@ -110,7 +152,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Eclipse之Workspace路径修改/" data-id="cicqa4ztx0000rwlm71inhc0m" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2004/Eclipse之Workspace路径修改/" data-id="cicqbu1ux0000pwlm2elgrmlg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -301,7 +343,7 @@ try
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Statement标准关闭方法/" data-id="cicqa4zxi001jrwlmrhtt72nu" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2004/Statement标准关闭方法/" data-id="cicqbu1yu001opwlm2cbwym5u" class="article-share-link">Share</a>
       
       
     </footer>
@@ -358,7 +400,7 @@ try
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Java编程之log4j日志/" data-id="cicqa4zxs001lrwlmmaiqyjli" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2004/Java编程之log4j日志/" data-id="cicqbu1z1001qpwlm11jah1tm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -451,48 +493,7 @@ try
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Web开发起始篇/" data-id="cicqa4zxa001hrwlm968e36tn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/Eclipse之eclipse3.1M1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/Eclipse之eclipse3.1M1/" class="article-date">
-  <time datetime="2004-09-28T12:08:50.000Z" itemprop="datePublished">2004-09-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/Eclipse之eclipse3.1M1/">Eclipse之eclipse3.1M1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文参见：<a href="http://www.blogbus.com/navigating-logs/413323.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/413323.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Eclipse之eclipse3.1M1/" data-id="cicqa4zxy001nrwlmiwvt6lz3" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2004/Web开发起始篇/" data-id="cicqbu1yp001mpwlm27kpwmpl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -504,7 +505,7 @@ try
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -515,7 +516,7 @@ try
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">15</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -524,7 +525,7 @@ try
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/CDH/" style="font-size: 13.33px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 13.33px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Spark/" style="font-size: 16.67px;">Spark</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+      <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/CDH/" style="font-size: 16.67px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 13.33px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Spark/" style="font-size: 16.67px;">Spark</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
     </div>
   </div>
 
@@ -552,7 +553,7 @@ try
           </li>
         
           <li>
-            <a href="/2015/BIGDATA-Update-201506/">BIGDATA Update 201506</a>
+            <a href="/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/">读《Deploying Apache Kafka: A Practical FAQ》</a>
           </li>
         
       </ul>
@@ -564,7 +565,7 @@ try
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
