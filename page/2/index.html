@@ -114,7 +114,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/大数据动态之201506/" data-id="cicsfw7s1000l0klmtl0t4rje" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/大数据动态之201506/" data-id="cicsgoja3000l4wlmrcrprbvi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HBase/">HBase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
@@ -176,7 +176,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/大数据动态之201505/" data-id="cicsfw7sg000u0klmdtw1825w" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/大数据动态之201505/" data-id="cicsgojaj000u4wlmebdgoibe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ambari/">Ambari</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hive/">Hive</a></li></ul>
@@ -222,7 +222,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/大数据动态之201502/" data-id="cicsfw7sp00130klms8jyxzbo" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/大数据动态之201502/" data-id="cicsgojau00134wlm2bhhyvtz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
@@ -234,14 +234,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2005/JUnit使用心得" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2005/拓展训练" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2005/JUnit使用心得/" class="article-date">
-  <time datetime="2005-01-17T02:14:51.000Z" itemprop="datePublished">2005-01-17</time>
+    <a href="/2005/拓展训练/" class="article-date">
+  <time datetime="2005-08-28T02:44:12.000Z" itemprop="datePublished">2005-08-28</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
+    <a class="article-category-link" href="/categories/生活/">生活</a>
   </div>
 
   </div>
@@ -252,7 +252,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2005/JUnit使用心得/">JUnit使用心得</a>
+      <a class="article-title" href="/2005/拓展训练/">拓展训练</a>
     </h1>
   
 
@@ -260,29 +260,14 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>  来自<a href="http://junit.sourceforge.net/doc/cookstour/Image6.gif" target="_blank" rel="external">http://junit.sourceforge.net/doc/cookstour/Image6.gif</a></p>
-<p>1.在这个composite模式之中，TestSuite与它的接口Test的聚合关系。这种关系完美的满足了客户代码自由自在的组装自己的测试用例结构。称为面对对象的递归组合。现在TestCase和TestSuite都具有良好的扩充性。<br>2.TestResult：如何进行职责的分配永远是对象的话题。TestCase直接面对符合测试框架规范的测试用例的每一个方法，每一个方法都会致使一个TestCase的对象构造出来，这样测试用例的方法之间就很好的隔离；每一个TestCase都是一个独立的测试单元，TestCase正是保证这种自主性。测试用例运行中的信息收集和信息积累。用例和信息积累都是潜在可能各自发生变化的，区别用例的执行和信息的收集就可以得到更多的灵活性和潜在复用性。用例和信息积累各自都又具有很好的通用性。TestResult正是测试执行信息积累而被封装的类(Test提供了信息积累的收集点：countTestCases)，可以看到TestResult是作为访问者(Visitor)注册到Test中去的。对于测试执行信息的处理，向TestResult注册了estListener的Observer模式。<br>3.在TestResult通过接口Protectable将执行信息的处理优美的隔离到一个单独的方法中来：<br>public interface Protectable {</p>
-<p> /**</p>
-<ul>
-<li>Run the the following method protected.<br>*/<br>public abstract void protect() throws Throwable;<br>}</li>
-</ul>
-<p>在TestResult中：<br> /**</p>
-<ul>
-<li><p>Runs a TestCase.<br>*/<br>protected void run(final TestCase test) {<br>startTest(test);<br>Protectable p= new Protectable() {<br>public void protect() throws Throwable {<br>test.runBare();<br>}<br>};<br>runProtected(test, p);</p>
-<p>endTest(test);<br>}</p>
-<p>/**</p>
-</li>
-<li>Runs a TestCase.<br>*/<br>public void runProtected(final Test test, Protectable p) {<br>try {<br>p.protect();<br>}<br>catch (AssertionFailedError e) {<br>addFailure(test, e);<br>}<br>catch (ThreadDeath e) { // don’t catch ThreadDeath by accident<br>throw e;<br>}<br>catch (Throwable e) {<br>addError(test, e);<br>}<br>}<br>整个JUnit框架是功能完美而且精巧的。其中的核心代码也不过千余行而已，处处都能感觉到灵活和可扩充。</li>
-</ul>
+        <p>周末参加了一个公司的导师拓展训练。<br>地点：沈阳棋盘上附近一个基地。<br>感受几点：<br>1.个人能力是有限的，团队和自己的能力的发挥。<br>2.在我们面对或者挑战平日里看来可怕的或者根本不可能去做的事情，在环境被逼的去做，做完了反而觉得十分有刺激和具有挑战性。人是应该富于挑战的，包括不断的自我挑战。<br>3.一旦目标确定,一个team同心协力的去做一件非常是有挑战性的事情的时候，所有的人都愿意同心协力的去创造一个个奇迹。<br>4.人人都有很强的荣誉感，在面对荣誉的时候，如何抉择取舍。team与team之间的良性对比是十分必要的,也总是伴随着恶性事件的到来。:)<br><img src="/images/2005_TuoZhanXunLian.jpg" alt="这是一张图片"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/JUnit使用心得/" data-id="cicsfw7u0001q0klmis751xmx" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/拓展训练/" data-id="cicsgojcl001x4wlm1i4k8pce" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JUunit/">JUunit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XP/">XP</a></li></ul>
-
     </footer>
   </div>
   
@@ -290,10 +275,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2005/黄花菜" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2005/读设计模式精解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2005/黄花菜/" class="article-date">
-  <time datetime="2005-01-03T04:13:34.000Z" itemprop="datePublished">2005-01-03</time>
+    <a href="/2005/读设计模式精解/" class="article-date">
+  <time datetime="2005-08-10T02:42:23.000Z" itemprop="datePublished">2005-08-10</time>
 </a>
     
   <div class="article-category">
@@ -308,7 +293,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2005/黄花菜/">黄花菜</a>
+      <a class="article-title" href="/2005/读设计模式精解/">读设计模式精解</a>
     </h1>
   
 
@@ -316,18 +301,18 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>学名：Hemerocallis citrina Baroni<br>英文名：Citron Daylily<br>科名：百合科 Liliaceae<br>    根常稍肥厚或末端膨大。基生叶深绿色，宽线形，通常宽l－2厘米或更宽，</p>
-<p>较花茎短。花茎高1—2米；螺壳状聚伞花序排成圆锥状，花朵达几十朵，花午</p>
-<p>后开放，次日午前凋萎，黄色，芳香，长8—16厘米；花被管长3—5厘米，外轮</p>
-<p>裂片倒被针形，内轮长椭圆形。蒴果椭圆形，长约2．5厘米。花期8—10月。   </p>
-<pre><code>产本省各地，野生山坡、山谷草丛中，也有栽培；分布我国秦岭以南各省
-</code></pre><p>区，北方也有栽培。</p>
-<pre><code>花供食用；根有毒性，可作杀虫剂。
-</code></pre>
+        <p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
+<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化的来源大抵有三种：1。新的功能需求；2。开发者对于问题领域的理解发生了变化，通过开发来提高问题领域的自动化程度；3。开发环境的变迁。),需求中的变化总是对于已经分解好的功能结构产生致命的冲击。仅仅将注意力集中在功能上是不够的，必须对数据结构和过程进行抽象、封装等，促使已有的实现能灵活应对需求的变化。<br>模块化：<br>通常我们还会选择模块化来进一步进行设计，其精髓就是高内聚低耦合。模块化能让我们写出更容易理解、更容易维护的代码。但是模块没有完全提出代码实现的抽象和封装，没有进一步提供粒度较小的抽象、封装和复用，可能一个过程或者数据结构的变动，确对一些地方的代码造成了意料之外的影响。<br>结论：<br>仅仅能实现当前需求的代码远远是不够的，而且仅仅使用功能分解然后实现之的分析设计思路也是糟糕的，因为需求总是在变化。我们必须从这里走得更远，作者就引入乐面对对象范式。</p>
+<blockquote>
+<blockquote>
+<p>OOP在由抽象、封装、模块化、分层组成的对象模型之概念框架下，在语言级粒度上提供了封装、继承、多态的支持；这是人类复用技术的进步，但是使用了oop并不代表就能完全运用了对象模型的核心思想。(TDD是当前应对代码变化的最好的开发方式。需求变化的最大承受者就是代码，富于变化和善于应对变化的代码才能存活下来。)</p>
+</blockquote>
+</blockquote>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/黄花菜/" data-id="cicsfw7tr001n0klmq4yx5yae" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/读设计模式精解/" data-id="cicsgojc8001t4wlm7hpbos9k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -350,7 +335,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -403,6 +388,22 @@ var _hmt = _hmt || [];
           </li>
         
           <li>
+            <a href="/2005/拓展训练/">拓展训练</a>
+          </li>
+        
+          <li>
+            <a href="/2005/读设计模式精解/">读设计模式精解</a>
+          </li>
+        
+          <li>
+            <a href="/2005/读《Berkeley-Unix二十年》/">读《Berkeley Unix二十年》</a>
+          </li>
+        
+          <li>
+            <a href="/2005/转载：你注意过你的父母吗/">转载：你注意过你的父母吗....</a>
+          </li>
+        
+          <li>
             <a href="/2005/JUnit使用心得/">JUnit使用心得</a>
           </li>
         
@@ -434,22 +435,6 @@ var _hmt = _hmt || [];
             <a href="/2004/如何开始编码/">如何开始编码</a>
           </li>
         
-          <li>
-            <a href="/2004/Go-Well-NOT-Fast/">Go Well, NOT Fast</a>
-          </li>
-        
-          <li>
-            <a href="/2004/XP极限编程/">XP极限编程</a>
-          </li>
-        
-          <li>
-            <a href="/2004/设计模式之分层实现(Layering Implements)/">设计模式之分层实现(Layering Implements)</a>
-          </li>
-        
-          <li>
-            <a href="/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/">转：《敏捷软件开发：原则、模式与实践》中文版序</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -459,7 +444,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

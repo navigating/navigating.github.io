@@ -53,7 +53,7 @@
     <link href="http://navigating.github.io/2015/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BAGithub%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     <id>http://navigating.github.io/2015/使用Hexo搭建Github静态博客/</id>
     <published>2015-07-28T09:20:22.000Z</published>
-    <updated>2015-08-01T01:33:22.223Z</updated>
+    <updated>2015-08-01T02:52:46.672Z</updated>
     <content type="html"><![CDATA[<p>环境：</p>
 <pre><code><span class="bullet">1. </span>Windows XP
 <span class="bullet">2. </span>Git
@@ -377,6 +377,84 @@ deploy:</span>
   </entry>
   
   <entry>
+    <title><![CDATA[拓展训练]]></title>
+    <link href="http://navigating.github.io/2005/%E6%8B%93%E5%B1%95%E8%AE%AD%E7%BB%83/"/>
+    <id>http://navigating.github.io/2005/拓展训练/</id>
+    <published>2005-08-28T02:44:12.000Z</published>
+    <updated>2015-08-01T02:49:17.527Z</updated>
+    <content type="html"><![CDATA[<p>周末参加了一个公司的导师拓展训练。<br>地点：沈阳棋盘上附近一个基地。<br>感受几点：<br>1.个人能力是有限的，团队和自己的能力的发挥。<br>2.在我们面对或者挑战平日里看来可怕的或者根本不可能去做的事情，在环境被逼的去做，做完了反而觉得十分有刺激和具有挑战性。人是应该富于挑战的，包括不断的自我挑战。<br>3.一旦目标确定,一个team同心协力的去做一件非常是有挑战性的事情的时候，所有的人都愿意同心协力的去创造一个个奇迹。<br>4.人人都有很强的荣誉感，在面对荣誉的时候，如何抉择取舍。team与team之间的良性对比是十分必要的,也总是伴随着恶性事件的到来。:)<br><img src="/images/2005_TuoZhanXunLian.jpg" alt="这是一张图片"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>周末参加了一个公司的导师拓展训练。<br>地点：沈阳棋盘上附近一个基地。<br>感受几点：<br>1.个人能力是有限的，团队和自己的能力的发挥。<br>2.在我们面对或者挑战平日里看来可怕的或者根本不可能去做的事情，在环境被逼的去做，做完了反而觉得十分有刺激和具有挑战性。人]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[读设计模式精解]]></title>
+    <link href="http://navigating.github.io/2005/%E8%AF%BB%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B2%BE%E8%A7%A3/"/>
+    <id>http://navigating.github.io/2005/读设计模式精解/</id>
+    <published>2005-08-10T02:42:23.000Z</published>
+    <updated>2015-08-01T02:42:46.954Z</updated>
+    <content type="html"><![CDATA[<p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
+<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化的来源大抵有三种：1。新的功能需求；2。开发者对于问题领域的理解发生了变化，通过开发来提高问题领域的自动化程度；3。开发环境的变迁。),需求中的变化总是对于已经分解好的功能结构产生致命的冲击。仅仅将注意力集中在功能上是不够的，必须对数据结构和过程进行抽象、封装等，促使已有的实现能灵活应对需求的变化。<br>模块化：<br>通常我们还会选择模块化来进一步进行设计，其精髓就是高内聚低耦合。模块化能让我们写出更容易理解、更容易维护的代码。但是模块没有完全提出代码实现的抽象和封装，没有进一步提供粒度较小的抽象、封装和复用，可能一个过程或者数据结构的变动，确对一些地方的代码造成了意料之外的影响。<br>结论：<br>仅仅能实现当前需求的代码远远是不够的，而且仅仅使用功能分解然后实现之的分析设计思路也是糟糕的，因为需求总是在变化。我们必须从这里走得更远，作者就引入乐面对对象范式。</p>
+<blockquote>
+<blockquote>
+<p>OOP在由抽象、封装、模块化、分层组成的对象模型之概念框架下，在语言级粒度上提供了封装、继承、多态的支持；这是人类复用技术的进步，但是使用了oop并不代表就能完全运用了对象模型的核心思想。(TDD是当前应对代码变化的最好的开发方式。需求变化的最大承受者就是代码，富于变化和善于应对变化的代码才能存活下来。)</p>
+</blockquote>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
+<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化]]>
+    </summary>
+    
+      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[读《Berkeley Unix二十年》]]></title>
+    <link href="http://navigating.github.io/2005/%E8%AF%BB%E3%80%8ABerkeley-Unix%E4%BA%8C%E5%8D%81%E5%B9%B4%E3%80%8B/"/>
+    <id>http://navigating.github.io/2005/读《Berkeley-Unix二十年》/</id>
+    <published>2005-05-31T02:41:23.000Z</published>
+    <updated>2015-08-01T02:41:52.631Z</updated>
+    <content type="html"><![CDATA[<p>16 May 2005<br>    在unix的早期历史里面，没有策划，没有估计，没有进度表；在这个年代，硬件的代价是昂贵的，在硬件资源固定的情况下，所有的人都希望通过自己的努力进行优化，进行维护，进行调试，进行移植，进行集成。。。这时构建系统、发布系统还处于萌芽状态，大量的工作都是针对与操作系统的。(同也是编程语言狂热的年代。)这完全是个人表现，人类对于计算机一个个基本的需求解决的年代。理想也是满足自己的开发所需和硬件的平滑更换。经过暴风骤雨的成长发展，系统进入了分支期，这样路就越来越窄了，可以选择的空间似乎总是在缩小。NetBSD专注于支持多平台，FreeBSD专注于支持PC体系，OpenBSD专注于系统的安全性。<br>   人才的流动，人才的流失对于一个team来说是一个损失，同时team有引进了新的人才。对于整个行业来说开始平衡的，人才的流动带给一个行业的是经验的互补，每一个人都各有所长。关键人才的流动带给系统的是新的特性切入点，同类型的系统也越来越有竞争力，火拼最激烈的时候正是新的力量可能诞生的时候。BSD的发展就是DARPA(Defense Advanced Research Projects Agency)给了它这个绝佳的机会。Bill Joy、Bob Fabry、Leffler…的离开，Leffler、Pauline Schwartz、Domenico Ferrari、Susan Graham、<br>Mike Karels…的介入。<br>   早期的Unix开发者都是小范围的孤军奋战，而且也总是在增大交流的范畴，交流越广泛，对于系统的提高所起到的隐含动力越大。在系统的开发前行中，越来越多的贡献者希望代码的共享，常常会触及到版权的问题，这种共享缩短了个人和行业的发展历程。今天OpenSource已经深入到我们这些开发者的心灵之中，感谢这些先行者和贡献者。同样感受到，官事没有什么可怕的，足以证明这个系统、这个行业非常成熟了，有了越来越多的共利益者了，分蛋糕的人拼的热火朝天呢，大家在同一个级别上一较高下了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>16 May 2005<br>    在unix的早期历史里面，没有策划，没有估计，没有进度表；在这个年代，硬件的代价是昂贵的，在硬件资源固定的情况下，所有的人都希望通过自己的努力进行优化，进行维护，进行调试，进行移植，进行集成。。。这时构建系统、发布系统还处于萌芽状态，大]]>
+    </summary>
+    
+      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[转载：你注意过你的父母吗....]]></title>
+    <link href="http://navigating.github.io/2005/%E8%BD%AC%E8%BD%BD%EF%BC%9A%E4%BD%A0%E6%B3%A8%E6%84%8F%E8%BF%87%E4%BD%A0%E7%9A%84%E7%88%B6%E6%AF%8D%E5%90%97/"/>
+    <id>http://navigating.github.io/2005/转载：你注意过你的父母吗/</id>
+    <published>2005-02-24T02:39:41.000Z</published>
+    <updated>2015-08-01T02:40:48.081Z</updated>
+    <content type="html"><![CDATA[<p>你注意过你的父母吗？(写给 30岁以上的人，让30岁以下的人思考) </p>
+<p>如果有一天，你发现妈妈的厨房不再像以前那么干净<br>如果有一天，你发现家中的碗筷好像没洗干净<br>如果有一天，你发现母亲的锅子不再雪亮<br>如果有一天，你发现父亲的花草树木已渐荒废<br>如果有一天，你发现家中的地板衣柜经常沾满灰尘<br>如果有一天，你发现母亲煮的菜太咸太难吃<br>如果有一天，你发现父母经常忘记关瓦斯 </p>
+<p>如果有一天，你发现老父老母的一些习惯不再是习惯时， 就像他们不再想要天天洗澡时<br>如果有一天，你发现父母不再爱吃青脆的蔬果<br>如果有一天，你发现父母爱吃煮得烂烂的菜<br>如果有一天，你发现父母喜欢吃稀饭<br>如果有一天，你发现他们过马路行动反应都慢了<br>如果有一天，你发现在吃饭时间他们老是咳个不停 千万别误以为他们感冒或着凉，<br>(那是吞咽神经老化的现象)<br>如果有一天，你发觉他们不再爱出门… </p>
+<p>如果有这么一天 我要告诉你，你要警觉父母真的已经老了<br>器官已经退化到需要别人照料了<br>如果你不能照料，<br>请你替他们找人照料<br>并请你请你千万千万要常常探望<br>不要让他们觉得被遗弃了 </p>
+<p>每个人都会老<br>父母比我们先老<br>我们要用角色互换的心情去照料他<br>才会有耐心、才不会有怨言<br>当父母不能料理自己的时候，<br>为人子女要警觉，<br>他们可能会大小便失禁、可能会很多事都做不好，<br>如果房间有异味，可能他们自己也闻不到，请不要嫌他脏或嫌他臭，<br>为人子女的只能帮他清理，并请维持他们的’自尊心’。</p>
+<p>当他们不再爱洗澡时，<br>请抽空定期帮他们洗身体，<br>因为纵使他们自己洗也可能洗不干净。<br>当我们在享受食物的时候，<br>请替他们准备一份大小适当、容易咀嚼的一小碗，<br>因为他们不爱吃可能是牙齿咬不动了。<br>从我们出生开始，喂奶换尿布、生病的不眠不休照料、<br>教我们生活基本能力、供给读书、吃喝玩乐和补习，<br>关心和行动永远都不停歇。</p>
+<p>如果有一天，<br>他们真的动不了了，角色互换不也是应该的吗？<br>为人子女者要切记，看父母就是看自己的未来，孝顺要及时。<br>如果有一天，<br>你像他们一样老时，你希望怎么过？<br>现在的你，<br>是在当单身寄生虫、还是已婚双料或多料寄生虫？<br>你留意过自己的父母吗 ?</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>你注意过你的父母吗？(写给 30岁以上的人，让30岁以下的人思考) </p>
+<p>如果有一天，你发现妈妈的厨房不再像以前那么干净<br>如果有一天，你发现家中的碗筷好像没洗干净<br>如果有一天，你发现母亲的锅子不再雪亮<br>如果有一天，你发现父亲的花草树木已渐荒废<b]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[JUnit使用心得]]></title>
     <link href="http://navigating.github.io/2005/JUnit%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"/>
     <id>http://navigating.github.io/2005/JUnit使用心得/</id>
@@ -582,122 +660,6 @@ deploy:</span>
     <summary type="html">
     <![CDATA[<p>1.程序run起来。<br>2.程序能够被单元测试。<br>3.考虑引起变化的因素。<br>4.面对引起变化的因素，重构。<br>5.如何对变化进行单元测试，即面对了变化，如何进行单元测试。<br>6.如何做准确性的单元测试，如何做边界的单元测试。<br>7.如何保证代码在]]>
     </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Go Well, NOT Fast]]></title>
-    <link href="http://navigating.github.io/2004/Go-Well-NOT-Fast/"/>
-    <id>http://navigating.github.io/2004/Go-Well-NOT-Fast/</id>
-    <published>2004-10-25T01:52:30.000Z</published>
-    <updated>2015-08-01T01:54:19.944Z</updated>
-    <content type="html"><![CDATA[<p>“We often blame managers for schedule pressure. We often complain that our companies set unreasonable deadlines and have unrealistic expectations. This might be true, but it’s only half the problem. The other half, the most important half, is within us. We consider our worth as programmers to be more associated with speed than with quality. And that’s a tragedy; because it leads us to create messes. It leads us down the slower path. By rushing we ruin our chance to truly go fast.”</p>
-<p>Today’s Links:</p>
-<p><a href="http://www.artima.com/weblogs/viewpost.jsp?thread=51769" target="_blank" rel="external">http://www.artima.com/weblogs/viewpost.jsp?thread=51769</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>“We often blame managers for schedule pressure. We often complain that our companies set unreasonable deadlines and have unrealistic expe]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[XP极限编程]]></title>
-    <link href="http://navigating.github.io/2004/XP%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B/"/>
-    <id>http://navigating.github.io/2004/XP极限编程/</id>
-    <published>2004-10-22T15:32:55.000Z</published>
-    <updated>2015-07-28T15:36:31.222Z</updated>
-    <content type="html"><![CDATA[<ol>
-<li>模式</li>
-<li>重构</li>
-<li>测试</li>
-<li>增量交付</li>
-<li>频繁构建</li>
-</ol>
-]]></content>
-    <summary type="html">
-    <![CDATA[<ol>
-<li>模式</li>
-<li>重构</li>
-<li>测试</li>
-<li>增量交付</li>
-<li>频繁构建</li>
-</ol>
-]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[设计模式之分层实现(Layering Implements)]]></title>
-    <link href="http://navigating.github.io/2004/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%88%86%E5%B1%82%E5%AE%9E%E7%8E%B0(Layering%20Implements)/"/>
-    <id>http://navigating.github.io/2004/设计模式之分层实现(Layering Implements)/</id>
-    <published>2004-10-22T14:10:50.000Z</published>
-    <updated>2015-07-28T15:10:23.097Z</updated>
-    <content type="html"><![CDATA[<p>原文第一次发布：<a href="http://www.blogbus.com/navigating-logs/455608.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/455608.html</a><br>今天去听课，老师讲到persistence layer的时候，提到dao的出现主要应付数据库的移植，可能他出现的最初的原型确实如此，仔细想一下，真实的enterprise application的数据源有多少在移植呢，就我们一般而言，一般相对都是很固定，在软件的最初设计阶段就已经选型了。（在OO中讲，如果一个变化可能要等三五年，那么你就得去考虑现在考虑这个变化是不是有意义？）</p>
-<p>现在在设计模式的基础上，提出了企业架构应用的诸多模式，这么多模式都是在依赖于设计模式来实现的。那么企业架构应用的诸多模式的价值何在？就persistence layer而言，抽象出数据持久化的一般问题解决方案，看下面的图：</p>
-<p>在与数据源(一般都是大型数据库)交互的时候，对于网络的依赖是必不可少的。基本的原则：minimize distributed communication(今天老师刚讲的)。在持久层，既是DAO还需要做一定的数据缓冲，减少网络访问，对于本地persistence object的管理才是比较重要的。对于我们的工作中，不一定要做数据缓冲，但是应该考虑对于网络访问是否最小化了。</p>
-<p>为什么要分层?</p>
-<ol>
-<li>can understand a single layer as a coherent whole without knowing much about the other layers。就如现在我们在设计dao的时候，很少去考虑什么business logic，单纯的去研究数据的访问。</li>
-</ol>
-<ol>
-<li>can substitute layers with alternative implementations of the same basic services.这个问题就跟接口有关了，还要讨论的。很好的满足了DIP(依赖倒置原则);</li>
-</ol>
-<ol>
-<li>minimize dependencies between the layers.对象之间的应用不再是杂乱五章的，大家都依赖于抽象。</li>
-</ol>
-<ol>
-<li>Layers make good places for standardization.现在datasource layer(persistence layer),domain layer,presentation lay.经过大家的群策群力，每一个层次都有了模式，加快了解决问题的速度，使得开发人员集中于一些必要的挑战。最近有提出了service layer.(今天老师讲了The Business Delegate Design Pattern,但是老师却讲到了field和object的对比，这个方式我们早已讲过了，这次SUN单独提出来，它的意义远不再这里，我理解和service layer有一定的关系。)</li>
-</ol>
-<ol>
-<li>Once you have a layer built you can use it for many higher level services.这也是分离出层的原型吧。</li>
-</ol>
-<p>我觉得Pattern of Enterprise Application Architecture讲分层的第一句话特别好：</p>
-<p>Layering is one of the most common techniques that software designers use to break apart a complicated software system.</p>
-<p>依然有了分层，就产生了层，有了层，就有了层与层之间的关系，那么就面对这些 层关系的设计和实现问题。</p>
-<p>在企业应用架构有三层（也有四层的分法），这些层之间必然会有一些依赖，我们都知道依赖有一个原则：依赖倒置原则（DIP）</p>
-<ol>
-<li>高层模块不应该依赖于底层模块。二者都应该依赖于抽象。</li>
-</ol>
-<ol>
-<li>抽象不应该依赖于细节。细节应该以来于抽象。</li>
-</ol>
-<p>对应于分层，较“高”层包含了什么，包含了策略选择和业务模型，而这些真是应用程序的价值所在，如果“高”层以来于“低”层，那么“低”层的变化就会影响到“高”层。</p>
-<p>更不可能去让“低”层依赖于“高”层。</p>
-<p>现在只有一种可能，“高”层和“低”层是独立的。这不也正是我们使用framework的价值所在吗？</p>
-<p>这样层与层之间的依赖就必须是抽象，而不是实现和细节。</p>
-<p>Service layer的出现，是为了面对客户层接入集成了一系列高效的操作集。主要目的提高数据存取和业务逻辑的利用率，减少重复调用。</p>
-<p>Serverice layer是一个边缘层（boundary）。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>原文第一次发布：<a href="http://www.blogbus.com/navigating-logs/455608.html" target="_blank" rel="external">http://www.blogbus.com/navigating-log]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[转：《敏捷软件开发：原则、模式与实践》中文版序]]></title>
-    <link href="http://navigating.github.io/2004/%E8%BD%AC%EF%BC%9A%E3%80%8A%E6%95%8F%E6%8D%B7%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%EF%BC%9A%E5%8E%9F%E5%88%99%E3%80%81%E6%A8%A1%E5%BC%8F%E4%B8%8E%E5%AE%9E%E8%B7%B5%E3%80%8B%E4%B8%AD%E6%96%87%E7%89%88%E5%BA%8F/"/>
-    <id>http://navigating.github.io/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/</id>
-    <published>2004-10-14T14:10:50.000Z</published>
-    <updated>2015-07-28T15:07:24.258Z</updated>
-    <content type="html"><![CDATA[<p>“最好的软件开发人员都知道一个秘密：美的东西比丑的东西创建起来更廉价，也更快捷。构建、维护一个美的软件系统所花费的时间、金钱都要少于丑的系统。软件开发新手往往不理解这一点。他们认为做每件事情都必须要快，他们认为美是不实用的。错！由于事情做得过快，他们造成的混乱致使软件僵化，难以理解。美的系统是灵活、易于理解的，构建、维护它们就是一种快乐。丑陋的系统才是不实用的。丑陋会降低你的开发速度，使你的软件昂贵而又脆弱。构建、维护美的系统所花费的代价最少，交付起来也最快。”</p>
-<p>——摘自“Robert C. Martin《敏捷软件开发：原则、模式与实践》中文版序”</p>
-<p>Robert C. Martin《敏捷软件开发：原则、模式与实践》中文版序</p>
-<p>　　除了我的家庭，软件是我的挚爱。通过它，我可以创造出美的东西。软件之美在于它的功能，在于它的内部结构，还在于团队创建它的过程。对用户来说，通过直观、简单的界面呈现出恰当特性的程序就是美的。对软件设计者来说，被简单、直观地分割，并具有最小内部耦合的内部结构就是美的。对开发人员和管理者来说，每周都会取得重大进展，并且生产出无缺陷代码的具有活力的团队就是美的。美存在于所有这些层次之中，它们都是本书内容的一部分。<br>　　软件开发人员如何学到创造美的知识呢？在本书中，我讲授了一些原则、模式以及实践，它们可以帮助软件开发人员在追求美的程序、设计以及团队的道路上迈出第一步。其中，我们探索了基本的设计原则，软件设计结构的通用模式以及有助于团队融为一个有机整体的一系列实践。由于本书是关于软件开发的，所以包含了许多代码。仔细研究这些代码是学习本书所教授的原则、模式以及实践的最有效方法。<br>　　人们需要软件—需要许多的软件。50年前，软件还只是运行在少量大型、昂贵的机器之上。30年前，软件可以运行在大多数公司和工业环境之中。现在，移动电话、手表、电器、汽车、玩具以及工具中都运行有软件，并且对更新、更好软件的需求永远不会停止。随着人类文明的发展和壮大，随着发展中国家不断构建它们的基础设施，随着发达国家努力追求更高的效率，就需要越来越多的软件。如果在所有这些软件之中，都没有美存在，这将会是一个很大的遗憾。<br>　　我们知道软件可能会是丑陋的。我们知道软件可能会难以使用、不可靠并且是粗制滥造的；我们知道有一些软件系统，其混乱、粗糙的内部结构使得对它们的更改既昂贵又困难；我们还见过那些通过笨拙、难以使用的界面展现其特性的软件系统；我们同样也见过那些易崩溃且行为不当的软件系统。这些都是丑陋的系统。糟糕的是，作为一种职业，软件开发人员所创建出来的美的东西却往往少于丑的东西。如果你正在阅读这本书，那么你也许就是那个想去创造美而不是丑的人。<br>　　最好的软件开发人员都知道一个秘密：美的东西比丑的东西创建起来更廉价，也更快捷。构建、维护一个美的软件系统所花费的时间、金钱都要少于丑的系统。软件开发新手往往不理解这一点。他们认为做每件事情都必须要快，他们认为美是不实用的。错！由于事情做得过快，他们造成的混乱致使软件僵化，难以理解。美的系统是灵活、易于理解的，构建、维护它们就是一种快乐。丑陋的系统才是不实用的。丑陋会降低你的开发速度，使你的软件昂贵而又脆弱。构建、维护美的系统所花费的代价最少，交付起来也最快。<br>　　我希望你能喜爱这本书。我希望你能像我一样学着以创建美的软件而骄傲，并享受其中的快乐。如果你从本书中略微看到了这种快乐，如果本书使你开始感受到了这种骄傲，如果本书点燃了你内心欣赏这种美的火花，那么就远超过我的目标了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>“最好的软件开发人员都知道一个秘密：美的东西比丑的东西创建起来更廉价，也更快捷。构建、维护一个美的软件系统所花费的时间、金钱都要少于丑的系统。软件开发新手往往不理解这一点。他们认为做每件事情都必须要快，他们认为美是不实用的。错！由于事情做得过快，他们造成的混乱致使软件僵化，]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
