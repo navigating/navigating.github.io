@@ -79,6 +79,215 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2004/Go-Well-NOT-Fast" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2004/Go-Well-NOT-Fast/" class="article-date">
+  <time datetime="2004-10-25T01:52:30.000Z" itemprop="datePublished">2004-10-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2004/Go-Well-NOT-Fast/">Go Well, NOT Fast</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>“We often blame managers for schedule pressure. We often complain that our companies set unreasonable deadlines and have unrealistic expectations. This might be true, but it’s only half the problem. The other half, the most important half, is within us. We consider our worth as programmers to be more associated with speed than with quality. And that’s a tragedy; because it leads us to create messes. It leads us down the slower path. By rushing we ruin our chance to truly go fast.”</p>
+<p>Today’s Links:</p>
+<p><a href="http://www.artima.com/weblogs/viewpost.jsp?thread=51769" target="_blank" rel="external">http://www.artima.com/weblogs/viewpost.jsp?thread=51769</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2004/Go-Well-NOT-Fast/" data-id="cicsezf5c001xtklm8kh7k4n7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2004/XP极限编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2004/XP极限编程/" class="article-date">
+  <time datetime="2004-10-22T15:32:55.000Z" itemprop="datePublished">2004-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2004/XP极限编程/">XP极限编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ol>
+<li>模式</li>
+<li>重构</li>
+<li>测试</li>
+<li>增量交付</li>
+<li>频繁构建</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2004/XP极限编程/" data-id="cicsezf4e001ntklmd2ufnudn" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2004/设计模式之分层实现(Layering Implements)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2004/设计模式之分层实现(Layering Implements)/" class="article-date">
+  <time datetime="2004-10-22T14:10:50.000Z" itemprop="datePublished">2004-10-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2004/设计模式之分层实现(Layering Implements)/">设计模式之分层实现(Layering Implements)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文第一次发布：<a href="http://www.blogbus.com/navigating-logs/455608.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/455608.html</a><br>今天去听课，老师讲到persistence layer的时候，提到dao的出现主要应付数据库的移植，可能他出现的最初的原型确实如此，仔细想一下，真实的enterprise application的数据源有多少在移植呢，就我们一般而言，一般相对都是很固定，在软件的最初设计阶段就已经选型了。（在OO中讲，如果一个变化可能要等三五年，那么你就得去考虑现在考虑这个变化是不是有意义？）</p>
+<p>现在在设计模式的基础上，提出了企业架构应用的诸多模式，这么多模式都是在依赖于设计模式来实现的。那么企业架构应用的诸多模式的价值何在？就persistence layer而言，抽象出数据持久化的一般问题解决方案，看下面的图：</p>
+<p>在与数据源(一般都是大型数据库)交互的时候，对于网络的依赖是必不可少的。基本的原则：minimize distributed communication(今天老师刚讲的)。在持久层，既是DAO还需要做一定的数据缓冲，减少网络访问，对于本地persistence object的管理才是比较重要的。对于我们的工作中，不一定要做数据缓冲，但是应该考虑对于网络访问是否最小化了。</p>
+<p>为什么要分层?</p>
+<ol>
+<li>can understand a single layer as a coherent whole without knowing much about the other layers。就如现在我们在设计dao的时候，很少去考虑什么business logic，单纯的去研究数据的访问。</li>
+</ol>
+<ol>
+<li>can substitute layers with alternative implementations of the same basic services.这个问题就跟接口有关了，还要讨论的。很好的满足了DIP(依赖倒置原则);</li>
+</ol>
+<ol>
+<li>minimize dependencies between the layers.对象之间的应用不再是杂乱五章的，大家都依赖于抽象。</li>
+</ol>
+<ol>
+<li>Layers make good places for standardization.现在datasource layer(persistence layer),domain layer,presentation lay.经过大家的群策群力，每一个层次都有了模式，加快了解决问题的速度，使得开发人员集中于一些必要的挑战。最近有提出了service layer.(今天老师讲了The Business Delegate Design Pattern,但是老师却讲到了field和object的对比，这个方式我们早已讲过了，这次SUN单独提出来，它的意义远不再这里，我理解和service layer有一定的关系。)</li>
+</ol>
+<ol>
+<li>Once you have a layer built you can use it for many higher level services.这也是分离出层的原型吧。</li>
+</ol>
+<p>我觉得Pattern of Enterprise Application Architecture讲分层的第一句话特别好：</p>
+<p>Layering is one of the most common techniques that software designers use to break apart a complicated software system.</p>
+<p>依然有了分层，就产生了层，有了层，就有了层与层之间的关系，那么就面对这些 层关系的设计和实现问题。</p>
+<p>在企业应用架构有三层（也有四层的分法），这些层之间必然会有一些依赖，我们都知道依赖有一个原则：依赖倒置原则（DIP）</p>
+<ol>
+<li>高层模块不应该依赖于底层模块。二者都应该依赖于抽象。</li>
+</ol>
+<ol>
+<li>抽象不应该依赖于细节。细节应该以来于抽象。</li>
+</ol>
+<p>对应于分层，较“高”层包含了什么，包含了策略选择和业务模型，而这些真是应用程序的价值所在，如果“高”层以来于“低”层，那么“低”层的变化就会影响到“高”层。</p>
+<p>更不可能去让“低”层依赖于“高”层。</p>
+<p>现在只有一种可能，“高”层和“低”层是独立的。这不也正是我们使用framework的价值所在吗？</p>
+<p>这样层与层之间的依赖就必须是抽象，而不是实现和细节。</p>
+<p>Service layer的出现，是为了面对客户层接入集成了一系列高效的操作集。主要目的提高数据存取和业务逻辑的利用率，减少重复调用。</p>
+<p>Serverice layer是一个边缘层（boundary）。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2004/设计模式之分层实现(Layering Implements)/" data-id="cicsezf3q001gtklm5j5nym78" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2004/转：《敏捷软件开发：原则、模式与实践》中文版序" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/" class="article-date">
+  <time datetime="2004-10-14T14:10:50.000Z" itemprop="datePublished">2004-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/">转：《敏捷软件开发：原则、模式与实践》中文版序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>“最好的软件开发人员都知道一个秘密：美的东西比丑的东西创建起来更廉价，也更快捷。构建、维护一个美的软件系统所花费的时间、金钱都要少于丑的系统。软件开发新手往往不理解这一点。他们认为做每件事情都必须要快，他们认为美是不实用的。错！由于事情做得过快，他们造成的混乱致使软件僵化，难以理解。美的系统是灵活、易于理解的，构建、维护它们就是一种快乐。丑陋的系统才是不实用的。丑陋会降低你的开发速度，使你的软件昂贵而又脆弱。构建、维护美的系统所花费的代价最少，交付起来也最快。”</p>
+<p>——摘自“Robert C. Martin《敏捷软件开发：原则、模式与实践》中文版序”</p>
+<p>Robert C. Martin《敏捷软件开发：原则、模式与实践》中文版序</p>
+<p>　　除了我的家庭，软件是我的挚爱。通过它，我可以创造出美的东西。软件之美在于它的功能，在于它的内部结构，还在于团队创建它的过程。对用户来说，通过直观、简单的界面呈现出恰当特性的程序就是美的。对软件设计者来说，被简单、直观地分割，并具有最小内部耦合的内部结构就是美的。对开发人员和管理者来说，每周都会取得重大进展，并且生产出无缺陷代码的具有活力的团队就是美的。美存在于所有这些层次之中，它们都是本书内容的一部分。<br>　　软件开发人员如何学到创造美的知识呢？在本书中，我讲授了一些原则、模式以及实践，它们可以帮助软件开发人员在追求美的程序、设计以及团队的道路上迈出第一步。其中，我们探索了基本的设计原则，软件设计结构的通用模式以及有助于团队融为一个有机整体的一系列实践。由于本书是关于软件开发的，所以包含了许多代码。仔细研究这些代码是学习本书所教授的原则、模式以及实践的最有效方法。<br>　　人们需要软件—需要许多的软件。50年前，软件还只是运行在少量大型、昂贵的机器之上。30年前，软件可以运行在大多数公司和工业环境之中。现在，移动电话、手表、电器、汽车、玩具以及工具中都运行有软件，并且对更新、更好软件的需求永远不会停止。随着人类文明的发展和壮大，随着发展中国家不断构建它们的基础设施，随着发达国家努力追求更高的效率，就需要越来越多的软件。如果在所有这些软件之中，都没有美存在，这将会是一个很大的遗憾。<br>　　我们知道软件可能会是丑陋的。我们知道软件可能会难以使用、不可靠并且是粗制滥造的；我们知道有一些软件系统，其混乱、粗糙的内部结构使得对它们的更改既昂贵又困难；我们还见过那些通过笨拙、难以使用的界面展现其特性的软件系统；我们同样也见过那些易崩溃且行为不当的软件系统。这些都是丑陋的系统。糟糕的是，作为一种职业，软件开发人员所创建出来的美的东西却往往少于丑的东西。如果你正在阅读这本书，那么你也许就是那个想去创造美而不是丑的人。<br>　　最好的软件开发人员都知道一个秘密：美的东西比丑的东西创建起来更廉价，也更快捷。构建、维护一个美的软件系统所花费的时间、金钱都要少于丑的系统。软件开发新手往往不理解这一点。他们认为做每件事情都必须要快，他们认为美是不实用的。错！由于事情做得过快，他们造成的混乱致使软件僵化，难以理解。美的系统是灵活、易于理解的，构建、维护它们就是一种快乐。丑陋的系统才是不实用的。丑陋会降低你的开发速度，使你的软件昂贵而又脆弱。构建、维护美的系统所花费的代价最少，交付起来也最快。<br>　　我希望你能喜爱这本书。我希望你能像我一样学着以创建美的软件而骄傲，并享受其中的快乐。如果你从本书中略微看到了这种快乐，如果本书使你开始感受到了这种骄傲，如果本书点燃了你内心欣赏这种美的火花，那么就远超过我的目标了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/" data-id="cicsezf3h001etklmlze181vw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2004/创建对象的两种方式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2004/创建对象的两种方式/" class="article-date">
@@ -111,389 +320,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/创建对象的两种方式/" data-id="cicsefzoy001icclm3ytwwppw" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/Eclipse之Workspace路径修改" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/Eclipse之Workspace路径修改/" class="article-date">
-  <time datetime="2004-10-11T12:23:15.000Z" itemprop="datePublished">2004-10-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/Eclipse之Workspace路径修改/">Eclipse之Workspace路径修改</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>eclipse的worspace的路径放置在根目录：<br>\configuration\org.eclipse.ui.ide\recentWorkspaces.xml</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Eclipse之Workspace路径修改/" data-id="cicsefzli0000cclm9qcdpqsh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/Statement标准关闭方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/Statement标准关闭方法/" class="article-date">
-  <time datetime="2004-09-29T14:10:50.000Z" itemprop="datePublished">2004-09-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/Statement标准关闭方法/">Statement标准关闭方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在O/R Mapper的代码中，Statement的关闭模式：</p>
-<p>clearup的实现： </p>
-<p>  /**</p>
-<pre><code> * Close database resource.
-
- *
-
- * <span class="annotation">@param</span> conn
-
- * <span class="annotation">@param</span> pstmt
-
- */
-
-<span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">clearup</span><span class="params">(Connection conn, PreparedStatement pstmt)</span>
-
-</span>{
-
-    <span class="keyword">if</span> (pstmt != <span class="keyword">null</span>)
-
-    {
-
-        <span class="keyword">try</span>
-
-        {
-
-            pstmt.close();
-
-        }
-
-        <span class="keyword">catch</span> (SQLException se)
-
-        {
-
-            se.printStackTrace();
-
-        }
-
-        pstmt = <span class="keyword">null</span>;
-
-    }
-
-
-
-    <span class="keyword">if</span> (conn != <span class="keyword">null</span>)
-
-    {
-
-        <span class="keyword">try</span>
-
-        {
-
-            conn.close();
-
-        }
-
-        <span class="keyword">catch</span> (SQLException se)
-
-        {
-
-            se.printStackTrace();
-
-        }
-
-        conn = <span class="keyword">null</span>;
-
-    }
-
-}
-</code></pre><p>1.一般模式</p>
-<pre><code>    Connection conn = null<span class="comment">;</span>
-
-PreparedStatement pstmt = null<span class="comment">;</span>
-
-try
-
-{
-
-    conn = getConnection()<span class="comment">;</span>
-
-    pstmt = conn.prepareStatement(SQL)<span class="comment">;</span>
-
-    pstmt.setString(1, id)<span class="comment">;</span>
-
-    pstmt.setString(2, type)<span class="comment">;</span>
-
-    pstmt.executeUpdate()<span class="comment">;          </span>
-
-} catch (SQLException se)
-
-{         
-</code></pre><p>throw new ApplicationException(se);</p>
-<pre><code>} <span class="keyword">finally</span>
-
-{
-
-    clearup(conn, pstmt);<span class="comment">//有效的close了Connection;只有一个pstmt,相当于只打开了一个光标，在这里有效的close了pstmt.</span>
-
-}
-</code></pre><p>1．在使用jdbc进行批处理的时候，注意每一次创建一个Statement，一旦无须使用，立刻关闭，因为每一次都是打开了Oracle的一个cursor.(Oracle默认最大一次打开300个，最多也</p>
-<p>只支持1000多个)</p>
-<p>Connection conn = null;</p>
-<pre><code>PreparedStatement pstmt = null;
-
-
-
-try
-
-{
-
-    conn = getConnection<span class="params">()</span>;
-
-    pstmt = conn.prepareStatement<span class="params">(SQL1)</span>;
-
-    pstmt.setString<span class="params">(<span class="number">1</span>, id)</span>;
-
-    pstmt.setString<span class="params">(<span class="number">2</span>, type)</span>;
-
-    pstmt.executeUpdate<span class="params">()</span>;
-
-    pstmt.close<span class="params">()</span>; <span class="comment">// 请立刻close当前pstmt的光标。</span>
-
-    pstmt = null;  <span class="comment">// 必须使用</span>
-
-
-
-    pstmt = conn.propareStatement<span class="params">(SQL2)</span>;
-
-   pstmt.setString<span class="params">(<span class="number">1</span>, id)</span>;
-
-    pstmt.setString<span class="params">(<span class="number">2</span>, type)</span>;
-
-    pstmt.executeUpdate<span class="params">()</span>;
-
-    pstmt.close<span class="params">()</span>; <span class="comment">// 请立刻close当前pstmt的光标。</span>
-
-
-    pstmt = null;  <span class="comment">// 必须使用</span>
-
-  … …
-
-} catch <span class="params">(SQLException se)</span>
-
-{         
-</code></pre><p>throw new ApplicationException(se);</p>
-<pre><code>   } <span class="keyword">finally</span>
-
-   {
-
-       clearup(conn, pstmt); <span class="comment">//有效的close了Connection;只有出现exception才能有效close pstmt;</span>
-
-}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Statement标准关闭方法/" data-id="cicsefzpk001occlmkip1dazf" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/Java编程之log4j日志" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/Java编程之log4j日志/" class="article-date">
-  <time datetime="2004-09-28T14:09:50.000Z" itemprop="datePublished">2004-09-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/Java编程之log4j日志/">Java编程之log4j日志</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>一直以来，如何去写日志都萦绕我胸怀已久；直到最近又要开始新的project,关于系统中日志如何设计又一次让我踌躇，发散了思绪，化成了淡淡的笔迹，拿出来给自己，也给大家分享。</p>
-<p>在系统中分为两种日志：一种是流程日志，要包含用户最关心的信息，便于问题查找和跟踪；包含系统运行的状态信息和当前步骤；。。。。。。另外一种是调试信息，这有包含系统release debug信息和代码开发测试debug信息两种，release debug信息是希望在系统运行中可能运用到的日至类别；develop&amp;test debug message是在系统开发测试阶段实用，而在code release之后，这些部分需要被删除的（代码冗余,性能考虑,代码净化）。</p>
-<p>可以说是三种类型的日志，在code开发过程中都需要在代码中实现的，但是可能在release版本中会有所处理的；这就联系到处理机制。</p>
-<p>java一般使用apache的log4j来写日志，可能我们会在log4j的基础之上构建我们系统的日志服务组件，姑且不论哪一种.顺便可以提及log4j的一些feature:日志级别，日志patterns</p>
-<p>流程日志是系统运行的必须日志，因此它的级别至少是info级别的。eg:<br> if(log.isInfoEnabled()){<br>            log.info(“ Message! “);<br>        }<br> 或者<br>        {<br>            log.info(“ Message! “);<br>        }</p>
-<p>在这个日志信息中要包含：系统流程信息（有必要输入的），用户关心的信息（以优先级最高或者较高的为主），我们有必要在日志输出中关心的消息（以优先级最高为主）；。。。。。。（欢迎补充）</p>
-<p>该日志输入对于记录系统运行状态（定时查看系统是否运行良好，可能是一个守护进程），记录流程运行阶段性的信息（当前阶段系统中各个关注点的情况，比方用户的一些信息，或者用户关心的一些信息,以便于系统出现异常是问题跟踪使用，系统维护必须的一些信息）。。。。。。这些日志在系统任何时段都能够准确的输出，因此没有必要对他何种情况输入等进行考虑和限制。对于log.info级别的日志最好能对于条件进行以下判断会更好。</p>
-<p>系统release debug日志，是为了便于系统真正运行起来以后，可能进行debug的时候才需要进行日志输入，之所以对他们进行限制，主要是出于性能等方面的考虑。对日志输入的条件进行严格的限制，<br>        if(log.isDebugEnabled()){<br>            log.debug(“ Message! “);<br>        }</p>
-<p>尽管程序员是对代码充满自信（证明足够的健壮性），我们还需要在一些不确定，或者可能出现的，对于明天的事情做一些预测，今天对于问题进行防卫，（这些都是软件工程所反对的），我们都需要处理 跟踪 校验 排查等的区域，通过日志预先放置一些”监听器”.这种日志和系统的可维护性息息相关。这里面的很多日志信息都是“流程日志”的强大备份，也是系统通过test以后日志仍然需要变动的地方。也是和develop debug很难区分的一个区域。</p>
-<p>前两种日志都是可能会对系统的性能构成影响，或者产生冗余或者日志不完全。尽管编码没有什么难度，但是都需要一些清晰的规范支持(至少是team一级的)，主要是日志的可读性，覆盖的面积，可维护性。  </p>
-<p>develop log基本上上适用于代码调试阶段和单元测试阶段使用的log信息。根据程序员个人喜好和习惯来定制，但是这些log message在正式版本release以前都是要被删除的。需要一些灵活的机制和pattern实现等来支持。eg:<br>      DebugManager{<br>          public static boolean debug = true;<br>      }</p>
-<pre><code><span class="keyword">if</span><span class="params">(DebugManager.debug)</span>{
-    <span class="keyword">if</span><span class="params">(log.isDebugEnabled<span class="params">()</span>)</span>{
-        <span class="built_in">log</span>.debug<span class="params">(<span class="string">" Message! "</span>)</span>;
-    }
-}
-</code></pre><p>在编译期间中对于这种情况进行优化。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Java编程之log4j日志/" data-id="cicsefzpu001qcclm2pmurx6s" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/Web开发起始篇" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/Web开发起始篇/" class="article-date">
-  <time datetime="2004-09-28T13:08:55.000Z" itemprop="datePublished">2004-09-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/Web开发起始篇/">Web开发起始篇</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先说一些题外话，做web页面开发，也是j2ee吧。</p>
-<p>现在学习mvc，应用struts的兄弟姐妹们多多，最近struts也release了1.2.2版本了。</p>
-<p>最近一个同事问我如何让一个新人快速进入到struts的开发中去。我理了理头绪，“往事一幕幕”。</p>
-<p>从个人职业规划来看，主要有几个思想的方向。前几天谈论理论与实践的距离和有效性，作为coder,我们是实践者，我们也是工作人，我们需要一些方法论来指导我们的思想，我们通过我们思想的脉络来把握技术的发展。</p>
-<p>主要有两个方向：一个是project management;一个是developer.</p>
-<p>每一个程序员都有把握整个项目的欲望和冲动；动力之后是方法论了。</p>
-<p>想到今天我也对别人怎么去coding指手画脚，:)。</p>
-<p>1．了解java的代码规范.刚开始是十分重要的。就像人生的第一步似的。</p>
-<p>3.了解一下jdk的版本，和在项目中jdk的控制。</p>
-<p>2.开发环境ide的版本，eclipse等，如果是eclipse，还有plugins的了解。(怎么配置代码的style.)</p>
-<p>3.对于tomcat的了解和配置；读读tomcat的源码也是不错的野味呢./sun one</p>
-<p>4.了解mvc的结构和发展。</p>
-<p>5.了解测试驱动开发和junit.</p>
-<p>6.了解jdbc,更好能了解一些关于数据连接的封装。</p>
-<p>7.了解presentation—business—persistence等layer结构；有时间了解framework更好。</p>
-<p>8.了解一些java pattern。</p>
-<p>9.有时间了解spring的bean管理想法，顺便就学到了依赖注入的思想了，看看martin fowler的文章，了解各个注入方法的特点。</p>
-<p>10.了解jsp的语法。</p>
-<p>11.了解javascript的语法。</p>
-<p>12.了解struts自带的taglib（JSTL）。apache有一个专门的taglib项目，我们所需要的所有的taglib在里面都有。通过我接触的一些开源的项目，taglib使用的十分广泛。<a href="http://jakarta.apache.org/taglibs/index.html" target="_blank" rel="external">http://jakarta.apache.org/taglibs/index.html</a> 一个tagunit网站<a href="http://www.tagunit.org/tagunit/index.jsp" target="_blank" rel="external">http://www.tagunit.org/tagunit/index.jsp</a></p>
-<p>13.有时间可以读struts的源码，我还没有读过，有点儿遗憾，如果能看一下servlet跟好了。</p>
-<p>14.了解servlet,filter,listener的用法。特别是filter,链职责模式也可以学到了。</p>
-<p>15.了解commons-logging,log4j.如何写log,什么时候写log.    <a href="http://logging.apache.org" target="_blank" rel="external">http://logging.apache.org</a></p>
-<p>16.servlet api javadoc:    <a href="http://java.sun.com/products/servlet/2.2/javadoc/" target="_blank" rel="external">http://java.sun.com/products/servlet/2.2/javadoc/</a></p>
-<p>17.apache struts:    <a href="http://struts.apache.org/" target="_blank" rel="external">http://struts.apache.org/</a>  <a href="http://struts.apache.org/api/index.html" target="_blank" rel="external">http://struts.apache.org/api/index.html</a> struts已经release了1.2.2版本，应该有不少新特性。</p>
-<p>18.junit site:    <a href="http://www.junit.org/junit/javadoc/index.htm" target="_blank" rel="external">http://www.junit.org/junit/javadoc/index.htm</a></p>
-<p>19.我们一般画图用的open source 的api也是apache的POI:    <a href="http://jakarta.apache.org/poi" target="_blank" rel="external">http://jakarta.apache.org/poi</a>     <a href="http://jakarta.apache.org/poi/apidocs/index.html" target="_blank" rel="external">http://jakarta.apache.org/poi/apidocs/index.html</a></p>
-<p>   如果一开始，我们还是自己写jdbc比较好吧，慢慢的可以接触or mapping的东西。</p>
-<p>1.jdbc怎么写可以看 java核心技术.里面还有怎么用java写存储过程的例子。</p>
-<p>2.过一段时间可以看看or mapping的东西（Object Relation Mapping）;现在比较热的开源的是：ibatis和hibernate.</p>
-<p>在学习过程中，xml和uml都会跑进来的。enjoy it!</p>
-<p>关于presentation layer，更多的涉及到jsp,javascript和struts.</p>
-<p>1.struts taglib的运用。</p>
-<p>2.struts里面有一个validation.xml和validator-rules.xml两个需要理解。</p>
-<p>3.struts的formbean的机制，执行顺序。</p>
-<p>4.actionmapping的原理。</p>
-<p>5.struts-config.xml的配置。（建议：在项目中将struts-config.xml分离，team中每一个成员维护自己的。）</p>
-<p>6.中文化的一些问题。unicode的编写。建议使用java提供的命令行：native2ascii -encoding gb2312 sourceFile.properties destFile.properties</p>
-<p>7.说明:在struts中，有一个c—control的概念，在我们应用层编码，是看不见它的存在的。它体现在struts中应该是一个org.apache.struts.action.RequestProcessor的类，我也记得不太清楚。</p>
-<p>8.了解struts开发中一个baseform的模式。(只有一个baseform的模式)</p>
-<p>9.在jpetstore4.0.5中，采取了只使用一个action的模式，这样做是为了将business和action分离，在action层进行了一个公用提取，利于business logic的公用和维护，也提高了可测试性。。。。。。</p>
-<p>10.那就看看jpetstore的源代码吧。注：jpetstore4.0.5版使用了ibatis的sql mapping和dao framework。</p>
-<p>有时间可以了解一下project management的一些工具，学习写ant和maven的脚本，这都是很重要的。</p>
-<ol>
-<li><p>学习cvs,了解版本控制。</p>
-</li>
-<li><p>了解exception机制，原理和发展始末以及方向。</p>
-</li>
-<li><p>学习xp开发方式。</p>
-</li>
-</ol>
-<p>4.开始学习分析设计了，掌握uml了，了解各个层次的pattern的时机到来了。</p>
-<p>还有一些书要看了。经常上网看别人对于现在的开发方向的讨论。。。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Web开发起始篇/" data-id="cicsefzpc001mcclm5ctw0md2" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2004/创建对象的两种方式/" data-id="cicsezf40001jtklmwtf2bup1" class="article-share-link">Share</a>
       
       
     </footer>
@@ -516,7 +343,7 @@ try
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">16</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -565,7 +392,7 @@ try
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

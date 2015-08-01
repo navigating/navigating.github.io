@@ -3,18 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Eclipse之eclipse3.1M1 | On The Open Way</title>
+  <title>String In Java | On The Open Way</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="原文参见：http://www.blogbus.com/navigating-logs/413323.html">
+  <meta name="description" content="JDK1.4中关于String的几个实现方法：
+public String(String original) {
+    this.count = original.count;
+    if (original.value.length &amp;gt; this.count) {
+        // The array representing the String is bigger than t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Eclipse之eclipse3.1M1">
-<meta property="og:url" content="http://navigating.github.io/2004/Eclipse之eclipse3.1M1/index.html">
+<meta property="og:title" content="String In Java">
+<meta property="og:url" content="http://navigating.github.io/2004/String-In-Java/index.html">
 <meta property="og:site_name" content="On The Open Way">
-<meta property="og:description" content="原文参见：http://www.blogbus.com/navigating-logs/413323.html">
-<meta property="og:updated_time" content="2015-07-28T14:17:58.923Z">
+<meta property="og:description" content="JDK1.4中关于String的几个实现方法：
+public String(String original) {
+    this.count = original.count;
+    if (original.value.length &amp;gt; this.count) {
+        // The array representing the String is bigger than t">
+<meta property="og:updated_time" content="2015-08-01T02:02:31.357Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Eclipse之eclipse3.1M1">
-<meta name="twitter:description" content="原文参见：http://www.blogbus.com/navigating-logs/413323.html">
+<meta name="twitter:title" content="String In Java">
+<meta name="twitter:description" content="JDK1.4中关于String的几个实现方法：
+public String(String original) {
+    this.count = original.count;
+    if (original.value.length &amp;gt; this.count) {
+        // The array representing the String is bigger than t">
 <meta name="twitter:creator" content="@xujinghui">
   
     <link rel="alternative" href="/atom.xml" title="On The Open Way" type="application/atom+xml">
@@ -78,10 +90,10 @@ var _hmt = _hmt || [];
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2004/Eclipse之eclipse3.1M1" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2004/String-In-Java" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/Eclipse之eclipse3.1M1/" class="article-date">
-  <time datetime="2004-09-28T12:08:50.000Z" itemprop="datePublished">2004-09-28</time>
+    <a href="/2004/String-In-Java/" class="article-date">
+  <time datetime="2004-11-09T01:59:12.000Z" itemprop="datePublished">2004-11-09</time>
 </a>
     
   <div class="article-category">
@@ -96,7 +108,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      Eclipse之eclipse3.1M1
+      String In Java
     </h1>
   
 
@@ -104,12 +116,51 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文参见：<a href="http://www.blogbus.com/navigating-logs/413323.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/413323.html</a></p>
+        <p>JDK1.4中关于String的几个实现方法：</p>
+<pre><code><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params">String original</span>) </span>{
+    <span class="keyword">this</span>.count = original.count;
+    <span class="keyword">if</span> (original.<span class="keyword">value</span>.length &gt; <span class="keyword">this</span>.count) {
+        <span class="comment">// The array representing the String is bigger than the new</span>
+        <span class="comment">// String itself.  Perhaps this constructor is being called</span>
+        <span class="comment">// in order to trim the baggage, so make a copy of the array.</span>
+        <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="keyword">this</span>.count];
+        System.arraycopy(original.<span class="keyword">value</span>, original.offset,
+        <span class="keyword">this</span>.<span class="keyword">value</span>, <span class="number">0</span>, <span class="keyword">this</span>.count);
+    } <span class="keyword">else</span> {
+        <span class="comment">// The array representing the String is the same</span>
+        <span class="comment">// size as the String, so no point in making a copy.</span>
+        <span class="keyword">this</span>.<span class="keyword">value</span> = original.<span class="keyword">value</span>;
+    }
+}
 
+<span class="function"><span class="keyword">public</span> boolean <span class="title">equals</span>(<span class="params">Object anObject</span>) </span>{
+    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) {
+        <span class="keyword">return</span> <span class="keyword">true</span>;
+    }
+
+    <span class="keyword">if</span> (anObject instanceof String) {
+        String anotherString = (String)anObject;
+        <span class="keyword">int</span> n = count;
+
+        <span class="keyword">if</span> (n == anotherString.count) {
+            <span class="keyword">char</span> v1[] = <span class="keyword">value</span>;
+            <span class="keyword">char</span> v2[] = anotherString.<span class="keyword">value</span>;
+            <span class="keyword">int</span> i = offset;
+            <span class="keyword">int</span> j = anotherString.offset;
+            <span class="keyword">while</span> (n-- != <span class="number">0</span>) {
+                <span class="keyword">if</span> (v1[i++] != v2[j++])
+                <span class="keyword">return</span> <span class="keyword">false</span>;
+            }
+            <span class="keyword">return</span> <span class="keyword">true</span>;
+        }
+    }
+    <span class="keyword">return</span> <span class="keyword">false</span>;
+}
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Eclipse之eclipse3.1M1/" data-id="cicsezf5k001ztklmxwvryjp1" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2004/String-In-Java/" data-id="cicsezf4s001rtklmok2luot8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -118,15 +169,20 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/2004/Web开发起始篇/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2004/写好代码/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Web开发起始篇
+          写好代码
         
       </div>
     </a>
   
+  
+    <a href="/2004/如何开始编码/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何开始编码</div>
+    </a>
   
 </nav>
 
