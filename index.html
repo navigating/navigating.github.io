@@ -117,7 +117,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/BIGDATA-Update-201507/" data-id="cicqbu1x0000opwlmxabapxi7" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/BIGDATA-Update-201507/" data-id="cicse0rs3000onwlmp5pk0ezz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cassandra/">Cassandra</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongoDB/">mongoDB</a></li></ul>
@@ -161,24 +161,116 @@ var _hmt = _hmt || [];
 </code></pre><p>步骤：</p>
 <pre><code><span class="bullet">1. </span>安装Node.js
 <span class="bullet">2. </span>安装Hexo
-</code></pre><p>安装Node.js<br>下载并安装，<a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></p>
-<p>安装Hexo<br>npm install -g hexo</p>
-<p>D:\git\navigating.github.io&gt;npm install -g hexo<br>npm WARN optional dep failed, continuing fsevents@0.3.6<br>npm WARN optional dep failed, continuing fsevents@0.3.6<br>-</p>
-<p> dtrace-provider@0.5.0 install C:\Users\stevenxu\AppData\Roaming\npm\node_modul<br>es\hexo\node_modules\bunyan\node_modules\dtrace-provider<br> node scripts/install.js</p>
-<p>C:\Users\stevenxu\AppData\Roaming\npm\hexo -&gt; C:\Users\stevenxu\AppData\Roaming\<br>npm\node_modules\hexo\bin\hexo<br>hexo@3.1.1 C:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo<br>├── pretty-hrtime@1.0.0<br>├── hexo-front-matter@0.2.2<br>├── abbrev@1.0.7<br>├── titlecase@1.0.2<br>├── archy@1.0.0<br>├── text-table@0.2.0<br>├── tildify@1.1.0 (os-homedir@1.0.1)<br>├── strip-indent@1.0.1 (get-stdin@4.0.1)<br>├── hexo-i18n@0.2.1 (sprintf-js@1.0.3)<br>├── chalk@1.1.0 (escape-string-regexp@1.0.3, supports-color@2.0.0, ansi-style<br>s@2.1.0, strip-ansi@3.0.0, has-ansi@2.0.0)<br>├── bluebird@2.9.34<br>├── minimatch@2.0.10 (brace-expansion@1.1.0)<br>├── through2@1.1.1 (xtend@4.0.0, readable-stream@1.1.13)<br>├── swig-extras@0.0.1 (markdown@0.5.0)<br>├── hexo-fs@0.1.3 (escape-string-regexp@1.0.3, graceful-fs@3.0.8, chokidar@0.<br>12.6)<br>├── js-yaml@3.3.1 (esprima@2.2.0, argparse@1.0.2)<br>├── nunjucks@1.3.4 (optimist@0.6.1, chokidar@0.12.6)<br>├── warehouse@1.0.2 (graceful-fs@3.0.8, cuid@1.2.5, JSONStream@0.10.0)<br>├── cheerio@0.19.0 (entities@1.1.1, dom-serializer@0.1.0, css-select@1.0.0, h<br>tmlparser2@3.8.3)<br>├── bunyan@1.4.0 (safe-json-stringify@1.0.3, dtrace-provider@0.5.0, mv@2.1.1)</p>
-<p>├── hexo-cli@0.1.7 (minimist@1.1.2)<br>├── moment-timezone@0.3.1<br>├── moment@2.10.3<br>├── hexo-util@0.1.7 (ent@2.2.0, highlight.js@8.6.0)<br>├── swig@1.4.2 (optimist@0.6.1, uglify-js@2.4.24)<br>└── lodash@3.10.0</p>
-<p>D:\git\navigating.github.io&gt;</p>
-<p>本地查看调试<br>hexo g     #重新生成<br>hexo s     #启动本地服务<br>hexo d     #发布到github</p>
+<span class="bullet">3. </span>创建博客(初始化Hexo)
+<span class="bullet">4. </span>创建文章本地调试
+<span class="bullet">5. </span>配置Github
+<span class="bullet">6. </span>远程发布
+<span class="bullet">7. </span>支持sitemap和feed
+<span class="bullet">8. </span>支持百度统计
+<span class="bullet">9. </span>支持图片
+<span class="bullet">10. </span>参考资源
+</code></pre><h2 id="安装Node-js">安装Node.js</h2><p>下载并安装，<a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></p>
+<h2 id="安装Hexo">安装Hexo</h2><p>npm install -g hexo<br>D:\git\navigating.github.io&gt;npm install -g hexo</p>
+<pre><code>npm WARN optional dep failed, continuing fsevents<span class="variable">@0</span>.3.6
+npm WARN optional dep failed, continuing fsevents<span class="variable">@0</span>.3.6
+-
+
+
+&gt; dtrace-provider<span class="variable">@0</span>.5.0 install C:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo\node_modules\bunyan\node_modules\dtrace-provider
+&gt; node scripts/install.js
+
+C:\Users\stevenxu\AppData\Roaming\npm\hexo -&gt; C:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo\bin\hexo
+hexo<span class="variable">@3</span>.1.1 C:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo
+├── pretty-hrtime<span class="variable">@1</span>.0.0
+├── hexo-front-matter<span class="variable">@0</span>.2.2
+├── abbrev<span class="variable">@1</span>.0.7
+├── titlecase<span class="variable">@1</span>.0.2
+├── archy<span class="variable">@1</span>.0.0
+├── <span class="keyword">text</span>-table<span class="variable">@0</span>.2.0
+├── tildify<span class="variable">@1</span>.1.0 (os-homedir<span class="variable">@1</span>.0.1)
+├── <span class="keyword">strip</span>-indent<span class="variable">@1</span>.0.1 (get-stdin<span class="variable">@4</span>.0.1)
+├── hexo-i18n<span class="variable">@0</span>.2.1 (sprintf-js<span class="variable">@1</span>.0.3)
+├── chalk<span class="variable">@1</span>.1.0 (escape-<span class="keyword">string</span>-regexp<span class="variable">@1</span>.0.3, supports-<span class="keyword">color</span><span class="variable">@2</span>.0.0, ansi-styles<span class="variable">@2</span>.1.0, <span class="keyword">strip</span>-ansi<span class="variable">@3</span>.0.0, has-ansi<span class="variable">@2</span>.0.0)
+├── bluebird<span class="variable">@2</span>.9.34
+├── minimatch<span class="variable">@2</span>.0.10 (brace-expansion<span class="variable">@1</span>.1.0)
+├── through2<span class="variable">@1</span>.1.1 (xtend<span class="variable">@4</span>.0.0, readable-stream<span class="variable">@1</span>.1.13)
+├── swig-extras<span class="variable">@0</span>.0.1 (markdown<span class="variable">@0</span>.5.0)
+├── hexo-fs<span class="variable">@0</span>.1.3 (escape-<span class="keyword">string</span>-regexp<span class="variable">@1</span>.0.3, graceful-fs<span class="variable">@3</span>.0.8, chokidar<span class="variable">@0</span>.12.6)
+├── js-yaml<span class="variable">@3</span>.3.1 (esprima<span class="variable">@2</span>.2.0, argparse<span class="variable">@1</span>.0.2)
+├── nunjucks<span class="variable">@1</span>.3.4 (optimist<span class="variable">@0</span>.6.1, chokidar<span class="variable">@0</span>.12.6)
+├── warehouse<span class="variable">@1</span>.0.2 (graceful-fs<span class="variable">@3</span>.0.8, cuid<span class="variable">@1</span>.2.5, JSONStream<span class="variable">@0</span>.10.0)
+├── cheerio<span class="variable">@0</span>.19.0 (entities<span class="variable">@1</span>.1.1, dom-serializer<span class="variable">@0</span>.1.0, css-<span class="keyword">select</span><span class="variable">@1</span>.0.0, htmlparser2<span class="variable">@3</span>.8.3)
+├── bunyan<span class="variable">@1</span>.4.0 (safe-json-stringify<span class="variable">@1</span>.0.3, dtrace-provider<span class="variable">@0</span>.5.0, mv<span class="variable">@2</span>.1.1)
+
+├── hexo-cli<span class="variable">@0</span>.1.7 (minimist<span class="variable">@1</span>.1.2)
+├── moment-timezone<span class="variable">@0</span>.3.1
+├── moment<span class="variable">@2</span>.10.3
+├── hexo-util<span class="variable">@0</span>.1.7 (ent<span class="variable">@2</span>.2.0, highlight.js<span class="variable">@8</span>.6.0)
+├── swig<span class="variable">@1</span>.4.2 (optimist<span class="variable">@0</span>.6.1, uglify-js<span class="variable">@2</span>.4.24)
+└── lodash<span class="variable">@3</span>.10.0
+
+D:\git\hexo&gt;
+</code></pre><h2 id="创建博客(初始化hexo)">创建博客(初始化hexo)</h2><p>创建博客站点的本地目录，然后在文件夹下执行命令：<br>$ hexo init<br>[info] Copying data<br>[info] You are almost done! Don’t forget to run <code>npm install</code> before you start b<br>logging with Hexo!</p>
+<p>Hexo会自动在目标文件夹下建立网站所需要的文件。然后按照提示，安装node_modules，执行如下命令：<br>$ hexo install</p>
+<h2 id="创建文章本地调试">创建文章本地调试</h2><p>预览本地调试模式，执行如下命令：<br>$ hexo server<br>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.</p>
+<p>关键命令简介：<br>hexo n     #创建新的文章<br>hexo g     #重新生成站点<br>hexo s     #启动本地服务<br>hexo d     #发布到github</p>
+<p>创建文章<br>$ hexo new “使用Hexo搭建Github静态博客”<br>在Hexo工作文件夹下source_posts发现新创建的md文件 使用Hexo搭建Github静态博客.md 。</p>
+<h2 id="配置Github">配置Github</h2><p>部署到Github需要修改配置文件_config.yml文件，在Hexo工作目录之下：</p>
+<pre><code># Deployment
+## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span>
+<span class="label">
+deploy:</span>
+<span class="label">    type:</span> git
+<span class="label">    repository:</span> git<span class="annotation">@github</span>.<span class="string">com:</span>&lt;Your Github Username&gt;/&lt;Your github.io url&gt;
+<span class="label">    branch:</span> master
+</code></pre><p>注意，当前type为git，而不是github</p>
 <p>测试Github是否好用<br>ssh -T git@github.com</p>
-<p>执行：hexi deploy<br>出现错误：Error: spawn git ENOENT<br>解决方案：<br><a href="http://blog.csdn.net/rainloving/article/details/46595559" target="_blank" rel="external">http://blog.csdn.net/rainloving/article/details/46595559</a> </p>
+<h2 id="远程发布">远程发布</h2><p>远程部署到Github，通过执行如下命令：<br>$ hexi deploy</p>
+<p>Troubleshooting<br>出现错误：Error: spawn git ENOENT<br>解决方案：<br><a href="http://blog.csdn.net/rainloving/article/details/46595559" target="_blank" rel="external">http://blog.csdn.net/rainloving/article/details/46595559</a> </p>
 <p>使用github出现：fatal: unable to access: Failed connect to github.com:8080: No error<br>解决方案：<br><a href="http://www.zhihu.com/question/26954892" target="_blank" rel="external">http://www.zhihu.com/question/26954892</a> </p>
 <p>使用github出现：ssh:connect to host github.com port 22: Bad file number<br>解决方案：<br><a href="http://www.xnbing.org/?p=759" target="_blank" rel="external">http://www.xnbing.org/?p=759</a><br><a href="http://blog.csdn.net/temotemo/article/details/7641883" target="_blank" rel="external">http://blog.csdn.net/temotemo/article/details/7641883</a> </p>
-<p>资源：<br><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a><br><a href="https://github.com/bruce-sha" target="_blank" rel="external">https://github.com/bruce-sha</a><br><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a><br><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">http://zipperary.com/2013/05/29/hexo-guide-3/</a><br><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">http://zipperary.com/2013/05/30/hexo-guide-4/</a><br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a></p>
+<h2 id="添加sitemap和feed">添加sitemap和feed</h2><p>首先安装sitemap和feed插件<br>$ npm install hexo-generator-sitemap<br>$ npm install hexo-generator-feed</p>
+<p>修改配置，在文件 _config.yml 增加以下内容</p>
+<pre><code><span class="preprocessor"># Extensions</span>
+<span class="label">Plugins:</span>
+- hexo-generator-feed
+- hexo-generator-sitemap
+
+<span class="preprocessor">#Feed Atom</span>
+<span class="label">feed:</span>
+    type: atom
+    path: atom.xml
+    limit: <span class="number">20</span>
+
+<span class="preprocessor">#sitemap</span>
+<span class="label">sitemap:</span>
+    path: sitemap.xml
+</code></pre><p>在 themes\landscape_config.yml 中添加：</p>
+<pre><code><span class="attribute">menu</span>:
+    <span class="attribute">Home</span>: /
+    <span class="attribute">Archives</span>: /archives
+    <span class="attribute">Sitemap</span>: /sitemap.xml
+<span class="attribute">rss</span>: /atom.xml
+</code></pre><h2 id="支持百度统计">支持百度统计</h2><p>在 <a href="http://tongji.baidu.com" target="_blank" rel="external">http://tongji.baidu.com</a> 注册帐号，添加网站，生成统计功能的 JS 代码。</p>
+<p>在 themes\landscape_config.yml 中新添加一行：</p>
+<pre><code><span class="keyword">baidu_t</span>ongji: <span class="keyword">true</span>
+</code></pre><p>在 themes\landscape\layout_partial\head.ejs 中head的结束标签  之前新添加一行代码</p>
+<pre><code>&lt;<span class="preprocessor">%</span>- partial<span class="comment">('baidu_tongji')</span> <span class="preprocessor">%</span>&gt;
+</code></pre><p>在 themes\landscape\layout_partial 中新创建一个文件 baidu_tongji.ejs 并添加如下内容：</p>
+<pre><code><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (theme.baidu_tongji){ </span>%&gt;<span class="xml">
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="apache">
+    <span class="tag">&lt;百度统计的 JS 代码&gt;</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml"></span>
+</code></pre><p>添加统计，参考：<br><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">http://ibruce.info/2013/11/22/hexo-your-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a> </p>
+<h2 id="支持图片">支持图片</h2><p>在source目录下创建images目录，然后将图片放在其中。</p>
+<h2 id="添加robots-txt">添加robots.txt</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a> </p>
+<h2 id="参考资源">参考资源</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a><br><a href="https://github.com/bruce-sha" target="_blank" rel="external">https://github.com/bruce-sha</a><br><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a><br><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">http://zipperary.com/2013/05/29/hexo-guide-3/</a><br><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">http://zipperary.com/2013/05/30/hexo-guide-4/</a><br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/使用Hexo搭建Github静态博客/" data-id="cicqbu1vz0009pwlmmi5x2bx7" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/使用Hexo搭建Github静态博客/" data-id="cicse0rrf0009nwlm25d9zrii" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -229,7 +321,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/hello-world/" data-id="cicqbu1w7000hpwlmdyim9jwm" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/hello-world/" data-id="cicse0rrm000hnwlmed0vskds" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -274,7 +366,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/Hadoop-2-7-1-发布/" data-id="cicqbu1wf000kpwlmcuhgnksj" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/Hadoop-2-7-1-发布/" data-id="cicse0rrt000knwlm1mgi9zng" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
@@ -340,7 +432,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/" data-id="cicqbu1vq0003pwlmjzufl5hy" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/" data-id="cicse0rr40003nwlmzd30wlln" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li></ul>
