@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://navigating.github.io/2005/JUnit%E5%AE%9E%E6%88%98/</loc>
+    <lastmod>2015-08-01T14:53:39.379Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201505/</loc>
     <lastmod>2015-08-01T09:57:53.841Z</lastmod>
   </url>
@@ -89,11 +94,6 @@
   <url>
     <loc>http://navigating.github.io/2005/Java%E5%AF%B9%E8%B1%A1%E4%B9%8BJavaBean/</loc>
     <lastmod>2015-08-01T02:58:20.394Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://navigating.github.io/2005/JUnit%E5%AE%9E%E6%88%98/</loc>
-    <lastmod>2015-08-01T02:57:43.054Z</lastmod>
   </url>
   
   <url>
