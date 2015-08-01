@@ -377,6 +377,247 @@ deploy:</span>
   </entry>
   
   <entry>
+    <title><![CDATA[JUnit 4 实战]]></title>
+    <link href="http://navigating.github.io/2006/JUnit-4-%E5%AE%9E%E6%88%98/"/>
+    <id>http://navigating.github.io/2006/JUnit-4-实战/</id>
+    <published>2006-12-20T03:12:38.000Z</published>
+    <updated>2015-08-01T03:16:48.735Z</updated>
+    <content type="html"><![CDATA[<p>尝试使用JDK 5.0进行开发，当然不能少了JUnit这个framework了。尽管在pre-release的时候我已经开始使用JUnit 4.0，真正用的时候还是翻了翻一下文档<a href="http://www.junit.org/index.htm，自己写了一个小例子。" target="_blank" rel="external">http://www.junit.org/index.htm，自己写了一个小例子。</a><br>JUnit通过Annotation的方式，让自己写完的Test Case看起来干净，简单，少了很多杂质似的。</p>
+<pre><code><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertTrue;
+<span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.fail;
+<span class="keyword">import</span> junit.framework.JUnit4TestAdapter;
+
+
+<span class="keyword">import</span> org.junit.After;
+<span class="keyword">import</span> org.junit.AfterClass;
+<span class="keyword">import</span> org.junit.Before;
+<span class="keyword">import</span> org.junit.BeforeClass;
+<span class="keyword">import</span> org.junit.Ignore;
+<span class="keyword">import</span> org.junit.Test;
+
+
+<span class="comment">/**
+* <span class="doctag">@author</span> Steven
+* 
+*/</span>
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit4ExampleTest</span> </span>{
+
+
+      <span class="keyword">public</span> <span class="keyword">static</span> junit.framework.<span class="function">Test <span class="title">suite</span><span class="params">()</span> </span>{
+            <span class="keyword">return</span> <span class="keyword">new</span> JUnit4TestAdapter(JUnit4ExampleTest.class);
+      }
+
+
+      <span class="annotation">@BeforeClass</span>
+      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setUpBeforeClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+      }
+
+
+      <span class="annotation">@AfterClass</span>
+      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tearDownAfterClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+      }
+
+
+      <span class="annotation">@Before</span>
+      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+      }
+
+
+      <span class="annotation">@After</span>
+      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
+      }
+
+
+      <span class="annotation">@Test</span>
+      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCase</span><span class="params">()</span> </span>{
+            assertTrue(<span class="keyword">true</span>);
+      }
+
+
+      <span class="annotation">@Test</span>(expected = RuntimeException.class)
+      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testException</span><span class="params">()</span> </span>{
+            throwException();
+            fail(<span class="string">"after exception"</span>);
+      }
+
+
+      <span class="annotation">@Test</span>
+      <span class="annotation">@Ignore</span>(<span class="string">"Ignore flag!"</span>)
+      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIgnore</span><span class="params">()</span> </span>{
+            fail(<span class="string">"The case should be ignored."</span>);
+      }
+
+
+      <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">throwException</span><span class="params">()</span> </span>{
+            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Random"</span>);
+      }
+
+
+}
+</code></pre><p>注：Maven2的surefire plugin对于JUnit4没有进行支持或者说仍然不兼容，这点是需要注意的。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>尝试使用JDK 5.0进行开发，当然不能少了JUnit这个framework了。尽管在pre-release的时候我已经开始使用JUnit 4.0，真正用的时候还是翻了翻一下文档<a href="http://www.junit.org/index.htm，自己写了一个小例]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Miami Everglades]]></title>
+    <link href="http://navigating.github.io/2006/Miami-Everglades/"/>
+    <id>http://navigating.github.io/2006/Miami-Everglades/</id>
+    <published>2006-11-01T03:10:54.000Z</published>
+    <updated>2015-08-01T03:11:48.785Z</updated>
+    <content type="html"><![CDATA[<p>原文第一次发表在：<a href="http://www.blogbus.com/navigating-logs/3745900.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/3745900.html</a></p>
+<p>周末闲暇，和同事们驱车去了Everglades，身临其境，自然风光和静谧之境，让人流连忘返。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>原文第一次发表在：<a href="http://www.blogbus.com/navigating-logs/3745900.html" target="_blank" rel="external">http://www.blogbus.com/navigating-l]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[失落与决断(原名: 重拾心情)]]></title>
+    <link href="http://navigating.github.io/2006/%E5%A4%B1%E8%90%BD%E4%B8%8E%E5%86%B3%E6%96%AD-%E5%8E%9F%E5%90%8D-%E9%87%8D%E6%8B%BE%E5%BF%83%E6%83%85/"/>
+    <id>http://navigating.github.io/2006/失落与决断-原名-重拾心情/</id>
+    <published>2006-10-27T03:09:56.000Z</published>
+    <updated>2015-08-01T03:10:23.928Z</updated>
+    <content type="html"><![CDATA[<p>星移斗转 世事变换，不期来到了Miami；而且已经呆了快两个月了。<br>重拾心情，决定回来写BLOG了，开始多写东西；尽管这一年没有post几篇文章，可没有停止过胡思乱想，考虑未来的去向，出差来到miami做项目，经历用户的折磨，看到了异样的文化背景,异样的开发理念,异样的管理方式；休闲时间去了Disney，去了Everglades看到了Alligator，参加了美国式的party。。。。。<br>差异<br>在过去的两个多月里，感受到了完全不一样的社会文化—享受型社会，分工精细，四五十岁仍然在coding的程序员，悠闲的工作氛围和生活氛围。<br>人性<br>美国一向是个民主自由的国度，众口铄金，简直一个天堂的地方。来到这里，才发现无论任何地方，人性都是一样，是没有国界的。<br>挑战<br>一向在我的眼中，开发就是技术，软件就是技术，突然到了新的环境，周围都是数十年的软件经验，技术已经不在任何风险控制之内；都是三十岁以上的人，不需要太多复杂的过程，不需要太多的流程，管理之中充满了太多的经验的因素。一个高级管理者甚至能够随手找到几行代码和你讨论一个具体的细节问题。也见识了什么叫着一堆经验丰富的高手在一起不能作出一个好的project。<br>学习<br>很久没有静下来思考技术，学习技术，今天去深入的学习和思考CVS，内心的喜悦再一次提醒我，我需要继续前进。。。单纯的积累性的学习已经显得那么苍白无力，我们的目标在哪里，能用我们的所学能给自己留下什么，给这个世界留下什么？遗憾吗？在这一两个月的时间，一下子从公司大学式的生活中释放出来，看到了很多或者简单，或者复杂的大小摩擦，一下子感觉到这个世界是如此的复杂，到处充满了挑战；学会了要去换位思考，学会了要尊重别人的思考，给别人机会把想法讲完的机会并试图理解他，每个人都需要一个释放的窗口，总是需要不断的学习和交流。用平静的心态思考，真心的帮助每一个人是一个永远的方向，每一个人都有自己的想法，就看怎么来表达了；每一个人都是又聪明又智慧，就看他如何来使用这些聪明和智慧了。<br>美<br>最近连续的拍了很多照片，发现拍照片是一个培养一个人发现美的很好的方式。<br>选择<br>当我平静的思考自己的时候，发现人生还是很少时候是有选择的。结果往往都是很明显的，方向决定了，大不了来个殊路同归。太多的时候是我们经历的太少，见识的太少，勇敢的走出去！<br>简介<br>前一阶段看了如何使用maven2,ssh2,cvs,cruisecontrol构建一个development environment。现在正在看如何使用CVS进行项目的多团队并行开发的source code版本控制；同时在看ruby的source code.<br>下一步<br>静心学习english，看source code，看CVS，接受挑战，在这个美丽的世界上。<br>胸怀<br>想明白了我们所能选择的，想明白了我们所能失去的，想明白了我们所能付出的，想明白了我们所能留下的，想明白了我们所想要得的，enjoy所想，所说，所做。。。<br>有趣<br>有时候我们不知道自己真正想要的，却在哪里漫无目的的期待，漫无目的的辛勤积累。<br>要看软件这个行业，还是要到硅谷去，那里或许值得一看。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>星移斗转 世事变换，不期来到了Miami；而且已经呆了快两个月了。<br>重拾心情，决定回来写BLOG了，开始多写东西；尽管这一年没有post几篇文章，可没有停止过胡思乱想，考虑未来的去向，出差来到miami做项目，经历用户的折磨，看到了异样的文化背景,异样的开发理念,异样]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2006年中期反思]]></title>
+    <link href="http://navigating.github.io/2006/2006%E5%B9%B4%E4%B8%AD%E6%9C%9F%E5%8F%8D%E6%80%9D/"/>
+    <id>http://navigating.github.io/2006/2006年中期反思/</id>
+    <published>2006-08-12T03:08:04.000Z</published>
+    <updated>2015-08-01T03:08:30.673Z</updated>
+    <content type="html"><![CDATA[<p>一本流水账<br>1.前一段时间，换了几次机器，我就把我的数据导到了一块portal hard disk，包括我自己从去年到今年写的不少日志。这些数据随着portal hard disk一声巨响摔在地板上而销声匿迹。<br>2.考虑合同的问题，结果是和公司续约了。<br>3.dreamhead离开沈阳，去了北京。<br>4.定位项目组重组了。<br>5.学习英语.<br>6.在这近一年的项目开发之中，作为核心开发人员，实践迭代开发，试图让agile drive development，每一个月我们发布一个版本给最终用户试用，使得用户对我们的系统了解的成竹在其胸；在开发中引入了单元测试的全套方案，最大力度的进行功能单元测试和集成单元测试，开发的发布版本即是给用户的予发布版本；极力推崇简单设计，简单的解决方案；在项目组不断讨论，甚至到不带改进开发的许多细小环节；开始考虑自动build。在迭代开发，可能问题域不断的变化，对于软件的架构设计带来极大的考验，而且对于问题域的关注凸现重要出来。在项目结束之际，我们发现架构是如此重要，我们的架构是如此的脆弱，发现我们很多的软件设计没有架构或者不能称之为架构(有人把架构定义为一系列解决方案/模式的集合)，迭代要求架构的灵活性要更高。不论业务模型，架构模型，都应该有大的思想方向。<br>7.非常大的收获是vvenli送给我们的日记本，带有每天日期的日记本。在读SICP的时候，发现无论是一个规律，一个模式，都是循序渐进的积累过程。任何目标，理想，成功都不是一朝一夕的事情，在规律范围之类都是可以切分，度量的，都需要我们循序渐进的完成小单元的目标。<br>8.在最近一段时间和一些同事接触，觉得唯有好学才是进步和才力的源泉。想起诸葛亮的一句话，从google搜索下来：<br>夫君子之行，静以修身，俭以养德。非淡泊无以明志，非宁静无以致远。夫学须静也，才须学也，非学无以广才，非志无以成学。淫慢则不能励精，险躁则不能治性。年与时驰，意与日去，遂成枯落，多不接世，悲守穷庐，将复何及！<br>—&lt;&lt;诫子书&gt;&gt;<br>9.这半年书看的少，想问题想的多。<br>10.生命太短暂,太脆弱，谁都可能下一时刻看到上帝；生命需要关注眼前，需要策划。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>一本流水账<br>1.前一段时间，换了几次机器，我就把我的数据导到了一块portal hard disk，包括我自己从去年到今年写的不少日志。这些数据随着portal hard disk一声巨响摔在地板上而销声匿迹。<br>2.考虑合同的问题，结果是和公司续约了。<br>3]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[走向设计(To Consider Design)]]></title>
+    <link href="http://navigating.github.io/2006/%E8%B5%B0%E5%90%91%E8%AE%BE%E8%AE%A1-To-Consider-Design/"/>
+    <id>http://navigating.github.io/2006/走向设计-To-Consider-Design/</id>
+    <published>2006-04-13T03:05:07.000Z</published>
+    <updated>2015-08-01T03:05:55.954Z</updated>
+    <content type="html"><![CDATA[<p>recently i always consider design:<br>1.keeping it simple,keeping it clean<br>2.coding for modularity<br>3.when working Bottom-Up,then working Top-Down.<br>4.abstract and high-cohesion,low-coupling<br>5.open one’s eyes for contract<br>today,when i’m reading the art of unix programming and get it:<br>Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove.</p>
+<p>The followings from 《the art of unix programming 》-Modularity</p>
+<p>There are two ways of constructing a software design. One is to make it so simple that there are obviously no deficiencies; the other is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult.<br>1.Modularity:Keeping It Clean,Keeping It Simple.<br>2.Hatton himself suggests as a rule of thumb a 2x conversion between logical and physical lines, suggesting an optimal range of 400–800 physical lines.<br>3.Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove<br>4.Modularity is expressed in good code, but it primarily comes from good design.<br>5.A good API makes sense and is understandable without looking at the implementation behind it.The classic test is this: Try to describe it to another programmer over the phone. If you fail, it is very probably too complex, and poorly designed.<br>6.Coding for Modularity</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>recently i always consider design:<br>1.keeping it simple,keeping it clean<br>2.coding for modularity<br>3.when working Bottom-Up,then wo]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[转: How To Become A Hacker]]></title>
+    <link href="http://navigating.github.io/2006/%E8%BD%AC-How-To-Become-A-Hacker/"/>
+    <id>http://navigating.github.io/2006/转-How-To-Become-A-Hacker/</id>
+    <published>2006-04-13T02:04:23.000Z</published>
+    <updated>2015-08-01T03:06:34.274Z</updated>
+    <content type="html"><![CDATA[<p>look to the master,<br>follow the master,<br>walk with the master,<br>see through the master,<br>become the master.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>look to the master,<br>follow the master,<br>walk with the master,<br>see through the master,<br>become the master.</p>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[读《Managing Open Source Projects》]]></title>
+    <link href="http://navigating.github.io/2006/%E8%AF%BB%E3%80%8AManaging-Open-Source-Projects%E3%80%8B/"/>
+    <id>http://navigating.github.io/2006/读《Managing-Open-Source-Projects》/</id>
+    <published>2006-04-05T03:01:50.000Z</published>
+    <updated>2015-08-01T03:02:13.047Z</updated>
+    <content type="html"><![CDATA[<p>The following are two general principles of organization:<br>People must understand the organizational structure in which they are supposed to work.<br>There has to be someone who can make final decisions. This is especially important if the project or company is in a crisis. If the ship goes down, the captain does not call for a meeting. Everyone must obey orders, know exactly where to go and what to do, and do it without argument.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>The following are two general principles of organization:<br>People must understand the organizational structure in which they are suppos]]>
+    </summary>
+    
+      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[入手《Code Complete Second Edition》]]></title>
+    <link href="http://navigating.github.io/2006/%E5%85%A5%E6%89%8B%E3%80%8ACode-Complete-Second-Edition%E3%80%8B/"/>
+    <id>http://navigating.github.io/2006/入手《Code-Complete-Second-Edition》/</id>
+    <published>2006-04-02T03:00:36.000Z</published>
+    <updated>2015-08-01T03:02:17.176Z</updated>
+    <content type="html"><![CDATA[<p>昨天冒着大雨和redwood跑去华储买回了cc2e。买的时候还是有些犹豫—这本书真是太重了。我们刚买完书出来，dreamhead打电话过来他在华储正在买这本书。:)感谢redwood帮我把这本书背回了家。<br>拿到这本书我最大的期望是：我早在一年前能拿到这本书该是多么美妙的事情啊。<br>“这个世界从来就不缺少十几岁的少年天才,而三十几岁的优秀软件设计师凤毛麟角”。<br>我们重来都不缺少工程师，总是缺少尽可能多的优秀的工程师。任何想成为优秀工程师的人都不能容忍忽略这本书—cc2e的价值。(“最好是好的敌人”)<br>我们深信，这本书就是献给那些愿意成为优秀软件构造者长期以来进行不断的努力、奉献、执著追求的人。只有这样的人，才能把这么一本“砖头”饶有兴趣的读下去、读完。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>昨天冒着大雨和redwood跑去华储买回了cc2e。买的时候还是有些犹豫—这本书真是太重了。我们刚买完书出来，dreamhead打电话过来他在华储正在买这本书。:)感谢redwood帮我把这本书背回了家。<br>拿到这本书我最大的期望是：我早在一年前能拿到这本书该是多么美妙]]>
+    </summary>
+    
+      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[读《Expert One on One J2EE Development Without EJB》C2]]></title>
+    <link href="http://navigating.github.io/2005/%E8%AF%BB%E3%80%8AExpert-One-on-One-J2EE-Development-Without-EJB%E3%80%8BC2/"/>
+    <id>http://navigating.github.io/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/</id>
+    <published>2005-09-06T02:59:07.000Z</published>
+    <updated>2015-08-01T02:59:44.792Z</updated>
+    <content type="html"><![CDATA[<p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想重要。如同重构的时机一样：OO原则，针对接口编程；将任何特定的规范已经实现尽量隐藏一般特性之后，比如ejb的接口隐藏在pojo之后。<br>3.在我自己的技术选择中，几乎都是选择OpenSource社区的，很少受到规范驱动或者vendor驱动的影响。正好相反，也vendor driven才造就今天的我们。:)<br>4.项目成功，检验架构的标准：<br>simplicity<br>productivity<br>the fundamental importance of object orientation<br>the primacy of business requirements<br>the importance of empirical process<br>the importance of testability<br>5.一切皆来源于经验过程。spring比Expert One-on-One J2EE还要早。(没有working code就无法写出这本书。)springframework是Rod Johnson几个商业项目的经验而产生的。开发这个framework也应该是在模式大量复用中找到了突破点,如果一些模式大量的被复用，那么把这些模式的职责转嫁给framework来做，dry原则。当然，必须优先考虑模块化的原则，比方说对于log4j的如何集成到framework的方式。<br>6.Architecture and implementation should always be undertaken with clear goals in mind.</p>
+<p>Productivity<br>1.framework不断抽象，不断重构产生的,framework与代码生成的转换：If we see a requirement for boring repetitive code, we should apply an OO solution and abstract it into a framework,rather than generate it and live with the resulting duplication.<br>2.代码生成技术在解决生产率中扮着十分重要的角色。在j2ee开发中涉及到代码生成的层次很多。从dll,database schema到jsp.<br>3.There shouldn’t be vast amounts of repetitive plumbing code in J2EE applications.Better architectural choices and better frameworks can virtually eliminate such code,meaning that nearly all application code can be hand-authored.(注：framework形成的时机之一。)I’m not saying that code generation is a bad technology in general—merely that,when properly designed and built on appropriate frameworks, most J2EE applications should not contain enough boilerplate code to justify it and outweigh its negatives.<br>4.关于代码生成以及MDA作者的观点：The natural path of our industry is toward higher levels of abstraction. Perhaps one day MDA-powered code generation will prove to be an appropriate abstraction. However, I feel that this is 10–15 years away, if it ever happens.<br>5.Better Solutions for Higher Productivity：<br>Architecture<br>    Avoid unnecessary architectural complexity.<br>    Avoid unnecessary use of EJB.<br>    Use abstraction layers to hide the complexity of core J2EE and J2SE APIs.<br>    If possible, use an O/R mapping product to simplify the persistence layer.<br>    Use a good application framework.  </p>
+<p>Focus and methodology<br>    Focus! Know what problems you should be solving, and concentrate on them.<br>    Use a reference architecture and start from a template application.<br>    Use an agile development process.</p>
+<p>Use appropriate tools.<br>6.Different developers do the same thing in different ways, wasting<br>valuable development time and complicating maintenance.程序设计始终要做的就是不发生这样的事情。<br>7.Know What Problems to Solve 生产率即是知道要解决得是什么问题，将主要是domain problems而不是generic problems.<br>8.Use Reference Architectures and Templates一旦选择了技术，将着手reference architecture.begin work using a skeleton application that establishes the overall plumbing.<br>9.And remember that the more upfront effort before arriving at a working prototype, the greater the risk of inadequate performance or an unworkable architecture. 项目组也应该精化，微型化。<br>10.J2EE developers are fortunate in that all these requirements can be met by free, open source tools, such as Eclipse, JUnit, Ant, a good Eclipse XML plugin, CVS, and the standard Eclipse JUnit and CVS integration.</p>
+<p>OO<br>1.本身OO是一种范式，是一个模型，在SICP中对于讲到代换模型的理论：In general, when modeling phenomena in science and engineering, we begin with simplified, incomplete models. As we examine things in greater detail, these simple models become inadequate and must be replaced by more refined models.关于OO的讨论算是一个检查考虑问题的讨论。<br>2.作者提出的实践中运用oo的四个方面：封装domains concepts;运用polymorphism将共性和差异分离;代码复用；extensibility.<br>3.j2ee应用的对象常常都是一些fake objects，即是不具备objects的某些特征:identity,state,behavior.<br>4.oo针对接口编程的优点和误区。</p>
+<p>The importance of business requirements<br>1.这个问题因不同的角色而已。就我而言，如同我一样的普通程序员，对于generic technical problems常常都是难题，故而在这方面的需要长足的学习和提高的;对于我们而言，我们domain problems就是如何具备了generic technical方面的强大能力只是第一步。<br>The Importance of an Empirical Process<br>1.Always develop a vertical slice to validate your application’s architecture early in the project. Don’t trust our advice or anyone else’s without establishing that it’s appropriate to your needs.验证自己的想法。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想]]>
+    </summary>
+    
+      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Java对象之JavaBean]]></title>
+    <link href="http://navigating.github.io/2005/Java%E5%AF%B9%E8%B1%A1%E4%B9%8BJavaBean/"/>
+    <id>http://navigating.github.io/2005/Java对象之JavaBean/</id>
+    <published>2005-08-28T02:56:21.000Z</published>
+    <updated>2015-08-01T02:58:20.394Z</updated>
+    <content type="html"><![CDATA[<p>使用javabean已经很久了，但是很少去研究和使用jdk中的java.beans包和java.beans.beancontext包。<br>时间和空间这个计算机的永恒话题，也一直是设计的折衷话题。记得刚开始写javabean的时候，对象的set get都是一行一行代码的手写。一次几十个方法下来，而且复制粘贴，复杂，维护修改都很费力。<br>现在apache jakarta commons的子项目已经有一些解决方案了，主要在包org.apache.commons.beanutils中,使用可以参见Test Case和《Jakarta Commons Cookbook》。当然，有时候也需要我们自己根据自己的应用编写自己的处理javabean的代码。今天正好看到了一些java.beans的代码，罗列如下：<br>java.beans.Introspector<br> public static String decapitalize(String name) {<br>  if (name == null || name.length() == 0) {<br>   return name;<br>  }<br>  if (name.length() &gt; 1 &amp;&amp; Character.isUpperCase(name.charAt(1)) &amp;&amp; Character.isUpperCase(name.charAt(0))) {<br>   return name;<br>  }<br>  char chars[] = name.toCharArray();<br>  chars[0] = Character.toLowerCase(chars[0]);<br>  return new String(chars);<br> }<br>java.beans.PropertyDescriptor<br> public PropertyDescriptor(String propertyName, Class beanClass) throws IntrospectionException {<br>  if (propertyName == null || propertyName.length() == 0) {<br>   throw new IntrospectionException(“bad property name”);<br>  }<br>  setName(propertyName);<br>  String base = capitalize(propertyName);</p>
+<p>  // Since there can be multiple setter methods but only one getter<br>  // method, find the getter method first so that you know what the<br>  // property type is. For booleans, there can be “is” and “get”<br>  // methods. If an “is” method exists, this is the official<br>  // reader method so look for this one first.<br>  try {<br>   readMethod = Introspector.findMethod(beanClass, “is” + base, 0);<br>  } catch (Exception getterExc) {<br>   // no “is” method, so look for a “get” method.<br>   readMethod = Introspector.findMethod(beanClass, “get” + base, 0);<br>  }<br>  Class params[] = { readMethod.getReturnType() };<br>  writeMethod = Introspector.findMethod(beanClass, “set” + base, 1, params);<br>  propertyType = findPropertyType(readMethod, writeMethod);<br> }<br>(注：代码格式为eclipse默认设置)<br>   我没有读过javabean的规范，今天针对javabean的使用和操作随处可见，也算是Rod Johnson所说的fake object了。如果javabean的property命名不符合规范，就有可能出错，一旦这种错误被framework捕获了还没有throw给应用，那么发现这种命名错误就更困难了。</p>
+<p>如今我会优先选择commons-beanutils和jdk的java.beans对java bean进行操作。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>使用javabean已经很久了，但是很少去研究和使用jdk中的java.beans包和java.beans.beancontext包。<br>时间和空间这个计算机的永恒话题，也一直是设计的折衷话题。记得刚开始写javabean的时候，对象的set get都是一行一行代码的手]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[拓展训练]]></title>
     <link href="http://navigating.github.io/2005/%E6%8B%93%E5%B1%95%E8%AE%AD%E7%BB%83/"/>
     <id>http://navigating.github.io/2005/拓展训练/</id>
@@ -397,14 +638,9 @@ deploy:</span>
     <link href="http://navigating.github.io/2005/%E8%AF%BB%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B2%BE%E8%A7%A3/"/>
     <id>http://navigating.github.io/2005/读设计模式精解/</id>
     <published>2005-08-10T02:42:23.000Z</published>
-    <updated>2015-08-01T02:42:46.954Z</updated>
+    <updated>2015-08-01T02:55:38.927Z</updated>
     <content type="html"><![CDATA[<p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
-<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化的来源大抵有三种：1。新的功能需求；2。开发者对于问题领域的理解发生了变化，通过开发来提高问题领域的自动化程度；3。开发环境的变迁。),需求中的变化总是对于已经分解好的功能结构产生致命的冲击。仅仅将注意力集中在功能上是不够的，必须对数据结构和过程进行抽象、封装等，促使已有的实现能灵活应对需求的变化。<br>模块化：<br>通常我们还会选择模块化来进一步进行设计，其精髓就是高内聚低耦合。模块化能让我们写出更容易理解、更容易维护的代码。但是模块没有完全提出代码实现的抽象和封装，没有进一步提供粒度较小的抽象、封装和复用，可能一个过程或者数据结构的变动，确对一些地方的代码造成了意料之外的影响。<br>结论：<br>仅仅能实现当前需求的代码远远是不够的，而且仅仅使用功能分解然后实现之的分析设计思路也是糟糕的，因为需求总是在变化。我们必须从这里走得更远，作者就引入乐面对对象范式。</p>
-<blockquote>
-<blockquote>
-<p>OOP在由抽象、封装、模块化、分层组成的对象模型之概念框架下，在语言级粒度上提供了封装、继承、多态的支持；这是人类复用技术的进步，但是使用了oop并不代表就能完全运用了对象模型的核心思想。(TDD是当前应对代码变化的最好的开发方式。需求变化的最大承受者就是代码，富于变化和善于应对变化的代码才能存活下来。)</p>
-</blockquote>
-</blockquote>
+<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化的来源大抵有三种：1。新的功能需求；2。开发者对于问题领域的理解发生了变化，通过开发来提高问题领域的自动化程度；3。开发环境的变迁。),需求中的变化总是对于已经分解好的功能结构产生致命的冲击。仅仅将注意力集中在功能上是不够的，必须对数据结构和过程进行抽象、封装等，促使已有的实现能灵活应对需求的变化。<br>模块化：<br>通常我们还会选择模块化来进一步进行设计，其精髓就是高内聚低耦合。模块化能让我们写出更容易理解、更容易维护的代码。但是模块没有完全提出代码实现的抽象和封装，没有进一步提供粒度较小的抽象、封装和复用，可能一个过程或者数据结构的变动，确对一些地方的代码造成了意料之外的影响。<br>结论：<br>仅仅能实现当前需求的代码远远是不够的，而且仅仅使用功能分解然后实现之的分析设计思路也是糟糕的，因为需求总是在变化。我们必须从这里走得更远，作者就引入乐面对对象范式。<br>OOP在由抽象、封装、模块化、分层组成的对象模型之概念框架下，在语言级粒度上提供了封装、继承、多态的支持；这是人类复用技术的进步，但是使用了oop并不代表就能完全运用了对象模型的核心思想。(TDD是当前应对代码变化的最好的开发方式。需求变化的最大承受者就是代码，富于变化和善于应对变化的代码才能存活下来。)</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
@@ -412,254 +648,6 @@ deploy:</span>
     </summary>
     
       <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[读《Berkeley Unix二十年》]]></title>
-    <link href="http://navigating.github.io/2005/%E8%AF%BB%E3%80%8ABerkeley-Unix%E4%BA%8C%E5%8D%81%E5%B9%B4%E3%80%8B/"/>
-    <id>http://navigating.github.io/2005/读《Berkeley-Unix二十年》/</id>
-    <published>2005-05-31T02:41:23.000Z</published>
-    <updated>2015-08-01T02:41:52.631Z</updated>
-    <content type="html"><![CDATA[<p>16 May 2005<br>    在unix的早期历史里面，没有策划，没有估计，没有进度表；在这个年代，硬件的代价是昂贵的，在硬件资源固定的情况下，所有的人都希望通过自己的努力进行优化，进行维护，进行调试，进行移植，进行集成。。。这时构建系统、发布系统还处于萌芽状态，大量的工作都是针对与操作系统的。(同也是编程语言狂热的年代。)这完全是个人表现，人类对于计算机一个个基本的需求解决的年代。理想也是满足自己的开发所需和硬件的平滑更换。经过暴风骤雨的成长发展，系统进入了分支期，这样路就越来越窄了，可以选择的空间似乎总是在缩小。NetBSD专注于支持多平台，FreeBSD专注于支持PC体系，OpenBSD专注于系统的安全性。<br>   人才的流动，人才的流失对于一个team来说是一个损失，同时team有引进了新的人才。对于整个行业来说开始平衡的，人才的流动带给一个行业的是经验的互补，每一个人都各有所长。关键人才的流动带给系统的是新的特性切入点，同类型的系统也越来越有竞争力，火拼最激烈的时候正是新的力量可能诞生的时候。BSD的发展就是DARPA(Defense Advanced Research Projects Agency)给了它这个绝佳的机会。Bill Joy、Bob Fabry、Leffler…的离开，Leffler、Pauline Schwartz、Domenico Ferrari、Susan Graham、<br>Mike Karels…的介入。<br>   早期的Unix开发者都是小范围的孤军奋战，而且也总是在增大交流的范畴，交流越广泛，对于系统的提高所起到的隐含动力越大。在系统的开发前行中，越来越多的贡献者希望代码的共享，常常会触及到版权的问题，这种共享缩短了个人和行业的发展历程。今天OpenSource已经深入到我们这些开发者的心灵之中，感谢这些先行者和贡献者。同样感受到，官事没有什么可怕的，足以证明这个系统、这个行业非常成熟了，有了越来越多的共利益者了，分蛋糕的人拼的热火朝天呢，大家在同一个级别上一较高下了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>16 May 2005<br>    在unix的早期历史里面，没有策划，没有估计，没有进度表；在这个年代，硬件的代价是昂贵的，在硬件资源固定的情况下，所有的人都希望通过自己的努力进行优化，进行维护，进行调试，进行移植，进行集成。。。这时构建系统、发布系统还处于萌芽状态，大]]>
-    </summary>
-    
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[转载：你注意过你的父母吗....]]></title>
-    <link href="http://navigating.github.io/2005/%E8%BD%AC%E8%BD%BD%EF%BC%9A%E4%BD%A0%E6%B3%A8%E6%84%8F%E8%BF%87%E4%BD%A0%E7%9A%84%E7%88%B6%E6%AF%8D%E5%90%97/"/>
-    <id>http://navigating.github.io/2005/转载：你注意过你的父母吗/</id>
-    <published>2005-02-24T02:39:41.000Z</published>
-    <updated>2015-08-01T02:40:48.081Z</updated>
-    <content type="html"><![CDATA[<p>你注意过你的父母吗？(写给 30岁以上的人，让30岁以下的人思考) </p>
-<p>如果有一天，你发现妈妈的厨房不再像以前那么干净<br>如果有一天，你发现家中的碗筷好像没洗干净<br>如果有一天，你发现母亲的锅子不再雪亮<br>如果有一天，你发现父亲的花草树木已渐荒废<br>如果有一天，你发现家中的地板衣柜经常沾满灰尘<br>如果有一天，你发现母亲煮的菜太咸太难吃<br>如果有一天，你发现父母经常忘记关瓦斯 </p>
-<p>如果有一天，你发现老父老母的一些习惯不再是习惯时， 就像他们不再想要天天洗澡时<br>如果有一天，你发现父母不再爱吃青脆的蔬果<br>如果有一天，你发现父母爱吃煮得烂烂的菜<br>如果有一天，你发现父母喜欢吃稀饭<br>如果有一天，你发现他们过马路行动反应都慢了<br>如果有一天，你发现在吃饭时间他们老是咳个不停 千万别误以为他们感冒或着凉，<br>(那是吞咽神经老化的现象)<br>如果有一天，你发觉他们不再爱出门… </p>
-<p>如果有这么一天 我要告诉你，你要警觉父母真的已经老了<br>器官已经退化到需要别人照料了<br>如果你不能照料，<br>请你替他们找人照料<br>并请你请你千万千万要常常探望<br>不要让他们觉得被遗弃了 </p>
-<p>每个人都会老<br>父母比我们先老<br>我们要用角色互换的心情去照料他<br>才会有耐心、才不会有怨言<br>当父母不能料理自己的时候，<br>为人子女要警觉，<br>他们可能会大小便失禁、可能会很多事都做不好，<br>如果房间有异味，可能他们自己也闻不到，请不要嫌他脏或嫌他臭，<br>为人子女的只能帮他清理，并请维持他们的’自尊心’。</p>
-<p>当他们不再爱洗澡时，<br>请抽空定期帮他们洗身体，<br>因为纵使他们自己洗也可能洗不干净。<br>当我们在享受食物的时候，<br>请替他们准备一份大小适当、容易咀嚼的一小碗，<br>因为他们不爱吃可能是牙齿咬不动了。<br>从我们出生开始，喂奶换尿布、生病的不眠不休照料、<br>教我们生活基本能力、供给读书、吃喝玩乐和补习，<br>关心和行动永远都不停歇。</p>
-<p>如果有一天，<br>他们真的动不了了，角色互换不也是应该的吗？<br>为人子女者要切记，看父母就是看自己的未来，孝顺要及时。<br>如果有一天，<br>你像他们一样老时，你希望怎么过？<br>现在的你，<br>是在当单身寄生虫、还是已婚双料或多料寄生虫？<br>你留意过自己的父母吗 ?</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>你注意过你的父母吗？(写给 30岁以上的人，让30岁以下的人思考) </p>
-<p>如果有一天，你发现妈妈的厨房不再像以前那么干净<br>如果有一天，你发现家中的碗筷好像没洗干净<br>如果有一天，你发现母亲的锅子不再雪亮<br>如果有一天，你发现父亲的花草树木已渐荒废<b]]>
-    </summary>
-    
-      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[JUnit使用心得]]></title>
-    <link href="http://navigating.github.io/2005/JUnit%E4%BD%BF%E7%94%A8%E5%BF%83%E5%BE%97/"/>
-    <id>http://navigating.github.io/2005/JUnit使用心得/</id>
-    <published>2005-01-17T02:14:51.000Z</published>
-    <updated>2015-08-01T02:21:29.329Z</updated>
-    <content type="html"><![CDATA[<p>  来自<a href="http://junit.sourceforge.net/doc/cookstour/Image6.gif" target="_blank" rel="external">http://junit.sourceforge.net/doc/cookstour/Image6.gif</a></p>
-<p>1.在这个composite模式之中，TestSuite与它的接口Test的聚合关系。这种关系完美的满足了客户代码自由自在的组装自己的测试用例结构。称为面对对象的递归组合。现在TestCase和TestSuite都具有良好的扩充性。<br>2.TestResult：如何进行职责的分配永远是对象的话题。TestCase直接面对符合测试框架规范的测试用例的每一个方法，每一个方法都会致使一个TestCase的对象构造出来，这样测试用例的方法之间就很好的隔离；每一个TestCase都是一个独立的测试单元，TestCase正是保证这种自主性。测试用例运行中的信息收集和信息积累。用例和信息积累都是潜在可能各自发生变化的，区别用例的执行和信息的收集就可以得到更多的灵活性和潜在复用性。用例和信息积累各自都又具有很好的通用性。TestResult正是测试执行信息积累而被封装的类(Test提供了信息积累的收集点：countTestCases)，可以看到TestResult是作为访问者(Visitor)注册到Test中去的。对于测试执行信息的处理，向TestResult注册了estListener的Observer模式。<br>3.在TestResult通过接口Protectable将执行信息的处理优美的隔离到一个单独的方法中来：<br>public interface Protectable {</p>
-<p> /**</p>
-<ul>
-<li>Run the the following method protected.<br>*/<br>public abstract void protect() throws Throwable;<br>}</li>
-</ul>
-<p>在TestResult中：<br> /**</p>
-<ul>
-<li><p>Runs a TestCase.<br>*/<br>protected void run(final TestCase test) {<br>startTest(test);<br>Protectable p= new Protectable() {<br>public void protect() throws Throwable {<br>test.runBare();<br>}<br>};<br>runProtected(test, p);</p>
-<p>endTest(test);<br>}</p>
-<p>/**</p>
-</li>
-<li>Runs a TestCase.<br>*/<br>public void runProtected(final Test test, Protectable p) {<br>try {<br>p.protect();<br>}<br>catch (AssertionFailedError e) {<br>addFailure(test, e);<br>}<br>catch (ThreadDeath e) { // don’t catch ThreadDeath by accident<br>throw e;<br>}<br>catch (Throwable e) {<br>addError(test, e);<br>}<br>}<br>整个JUnit框架是功能完美而且精巧的。其中的核心代码也不过千余行而已，处处都能感觉到灵活和可扩充。</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>  来自<a href="http://junit.sourceforge.net/doc/cookstour/Image6.gif" target="_blank" rel="external">http://junit.sourceforge.net/doc/cooks]]>
-    </summary>
-    
-      <category term="JUunit" scheme="http://navigating.github.io/tags/JUunit/"/>
-    
-      <category term="XP" scheme="http://navigating.github.io/tags/XP/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[黄花菜]]></title>
-    <link href="http://navigating.github.io/2005/%E9%BB%84%E8%8A%B1%E8%8F%9C/"/>
-    <id>http://navigating.github.io/2005/黄花菜/</id>
-    <published>2005-01-03T04:13:34.000Z</published>
-    <updated>2015-08-01T02:22:37.760Z</updated>
-    <content type="html"><![CDATA[<p>学名：Hemerocallis citrina Baroni<br>英文名：Citron Daylily<br>科名：百合科 Liliaceae<br>    根常稍肥厚或末端膨大。基生叶深绿色，宽线形，通常宽l－2厘米或更宽，</p>
-<p>较花茎短。花茎高1—2米；螺壳状聚伞花序排成圆锥状，花朵达几十朵，花午</p>
-<p>后开放，次日午前凋萎，黄色，芳香，长8—16厘米；花被管长3—5厘米，外轮</p>
-<p>裂片倒被针形，内轮长椭圆形。蒴果椭圆形，长约2．5厘米。花期8—10月。   </p>
-<pre><code>产本省各地，野生山坡、山谷草丛中，也有栽培；分布我国秦岭以南各省
-</code></pre><p>区，北方也有栽培。</p>
-<pre><code>花供食用；根有毒性，可作杀虫剂。
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>学名：Hemerocallis citrina Baroni<br>英文名：Citron Daylily<br>科名：百合科 Liliaceae<br>    根常稍肥厚或末端膨大。基生叶深绿色，宽线形，通常宽l－2厘米或更宽，</p>
-<p>较花茎短。花茎高1—2米；螺壳]]>
-    </summary>
-    
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2004年年底总结]]></title>
-    <link href="http://navigating.github.io/2005/2004%E5%B9%B4%E5%B9%B4%E5%BA%95%E6%80%BB%E7%BB%93/"/>
-    <id>http://navigating.github.io/2005/2004年年底总结/</id>
-    <published>2005-01-03T02:14:14.000Z</published>
-    <updated>2015-08-01T02:22:03.520Z</updated>
-    <content type="html"><![CDATA[<p>今年年末，回首过去，心里七上八下的。</p>
-<p>首先感觉时间过的真快，不知道何以人生走完了2004年。一如既往的迷茫。</p>
-<p>自从上了小学，就上了中学，接着是高中，然后是大学。在这一路上纵然是多姿多彩的。每一关口都不需<br>要我多少思虑抉择，好像人生的路就那么一条。大学毕业了，接着就是工作了，如今已经工作了一年半了。<br>这一切似乎自然而然的事情，不见我之力我之思改变了自己多少。当我们回首，又有多少刻骨铭心呢？心<br>情激动的时候我可以一件一件的数来，或许另外一个时刻我又去数落其他的事情。</p>
-<p>随着10月份以来，烦躁的心绪越来越频繁，足以说明我无法很好的调节自己的心里。看来10月份是一年心<br>情的转折点，至少以后在9，10月份好好的轻松一下，疏解一下一年中的心情。<br>越来越发现自己的缺点太多太多了，就好像过程改进一样，在年末看到自己缩影的一部分。如果有人愿意<br>给我一些建议，简直是太好了。</p>
-<p>在过去的学习中，很少做笔记，又少于记录心得。致使只见表皮，不见精髓的惯病。</p>
-<p>缺乏与人交流，+深层次的交流。</p>
-<p>接受新的思想比较少，吸收东西的能力亟需提高。</p>
-<p>缺乏和人合作，现在不晓得如何和人合作。</p>
-<p>知识支离破碎，没有形成自己的思维体系。</p>
-<p>对软件开发本身认识甚少。</p>
-<p>全局观很是浅薄。</p>
-<p>想读的书很多，每一天安排在读书上的时间很少。</p>
-<p>想读还没有读的书：<br>《计算机程序的解释与构造》<br>《UML与模式应用》<br>《Contributing to Eclipse》<br>《软件工艺》<br>《设计模式》<br>《测试驱动开发——实用指南》</p>
-<p>“你必须习惯于一天用六个小时读代码，再用一个小时写代码－－你会发现这样的一天效率同样高得惊人。”<br>                                                   ——《Contributing to Eclipse》前言<br>“读书不二。一书未完，不看他书。东翻西阅，徒务外为人。”<br>“总要养得有胸次博大活泼，此后更当有长进也。”<br>                                                   ——曾国藩<br>知难行更难。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>今年年末，回首过去，心里七上八下的。</p>
-<p>首先感觉时间过的真快，不知道何以人生走完了2004年。一如既往的迷茫。</p>
-<p>自从上了小学，就上了中学，接着是高中，然后是大学。在这一路上纵然是多姿多彩的。每一关口都不需<br>要我多少思虑抉择，好像人生的路就那么]]>
-    </summary>
-    
-      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[EMF Build 之版本分类(EMF Build Type)]]></title>
-    <link href="http://navigating.github.io/2004/EMF-Build-%E4%B9%8B%E7%89%88%E6%9C%AC%E5%88%86%E7%B1%BB-EMF-Build-Type/"/>
-    <id>http://navigating.github.io/2004/EMF-Build-之版本分类-EMF-Build-Type/</id>
-    <published>2004-12-28T02:13:15.000Z</published>
-    <updated>2015-08-01T02:23:20.059Z</updated>
-    <content type="html"><![CDATA[<p>1.Releases<br>  Releases是由开发团队公开发布的主要build版本，比如：”R1.0”。<br>  这种builds是稳定的(stable)、经过测试的版本(tested release),但是它不会包含最近最<br>新的features和improvements。<br>  Release Builds的版本号总是以”R”开头；Non-release builds一般都是build的日期来命名。<br>2.Stable Builds<br>  Stable builds是能够确定满足大部分用户的integration builds版本（注：Stable builds首先是一个<br>integration builds,并有很好的稳定性，满足用户的基本需求）。经过短期的使用和评估（或者评审）<br>由architecture team把stable build从integration build中提取出来（原文：They are promoted from<br>integration build to stable build by the architecture team after they have been used for a<br>few days and deemed reasonably stable. ）。<br>  这种builds会紧紧跟随最新的开发进程，包含最新最新的features和bug fixes,当然同时可能会由许多<br>bug和缺陷。<br>  开发团队希望能够发布这种builds来获取用户及时有价值的反馈。<br>3.Integration Builds<br>  这是一个周期性的工作，各个component teams保证释放的component都处在了稳定、具有兼容性的状态。<br>每一个compenent必须在配置文件中配置下一次integration build中本component的版本号。在新的稳定<br>component版本release到build中，必须要进行build integration builds.Integration builds经过测试<br>之后就会成为Stable Builds.<br>4.Nightly Builds<br>  over night build任何被release到the HEAD stream of the CVS repository的代码。<br>  完全没有经过测试，存在大量的问题；一般情况下都不会很好的运行。<br>  这一步为改项目的开发者而是实现的。<br>  Note: Nightly builds are produced only as requested, and not necessarily every night,<br>by developers to build what was in HEAD.<br>5.Maintenance Builds<br>  周期性的build,为了保持维护未来版本的发布的执行。Maintenance Builds并不一定是一个stable builds.<br>maintenance builds最后确定和release的时候，就成为了一个Release build.Maintenance builds的名字以<br>“M”开头，在稳定性方面仍然没有经过考验。如果一个版本是release candidate的时候（“RC”），那么<br>就是一个stable maintenance build.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>1.Releases<br>  Releases是由开发团队公开发布的主要build版本，比如：”R1.0”。<br>  这种builds是稳定的(stable)、经过测试的版本(tested release),但是它不会包含最近最<br>新的features和improv]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[单元测试实践]]></title>
-    <link href="http://navigating.github.io/2004/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%AE%9E%E8%B7%B5/"/>
-    <id>http://navigating.github.io/2004/单元测试实践/</id>
-    <published>2004-12-12T02:11:55.000Z</published>
-    <updated>2015-08-01T02:24:16.779Z</updated>
-    <content type="html"><![CDATA[<p>接受测试驱动开发也已经有些时光了，仍然只能依靠ide来创建一些测试对象，即使偶尔自己写几个测试用例，也是环境相关、依赖多多的实例，为什么我们的代码就需要单元测试呢，部分是自己的想法，部分是与几个朋友讨论收获的，浏览了&lt;&gt;之后不免想记录下自己的想法了。<br>  自从有了代码就有了单元测试，就是最简单的debug调试也算作单元测试的一部分吧；测试驱动开发是在单元测试滞后产生的一种软件开发的方法学。只要有单元测试，它本身就含有驱动软件设计和代码重构的思想在里面。我们为了代码能够被单元测试，在设计阶段我们就会考虑怎么测试代码，同时测试用例也是代码的第一个用户；我们也需要为了测试了对代码进行重构。<br>1.单元测试的验证性：任何代码都是有一定缺陷的，单元测试能够尽量的发现代码中的问题和缺陷，验证了设计、业务逻辑、一些相关的特殊领域对象（一些Javabean等），保证了代码的完整性。从功能上对代码进行了验证，至少证明代码不存在功能上的问题。<br>2.单元测试的探索性：对于单元测试同样我们首先有一个测试列表，这个测试列表精心设计和长期习惯的积累，可能它就存在你的脑子里面。对于列表中的测试点，我们只测试可能出错的点；象那些不依赖于环境能够被间接的测试的点我们没有必要一定去测试。对于那些必要的测试点中，同样有业务逻辑的测试、模拟异常条件测试、对于预期的测试，需要我们良好的设计来实现它。在这个测试列表之外的是为测试区域，我记得哲学上有一个道理，一个圆越大，那么它与未知世界接触的区域就大。我们是不是也在做这种用例呢？单元测试就是尽可能保证我们所知道的每一个区域是“安全”的。<br>3.单元测试促使设计:<br>代码==è单元测试==è重构==è单元测试回归<br>首先我们对于代码进行单元测试，无论代码如何，设计如何，要保证现在代码是能够被单元测试的，这时候代码遇到了它的第一个用户：单元测试。代码如何被测试，考验代码的适应性和对变化的承受力。只有不断的重构才能使得测试更简洁。这里需要我们对于代码的重构设计成竹在胸，23个设计模式是不可或缺的方法。<br>4.测试用力是代码的使用手册：代码如何使用，可能客户不能很快知晓，测试用例就是一个demo,只要客户按着测试用例一样使用我们的代码，保证我们的代码一定能够被正确的使用。<br>4.单元测试的回归性：测试过的代码、功能等，不能证明随着时间的推移，在频繁构建之下，永远是好的。回归测试保证了在当前的测试用例之下当前的代码的良好性，是一张代码质量的协约书。谁都能“误”以为代码满足了编写者的设计意图。如果代码不能通过单元测试了，可能就是被损坏了。保证了重构中系统的完整性和一致性，随着代码的不断递增，通过机器自动保证代码测试无需人来参加。<br>5.防止衰退，减少调试：利用测试的回归性来进行代码的衰退，使得自动测试必须存在，他是我们代码的“守护神”（如果你也想为你的代码增加一个神，就从单元测试开始吧）。在代码、测试、重构的过程中，也是不断调试程序的过程，良好的单元测试能帮助我们发现错误和定位错误，逻辑单元测试本身就是一个细粒度的测试。<br>6.团队协作的可能：在一个团队，成员之间是互相信任的。我们通过什么来保证代码的可信任，单元测试让我们的代码是可以依赖的。有了单元测试的习惯，你不会在代码没有测试之前就提交它。模块之上的功能测试也是很粗糙的，对于代码的逻辑和集成性还是心有余而力不足。<br>突然想到，单元测试存在一块充满地雷的区域上的排雷器一样。我们验证什么地方有雷，什么地方没有；我们探索那些未知的区域；通过不断的排雷来评估这个区域的安全性；利用回归的探测来证明有没有新地雷扔到已测地区。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>接受测试驱动开发也已经有些时光了，仍然只能依靠ide来创建一些测试对象，即使偶尔自己写几个测试用例，也是环境相关、依赖多多的实例，为什么我们的代码就需要单元测试呢，部分是自己的想法，部分是与几个朋友讨论收获的，浏览了&lt;&gt;之后不免想记录下自己的想法了。<br>  ]]>
-    </summary>
-    
-      <category term="JUnit" scheme="http://navigating.github.io/tags/JUnit/"/>
-    
-      <category term="XP" scheme="http://navigating.github.io/tags/XP/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[写好代码]]></title>
-    <link href="http://navigating.github.io/2004/%E5%86%99%E5%A5%BD%E4%BB%A3%E7%A0%81/"/>
-    <id>http://navigating.github.io/2004/写好代码/</id>
-    <published>2004-12-02T01:59:56.000Z</published>
-    <updated>2015-08-01T02:00:43.309Z</updated>
-    <content type="html"><![CDATA[<p>有一段时间一直在想，什么样子的代码是一个好的代码、高质量的代码，这些是在福建的时候写的，已经过去有一些日子了。想到那些日子里，承担者项目上的一些压力，工作之间<br>依然在思考代码，依然在读 软件敏捷开发 这本书。<br>软件设计的最终体现为源代码，满足设计标准的唯一软件文档就是源代码清单。源代码就是设计。具有灵活性、可维护性和可重用性的良好架构设计会带来高质量的代码，高质量的代码必然有良好的架构设计。<br>如何衡量软件的好坏呢？<br>僵化性(Rigidity):关联的地方太多，难以改动；实际发生改动之后，许多因改动带来的影响自己难以预测到，往往需要在庞大的代码中搜寻变动。<br>脆弱性(Fragility):关联了概念无关的地方，出现新问题的地方与改动的地方没有概念上的关联。<br>牢固性(Immobility):系统重能够被重用的地方难以抽取出来，需要巨大的努力和风险。<br>粘滞性(Viscosity):包括软件的粘滞性和环境的粘滞性。软件的粘滞性发生在保持系统设计的改动方法比那些破坏设计的生硬改动手法更难应用时；环境的粘滞性发生在环境迟钝、低效时，比如导致大规模重编译的改动或者需要几个小时check in几个文件中的改动。<br>不必要的复杂性(Needless Complexity):代码中预置的那些处理潜在变化的代码，致使设计中含有绝不会用到的结构。<br>不必要的重复性(Needless Repetition):开发人员忽视了抽象，对于系统的改动开始变得困难起来。<br>晦涩性(Opacity):模块难以理解。用清晰、富有表现力的方式编写代码。<br>                                     ――――读&lt;&gt;<br>这些都是软件在腐化的臭味道，软件的腐化是由代码来表现出来的。现在我对于代码的理解：<br>可读性：代码不仅是给用户写的，也是给team成员读，（对我们而言，还要给维护人员读）。只有代码具有可读性，才能具有好的可维护性、才能被复用。读好的代码能提高，读不好的代码也能发现问题。通过代码评审来提高团队的代码质量是一种非常有效的方式，能够直接影响了设计。<br>可测试性：测试用例是代码的第一个用户，如果代码难以测试，可以说是很难用，就更难复用。<br>复用性：保持代码的抽象性，代码能写到没有一点能让自己copy的地方只是第一步。如果我们自己设计的代码自己都不能进行复用，还谈什么系统复用，还谈什么提高复用性。我们不能等有一个万能的复用框架别人做好给我们使用，我们应该从建立自己的复用库开始，可以建立自己的CVS（CVSNT）来管理自己的源代码库。（在不断抽象之下，就是分析的结果，一般一个包的抽象类有50%左右的时候这个包是最稳定的。）<br>可维护性：代码要有好的复用性，必须有良好的架构，易读，易于测试，对于改动灵活。程序在运行中不可能不遇到各种各样的问题，对于我们的项目可能是对于现场运行环境的细小的变更，可能会是运行中的性能的问题？会不会导致系统的崩溃呢？能够提供观察系统运行状态的良好的接口，能够提供分析系统异常信息的合理的结构。当系统出现异常的时候，我们不希望系统立刻就会崩溃，我们不希望只是看到异常。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>有一段时间一直在想，什么样子的代码是一个好的代码、高质量的代码，这些是在福建的时候写的，已经过去有一些日子了。想到那些日子里，承担者项目上的一些压力，工作之间<br>依然在思考代码，依然在读 软件敏捷开发 这本书。<br>软件设计的最终体现为源代码，满足设计标准的唯一软件文]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[String In Java]]></title>
-    <link href="http://navigating.github.io/2004/String-In-Java/"/>
-    <id>http://navigating.github.io/2004/String-In-Java/</id>
-    <published>2004-11-09T01:59:12.000Z</published>
-    <updated>2015-08-01T02:02:31.357Z</updated>
-    <content type="html"><![CDATA[<p>JDK1.4中关于String的几个实现方法：</p>
-<pre><code><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params">String original</span>) </span>{
-    <span class="keyword">this</span>.count = original.count;
-    <span class="keyword">if</span> (original.<span class="keyword">value</span>.length &gt; <span class="keyword">this</span>.count) {
-        <span class="comment">// The array representing the String is bigger than the new</span>
-        <span class="comment">// String itself.  Perhaps this constructor is being called</span>
-        <span class="comment">// in order to trim the baggage, so make a copy of the array.</span>
-        <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="keyword">this</span>.count];
-        System.arraycopy(original.<span class="keyword">value</span>, original.offset,
-        <span class="keyword">this</span>.<span class="keyword">value</span>, <span class="number">0</span>, <span class="keyword">this</span>.count);
-    } <span class="keyword">else</span> {
-        <span class="comment">// The array representing the String is the same</span>
-        <span class="comment">// size as the String, so no point in making a copy.</span>
-        <span class="keyword">this</span>.<span class="keyword">value</span> = original.<span class="keyword">value</span>;
-    }
-}
-
-<span class="function"><span class="keyword">public</span> boolean <span class="title">equals</span>(<span class="params">Object anObject</span>) </span>{
-    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) {
-        <span class="keyword">return</span> <span class="keyword">true</span>;
-    }
-
-    <span class="keyword">if</span> (anObject instanceof String) {
-        String anotherString = (String)anObject;
-        <span class="keyword">int</span> n = count;
-
-        <span class="keyword">if</span> (n == anotherString.count) {
-            <span class="keyword">char</span> v1[] = <span class="keyword">value</span>;
-            <span class="keyword">char</span> v2[] = anotherString.<span class="keyword">value</span>;
-            <span class="keyword">int</span> i = offset;
-            <span class="keyword">int</span> j = anotherString.offset;
-            <span class="keyword">while</span> (n-- != <span class="number">0</span>) {
-                <span class="keyword">if</span> (v1[i++] != v2[j++])
-                <span class="keyword">return</span> <span class="keyword">false</span>;
-            }
-            <span class="keyword">return</span> <span class="keyword">true</span>;
-        }
-    }
-    <span class="keyword">return</span> <span class="keyword">false</span>;
-}
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>JDK1.4中关于String的几个实现方法：</p>
-<pre><code><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[如何开始编码]]></title>
-    <link href="http://navigating.github.io/2004/%E5%A6%82%E4%BD%95%E5%BC%80%E5%A7%8B%E7%BC%96%E7%A0%81/"/>
-    <id>http://navigating.github.io/2004/如何开始编码/</id>
-    <published>2004-10-28T01:58:15.000Z</published>
-    <updated>2015-08-01T01:58:47.916Z</updated>
-    <content type="html"><![CDATA[<p>1.程序run起来。<br>2.程序能够被单元测试。<br>3.考虑引起变化的因素。<br>4.面对引起变化的因素，重构。<br>5.如何对变化进行单元测试，即面对了变化，如何进行单元测试。<br>6.如何做准确性的单元测试，如何做边界的单元测试。<br>7.如何保证代码在引起变化的时候仍然具有很好的可维护性（维护中需要好的单元测试做为支持的）。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>1.程序run起来。<br>2.程序能够被单元测试。<br>3.考虑引起变化的因素。<br>4.面对引起变化的因素，重构。<br>5.如何对变化进行单元测试，即面对了变化，如何进行单元测试。<br>6.如何做准确性的单元测试，如何做边界的单元测试。<br>7.如何保证代码在]]>
-    </summary>
     
   </entry>
   
