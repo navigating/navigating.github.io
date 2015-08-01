@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://navigating.github.io/2007/Java-5-0%E7%9A%84Instrumentation%E7%89%B9%E6%80%A7/</loc>
+    <lastmod>2015-08-01T03:50:31.536Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://navigating.github.io/2007/2006%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93-%E5%8E%9F%E5%90%8D%EF%BC%9A%E4%B8%80%E7%AF%87%E6%B2%A1%E6%9C%89%E5%86%99%E5%AE%8C%E7%9A%84BLOG/</loc>
+    <lastmod>2015-08-01T03:29:46.155Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://navigating.github.io/2007/%E5%BC%80%E8%81%8A%E6%9C%89%E7%9B%8A/</loc>
+    <lastmod>2015-08-01T03:28:00.083Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://navigating.github.io/2006/JUnit-4-%E5%AE%9E%E6%88%98/</loc>
     <lastmod>2015-08-01T03:16:48.735Z</lastmod>
   </url>

@@ -377,6 +377,266 @@ deploy:</span>
   </entry>
   
   <entry>
+    <title><![CDATA[Java 5.0的Instrumentation特性]]></title>
+    <link href="http://navigating.github.io/2007/Java-5-0%E7%9A%84Instrumentation%E7%89%B9%E6%80%A7/"/>
+    <id>http://navigating.github.io/2007/Java-5-0的Instrumentation特性/</id>
+    <published>2007-05-19T03:30:36.000Z</published>
+    <updated>2015-08-01T03:50:31.536Z</updated>
+    <content type="html"><![CDATA[<p>Java 5发布有一段时间了，Instrumentation这个feature是Java 5新提供的。其方式是通过修改字节码的方式使得Java开发人员能够操作类。官方文档说主要是给工具提供修改应用的状态、行为使用的:)<br>先来个简单的例子看看到底什么是Instrumentation:<br>在JSE 1.5.0的Javadoc的看到java.lang.instrument仅有两个接口ClassFileTransformer和Instrumentation。我们就看看着两个接口的用法：</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Greeting</span> <span class="title">implements</span> <span class="title">ClassFileTransformer</span> {
+
+    <span class="comment">//字节码转换在这个方法中进行。</span>
+    <span class="keyword">public</span> <span class="keyword">byte</span>[] transform(ClassLoader arg0, String classname, Class arg2, ProtectionDomain arg3, <span class="keyword">byte</span>[] arg4)
+    throws IllegalClassFormatException {
+        System.<span class="keyword">out</span>.printf(<span class="string">"hello:"</span> + classname);
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">byte</span>[]{};
+    }
+
+    <span class="comment">//options是通过命令行传递给虚拟机的参数。</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">premain</span>(<span class="params">String options, Instrumentation ins</span>) </span>{
+        <span class="keyword">if</span> (options != <span class="keyword">null</span>) {
+            System.<span class="keyword">out</span>.printf(<span class="string">" I've been called with options: \"%s\"\n"</span>, options);
+        } <span class="keyword">else</span>
+            System.<span class="keyword">out</span>.println(<span class="string">" I've been called with no options."</span>);
+            ins.addTransformer(<span class="keyword">new</span> Greeting());
+        }
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Sample</span> {
+
+    <span class="comment">/**
+    * @param args
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>{
+        (<span class="keyword">new</span> Sample()).hello();
+
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span>(<span class="params"></span>) </span>{
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) {
+        <span class="keyword">int</span> index =<span class="number">0</span>;
+        index++;
+        }
+    }
+
+}
+</code></pre><p>使用命令行参数的命令行：</p>
+<pre><code><span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">Greeting.jar=<span class="string">"Hello, Sample"</span> Sample</span></span>
+</code></pre><p>因此下一步是需要打个jar包，jar包中包含META-INF/MANIFEST.MF和Class文件。<br>其中META-INF/MANIFEST.MF的内容如下：<br>    Manifest-Version: 1.0<br>    Premain-Class: Timing</p>
+<p>包含的类文件有：Greeting.class和Sample.class<br>打包：</p>
+<pre><code>jar cvfM greeting<span class="class">.jar</span> *
+</code></pre><p>输出：<br>    adding: Greeting.class(in = 1774) (out= 869)(deflated 51%)<br>    adding: META-INF/(in = 0) (out= 0)(stored 0%)<br>    adding: META-INF/MANIFEST.MF(in = 44) (out= 46)(deflated -4%)<br>    adding: Sample.class(in = 556) (out= 371)(deflated 33%)</p>
+<pre><code>运行命令行：
+
+<span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">greeting.jar=<span class="string">"Hello,Sample"</span> Greeting</span></span>
+</code></pre><p>控制台输出：<br>    I’ve been called with options: “Hello,Sample”</p>
+<p>运行命令行：</p>
+<pre><code><span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">greeting.jar=<span class="string">"Hello,Sample"</span> Sample</span></span>
+</code></pre><p>控制台输出：<br>    I’ve been called with options: “Hello,Sample”<br>    hello:Sample</p>
+<p>通过这个例子估计Instrutment API使用的方法已经基本上有了个理解了。<br>下面就是举一个用apache bcel构造bytecode的Instrutment的实际的例子：</p>
+<p>使用 instrumentation ，使用Apache 开源项目 BCEL修改bytecode，实现用于计算一个方法运行时间的功能。这种方式，用于性能测量的语句与业务逻辑完全分离，同时也可以用于测量任意类的任意方法的 运行时间，提高了代码的重用性。</p>
+<pre><code><span class="keyword">import</span> java.io.<span class="type">ByteArrayOutputStream</span>;
+<span class="keyword">import</span> java.io.<span class="type">IOException</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">ClassFileTransformer</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">IllegalClassFormatException</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">Instrumentation</span>;
+
+<span class="keyword">import</span> org.apache.bcel.<span class="type">Constants</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">ClassParser</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">JavaClass</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">Method</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ClassGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ConstantPoolGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionConstants</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionFactory</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionList</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">MethodGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ObjectType</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">PUSH</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">Type</span>;
+
+public class <span class="type">Timing</span> implements <span class="type">ClassFileTransformer</span> {
+
+    private <span class="type">String</span> methodName;
+
+    private <span class="type">Timing</span>(<span class="type">String</span> methodName) {
+        this.methodName = methodName;
+        <span class="type">System</span>.<span class="keyword">out</span>.println(methodName);
+    }
+
+    public byte[] transform(<span class="type">ClassLoader</span> loader, <span class="type">String</span> className, <span class="type">Class</span> cBR, java.security.<span class="type">ProtectionDomain</span> pD, byte[] classfileBuffer) throws <span class="type">IllegalClassFormatException</span> {
+        <span class="keyword">try</span> {
+            <span class="type">ClassParser</span> cp = new <span class="type">ClassParser</span>(new java.io.<span class="type">ByteArrayInputStream</span>(classfileBuffer), className + <span class="string">".java"</span>);
+            <span class="type">JavaClass</span> jclas = cp.parse();
+            <span class="type">ClassGen</span> cgen = new <span class="type">ClassGen</span>(jclas);
+            <span class="type">Method</span>[] methods = jclas.getMethods();
+            <span class="type">int</span> index;
+            <span class="keyword">for</span> (index = <span class="number">0</span>; index &lt; methods.length; index++) {
+                <span class="keyword">if</span> (methods[index].getName().equals(methodName)) {
+                    <span class="keyword">break</span>;
+                }
+            }
+
+            <span class="keyword">if</span> (index &lt; methods.length) {
+                addTimer(cgen, methods[index]);
+                <span class="type">ByteArrayOutputStream</span> bos = new <span class="type">ByteArrayOutputStream</span>();
+                cgen.getJavaClass().dump(bos);
+                <span class="keyword">return</span> bos.toByteArray();
+            }
+            <span class="type">System</span>.err.println(<span class="string">"Method "</span> + methodName + <span class="string">" not found in "</span> + className);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+
+        } catch (<span class="type">IOException</span> e) {
+            <span class="type">System</span>.err.println(e);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+        }
+        <span class="keyword">return</span> null; // <span class="type">No</span> transformation required
+    }
+
+    private <span class="keyword">static</span> <span class="type">void</span> addTimer(<span class="type">ClassGen</span> cgen, <span class="type">Method</span> <span class="keyword">method</span>) {
+
+        // <span class="type">set</span> up the construction tools
+        <span class="type">InstructionFactory</span> ifact = new <span class="type">InstructionFactory</span>(cgen);
+        <span class="type">InstructionList</span> ilist = new <span class="type">InstructionList</span>();
+        <span class="type">ConstantPoolGen</span> pgen = cgen.getConstantPool();
+        <span class="type">String</span> cname = cgen.getClassName();
+        <span class="type">MethodGen</span> wrapgen = new <span class="type">MethodGen</span>(<span class="keyword">method</span>, cname, pgen);
+        wrapgen.setInstructionList(ilist);
+
+        // rename a copy <span class="keyword">of</span> the original <span class="keyword">method</span>
+        <span class="type">MethodGen</span> methgen = new <span class="type">MethodGen</span>(<span class="keyword">method</span>, cname, pgen);
+        cgen.removeMethod(<span class="keyword">method</span>);
+        <span class="type">String</span> iname = methgen.getName() + <span class="string">"_timing"</span>;
+        methgen.setName(iname);
+        cgen.addMethod(methgen.getMethod());
+        <span class="type">Type</span> <span class="literal">result</span> = methgen.getReturnType();
+
+        // compute the size <span class="keyword">of</span> the calling parameters
+        <span class="type">Type</span>[] parameters = methgen.getArgumentTypes();
+        <span class="type">int</span> stackIndex = methgen.isStatic() ? <span class="number">0</span> : <span class="number">1</span>;
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; parameters.length; i++) {
+            stackIndex += parameters[i].getSize();
+        }
+
+        // save time prior to invocation
+        ilist.append(ifact.createInvoke(<span class="string">"java.lang.System"</span>, <span class="string">"currentTimeMillis"</span>, <span class="type">Type</span>.<span class="type">LONG</span>, <span class="type">Type</span>.<span class="type">NO_ARGS</span>, <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>));
+        ilist.append(<span class="type">InstructionFactory</span>.createStore(<span class="type">Type</span>.<span class="type">LONG</span>, stackIndex));
+
+        // call the wrapped <span class="keyword">method</span>
+        <span class="type">int</span> offset = <span class="number">0</span>;
+        short invoke = <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>;
+        <span class="keyword">if</span> (!methgen.isStatic()) {
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="type">Type</span>.<span class="type">OBJECT</span>, <span class="number">0</span>));
+            offset = <span class="number">1</span>;
+            invoke = <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>;
+        }
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; parameters.length; i++) {
+            <span class="type">Type</span> <span class="keyword">type</span> = parameters[i];
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="keyword">type</span>, offset));
+            offset += <span class="keyword">type</span>.getSize();
+        }
+        ilist.append(ifact.createInvoke(cname, iname, <span class="literal">result</span>, parameters, invoke));
+
+        // store <span class="literal">result</span> <span class="keyword">for</span> <span class="keyword">return</span> later
+        <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">Type</span>.<span class="type">VOID</span>) {
+            ilist .append(<span class="type">InstructionFactory</span>.createStore(<span class="literal">result</span>, stackIndex + <span class="number">2</span>));
+        }
+
+        // print time required <span class="keyword">for</span> <span class="keyword">method</span> call
+        ilist.append(ifact.createFieldAccess(<span class="string">"java.lang.System"</span>, <span class="string">"out"</span>, new <span class="type">ObjectType</span>(<span class="string">"java.io.PrintStream"</span>), <span class="type">Constants</span>.<span class="type">GETSTATIC</span>));
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">DUP</span>);
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">DUP</span>);
+        <span class="type">String</span> text = <span class="string">"Call to method "</span> + methgen.getName() + <span class="string">" took "</span>;
+        ilist.append(new <span class="type">PUSH</span>(pgen, text));
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"print"</span>, <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">STRING</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+        ilist.append(ifact.createInvoke(<span class="string">"java.lang.System"</span>, <span class="string">"currentTimeMillis"</span>, <span class="type">Type</span>.<span class="type">LONG</span>, <span class="type">Type</span>.<span class="type">NO_ARGS</span>, <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>));
+        ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="type">Type</span>.<span class="type">LONG</span>, stackIndex));
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">LSUB</span>);
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"print"</span>,
+        <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">LONG</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+        ilist.append(new <span class="type">PUSH</span>(pgen, <span class="string">" ms."</span>));
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"println"</span>, <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">STRING</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+
+        // <span class="keyword">return</span> <span class="literal">result</span> <span class="keyword">from</span> wrapped <span class="keyword">method</span> call
+        <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">Type</span>.<span class="type">VOID</span>) {
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="literal">result</span>, stackIndex + <span class="number">2</span>));
+        }
+        ilist.append(<span class="type">InstructionFactory</span>.createReturn(<span class="literal">result</span>));
+
+        // finalize the constructed <span class="keyword">method</span>
+        wrapgen.stripAttributes(<span class="literal">true</span>);
+        wrapgen.setMaxStack();
+        wrapgen.setMaxLocals();
+        cgen.addMethod(wrapgen.getMethod());
+        ilist.dispose();
+    }
+
+    public <span class="keyword">static</span> <span class="type">void</span> premain(<span class="type">String</span> options, <span class="type">Instrumentation</span> ins) {
+        <span class="keyword">if</span> (options != null) {
+            ins.addTransformer(new <span class="type">Timing</span>(options));
+        } <span class="keyword">else</span> {
+            <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Usage: java -javaagent:Timing.jar=\"class:method\""</span>);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+        }
+
+    }
+}
+</code></pre><p>打jar包:</p>
+<pre><code>$ jar cvfM timing<span class="class">.jar</span> *
+</code></pre><p>输出：<br>    adding: META-INF/(in = 0) (out= 0)(stored 0%)<br>    adding: META-INF/MANIFEST.MF(in = 44) (out= 46)(deflated -4%)<br>    adding: Sample.class(in = 556) (out= 371)(deflated 33%)<br>    adding: Timing.class(in = 7372) (out= 3442)(deflated 53%)</p>
+<p>运行命令行：</p>
+<pre><code>$ java -classpath bcel-<span class="number">5.2</span><span class="class">.jar</span> -javaagent:timing.jar=<span class="string">"hello"</span> Sample
+</code></pre><p>输出：<br>    hello<br>    Call to method hello_timing took 2047 ms.</p>
+<p>运行命令：</p>
+<pre><code>$ java -classpath bcel-<span class="number">5.2</span><span class="class">.jar</span> -javaagent:timing.jar=<span class="string">"main"</span> Sample
+</code></pre><p>输出：<br>    main<br>    Call to method main_timing took 2469 ms.</p>
+<p>通过这段代码，基本能够了解Instrument的用处之一了:)</p>
+<p>参考：<a href="http://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Java 5发布有一段时间了，Instrumentation这个feature是Java 5新提供的。其方式是通过修改字节码的方式使得Java开发人员能够操作类。官方文档说主要是给工具提供修改应用的状态、行为使用的:)<br>先来个简单的例子看看到底什么是Instrumen]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2006年年终总结(原名：一篇没有写完的BLOG)]]></title>
+    <link href="http://navigating.github.io/2007/2006%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93-%E5%8E%9F%E5%90%8D%EF%BC%9A%E4%B8%80%E7%AF%87%E6%B2%A1%E6%9C%89%E5%86%99%E5%AE%8C%E7%9A%84BLOG/"/>
+    <id>http://navigating.github.io/2007/2006年年终总结-原名：一篇没有写完的BLOG/</id>
+    <published>2007-03-13T03:29:17.000Z</published>
+    <updated>2015-08-01T03:29:46.155Z</updated>
+    <content type="html"><![CDATA[<p>2006已经过去，2007已经开始。<br>过去的一年，有高兴，有激动，有不少难以忘记的时刻，有很多痛苦的思考。当我面对和回首自己过去的一年，我不知道自己除了时间之外究竟还失去了什么，自己除了痛苦之外还有多少收获？<br>人是可以活的洒脱些，就看一个人究竟要的是什么？就看你付出了多少？<br>要行动，要思考，要计划，要不断的沟通。<br>技术的狂热，当我在Miami Java User Group第一次聚会上看到Michael Feather的依然这么执着，依然的狂热，对于C++,对于functional programming，一个普通的程序员的极限就是这样吗。</p>
+<p>一个Senior Programmer</p>
+<p>首先是一个人，要做一个什么样子的人？<br>“观身如身，观心如心。”<br>如果是一个人，一个人的架构一定要比程序员的架构高。我们要一个什么样的身，基本的是健康的，就要经常锻炼了；中国一向有一个修身的传统，可见修身包括很多，怎么去修身，社会有社会的价值，个人有个人的志向。修身对谁都是一个既迷茫又痛苦的话题，“求仁得仁”，回到一个很糟乱的话题了，一个人到底想要得是什么？为了想要的得到底付出了什么？包括痛苦，包括性命，“求仁得仁”这个成语本身，伯夷、叔齐并没有欢天喜地的结局，相反，太执著，太倔强，为了得到可以牺牲了权利，身份，温饱，生命。一个人想来想去，问来问去，问的都是自己，都是自己的心。屈原先生应当是这方面的最有权威的专家了。能研究做学问的学问—哲学的人智商肯定不能低，“观身如身，观心如心。”这句话理解起来费力；还说了“观身观心”，痛苦的时候观自己的心；走投无路的时候寻找去观他人的心。<br>如果人一生有幸福和痛苦的话，那痛苦和幸福一定有一个起点，那是不是凡事都有起点。如果一生有起点的话，这个起点在哪儿？一个人能不能自己选择起点？<br>技术，技术是什么？什么是技术？如果技术是一个世界，技术之外呢？技术之外的世界呢？<br>人类也不知道生命出现之前的状态，一个人是不知道前世的；也无法将来到这个世界的最初的感觉的存储在自己的大脑的。那么一个人还是能想象死亡的。<br>一个人最痛苦的是什么，失去生命吗？如果说失去生命是最痛苦的，那是为什么呢，有人体验过吗？肯定没有。为什么人要惧怕死亡呢，因为要失去一些东西吗还是人的状态要发生了转变还是人类无法预知死亡之后的东西？如果是这样，恐惧的是失去，恐惧的是巨变，恐惧的是未知。如果一个人要恐惧失去，就应该恐惧死亡；如果一个人恐惧巨变，就应该恐惧死亡；如果一个人恐惧未知，就应该恐惧死亡。同样，一个人恐惧死亡，肯定会恐惧失去，恐惧巨变，恐惧未知。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>2006已经过去，2007已经开始。<br>过去的一年，有高兴，有激动，有不少难以忘记的时刻，有很多痛苦的思考。当我面对和回首自己过去的一年，我不知道自己除了时间之外究竟还失去了什么，自己除了痛苦之外还有多少收获？<br>人是可以活的洒脱些，就看一个人究竟要的是什么？就看你]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[开聊有益]]></title>
+    <link href="http://navigating.github.io/2007/%E5%BC%80%E8%81%8A%E6%9C%89%E7%9B%8A/"/>
+    <id>http://navigating.github.io/2007/开聊有益/</id>
+    <published>2007-03-13T03:27:30.000Z</published>
+    <updated>2015-08-01T03:28:00.083Z</updated>
+    <content type="html"><![CDATA[<p>偶尔看一下中央二套的两会节目，竟然在讨论青少年上网的社会/教育问题。<br>抨击我国现状教育的不在少数，学校教育大体上就是一种“推”的教育方式，是一种社会培养人才的最重要的体系，是对未来人才的储备机制，正如宣传所说青少年就是花儿的年华。人生只有一次，家长，社会的期望终归是一种期望，孩子有孩子的乐趣，孩子的年华，孩子的思想。<br>就针对个人而言，回想数十年“寒窗读书”有意思的好像真没多少，或许是背了些英语单词，记了些简单的英语句子；还有就是几篇语文的文章名字或者几个名句；还有几个数理化的专业术语。如果说是从业研究方向，可能还正能捡起些东西来。一般人对于孩子教育不外乎认为培养兴趣，培养性格等几个方面，当我们进入社会，发现做人本身就不是件容易的事情，何况培养人，培养人才。<br>一提到问题/隐患，很多人不约而同的想到改革这个话题，我有个朋友谈到，教育抓得是人的未来，医疗抓得人的命，谁都无法逃脱其中，改革这两项何其难啊。这真是一阵见血的评论。<br>培养性格是很重要的一方面，培养什么样的人才至少需要前瞻性的眼界了解社会的人才需求方向，所以做大师就不是那么简单的事情了。<br>一个人走出校门的同时进入社会，肯定能强烈感觉到社会需要什么样的人才的，很多时候就是社会在“拉”了，在这个过程中人类表现了异常聪明的一面，总是在做自我培养，提高自身。中国哲学的本身很大成分上都是和自己斗争的过程，大体上是自我培养的哲学体系，可见中国人对于社会还是异常重视尊重的。学校教育带来的很大的弊端就是自闭，一不小心就走入了以自我为中心的圈子；同时容易让人抑郁。估计很多人在人生的某些阶段都会有抑郁，自闭的问题；要提高自我必须要认清出这个问题，解决这个问题。<br>中国人大体上不怎么提倡Open这种方式，我们在社会中愈来愈发现Open的重要性，所以更多人都宁愿自己是一个心理，眼睛，思维都很Open的人。<br>我自身已近从事软件开发三年多，如果让我回首认为该毕业的时候如何策划培养自己，除了性格之外有三点：<br>1。沟通能力，做好任何一件事情，寻找任何一个机会，每一次自我的提高，都是从沟通开始的。世界变得越来越平，沟通的空间时间也在增长。<br>2。语言(掌控)能力，能够多掌握一门语言，相当于给自己多了一个世界，机会，眼界，空间。。。。。。<br>3。技术能力，这是一个从事软件开发人员的立身基础，也是对于行业知识的积累。<br>世界如此美丽，希望每一个人都要好好的珍惜。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>偶尔看一下中央二套的两会节目，竟然在讨论青少年上网的社会/教育问题。<br>抨击我国现状教育的不在少数，学校教育大体上就是一种“推”的教育方式，是一种社会培养人才的最重要的体系，是对未来人才的储备机制，正如宣传所说青少年就是花儿的年华。人生只有一次，家长，社会的期望终归是一]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[JUnit 4 实战]]></title>
     <link href="http://navigating.github.io/2006/JUnit-4-%E5%AE%9E%E6%88%98/"/>
     <id>http://navigating.github.io/2006/JUnit-4-实战/</id>
@@ -593,58 +853,6 @@ deploy:</span>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想]]>
-    </summary>
-    
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Java对象之JavaBean]]></title>
-    <link href="http://navigating.github.io/2005/Java%E5%AF%B9%E8%B1%A1%E4%B9%8BJavaBean/"/>
-    <id>http://navigating.github.io/2005/Java对象之JavaBean/</id>
-    <published>2005-08-28T02:56:21.000Z</published>
-    <updated>2015-08-01T02:58:20.394Z</updated>
-    <content type="html"><![CDATA[<p>使用javabean已经很久了，但是很少去研究和使用jdk中的java.beans包和java.beans.beancontext包。<br>时间和空间这个计算机的永恒话题，也一直是设计的折衷话题。记得刚开始写javabean的时候，对象的set get都是一行一行代码的手写。一次几十个方法下来，而且复制粘贴，复杂，维护修改都很费力。<br>现在apache jakarta commons的子项目已经有一些解决方案了，主要在包org.apache.commons.beanutils中,使用可以参见Test Case和《Jakarta Commons Cookbook》。当然，有时候也需要我们自己根据自己的应用编写自己的处理javabean的代码。今天正好看到了一些java.beans的代码，罗列如下：<br>java.beans.Introspector<br> public static String decapitalize(String name) {<br>  if (name == null || name.length() == 0) {<br>   return name;<br>  }<br>  if (name.length() &gt; 1 &amp;&amp; Character.isUpperCase(name.charAt(1)) &amp;&amp; Character.isUpperCase(name.charAt(0))) {<br>   return name;<br>  }<br>  char chars[] = name.toCharArray();<br>  chars[0] = Character.toLowerCase(chars[0]);<br>  return new String(chars);<br> }<br>java.beans.PropertyDescriptor<br> public PropertyDescriptor(String propertyName, Class beanClass) throws IntrospectionException {<br>  if (propertyName == null || propertyName.length() == 0) {<br>   throw new IntrospectionException(“bad property name”);<br>  }<br>  setName(propertyName);<br>  String base = capitalize(propertyName);</p>
-<p>  // Since there can be multiple setter methods but only one getter<br>  // method, find the getter method first so that you know what the<br>  // property type is. For booleans, there can be “is” and “get”<br>  // methods. If an “is” method exists, this is the official<br>  // reader method so look for this one first.<br>  try {<br>   readMethod = Introspector.findMethod(beanClass, “is” + base, 0);<br>  } catch (Exception getterExc) {<br>   // no “is” method, so look for a “get” method.<br>   readMethod = Introspector.findMethod(beanClass, “get” + base, 0);<br>  }<br>  Class params[] = { readMethod.getReturnType() };<br>  writeMethod = Introspector.findMethod(beanClass, “set” + base, 1, params);<br>  propertyType = findPropertyType(readMethod, writeMethod);<br> }<br>(注：代码格式为eclipse默认设置)<br>   我没有读过javabean的规范，今天针对javabean的使用和操作随处可见，也算是Rod Johnson所说的fake object了。如果javabean的property命名不符合规范，就有可能出错，一旦这种错误被framework捕获了还没有throw给应用，那么发现这种命名错误就更困难了。</p>
-<p>如今我会优先选择commons-beanutils和jdk的java.beans对java bean进行操作。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>使用javabean已经很久了，但是很少去研究和使用jdk中的java.beans包和java.beans.beancontext包。<br>时间和空间这个计算机的永恒话题，也一直是设计的折衷话题。记得刚开始写javabean的时候，对象的set get都是一行一行代码的手]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[拓展训练]]></title>
-    <link href="http://navigating.github.io/2005/%E6%8B%93%E5%B1%95%E8%AE%AD%E7%BB%83/"/>
-    <id>http://navigating.github.io/2005/拓展训练/</id>
-    <published>2005-08-28T02:44:12.000Z</published>
-    <updated>2015-08-01T02:49:17.527Z</updated>
-    <content type="html"><![CDATA[<p>周末参加了一个公司的导师拓展训练。<br>地点：沈阳棋盘上附近一个基地。<br>感受几点：<br>1.个人能力是有限的，团队和自己的能力的发挥。<br>2.在我们面对或者挑战平日里看来可怕的或者根本不可能去做的事情，在环境被逼的去做，做完了反而觉得十分有刺激和具有挑战性。人是应该富于挑战的，包括不断的自我挑战。<br>3.一旦目标确定,一个team同心协力的去做一件非常是有挑战性的事情的时候，所有的人都愿意同心协力的去创造一个个奇迹。<br>4.人人都有很强的荣誉感，在面对荣誉的时候，如何抉择取舍。team与team之间的良性对比是十分必要的,也总是伴随着恶性事件的到来。:)<br><img src="/images/2005_TuoZhanXunLian.jpg" alt="这是一张图片"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>周末参加了一个公司的导师拓展训练。<br>地点：沈阳棋盘上附近一个基地。<br>感受几点：<br>1.个人能力是有限的，团队和自己的能力的发挥。<br>2.在我们面对或者挑战平日里看来可怕的或者根本不可能去做的事情，在环境被逼的去做，做完了反而觉得十分有刺激和具有挑战性。人]]>
-    </summary>
-    
-      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[读设计模式精解]]></title>
-    <link href="http://navigating.github.io/2005/%E8%AF%BB%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B2%BE%E8%A7%A3/"/>
-    <id>http://navigating.github.io/2005/读设计模式精解/</id>
-    <published>2005-08-10T02:42:23.000Z</published>
-    <updated>2015-08-01T02:55:38.927Z</updated>
-    <content type="html"><![CDATA[<p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
-<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化的来源大抵有三种：1。新的功能需求；2。开发者对于问题领域的理解发生了变化，通过开发来提高问题领域的自动化程度；3。开发环境的变迁。),需求中的变化总是对于已经分解好的功能结构产生致命的冲击。仅仅将注意力集中在功能上是不够的，必须对数据结构和过程进行抽象、封装等，促使已有的实现能灵活应对需求的变化。<br>模块化：<br>通常我们还会选择模块化来进一步进行设计，其精髓就是高内聚低耦合。模块化能让我们写出更容易理解、更容易维护的代码。但是模块没有完全提出代码实现的抽象和封装，没有进一步提供粒度较小的抽象、封装和复用，可能一个过程或者数据结构的变动，确对一些地方的代码造成了意料之外的影响。<br>结论：<br>仅仅能实现当前需求的代码远远是不够的，而且仅仅使用功能分解然后实现之的分析设计思路也是糟糕的，因为需求总是在变化。我们必须从这里走得更远，作者就引入乐面对对象范式。<br>OOP在由抽象、封装、模块化、分层组成的对象模型之概念框架下，在语言级粒度上提供了封装、继承、多态的支持；这是人类复用技术的进步，但是使用了oop并不代表就能完全运用了对象模型的核心思想。(TDD是当前应对代码变化的最好的开发方式。需求变化的最大承受者就是代码，富于变化和善于应对变化的代码才能存活下来。)</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
-<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化]]>
     </summary>
     
       <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>

@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java 5.0的Instrumentation特性 | On The Open Way</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Java 5发布有一段时间了，Instrumentation这个feature是Java 5新提供的。其方式是通过修改字节码的方式使得Java开发人员能够操作类。官方文档说主要是给工具提供修改应用的状态、行为使用的:)先来个简单的例子看看到底什么是Instrumentation:在JSE 1.5.0的Javadoc的看到java.lang.instrument仅有两个接口ClassFileTran">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 5.0的Instrumentation特性">
+<meta property="og:url" content="http://navigating.github.io/2007/Java-5-0的Instrumentation特性/index.html">
+<meta property="og:site_name" content="On The Open Way">
+<meta property="og:description" content="Java 5发布有一段时间了，Instrumentation这个feature是Java 5新提供的。其方式是通过修改字节码的方式使得Java开发人员能够操作类。官方文档说主要是给工具提供修改应用的状态、行为使用的:)先来个简单的例子看看到底什么是Instrumentation:在JSE 1.5.0的Javadoc的看到java.lang.instrument仅有两个接口ClassFileTran">
+<meta property="og:updated_time" content="2015-08-01T03:50:31.536Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 5.0的Instrumentation特性">
+<meta name="twitter:description" content="Java 5发布有一段时间了，Instrumentation这个feature是Java 5新提供的。其方式是通过修改字节码的方式使得Java开发人员能够操作类。官方文档说主要是给工具提供修改应用的状态、行为使用的:)先来个简单的例子看看到底什么是Instrumentation:在JSE 1.5.0的Javadoc的看到java.lang.instrument仅有两个接口ClassFileTran">
+<meta name="twitter:creator" content="@xujinghui">
+  
+    <link rel="alternative" href="/atom.xml" title="On The Open Way" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?5554b1765137f9e84f6b5d1958c4bdfd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">On The Open Way</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">自信人生二百年，会当水击三千里！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">Sitemap</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://navigating.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2007/Java-5-0的Instrumentation特性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/Java-5-0的Instrumentation特性/" class="article-date">
+  <time datetime="2007-05-19T03:30:36.000Z" itemprop="datePublished">2007-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 5.0的Instrumentation特性
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java 5发布有一段时间了，Instrumentation这个feature是Java 5新提供的。其方式是通过修改字节码的方式使得Java开发人员能够操作类。官方文档说主要是给工具提供修改应用的状态、行为使用的:)<br>先来个简单的例子看看到底什么是Instrumentation:<br>在JSE 1.5.0的Javadoc的看到java.lang.instrument仅有两个接口ClassFileTransformer和Instrumentation。我们就看看着两个接口的用法：</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Greeting</span> <span class="title">implements</span> <span class="title">ClassFileTransformer</span> {
+
+    <span class="comment">//字节码转换在这个方法中进行。</span>
+    <span class="keyword">public</span> <span class="keyword">byte</span>[] transform(ClassLoader arg0, String classname, Class arg2, ProtectionDomain arg3, <span class="keyword">byte</span>[] arg4)
+    throws IllegalClassFormatException {
+        System.<span class="keyword">out</span>.printf(<span class="string">"hello:"</span> + classname);
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">byte</span>[]{};
+    }
+
+    <span class="comment">//options是通过命令行传递给虚拟机的参数。</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">premain</span>(<span class="params">String options, Instrumentation ins</span>) </span>{
+        <span class="keyword">if</span> (options != <span class="keyword">null</span>) {
+            System.<span class="keyword">out</span>.printf(<span class="string">" I've been called with options: \"%s\"\n"</span>, options);
+        } <span class="keyword">else</span>
+            System.<span class="keyword">out</span>.println(<span class="string">" I've been called with no options."</span>);
+            ins.addTransformer(<span class="keyword">new</span> Greeting());
+        }
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Sample</span> {
+
+    <span class="comment">/**
+    * @param args
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>{
+        (<span class="keyword">new</span> Sample()).hello();
+
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span>(<span class="params"></span>) </span>{
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) {
+        <span class="keyword">int</span> index =<span class="number">0</span>;
+        index++;
+        }
+    }
+
+}
+</code></pre><p>使用命令行参数的命令行：</p>
+<pre><code><span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">Greeting.jar=<span class="string">"Hello, Sample"</span> Sample</span></span>
+</code></pre><p>因此下一步是需要打个jar包，jar包中包含META-INF/MANIFEST.MF和Class文件。<br>其中META-INF/MANIFEST.MF的内容如下：<br>    Manifest-Version: 1.0<br>    Premain-Class: Timing</p>
+<p>包含的类文件有：Greeting.class和Sample.class<br>打包：</p>
+<pre><code>jar cvfM greeting<span class="class">.jar</span> *
+</code></pre><p>输出：<br>    adding: Greeting.class(in = 1774) (out= 869)(deflated 51%)<br>    adding: META-INF/(in = 0) (out= 0)(stored 0%)<br>    adding: META-INF/MANIFEST.MF(in = 44) (out= 46)(deflated -4%)<br>    adding: Sample.class(in = 556) (out= 371)(deflated 33%)</p>
+<pre><code>运行命令行：
+
+<span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">greeting.jar=<span class="string">"Hello,Sample"</span> Greeting</span></span>
+</code></pre><p>控制台输出：<br>    I’ve been called with options: “Hello,Sample”</p>
+<p>运行命令行：</p>
+<pre><code><span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">greeting.jar=<span class="string">"Hello,Sample"</span> Sample</span></span>
+</code></pre><p>控制台输出：<br>    I’ve been called with options: “Hello,Sample”<br>    hello:Sample</p>
+<p>通过这个例子估计Instrutment API使用的方法已经基本上有了个理解了。<br>下面就是举一个用apache bcel构造bytecode的Instrutment的实际的例子：</p>
+<p>使用 instrumentation ，使用Apache 开源项目 BCEL修改bytecode，实现用于计算一个方法运行时间的功能。这种方式，用于性能测量的语句与业务逻辑完全分离，同时也可以用于测量任意类的任意方法的 运行时间，提高了代码的重用性。</p>
+<pre><code><span class="keyword">import</span> java.io.<span class="type">ByteArrayOutputStream</span>;
+<span class="keyword">import</span> java.io.<span class="type">IOException</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">ClassFileTransformer</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">IllegalClassFormatException</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">Instrumentation</span>;
+
+<span class="keyword">import</span> org.apache.bcel.<span class="type">Constants</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">ClassParser</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">JavaClass</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">Method</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ClassGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ConstantPoolGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionConstants</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionFactory</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionList</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">MethodGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ObjectType</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">PUSH</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">Type</span>;
+
+public class <span class="type">Timing</span> implements <span class="type">ClassFileTransformer</span> {
+
+    private <span class="type">String</span> methodName;
+
+    private <span class="type">Timing</span>(<span class="type">String</span> methodName) {
+        this.methodName = methodName;
+        <span class="type">System</span>.<span class="keyword">out</span>.println(methodName);
+    }
+
+    public byte[] transform(<span class="type">ClassLoader</span> loader, <span class="type">String</span> className, <span class="type">Class</span> cBR, java.security.<span class="type">ProtectionDomain</span> pD, byte[] classfileBuffer) throws <span class="type">IllegalClassFormatException</span> {
+        <span class="keyword">try</span> {
+            <span class="type">ClassParser</span> cp = new <span class="type">ClassParser</span>(new java.io.<span class="type">ByteArrayInputStream</span>(classfileBuffer), className + <span class="string">".java"</span>);
+            <span class="type">JavaClass</span> jclas = cp.parse();
+            <span class="type">ClassGen</span> cgen = new <span class="type">ClassGen</span>(jclas);
+            <span class="type">Method</span>[] methods = jclas.getMethods();
+            <span class="type">int</span> index;
+            <span class="keyword">for</span> (index = <span class="number">0</span>; index &lt; methods.length; index++) {
+                <span class="keyword">if</span> (methods[index].getName().equals(methodName)) {
+                    <span class="keyword">break</span>;
+                }
+            }
+
+            <span class="keyword">if</span> (index &lt; methods.length) {
+                addTimer(cgen, methods[index]);
+                <span class="type">ByteArrayOutputStream</span> bos = new <span class="type">ByteArrayOutputStream</span>();
+                cgen.getJavaClass().dump(bos);
+                <span class="keyword">return</span> bos.toByteArray();
+            }
+            <span class="type">System</span>.err.println(<span class="string">"Method "</span> + methodName + <span class="string">" not found in "</span> + className);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+
+        } catch (<span class="type">IOException</span> e) {
+            <span class="type">System</span>.err.println(e);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+        }
+        <span class="keyword">return</span> null; // <span class="type">No</span> transformation required
+    }
+
+    private <span class="keyword">static</span> <span class="type">void</span> addTimer(<span class="type">ClassGen</span> cgen, <span class="type">Method</span> <span class="keyword">method</span>) {
+
+        // <span class="type">set</span> up the construction tools
+        <span class="type">InstructionFactory</span> ifact = new <span class="type">InstructionFactory</span>(cgen);
+        <span class="type">InstructionList</span> ilist = new <span class="type">InstructionList</span>();
+        <span class="type">ConstantPoolGen</span> pgen = cgen.getConstantPool();
+        <span class="type">String</span> cname = cgen.getClassName();
+        <span class="type">MethodGen</span> wrapgen = new <span class="type">MethodGen</span>(<span class="keyword">method</span>, cname, pgen);
+        wrapgen.setInstructionList(ilist);
+
+        // rename a copy <span class="keyword">of</span> the original <span class="keyword">method</span>
+        <span class="type">MethodGen</span> methgen = new <span class="type">MethodGen</span>(<span class="keyword">method</span>, cname, pgen);
+        cgen.removeMethod(<span class="keyword">method</span>);
+        <span class="type">String</span> iname = methgen.getName() + <span class="string">"_timing"</span>;
+        methgen.setName(iname);
+        cgen.addMethod(methgen.getMethod());
+        <span class="type">Type</span> <span class="literal">result</span> = methgen.getReturnType();
+
+        // compute the size <span class="keyword">of</span> the calling parameters
+        <span class="type">Type</span>[] parameters = methgen.getArgumentTypes();
+        <span class="type">int</span> stackIndex = methgen.isStatic() ? <span class="number">0</span> : <span class="number">1</span>;
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; parameters.length; i++) {
+            stackIndex += parameters[i].getSize();
+        }
+
+        // save time prior to invocation
+        ilist.append(ifact.createInvoke(<span class="string">"java.lang.System"</span>, <span class="string">"currentTimeMillis"</span>, <span class="type">Type</span>.<span class="type">LONG</span>, <span class="type">Type</span>.<span class="type">NO_ARGS</span>, <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>));
+        ilist.append(<span class="type">InstructionFactory</span>.createStore(<span class="type">Type</span>.<span class="type">LONG</span>, stackIndex));
+
+        // call the wrapped <span class="keyword">method</span>
+        <span class="type">int</span> offset = <span class="number">0</span>;
+        short invoke = <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>;
+        <span class="keyword">if</span> (!methgen.isStatic()) {
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="type">Type</span>.<span class="type">OBJECT</span>, <span class="number">0</span>));
+            offset = <span class="number">1</span>;
+            invoke = <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>;
+        }
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; parameters.length; i++) {
+            <span class="type">Type</span> <span class="keyword">type</span> = parameters[i];
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="keyword">type</span>, offset));
+            offset += <span class="keyword">type</span>.getSize();
+        }
+        ilist.append(ifact.createInvoke(cname, iname, <span class="literal">result</span>, parameters, invoke));
+
+        // store <span class="literal">result</span> <span class="keyword">for</span> <span class="keyword">return</span> later
+        <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">Type</span>.<span class="type">VOID</span>) {
+            ilist .append(<span class="type">InstructionFactory</span>.createStore(<span class="literal">result</span>, stackIndex + <span class="number">2</span>));
+        }
+
+        // print time required <span class="keyword">for</span> <span class="keyword">method</span> call
+        ilist.append(ifact.createFieldAccess(<span class="string">"java.lang.System"</span>, <span class="string">"out"</span>, new <span class="type">ObjectType</span>(<span class="string">"java.io.PrintStream"</span>), <span class="type">Constants</span>.<span class="type">GETSTATIC</span>));
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">DUP</span>);
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">DUP</span>);
+        <span class="type">String</span> text = <span class="string">"Call to method "</span> + methgen.getName() + <span class="string">" took "</span>;
+        ilist.append(new <span class="type">PUSH</span>(pgen, text));
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"print"</span>, <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">STRING</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+        ilist.append(ifact.createInvoke(<span class="string">"java.lang.System"</span>, <span class="string">"currentTimeMillis"</span>, <span class="type">Type</span>.<span class="type">LONG</span>, <span class="type">Type</span>.<span class="type">NO_ARGS</span>, <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>));
+        ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="type">Type</span>.<span class="type">LONG</span>, stackIndex));
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">LSUB</span>);
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"print"</span>,
+        <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">LONG</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+        ilist.append(new <span class="type">PUSH</span>(pgen, <span class="string">" ms."</span>));
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"println"</span>, <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">STRING</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+
+        // <span class="keyword">return</span> <span class="literal">result</span> <span class="keyword">from</span> wrapped <span class="keyword">method</span> call
+        <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">Type</span>.<span class="type">VOID</span>) {
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="literal">result</span>, stackIndex + <span class="number">2</span>));
+        }
+        ilist.append(<span class="type">InstructionFactory</span>.createReturn(<span class="literal">result</span>));
+
+        // finalize the constructed <span class="keyword">method</span>
+        wrapgen.stripAttributes(<span class="literal">true</span>);
+        wrapgen.setMaxStack();
+        wrapgen.setMaxLocals();
+        cgen.addMethod(wrapgen.getMethod());
+        ilist.dispose();
+    }
+
+    public <span class="keyword">static</span> <span class="type">void</span> premain(<span class="type">String</span> options, <span class="type">Instrumentation</span> ins) {
+        <span class="keyword">if</span> (options != null) {
+            ins.addTransformer(new <span class="type">Timing</span>(options));
+        } <span class="keyword">else</span> {
+            <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Usage: java -javaagent:Timing.jar=\"class:method\""</span>);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+        }
+
+    }
+}
+</code></pre><p>打jar包:</p>
+<pre><code>$ jar cvfM timing<span class="class">.jar</span> *
+</code></pre><p>输出：<br>    adding: META-INF/(in = 0) (out= 0)(stored 0%)<br>    adding: META-INF/MANIFEST.MF(in = 44) (out= 46)(deflated -4%)<br>    adding: Sample.class(in = 556) (out= 371)(deflated 33%)<br>    adding: Timing.class(in = 7372) (out= 3442)(deflated 53%)</p>
+<p>运行命令行：</p>
+<pre><code>$ java -classpath bcel-<span class="number">5.2</span><span class="class">.jar</span> -javaagent:timing.jar=<span class="string">"hello"</span> Sample
+</code></pre><p>输出：<br>    hello<br>    Call to method hello_timing took 2047 ms.</p>
+<p>运行命令：</p>
+<pre><code>$ java -classpath bcel-<span class="number">5.2</span><span class="class">.jar</span> -javaagent:timing.jar=<span class="string">"main"</span> Sample
+</code></pre><p>输出：<br>    main<br>    Call to method main_timing took 2469 ms.</p>
+<p>通过这段代码，基本能够了解Instrument的用处之一了:)</p>
+<p>参考：<a href="http://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2007/Java-5-0的Instrumentation特性/" data-id="cicsijwvm001qyslm6dpsuy73" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/大数据动态之201502/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          大数据动态之201502
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2007/2006年年终总结-原名：一篇没有写完的BLOG/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2006年年终总结(原名：一篇没有写完的BLOG)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/CDH/" style="font-size: 17.5px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 15px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JUnit/" style="font-size: 10px;">JUnit</a> <a href="/tags/JUunit/" style="font-size: 10px;">JUunit</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/XP/" style="font-size: 12.5px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/大数据动态之201507/">大数据动态之201507</a>
+          </li>
+        
+          <li>
+            <a href="/2015/使用Hexo搭建Github静态博客/">使用Hexo搭建Github静态博客</a>
+          </li>
+        
+          <li>
+            <a href="/2015/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/Hadoop-2-7-1-发布/">Hadoop 2.7.1 发布</a>
+          </li>
+        
+          <li>
+            <a href="/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/">读《Deploying Apache Kafka: A Practical FAQ》</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之201506/">大数据动态之201506</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之201505/">大数据动态之201505</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之201502/">大数据动态之201502</a>
+          </li>
+        
+          <li>
+            <a href="/2007/Java-5-0的Instrumentation特性/">Java 5.0的Instrumentation特性</a>
+          </li>
+        
+          <li>
+            <a href="/2007/2006年年终总结-原名：一篇没有写完的BLOG/">2006年年终总结(原名：一篇没有写完的BLOG)</a>
+          </li>
+        
+          <li>
+            <a href="/2007/开聊有益/">开聊有益</a>
+          </li>
+        
+          <li>
+            <a href="/2006/JUnit-4-实战/">JUnit 4 实战</a>
+          </li>
+        
+          <li>
+            <a href="/2006/Miami-Everglades/">Miami Everglades</a>
+          </li>
+        
+          <li>
+            <a href="/2006/失落与决断-原名-重拾心情/">失落与决断(原名: 重拾心情)</a>
+          </li>
+        
+          <li>
+            <a href="/2006/2006年中期反思/">2006年中期反思</a>
+          </li>
+        
+          <li>
+            <a href="/2006/走向设计-To-Consider-Design/">走向设计(To Consider Design)</a>
+          </li>
+        
+          <li>
+            <a href="/2006/转-How-To-Become-A-Hacker/">转: How To Become A Hacker</a>
+          </li>
+        
+          <li>
+            <a href="/2006/读《Managing-Open-Source-Projects》/">读《Managing Open Source Projects》</a>
+          </li>
+        
+          <li>
+            <a href="/2006/入手《Code-Complete-Second-Edition》/">入手《Code Complete Second Edition》</a>
+          </li>
+        
+          <li>
+            <a href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/">读《Expert One on One J2EE Development Without EJB》C2</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Steven Xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">Sitemap</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
