@@ -79,6 +79,280 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2004/创建对象的两种方式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2004/创建对象的两种方式/" class="article-date">
+  <time datetime="2004-10-11T14:10:50.000Z" itemprop="datePublished">2004-10-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2004/创建对象的两种方式/">创建对象的两种方式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>One is to create a object with a rich constructor so that its at least created with all<br>least created with all its mandatory data.<br>The other is to create o object an empty object and then populate it with the mandatory<br>data.<br>The former could have a well-formed object from the start.This aslo meants that, if you<br>have an immutable field, you can enforce it by not providing any method to change its<br>value.<br>The problem with a rich constructor is that you have to be aware of cyclic references.<br>Avoiding this requires special case code, often usingg lazy load.<br>You can do this creating an empty object.Use a non-arg constructor to create a blank object<br>and insert that empty object immediately into other object.The way,if you have a cycle,<br>other object will return an object to stop the recursive loading that two objects reference<br>each other.<br>Using an empty object like this means you may need some setters for values that are truely<br>immutalbe when the object is loaded.A combination of a naming convention and perhaps some<br>status-checking guards can fix this.You can alse use reflection for loading data.</p>
+<p>(Spring supports Setter Injection very nice.Sometimes using rich constructor to create a object<br> is preferable after you evaluating.)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2004/创建对象的两种方式/" data-id="cicsjo4em003cmwlmn0xrqchl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2004/Eclipse之Workspace路径修改" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2004/Eclipse之Workspace路径修改/" class="article-date">
+  <time datetime="2004-10-11T12:23:15.000Z" itemprop="datePublished">2004-10-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2004/Eclipse之Workspace路径修改/">Eclipse之Workspace路径修改</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>eclipse的worspace的路径放置在根目录：<br>\configuration\org.eclipse.ui.ide\recentWorkspaces.xml</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2004/Eclipse之Workspace路径修改/" data-id="cicsjo4hy003umwlmy0h5mlir" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2004/Statement标准关闭方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2004/Statement标准关闭方法/" class="article-date">
+  <time datetime="2004-09-29T14:10:50.000Z" itemprop="datePublished">2004-09-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2004/Statement标准关闭方法/">Statement标准关闭方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在O/R Mapper的代码中，Statement的关闭模式：</p>
+<p>clearup的实现： </p>
+<p>  /**</p>
+<pre><code> * Close database resource.
+
+ *
+
+ * <span class="annotation">@param</span> conn
+
+ * <span class="annotation">@param</span> pstmt
+
+ */
+
+<span class="keyword">protected</span> <span class="function"><span class="keyword">void</span> <span class="title">clearup</span><span class="params">(Connection conn, PreparedStatement pstmt)</span>
+
+</span>{
+
+    <span class="keyword">if</span> (pstmt != <span class="keyword">null</span>)
+
+    {
+
+        <span class="keyword">try</span>
+
+        {
+
+            pstmt.close();
+
+        }
+
+        <span class="keyword">catch</span> (SQLException se)
+
+        {
+
+            se.printStackTrace();
+
+        }
+
+        pstmt = <span class="keyword">null</span>;
+
+    }
+
+
+
+    <span class="keyword">if</span> (conn != <span class="keyword">null</span>)
+
+    {
+
+        <span class="keyword">try</span>
+
+        {
+
+            conn.close();
+
+        }
+
+        <span class="keyword">catch</span> (SQLException se)
+
+        {
+
+            se.printStackTrace();
+
+        }
+
+        conn = <span class="keyword">null</span>;
+
+    }
+
+}
+</code></pre><p>1.一般模式</p>
+<pre><code>    Connection conn = null<span class="comment">;</span>
+
+PreparedStatement pstmt = null<span class="comment">;</span>
+
+try
+
+{
+
+    conn = getConnection()<span class="comment">;</span>
+
+    pstmt = conn.prepareStatement(SQL)<span class="comment">;</span>
+
+    pstmt.setString(1, id)<span class="comment">;</span>
+
+    pstmt.setString(2, type)<span class="comment">;</span>
+
+    pstmt.executeUpdate()<span class="comment">;          </span>
+
+} catch (SQLException se)
+
+{         
+</code></pre><p>throw new ApplicationException(se);</p>
+<pre><code>} <span class="keyword">finally</span>
+
+{
+
+    clearup(conn, pstmt);<span class="comment">//有效的close了Connection;只有一个pstmt,相当于只打开了一个光标，在这里有效的close了pstmt.</span>
+
+}
+</code></pre><p>1．在使用jdbc进行批处理的时候，注意每一次创建一个Statement，一旦无须使用，立刻关闭，因为每一次都是打开了Oracle的一个cursor.(Oracle默认最大一次打开300个，最多也</p>
+<p>只支持1000多个)</p>
+<p>Connection conn = null;</p>
+<pre><code>PreparedStatement pstmt = null;
+
+
+
+try
+
+{
+
+    conn = getConnection<span class="params">()</span>;
+
+    pstmt = conn.prepareStatement<span class="params">(SQL1)</span>;
+
+    pstmt.setString<span class="params">(<span class="number">1</span>, id)</span>;
+
+    pstmt.setString<span class="params">(<span class="number">2</span>, type)</span>;
+
+    pstmt.executeUpdate<span class="params">()</span>;
+
+    pstmt.close<span class="params">()</span>; <span class="comment">// 请立刻close当前pstmt的光标。</span>
+
+    pstmt = null;  <span class="comment">// 必须使用</span>
+
+
+
+    pstmt = conn.propareStatement<span class="params">(SQL2)</span>;
+
+   pstmt.setString<span class="params">(<span class="number">1</span>, id)</span>;
+
+    pstmt.setString<span class="params">(<span class="number">2</span>, type)</span>;
+
+    pstmt.executeUpdate<span class="params">()</span>;
+
+    pstmt.close<span class="params">()</span>; <span class="comment">// 请立刻close当前pstmt的光标。</span>
+
+
+    pstmt = null;  <span class="comment">// 必须使用</span>
+
+  … …
+
+} catch <span class="params">(SQLException se)</span>
+
+{         
+</code></pre><p>throw new ApplicationException(se);</p>
+<pre><code>   } <span class="keyword">finally</span>
+
+   {
+
+       clearup(conn, pstmt); <span class="comment">//有效的close了Connection;只有出现exception才能有效close pstmt;</span>
+
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2004/Statement标准关闭方法/" data-id="cicsjo4gi003mmwlmm3r7nzfm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2004/Java编程之log4j日志" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2004/Java编程之log4j日志/" class="article-date">
@@ -126,7 +400,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Java编程之log4j日志/" data-id="cicsijx0i003iyslmzyfluypp" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2004/Java编程之log4j日志/" data-id="cicsjo4gy003omwlm1oafw265" class="article-share-link">Share</a>
       
       
     </footer>
@@ -219,48 +493,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Web开发起始篇/" data-id="cicsijwzv003cyslmuqhhw3g5" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/Eclipse之eclipse3.1M1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/Eclipse之eclipse3.1M1/" class="article-date">
-  <time datetime="2004-09-28T12:08:50.000Z" itemprop="datePublished">2004-09-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/Eclipse之eclipse3.1M1/">Eclipse之eclipse3.1M1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文参见：<a href="http://www.blogbus.com/navigating-logs/413323.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/413323.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Eclipse之eclipse3.1M1/" data-id="cicsijx0x003myslm2wvpoko1" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2004/Web开发起始篇/" data-id="cicsjo4fw003imwlmrjd8wrbg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -272,7 +505,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span>
+      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -283,7 +516,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">6</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">29</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -336,6 +569,18 @@ var _hmt = _hmt || [];
           </li>
         
           <li>
+            <a href="/2007/RubyOnRails实战/">RubyOnRails实战</a>
+          </li>
+        
+          <li>
+            <a href="/2007/Google-Guice实战/">Google Guice实战</a>
+          </li>
+        
+          <li>
+            <a href="/2007/走向Miami-原名：重返Miami/">走向Miami(原名：重返Miami)</a>
+          </li>
+        
+          <li>
             <a href="/2007/Java-5-0的Instrumentation特性/">Java 5.0的Instrumentation特性</a>
           </li>
         
@@ -371,18 +616,6 @@ var _hmt = _hmt || [];
             <a href="/2006/转-How-To-Become-A-Hacker/">转: How To Become A Hacker</a>
           </li>
         
-          <li>
-            <a href="/2006/读《Managing-Open-Source-Projects》/">读《Managing Open Source Projects》</a>
-          </li>
-        
-          <li>
-            <a href="/2006/入手《Code-Complete-Second-Edition》/">入手《Code Complete Second Edition》</a>
-          </li>
-        
-          <li>
-            <a href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/">读《Expert One on One J2EE Development Without EJB》C2</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -392,7 +625,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

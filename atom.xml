@@ -53,7 +53,7 @@
     <link href="http://navigating.github.io/2015/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BAGithub%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     <id>http://navigating.github.io/2015/使用Hexo搭建Github静态博客/</id>
     <published>2015-07-28T09:20:22.000Z</published>
-    <updated>2015-08-01T02:52:46.672Z</updated>
+    <updated>2015-08-01T04:07:47.478Z</updated>
     <content type="html"><![CDATA[<p>环境：</p>
 <pre><code><span class="bullet">1. </span>Windows XP
 <span class="bullet">2. </span>Git
@@ -69,7 +69,7 @@
 <span class="bullet">9. </span>支持图片
 <span class="bullet">10. </span>参考资源
 </code></pre><h2 id="安装Node-js">安装Node.js</h2><p>下载并安装，<a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></p>
-<h2 id="安装Hexo">安装Hexo</h2><p>npm install -g hexo<br>D:\git\navigating.github.io&gt;npm install -g hexo</p>
+<h2 id="安装Hexo">安装Hexo</h2><p>npm install -g hexo<br>D:\git\hexo&gt;npm install -g hexo</p>
 <pre><code>npm WARN optional dep failed, continuing fsevents<span class="variable">@0</span>.3.6
 npm WARN optional dep failed, continuing fsevents<span class="variable">@0</span>.3.6
 -
@@ -373,6 +373,572 @@ deploy:</span>
       <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[RubyOnRails实战]]></title>
+    <link href="http://navigating.github.io/2007/RubyOnRails%E5%AE%9E%E6%88%98/"/>
+    <id>http://navigating.github.io/2007/RubyOnRails实战/</id>
+    <published>2007-06-28T04:08:43.000Z</published>
+    <updated>2015-08-01T04:19:52.943Z</updated>
+    <content type="html"><![CDATA[<p>简单开始<br>下载并且安装</p>
+<pre><code><span class="tag">Ruby</span> 1<span class="class">.8</span><span class="class">.4</span>;
+<span class="tag">RubyGems</span>;
+</code></pre><p>通过命令行安装所有的Rails和其依赖：</p>
+<pre><code>gem <span class="keyword">install</span> rails --<span class="keyword">include</span>-dependencies
+</code></pre><p>在用户工作目录运行命令行，即创建第一个rails的模板：</p>
+<pre><code>rails depot
+<span class="keyword">cd</span> depot
+<span class="keyword">ruby</span> script/server
+</code></pre><p>在浏览器打开 <a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> 即可发现第一个rails的web应用已经开始run起来了。</p>
+<p>然后我参考书籍《Agile Web Development with Rails》2nd Edition的第一个例子一步一步的动手写了第一个ROR程序。(具体的过程不详细记录了.)<br>从数据库准备、数据库的配置、创建表、migrate、创建controller和maintenance、add missing column、添加validation功能、使用scaffold、定制html、装填unit test数据。整个例子的思路比较清晰，从数据库、数据访问、业务、controller、展示；给我留下深刻的影响的是：自动生成功能、内嵌web server、支持数据库配置，支持应用的模板、支持mvc模板等，所以让人似乎感觉到一些DSL的色彩。</p>
+<p>做一个复杂一些的例子<br>数据库准备<br>支持数据库Mysql，从 <a href="http://dev.mysql.com/downloads/mysql/5.0.html#downloads" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/5.0.html#downloads</a> 下载数据库Mysql安装，并且下载Mysql Administrator作为数据库管理工具。<br>创建Schema为：</p>
+<pre><code>depot_dev
+</code></pre><p>在文件./config/database.yml中对数据库进行配置：</p>
+<pre><code><span class="attribute">development</span>:
+  <span class="attribute">adapter</span>: mysql
+  <span class="attribute">database</span>: depot_dev
+  <span class="attribute">username</span>: depot
+  <span class="attribute">password</span>: depot
+  <span class="attribute">host</span>: localhost
+</code></pre><p>测试配置：</p>
+<pre><code><span class="tag">rake</span> <span class="rule"><span class="attribute">db</span>:<span class="value">migrate</span></span>
+</code></pre><p>如果配置不正确在控制台会出现错误的日志。<br>创建Products的Model和Table如下：</p>
+<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;ruby script/generate model product
+</code></pre><p>输出：</p>
+<pre><code>exists  <span class="keyword">app</span>/models/
+exists  <span class="keyword">test</span>/unit/
+exists  <span class="keyword">test</span>/fixtures/
+create  <span class="keyword">app</span>/models/product.rb
+create  <span class="keyword">test</span>/unit/product_test.rb
+create  <span class="keyword">test</span>/fixtures/products.yml
+create  <span class="keyword">db</span>/migrate
+create  <span class="keyword">db</span>/migrate/001_create_products.rb
+</code></pre><p>在./db/migrate/001_create_products.rb用类似DDL的形式表达表的结构:</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">CreateProducts</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Migration</span></span></span>
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.up
+    create_table <span class="symbol">:products</span> <span class="keyword">do</span> |t|
+      t.column <span class="symbol">:title</span>,       <span class="symbol">:string</span>
+      t.column <span class="symbol">:description</span>, <span class="symbol">:text</span>
+      t.column <span class="symbol">:image_url</span>,   <span class="symbol">:string</span>
+    <span class="keyword">end</span>
+  <span class="keyword">end</span>
+
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.down
+    drop_table <span class="symbol">:products</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>Okey，那就Migrate吧：</p>
+<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;rake db:migrate
+</code></pre><p>输出：</p>
+<pre><code><span class="constant">D</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:Warning</span><span class="symbol">:</span> require_gem is obsolete.  <span class="constant">Use</span> gem instead.
+(<span class="keyword">in</span> <span class="constant">D</span><span class="symbol">:/IDE/rails-exampe/depot</span>)
+== <span class="constant">CreateProducts</span><span class="symbol">:</span> migrating ==================================================
+-- create_table(<span class="symbol">:products</span>)
+   -&gt; <span class="number">0</span>.<span class="number">07</span>80s
+== <span class="constant">CreateProducts</span><span class="symbol">:</span> migrated (<span class="number">0</span>.<span class="number">07</span>80s) =========================================
+</code></pre><p>数据库一切搞定，下一步开始应用层了，首先创建Controller: </p>
+<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;ruby script/generate controller admin
+</code></pre><p>输出：</p>
+<pre><code>exists  app<span class="regexp">/controllers/</span>
+exists  app<span class="regexp">/helpers/</span>
+create  app<span class="regexp">/views/</span>admin
+exists  test<span class="regexp">/functional/</span>
+create  app<span class="regexp">/controllers/</span>admin_controller.rb
+create  test<span class="regexp">/functional/</span>admin_controller_test.rb
+create  app<span class="regexp">/helpers/</span>admin_helper.rb
+</code></pre><p>创建Maintenance应用：<br>编辑app/controller/admin_controller.rb  </p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">AdminController</span> <span class="inheritance">&lt; <span class="parent">ApplicationController</span></span></span>
+  scaffold <span class="symbol">:product</span>
+<span class="keyword">end</span>
+</code></pre><p>启动ruby script/server,通过浏览器就可以浏览这个Rail scaffolds的应用了。<br>迭代2:Add a missing column</p>
+<pre><code><span class="keyword">D</span>:\IDE\rails-exampe\depot&gt;ruby script/<span class="keyword">generate</span> migration add_price
+      exists  <span class="keyword">db</span>/migrate
+      create  <span class="keyword">db</span>/migrate/002_add_price.rb
+</code></pre><p>编辑db/migrate/002_add_price.rb</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">AddPrice</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Migration</span></span></span>
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.up
+    add_column <span class="symbol">:products</span>, <span class="symbol">:price</span>, <span class="symbol">:decimal</span>, <span class="symbol">:precision</span> =&gt; <span class="number">8</span>, <span class="symbol">:scale</span> =&gt; <span class="number">2</span>, <span class="symbol">:default</span> =&gt; <span class="number">0</span>
+  <span class="keyword">end</span>
+
+  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.down
+    remove_column <span class="symbol">:products</span>, <span class="symbol">:price</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>执行命令：</p>
+<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;rake db:migrate
+</code></pre><p>输出：</p>
+<pre><code><span class="constant">D</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:Warning</span><span class="symbol">:</span> require_gem is obsolete.  <span class="constant">Use</span> gem instead.
+(<span class="keyword">in</span> <span class="constant">D</span><span class="symbol">:/IDE/rails-exampe/depot</span>)
+== <span class="constant">AddPrice</span><span class="symbol">:</span> migrating ========================================================
+-- add_column(<span class="symbol">:products</span>, <span class="symbol">:price</span>, <span class="symbol">:decimal</span>, {<span class="symbol">:default=&gt;</span><span class="number">0</span>, <span class="symbol">:precision=&gt;</span><span class="number">8</span>, <span class="symbol">:scale=&gt;</span><span class="number">2</span>})
+-&gt; <span class="number">0</span>.<span class="number">2650</span>s
+== <span class="constant">AddPrice</span><span class="symbol">:</span> migrated (<span class="number">0</span>.<span class="number">2650</span>s) ===============================================
+</code></pre><p>一切Okey,第二个迭代也已经结束:)<br>第三个迭代：Validate!<br>编辑app/model/product.rb文件：</p>
+<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Product</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span>
+  validates_presence_of <span class="symbol">:title</span>, <span class="symbol">:description</span>, <span class="symbol">:image_url</span>
+  validates_numericality_of <span class="symbol">:price</span>
+  validates_uniqueness_of <span class="symbol">:title</span>
+  validates_format_of <span class="symbol">:image_url</span>, 
+                      <span class="symbol">:with</span>    =&gt; <span class="regexp">%r{\.(gif|jpg|png)$}i</span>,
+                      <span class="symbol">:message</span> =&gt; <span class="string">"must be a URL for a GIF, JPG, or PNG image"</span>
+
+  protected
+  <span class="function"><span class="keyword">def</span> </span>validate
+    errors.add(<span class="symbol">:price</span>, <span class="string">"should be at least 0.01"</span>) <span class="keyword">if</span> price.<span class="keyword">nil</span>? ||  price &lt; <span class="number">0</span>.<span class="number">01</span>
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>第四个迭代：Prettier Listings<br>创建静态的scaffold如下：   </p>
+<pre><code><span class="keyword">D</span>:\IDE\rails-exampe\depot&gt;ruby script/<span class="keyword">generate</span> scaffold product admin
+      exists  <span class="keyword">app</span>/controllers/
+      exists  <span class="keyword">app</span>/helpers/
+      exists  <span class="keyword">app</span>/views/admin
+      exists  <span class="keyword">app</span>/views/layouts/
+      exists  <span class="keyword">test</span>/functional/
+  dependency  model
+      exists    <span class="keyword">app</span>/models/
+      exists    <span class="keyword">test</span>/unit/
+      exists    <span class="keyword">test</span>/fixtures/
+        skip    <span class="keyword">app</span>/models/product.rb
+   identical    <span class="keyword">test</span>/unit/product_test.rb
+   identical    <span class="keyword">test</span>/fixtures/products.yml
+      create  <span class="keyword">app</span>/views/admin/_form.rhtml
+      create  <span class="keyword">app</span>/views/admin/<span class="keyword">list</span>.rhtml
+      create  <span class="keyword">app</span>/views/admin/show.rhtml
+      create  <span class="keyword">app</span>/views/admin/new.rhtml
+      create  <span class="keyword">app</span>/views/admin/<span class="keyword">edit</span>.rhtml
+overwrite <span class="keyword">app</span>/controllers/admin_controller.rb? [Ynaqd] <span class="literal">y</span>
+       force  <span class="keyword">app</span>/controllers/admin_controller.rb
+overwrite <span class="keyword">test</span>/functional/admin_controller_test.rb? [Ynaqd] <span class="literal">y</span>
+       force  <span class="keyword">test</span>/functional/admin_controller_test.rb
+   identical  <span class="keyword">app</span>/helpers/admin_helper.rb
+overwrite <span class="keyword">app</span>/views/layouts/admin.rhtml? [Ynaqd] <span class="literal">y</span>
+       force  <span class="keyword">app</span>/views/layouts/admin.rhtml
+      create  public/stylesheets/scaffold.css
+</code></pre><p>定制list.rhtml:  </p>
+<pre><code><span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"product-list"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Product Listing<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+
+  <span class="tag">&lt;<span class="title">table</span> <span class="attribute">cellpadding</span>=<span class="value">"5"</span> <span class="attribute">cellspacing</span>=<span class="value">"0"</span>&gt;</span>
+  </span>&lt;%<span class="ruby"> <span class="keyword">for</span> product <span class="keyword">in</span> <span class="variable">@products</span> </span>%&gt;<span class="xml">
+    <span class="tag">&lt;<span class="title">tr</span> <span class="attribute">valign</span>=<span class="value">"top"</span> <span class="attribute">class</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> cycle(<span class="string">'list-line-odd'</span>, <span class="string">'list-line-even'</span>) </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
+
+      <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">"list-image"</span> <span class="attribute">src</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> product.image_url </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>/&gt;</span>
+      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+
+      <span class="tag">&lt;<span class="title">td</span> <span class="attribute">width</span>=<span class="value">"60%"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"list-title"</span>&gt;</span></span>&lt;%=<span class="ruby"> h(product.title) </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">br</span> /&gt;</span>
+        </span>&lt;%=<span class="ruby"> h(truncate(product.description, <span class="number">80</span>)) </span>%&gt;<span class="xml">
+      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+
+      <span class="tag">&lt;<span class="title">td</span> <span class="attribute">class</span>=<span class="value">"list-actions"</span>&gt;</span>
+        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Show'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'show'</span>, <span class="symbol">:id</span> =&gt; product </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">br</span>/&gt;</span>
+        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Edit'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'edit'</span>, <span class="symbol">:id</span> =&gt; product </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">br</span>/&gt;</span>
+        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Destroy'</span>, { <span class="symbol">:action</span>  =&gt; <span class="string">'destroy'</span>, <span class="symbol">:id</span> =&gt; product },
+                                 <span class="symbol">:confirm</span> =&gt; <span class="string">"Are you sure?"</span>,
+                                 <span class="symbol">:method</span>  =&gt; <span class="symbol">:post</span> </span>%&gt;<span class="xml">
+      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+  </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml">
+  <span class="tag">&lt;/<span class="title">table</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+</span>&lt;%=<span class="ruby">  <span class="keyword">if</span> <span class="variable">@product_pages</span>.current.previous 
+       link_to(<span class="string">"Previous page"</span>, { <span class="symbol">:page</span> =&gt; <span class="variable">@product_pages</span>.current.previous })
+     <span class="keyword">end</span>
+</span>%&gt;<span class="xml">
+</span>&lt;%=<span class="ruby"> <span class="keyword">if</span> <span class="variable">@product_pages</span>.current.<span class="keyword">next</span> 
+      link_to(<span class="string">"Next page"</span>, { <span class="symbol">:page</span> =&gt; <span class="variable">@product_pages</span>.current.<span class="keyword">next</span> })
+    <span class="keyword">end</span>
+</span>%&gt;<span class="xml">
+
+<span class="tag">&lt;<span class="title">br</span> /&gt;</span>
+
+</span>&lt;%=<span class="ruby"> link_to <span class="string">'New product'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'new'</span> </span>%&gt;<span class="xml"></span>
+</code></pre><p>增加测试数据： </p>
+<pre><code><span class="keyword">D</span>:\IDE\rails-exampe\depot&gt;ruby script/<span class="keyword">generate</span> migration add_test_data
+      exists  <span class="keyword">db</span>/migrate
+      create  <span class="keyword">db</span>/migrate/003_add_test_data.rb
+</code></pre><p>编辑db/migrate/003_add_test_data.rb:  </p>
+<pre><code><span class="keyword">class</span> <span class="type">AddTestData</span> &lt; <span class="type">ActiveRecord</span>::<span class="type">Migration</span>
+  def self.up
+    <span class="type">Product</span>.delete_all
+    <span class="type">Product</span>.create(:title =&gt; <span class="symbol">'Pragmatic</span> <span class="type">Version</span> <span class="type">Control'</span>,
+      :description =&gt;
+      %{&lt;p&gt;
+        <span class="type">This</span> book is a recipe-based approach <span class="keyword">to</span> using <span class="type">Subversion</span> that will
+        get you up <span class="keyword">and</span> running quickly--<span class="keyword">and</span> correctly. <span class="type">All</span> projects need
+    version control: it's a foundational piece <span class="keyword">of</span> any project's
+    infrastructure. <span class="type">Yet</span> half <span class="keyword">of</span> all project teams <span class="keyword">in</span> the <span class="type">U</span>.<span class="type">S</span>. don't use
+    any version control at all. <span class="type">Many</span> others don't use it well, <span class="keyword">and</span> <span class="keyword">end</span>
+    up experiencing time-consuming problems.
+      &lt;/p&gt;},
+    :image_url =&gt; <span class="char">'/images/svn.jpg'</span>,
+    :price =&gt; <span class="number">28.50</span>)
+  <span class="keyword">end</span>
+
+  def self.down
+    <span class="type">Product</span>.delete_all
+  <span class="keyword">end</span>
+<span class="keyword">end</span>
+</code></pre><p>安装测试数据：</p>
+<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;rake db:migrate
+</code></pre><p>输出：</p>
+<pre><code><span class="constant">D</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:Warning</span><span class="symbol">:</span> require_gem is obsolete.  <span class="constant">Use</span> gem instead.
+(<span class="keyword">in</span> <span class="constant">D</span><span class="symbol">:/IDE/rails-exampe/depot</span>)
+== <span class="constant">AddTestData</span><span class="symbol">:</span> migrating =====================================================
+== <span class="constant">AddTestData</span><span class="symbol">:</span> migrated (<span class="number">0</span>.<span class="number">2030</span>s) ============================================
+</code></pre><p>编辑Layouts:app/views/layouts/admin.rhtml  </p>
+<pre><code><span class="xml"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">title</span>&gt;</span>Admin: </span>&lt;%=<span class="ruby"> controller.action_name </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+  </span>&lt;%=<span class="ruby"> stylesheet_link_tag <span class="string">'scaffold'</span>, <span class="string">'depot'</span> </span>%&gt;<span class="xml">
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;<span class="title">p</span> <span class="attribute">style</span>=<span class="value">"color: green"</span>&gt;</span></span>&lt;%=<span class="ruby"> flash[<span class="symbol">:notice</span>] </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
+</span>&lt;%=<span class="ruby"> <span class="keyword">yield</span> <span class="symbol">:layout</span> </span>%&gt;<span class="xml">
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span></span>
+</code></pre><p>编辑：app/views/admin/list.rhtml</p>
+<pre><code><span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"product-list"</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Product Listing<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
+
+  <span class="tag">&lt;<span class="title">table</span> <span class="attribute">cellpadding</span>=<span class="value">"5"</span> <span class="attribute">cellspacing</span>=<span class="value">"0"</span>&gt;</span>
+  </span>&lt;%<span class="ruby"> <span class="keyword">for</span> product <span class="keyword">in</span> <span class="variable">@products</span> </span>%&gt;<span class="xml">
+    <span class="tag">&lt;<span class="title">tr</span> <span class="attribute">valign</span>=<span class="value">"top"</span> <span class="attribute">class</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> cycle(<span class="string">'list-line-odd'</span>, <span class="string">'list-line-even'</span>) </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
+
+      <span class="tag">&lt;<span class="title">td</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">"list-image"</span> <span class="attribute">src</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> product.image_url </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>/&gt;</span>
+      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+
+      <span class="tag">&lt;<span class="title">td</span> <span class="attribute">width</span>=<span class="value">"60%"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"list-title"</span>&gt;</span></span>&lt;%=<span class="ruby"> h(product.title) </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">br</span> /&gt;</span>
+        </span>&lt;%=<span class="ruby"> h(truncate(product.description, <span class="number">80</span>)) </span>%&gt;<span class="xml">
+      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+
+      <span class="tag">&lt;<span class="title">td</span> <span class="attribute">class</span>=<span class="value">"list-actions"</span>&gt;</span>
+        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Show'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'show'</span>, <span class="symbol">:id</span> =&gt; product </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">br</span>/&gt;</span>
+        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Edit'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'edit'</span>, <span class="symbol">:id</span> =&gt; product </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">br</span>/&gt;</span>
+        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Destroy'</span>, { <span class="symbol">:action</span>  =&gt; <span class="string">'destroy'</span>, <span class="symbol">:id</span> =&gt; product },
+                                 <span class="symbol">:confirm</span> =&gt; <span class="string">"Are you sure?"</span>,
+                                 <span class="symbol">:method</span>  =&gt; <span class="symbol">:post</span> </span>%&gt;<span class="xml">
+      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+  </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml">
+  <span class="tag">&lt;/<span class="title">table</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+
+</span>&lt;%=<span class="ruby">  <span class="keyword">if</span> <span class="variable">@product_pages</span>.current.previous 
+       link_to(<span class="string">"Previous page"</span>, { <span class="symbol">:page</span> =&gt; <span class="variable">@product_pages</span>.current.previous })
+     <span class="keyword">end</span>
+</span>%&gt;<span class="xml">
+</span>&lt;%=<span class="ruby"> <span class="keyword">if</span> <span class="variable">@product_pages</span>.current.<span class="keyword">next</span> 
+      link_to(<span class="string">"Next page"</span>, { <span class="symbol">:page</span> =&gt; <span class="variable">@product_pages</span>.current.<span class="keyword">next</span> })
+    <span class="keyword">end</span>
+</span>%&gt;<span class="xml">
+
+<span class="tag">&lt;<span class="title">br</span> /&gt;</span>
+
+</span>&lt;%=<span class="ruby"> link_to <span class="string">'New product'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'new'</span> </span>%&gt;<span class="xml"></span>
+</code></pre><p>参考：<br><a href="http://www.rubyonrails.org/down" target="_blank" rel="external">http://www.rubyonrails.org/down</a><br>书籍《Agile Web Development with Rails》2nd Edition</p>
+<p>另，JSR 315: Java Servlet 3.0 Specification under review at JCP：<a href="http://jcp.org/en/jsr/detail?id=315可以看到Servlet" target="_blank" rel="external">http://jcp.org/en/jsr/detail?id=315可以看到Servlet</a> 3.0的规范中要涉及到的一些东西。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>简单开始<br>下载并且安装</p>
+<pre><code><span class="tag">Ruby</span> 1<span class="class">.8</span><span class="class">.4</span>;
+<span class="tag]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Google Guice实战]]></title>
+    <link href="http://navigating.github.io/2007/Google-Guice%E5%AE%9E%E6%88%98/"/>
+    <id>http://navigating.github.io/2007/Google-Guice实战/</id>
+    <published>2007-05-31T03:54:49.000Z</published>
+    <updated>2015-08-01T04:02:00.065Z</updated>
+    <content type="html"><![CDATA[<p>Guice(pronounced “juice”)发布了1.0版本.<br>首先看看Guice的定位：an ultra-lightweight, next-generation dependency injection container for Java 5 and later.<br>这是一个基于Java 5及后续版本的轻量级依赖注入容器。Martin Fowler关于依赖注入的精彩讨论参见：<a href="http://www.martinfowler.com/articles/injection.html#InversionOfControl" target="_blank" rel="external">http://www.martinfowler.com/articles/injection.html#InversionOfControl</a><br>在这篇讨论中涉及到几种注入方式：Constructor Injection、Setter Injection、Interface Injection;<br>实际应用开发中依赖的注入问题自始至终都伴随着我们，当我们走过了最简单直接的手动注入、运用模式进行注入，到依赖于框架，当前成熟的框架众多，例如：Spring IOC、PicoContainer、Hivemind等；那么Guice作为一个依赖注入的framework，又是怎么定位自己的呢？其special的地方又在哪儿呢？我们首先看一个非常简单的例子：<br>对于注入描述的类如下：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+    <span class="keyword">public</span> <span class="keyword">void</span> configure(Binder binder) {
+        binder.bind(Service.<span class="keyword">class</span>).to(ServiceImpl.<span class="keyword">class</span>).<span class="keyword">in</span>(Scopes.SINGLETON);
+    }
+}
+</code></pre><p>依赖注入发生的地方：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>{
+
+    <span class="keyword">private</span> <span class="keyword">final</span> Service service;
+
+    <span class="annotation">@Inject</span>
+    <span class="function"><span class="keyword">public</span> <span class="title">Client</span><span class="params">(Service service)</span> </span>{
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{
+        service.go();
+    }
+}
+</code></pre><p>从这个例子我们可以清晰看出，Guice的依赖注入已经不同于以往的三种注入模式了，Okey，你已经看到了Guice充分使用了Java的新特性annotation来进行依赖注入的，已经完全跨越了Constructor Injection、Setter Injection、Interface Injection的概念了。这样，依赖注入只是需要一个或者多个annotation而已，一切搞定。<br>下一步我看看Guice这个Framework是要如何进行依赖注入的？<br>我们首先看看Guice的Architecture.</p>
+<pre><code>public class MyModule implements Module {
+   <span class="keyword"> public</span> void<span class="function"> configure(</span>Binder binder<span class="function">)</span> {
+        // Bind Foo to FooImpl. Guice will create a<span class="instruction"> new
+</span>        //<span class="instruction"> instance </span>of FooImpl for every injection.
+       <span class="function"> binder.bind(</span>Foo.class<span class="function">)</span>.to(FooImpl.class<span class="function">)</span>;
+
+        // Bind Bar to an<span class="instruction"> instance </span>of Bar.
+        Bar bar =<span class="instruction"> new </span>Bar(<span class="function">)</span>;
+       <span class="function"> binder.bind(</span>Bar.class<span class="function">)</span>.toInstance(bar<span class="function">)</span>;
+    }
+}
+</code></pre><p>该部分代码的sequence diagram如下：</p>
+<p>运行时Guice的依赖注入的绑定器structure如下：</p>
+<p>很明显的看到，一个注入的绑定关联主键Key、Scope、Provider；其中Key包含了依赖的Type和Annotation.<br>看到了Guice的简单绑定，一定会有一个疑问：就是一个类型的多个绑定怎么实现？Guice是运行Annotation binding来解决这个问题的。<br>例如绑定代码如下：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingModule</span> <span class="keyword">implements</span> <span class="title">Module</span> {</span>
+
+    <span class="keyword">public</span> <span class="typename">void</span> configure(Binder binder) {
+        binder.bind(IService.<span class="keyword">class</span>).annotatedWith(Blue.<span class="keyword">class</span>).to(BlueService.<span class="keyword">class</span>);
+
+    }
+
+}
+注入代码如下：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingClient</span> {</span>
+    <span class="comment">// @Inject</span>
+    <span class="comment">// @Blue</span>
+    <span class="comment">// private IService service;</span>
+
+    <span class="keyword">private</span> IService service;
+
+    <span class="annotation">@Inject</span>
+    <span class="keyword">public</span> <span class="typename">void</span> injectService(<span class="annotation">@Blue</span> IService service) {
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> <span class="typename">void</span> go() {
+        <span class="keyword">this</span>.service.go();
+    }
+}
+annotation部分代码：
+
+<span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="annotation">@Target</span>({ElementType.FIELD, ElementType.PARAMETER})
+<span class="annotation">@BindingAnnotation</span>
+<span class="keyword">public</span> <span class="annotation">@interface</span> Blue {
+
+}
+</code></pre><p>如果再复杂一些，Guice还支持有属性的annotation:<br>绑定代码</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+
+<span class="comment">/*
+* (non-Javadoc)
+* 
+* @see com.google.inject.Module#configure(com.google.inject.Binder)
+*/</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(Binder binder)</span> </span>{
+    binder.bind(IPerson.class).annotatedWith(<span class="keyword">new</span> NamedAnnotation(<span class="string">"Bob"</span>)).to(Bob.class);
+}
+
+}
+注入代码：
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedClient</span> </span>{
+
+    <span class="annotation">@Inject</span>
+    <span class="annotation">@Named</span>(<span class="string">"Bob"</span>)
+    <span class="keyword">private</span> IPerson person;
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>{
+        <span class="keyword">this</span>.person.say();
+    }
+}
+annotation代码：
+
+<span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="annotation">@Target</span>({ElementType.FIELD, ElementType.PARAMETER})
+<span class="annotation">@BindingAnnotation</span>
+<span class="keyword">public</span> <span class="annotation">@interface</span> Named {
+    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedAnnotation</span> <span class="keyword">implements</span> <span class="title">Named</span> </span>{
+
+    <span class="keyword">private</span> String value;
+
+    <span class="function"><span class="keyword">public</span> <span class="title">NamedAnnotation</span><span class="params">(String value)</span></span>{
+        <span class="keyword">this</span>.value = value;
+    }
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.neusoft.anno.Named#value()
+    */</span>
+    <span class="function"><span class="keyword">public</span> String <span class="title">value</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> value;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> <span class="number">127</span> * <span class="string">"value"</span>.hashCode() ^ value.hashCode();
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>{
+    <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Named))
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+        Named other = (Named) o;
+        <span class="keyword">return</span> value.equals(other.value());
+    }
+
+    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> <span class="string">"@"</span> + Named.class.getName() + <span class="string">"(value="</span> + value + <span class="string">")"</span>;
+    }
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see java.lang.annotation.Annotation#annotationType()
+    */</span>
+    <span class="function"><span class="keyword">public</span> Class <span class="title">annotationType</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> Named.class;
+    }
+
+}
+</code></pre><p>通过这几个例子，可以清晰看到，Guice应用annotation进行注入的关联的，用module将依赖关系组装起来，提供给客户端代码进行使用；而且annotation是可以自由定制的，支持灵活扩展的。</p>
+<p>Guice本身也支持实现类的直接绑定：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MixerModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.google.inject.Module#configure(com.google.inject.Binder)
+    */</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> configure(Binder binder) {
+        binder.bind(Concrete.<span class="keyword">class</span>);
+
+    }
+
+}
+</code></pre><p>Guice有一种隐式绑定，其方法是这样，针对一个接口，如果缺少显式绑定，Guice 会寻找一个指向具体实现的@ImplementedBy标注。</p>
+<pre><code><span class="annotation">@ImplementedBy</span>(GoodNightImpl.class)
+    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IGoodNight</span> </span>{
+
+    <span class="function"><span class="keyword">void</span> <span class="title">goodNight</span><span class="params">()</span></span>;
+    }
+
+    <span class="annotation">@Singleton</span>
+    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodNightImpl</span> <span class="keyword">implements</span> <span class="title">IGoodNight</span> </span>{
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.neusoft.nobinding.IGoodNight#goodNight()
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goodNight</span><span class="params">()</span> </span>{
+        System.out.println(<span class="string">"Good night!"</span>);
+    }
+
+}
+</code></pre><p>那么，Provider是怎么回事呢？“有时对于每次注入，客户代码需要某个依赖的多个实例。其它时候，客户可能不想在一开始就真地获取对象，而是等到注入后的某个时候再获取。对于任意绑定类型 T，你可以不直接注入 T 的实例，而是注入一个 Provider，然后在需要的时候调用 Provider.get()”因此，可以使用Provider去真正的来创建依赖的对象实例，直到需要的时候才创建客户代码需要的实例。</p>
+<p>Provider等绑定代码：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetModule</span> <span class="keyword">implements</span> <span class="title">Module</span> {</span>
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.google.inject.Module#configure(com.google.inject.Binder)
+    */</span>
+    <span class="keyword">public</span> <span class="typename">void</span> configure(Binder binder) {
+        binder.bind(IService.<span class="keyword">class</span>).to(WidgetService.<span class="keyword">class</span>).<span class="keyword">in</span>(Scopes.SINGLETON);
+        binder.bind(Widget.<span class="keyword">class</span>).toProvider(WidgetProvider.<span class="keyword">class</span>);
+    }
+
+}
+Provider的注入：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
+    <span class="keyword">private</span> IService service;
+
+    <span class="annotation">@Inject</span> Provider provider;
+
+    <span class="keyword">public</span> Widget(IService service){
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> <span class="typename">void</span> go(){
+        <span class="keyword">this</span>.service.go();
+    }
+}
+Provider的实现：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetProvider</span> <span class="keyword">implements</span> <span class="title">Provider</span> {</span>
+
+    <span class="keyword">final</span> IService service;
+
+    <span class="annotation">@Inject</span>
+    WidgetProvider(IService service) {
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> Widget get() {
+        <span class="keyword">return</span> <span class="keyword">new</span> Widget(service);
+    }
+
+}
+</code></pre><p>Service的接口和实现：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IService</span> </span>{
+
+    <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>;
+
+}
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetService</span> <span class="keyword">implements</span> <span class="title">IService</span> </span>{
+
+    <span class="comment">/* (non-Javadoc)
+    * @see com.neusoft.service.IService#go()
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{
+        System.out.println(<span class="string">"Widget Service Hello."</span>);
+    }
+
+}
+</code></pre><p>客户代码：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetApplication</span> </span>{
+
+    <span class="comment">/**
+    * @param args
+    */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        Injector injector = Guice.createInjector(<span class="keyword">new</span> WidgetModule());
+        Widget widget = injector.getInstance(Widget.<span class="keyword">class</span>);
+        widget.go();
+    }
+
+}
+</code></pre><p>这个例子完全表达出了Provider的价值所在。<br>另外，Guice也提供了Constant Values以及Converting Stings的支持：<br>Guice会针对Primitive types、primitive wrapper types、Strings、Enums、Classes类型进行类型的自动判断绑定机制。对于Primitive types、primitive wrapper types,如果 Guice 仍然无法找到一个的显式绑定，它会去找一个拥有相同绑定标注的常量 String 绑定，并试图将字符串转换到相应的值。<br>这就是一个Guice如何进行依赖注入的一个基本的思路，可以看到Guice的代码量十分少，是一个不错的依赖注入的方案，也将会推动依赖注入的进步。<br>参考：<br>Guice项目：<a href="http://code.google.com/p/google-guice/" target="_blank" rel="external">http://code.google.com/p/google-guice/</a><br>Guice中文文档：<a href="http://docs.google.com/View?docid=dqp53rg_3hjf3ch" target="_blank" rel="external">http://docs.google.com/View?docid=dqp53rg_3hjf3ch</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Guice(pronounced “juice”)发布了1.0版本.<br>首先看看Guice的定位：an ultra-lightweight, next-generation dependency injection container for Java 5 and la]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[走向Miami(原名：重返Miami)]]></title>
+    <link href="http://navigating.github.io/2007/%E8%B5%B0%E5%90%91Miami-%E5%8E%9F%E5%90%8D%EF%BC%9A%E9%87%8D%E8%BF%94Miami/"/>
+    <id>http://navigating.github.io/2007/走向Miami-原名：重返Miami/</id>
+    <published>2007-05-20T03:53:21.000Z</published>
+    <updated>2015-08-01T03:53:53.184Z</updated>
+    <content type="html"><![CDATA[<p>为什么重返Miami，在自己内心深处，不知道什么是出路的时候，这不是一种逃避，是一种面对，但不是“重新”，寻找到内心很多寂寥，若有若无的种种境地。<br>在飞机在北太平洋上空，在强气流，在阳光所洒在的云层中穿梭的时候，我多么强烈的意识到一个人是必须要面对人的一生必须要面对的许许多多事情的。如同人最后一定要离开一个世界一样，无所谓失败，无所谓失去，无所谓面对。我想我是太执著于在自己过去的阴影之下，太过于执著于一种心情。<br>“许多人生活在‘其实我很希望。。。只是很可惜。。。’的模式中，找借口完全接触不到你的生命，使你不能经历成长的喜悦。只有真刀真枪地面对自己，才了解生命和幸福的深度。”当我看到一个朋友的签名的时候，不禁也想起另外一个朋友的话，“如果你要找借口，一百个你都能找到。”<br>（翻开我的blog和自己的心情，就如同一个朋友曾经一语道破为如同“失恋”的心态。悲观的心态可能有积极的人生吗?）“先知，先觉，先行”，王阳明先生“知行合一”。无论多少心情，多少道理，都不如行动来的猛烈。<br>有梦想，有目标，究竟每一天能有多少东西能够沉淀下来？为了梦想，为了目标。““无产阶级失去的只是枷锁”，如果人的一生有枷锁，就是一个人的心；最难改变的是性格中的不肯改变。准备好了吗，改变一切不肯改变的？<br>重返Miami，在于能够释放自己，释放自己平和稳定的心境，放下、放松；真刀真枪的面对自己；改变不肯改变的自己；在自己的内心寻找到自己。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>为什么重返Miami，在自己内心深处，不知道什么是出路的时候，这不是一种逃避，是一种面对，但不是“重新”，寻找到内心很多寂寥，若有若无的种种境地。<br>在飞机在北太平洋上空，在强气流，在阳光所洒在的云层中穿梭的时候，我多么强烈的意识到一个人是必须要面对人的一生必须要面对的]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
@@ -803,59 +1369,6 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
     <![CDATA[<p>look to the master,<br>follow the master,<br>walk with the master,<br>see through the master,<br>become the master.</p>
 ]]>
     </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[读《Managing Open Source Projects》]]></title>
-    <link href="http://navigating.github.io/2006/%E8%AF%BB%E3%80%8AManaging-Open-Source-Projects%E3%80%8B/"/>
-    <id>http://navigating.github.io/2006/读《Managing-Open-Source-Projects》/</id>
-    <published>2006-04-05T03:01:50.000Z</published>
-    <updated>2015-08-01T03:02:13.047Z</updated>
-    <content type="html"><![CDATA[<p>The following are two general principles of organization:<br>People must understand the organizational structure in which they are supposed to work.<br>There has to be someone who can make final decisions. This is especially important if the project or company is in a crisis. If the ship goes down, the captain does not call for a meeting. Everyone must obey orders, know exactly where to go and what to do, and do it without argument.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>The following are two general principles of organization:<br>People must understand the organizational structure in which they are suppos]]>
-    </summary>
-    
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[入手《Code Complete Second Edition》]]></title>
-    <link href="http://navigating.github.io/2006/%E5%85%A5%E6%89%8B%E3%80%8ACode-Complete-Second-Edition%E3%80%8B/"/>
-    <id>http://navigating.github.io/2006/入手《Code-Complete-Second-Edition》/</id>
-    <published>2006-04-02T03:00:36.000Z</published>
-    <updated>2015-08-01T03:02:17.176Z</updated>
-    <content type="html"><![CDATA[<p>昨天冒着大雨和redwood跑去华储买回了cc2e。买的时候还是有些犹豫—这本书真是太重了。我们刚买完书出来，dreamhead打电话过来他在华储正在买这本书。:)感谢redwood帮我把这本书背回了家。<br>拿到这本书我最大的期望是：我早在一年前能拿到这本书该是多么美妙的事情啊。<br>“这个世界从来就不缺少十几岁的少年天才,而三十几岁的优秀软件设计师凤毛麟角”。<br>我们重来都不缺少工程师，总是缺少尽可能多的优秀的工程师。任何想成为优秀工程师的人都不能容忍忽略这本书—cc2e的价值。(“最好是好的敌人”)<br>我们深信，这本书就是献给那些愿意成为优秀软件构造者长期以来进行不断的努力、奉献、执著追求的人。只有这样的人，才能把这么一本“砖头”饶有兴趣的读下去、读完。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>昨天冒着大雨和redwood跑去华储买回了cc2e。买的时候还是有些犹豫—这本书真是太重了。我们刚买完书出来，dreamhead打电话过来他在华储正在买这本书。:)感谢redwood帮我把这本书背回了家。<br>拿到这本书我最大的期望是：我早在一年前能拿到这本书该是多么美妙]]>
-    </summary>
-    
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[读《Expert One on One J2EE Development Without EJB》C2]]></title>
-    <link href="http://navigating.github.io/2005/%E8%AF%BB%E3%80%8AExpert-One-on-One-J2EE-Development-Without-EJB%E3%80%8BC2/"/>
-    <id>http://navigating.github.io/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/</id>
-    <published>2005-09-06T02:59:07.000Z</published>
-    <updated>2015-08-01T02:59:44.792Z</updated>
-    <content type="html"><![CDATA[<p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想重要。如同重构的时机一样：OO原则，针对接口编程；将任何特定的规范已经实现尽量隐藏一般特性之后，比如ejb的接口隐藏在pojo之后。<br>3.在我自己的技术选择中，几乎都是选择OpenSource社区的，很少受到规范驱动或者vendor驱动的影响。正好相反，也vendor driven才造就今天的我们。:)<br>4.项目成功，检验架构的标准：<br>simplicity<br>productivity<br>the fundamental importance of object orientation<br>the primacy of business requirements<br>the importance of empirical process<br>the importance of testability<br>5.一切皆来源于经验过程。spring比Expert One-on-One J2EE还要早。(没有working code就无法写出这本书。)springframework是Rod Johnson几个商业项目的经验而产生的。开发这个framework也应该是在模式大量复用中找到了突破点,如果一些模式大量的被复用，那么把这些模式的职责转嫁给framework来做，dry原则。当然，必须优先考虑模块化的原则，比方说对于log4j的如何集成到framework的方式。<br>6.Architecture and implementation should always be undertaken with clear goals in mind.</p>
-<p>Productivity<br>1.framework不断抽象，不断重构产生的,framework与代码生成的转换：If we see a requirement for boring repetitive code, we should apply an OO solution and abstract it into a framework,rather than generate it and live with the resulting duplication.<br>2.代码生成技术在解决生产率中扮着十分重要的角色。在j2ee开发中涉及到代码生成的层次很多。从dll,database schema到jsp.<br>3.There shouldn’t be vast amounts of repetitive plumbing code in J2EE applications.Better architectural choices and better frameworks can virtually eliminate such code,meaning that nearly all application code can be hand-authored.(注：framework形成的时机之一。)I’m not saying that code generation is a bad technology in general—merely that,when properly designed and built on appropriate frameworks, most J2EE applications should not contain enough boilerplate code to justify it and outweigh its negatives.<br>4.关于代码生成以及MDA作者的观点：The natural path of our industry is toward higher levels of abstraction. Perhaps one day MDA-powered code generation will prove to be an appropriate abstraction. However, I feel that this is 10–15 years away, if it ever happens.<br>5.Better Solutions for Higher Productivity：<br>Architecture<br>    Avoid unnecessary architectural complexity.<br>    Avoid unnecessary use of EJB.<br>    Use abstraction layers to hide the complexity of core J2EE and J2SE APIs.<br>    If possible, use an O/R mapping product to simplify the persistence layer.<br>    Use a good application framework.  </p>
-<p>Focus and methodology<br>    Focus! Know what problems you should be solving, and concentrate on them.<br>    Use a reference architecture and start from a template application.<br>    Use an agile development process.</p>
-<p>Use appropriate tools.<br>6.Different developers do the same thing in different ways, wasting<br>valuable development time and complicating maintenance.程序设计始终要做的就是不发生这样的事情。<br>7.Know What Problems to Solve 生产率即是知道要解决得是什么问题，将主要是domain problems而不是generic problems.<br>8.Use Reference Architectures and Templates一旦选择了技术，将着手reference architecture.begin work using a skeleton application that establishes the overall plumbing.<br>9.And remember that the more upfront effort before arriving at a working prototype, the greater the risk of inadequate performance or an unworkable architecture. 项目组也应该精化，微型化。<br>10.J2EE developers are fortunate in that all these requirements can be met by free, open source tools, such as Eclipse, JUnit, Ant, a good Eclipse XML plugin, CVS, and the standard Eclipse JUnit and CVS integration.</p>
-<p>OO<br>1.本身OO是一种范式，是一个模型，在SICP中对于讲到代换模型的理论：In general, when modeling phenomena in science and engineering, we begin with simplified, incomplete models. As we examine things in greater detail, these simple models become inadequate and must be replaced by more refined models.关于OO的讨论算是一个检查考虑问题的讨论。<br>2.作者提出的实践中运用oo的四个方面：封装domains concepts;运用polymorphism将共性和差异分离;代码复用；extensibility.<br>3.j2ee应用的对象常常都是一些fake objects，即是不具备objects的某些特征:identity,state,behavior.<br>4.oo针对接口编程的优点和误区。</p>
-<p>The importance of business requirements<br>1.这个问题因不同的角色而已。就我而言，如同我一样的普通程序员，对于generic technical problems常常都是难题，故而在这方面的需要长足的学习和提高的;对于我们而言，我们domain problems就是如何具备了generic technical方面的强大能力只是第一步。<br>The Importance of an Empirical Process<br>1.Always develop a vertical slice to validate your application’s architecture early in the project. Don’t trust our advice or anyone else’s without establishing that it’s appropriate to your needs.验证自己的想法。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想]]>
-    </summary>
-    
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
     
   </entry>
   
