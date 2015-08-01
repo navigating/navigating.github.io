@@ -79,9 +79,9 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-2015/BIGDATA-Update-201506" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015/大数据动态之201506" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/BIGDATA-Update-201506/" class="article-date">
+    <a href="/2015/大数据动态之201506/" class="article-date">
   <time datetime="2015-06-09T13:52:23.000Z" itemprop="datePublished">2015-06-09</time>
 </a>
     
@@ -97,7 +97,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/BIGDATA-Update-201506/">BIGDATA Update 201506</a>
+      <a class="article-title" href="/2015/大数据动态之201506/">大数据动态之201506</a>
     </h1>
   
 
@@ -114,7 +114,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/BIGDATA-Update-201506/" data-id="cicsezf2n000ztklmr4txy53f" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/大数据动态之201506/" data-id="cicsfvfj9000lbklmkvo5b91l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HBase/">HBase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
@@ -126,9 +126,71 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2015/BIGDATA-Update-201502" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2015/大数据动态之201505" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2015/BIGDATA-Update-201502/" class="article-date">
+    <a href="/2015/大数据动态之201505/" class="article-date">
+  <time datetime="2015-05-19T02:17:28.000Z" itemprop="datePublished">2015-05-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/大数据动态之201505/">大数据动态之201505</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>近期动态：<br>Hadoop 2.7发布。<br>Hortonworks HDP 2.2.4.2发布。<br>Ambari 2.0发布。<br>Cloudera Enterperise 5.4发布。<br>Hive 1.2.0 发布，支持Hive on Spark。</p>
+<p>HDP 2.2/HDP 2.2.4/Ambari 2.0/Ambari 2.0.1</p>
+<pre><code><span class="bullet">1. </span>HDP支持异构存储Heterogeneous storage，主要是对SSD的支持；
+<span class="bullet">2. </span>Hive开始支持 ACID 事务，向企业级应用场景前进了一大步；
+<span class="bullet">3. </span>HDP支持Spark 1.2.1；
+<span class="bullet">4. </span>HDP支持通过DominantResourceCalculator对CPU的资源隔离与资源调度；
+<span class="bullet">5. </span>Ambari 支持Blurprint，通过 REST API 管理和运维有更好的支持；
+<span class="bullet">6. </span>Ambari 支持Stacks，通过Stacks方式来定义一系列的集成组件；
+<span class="bullet">7. </span>Ambari 2.0支持HDP 2.2平台的Rolling Upgrades；
+<span class="bullet">8. </span>Ambari 2.0支持安装、配置Apache Ranger；
+<span class="bullet">9. </span>Ambari 2.0开始集成Ambari Alerts；
+<span class="bullet">10. </span>Ambari 2.0开始集成Ambari Metrics，替代之前的Ganglia；
+<span class="bullet">11. </span>Ambari 2.0开始支持User Views功能，User Views提供给运维人员更好的界面，包括Tez View、Capacity Scheduler View、Hive View、Pig View、Files View；
+</code></pre><p>HDP 2.2之后部署的结构与之前有调整，新部署的结构与说明如下：</p>
+<p>目录结构<br>从HDP 2.2之后，HDP安装后的目录结构发生了变化，之前安装后的Hadoop在/usr/lib目录下，现在变更到/usr/hdp目录下，结构如下：<br>{code}<br>├── /usr/hdp/2.2.0.0-2041/hadoop<br>│   ├── /usr/hdp/2.2.0.0-2041/hadoop/bin<br>│   ├── /usr/hdp/2.2.0.0-2041/hadoop/conf -&gt; /etc/hadoop/conf<br>│   ├── /usr/hdp/2.2.0.0-2041/hadoop/lib<br>│   │   ├── /usr/hdp/2.2.0.0-2041/hadoop/lib/native<br>│   ├── /usr/hdp/2.2.0.0-2041/hadoop/libexec<br>│   ├── /usr/hdp/2.2.0.0-2041/hadoop/man<br>│   └── /usr/hdp/2.2.0.0-2041/hadoop/sbin<br>├── /usr/hdp/2.2.0.0-2041/hadoop-hdfs<br>│   ├── /usr/hdp/2.2.0.0-2041/hadoop-hdfs/bin<br>│   ├── /usr/hdp/2.2.0.0-2041/hadoop-hdfs/lib<br>│   ├── /usr/hdp/2.2.0.0-2041/hadoop-hdfs/sbin<br>│   └── /usr/hdp/2.2.0.0-2041/hadoop-hdfs/webapps<br>├── /usr/hdp/2.2.0.0-2041/hbase<br>│   ├── /usr/hdp/2.2.0.0-2041/hbase/bin<br>│   ├── /usr/hdp/2.2.0.0-2041/hbase/conf -&gt; /etc/hbase/conf<br>│   ├── /usr/hdp/2.2.0.0-2041/hbase/doc<br>│   ├── /usr/hdp/2.2.0.0-2041/hbase/include<br>│   ├── /usr/hdp/2.2.0.0-2041/hbase/lib<br>└── /usr/hdp/2.2.0.0-2041/zookeeper<br>├── /usr/hdp/2.2.0.0-2041/zookeeper/bin<br>├── /usr/hdp/2.2.0.0-2041/zookeeper/conf -&gt; /etc/zookeeper/conf<br>├── /usr/hdp/2.2.0.0-2041/zookeeper/doc<br>├── /usr/hdp/2.2.0.0-2041/zookeeper/lib<br>├── /usr/hdp/2.2.0.0-2041/zookeeper/man<br>{code}<br>{code}<br>/usr/hdp/2.2.3.0-2611<br>├── /usr/hdp/2.2.3.0-2611/hadoop<br>│   ├── /usr/hdp/2.2.3.0-2611/hadoop/bin<br>│   ├── /usr/hdp/2.2.3.0-2611/hadoop/conf -&gt; /etc/hadoop/conf<br>│   ├── /usr/hdp/2.2.3.0-2611/hadoop/lib<br>│   │   ├── /usr/hdp/2.2.3.0-2611/hadoop/lib/native<br>│   ├── /usr/hdp/2.2.3.0-2611/hadoop/libexec<br>│   ├── /usr/hdp/2.2.3.0-2611/hadoop/man<br>│   └── /usr/hdp/2.2.3.0-2611/hadoop/sbin<br>├── /usr/hdp/2.2.3.0-2611/hadoop-hdfs<br>│   ├── /usr/hdp/2.2.3.0-2611/hadoop-hdfs/bin<br>│   ├── /usr/hdp/2.2.3.0-2611/hadoop-hdfs/lib<br>│   ├── /usr/hdp/2.2.3.0-2611/hadoop-hdfs/sbin<br>│   └── /usr/hdp/2.2.3.0-2611/hadoop-hdfs/webapps<br>├── /usr/hdp/2.2.3.0-2611/hbase<br>│   ├── /usr/hdp/2.2.3.0-2611/hbase/bin<br>│   ├── /usr/hdp/2.2.3.0-2611/hbase/conf -&gt; /etc/hbase/conf<br>│   ├── /usr/hdp/2.2.3.0-2611/hbase/doc<br>│   ├── /usr/hdp/2.2.3.0-2611/hbase/include<br>│   ├── /usr/hdp/2.2.3.0-2611/hbase/lib<br>└── /usr/hdp/2.2.3.0-2611/zookeeper<br>├── /usr/hdp/2.2.3.0-2611/zookeeper/bin<br>├── /usr/hdp/2.2.3.0-2611/zookeeper/conf -&gt; /etc/zookeeper/conf<br>├── /usr/hdp/2.2.3.0-2611/zookeeper/doc<br>├── /usr/hdp/2.2.3.0-2611/zookeeper/lib<br>├── /usr/hdp/2.2.3.0-2611/zookeeper/man<br>{code}<br>管理活动版本<br>HDP 2.0之后推出了hdp-select服务，通过这个服务可以管理活动版本，默认就会安装hdp-select，可以通过hdp-select命令验证是否安装。</p>
+<blockquote>
+<p>hdp-select<br>hdp-select versions<br>同样支持管理命令，例如：<br>hdp-select set hadoop-hdfs-datanode 2.2.3.0-2600</p>
+</blockquote>
+<p>安装后的库、工具和脚本<br>库<br>HDP 2.0之前安装后库放在/usr/lib下，现在放在/usr/hdp/current下：<br>/usr/hdp/current/hadoop-hdfs-namenode/<br>/usr/hdp/current/hadoop-yarn-resourcemanager<br>/usr/hdp/current/hadoop-mapreduce-client/hadoop-mapreduce-examples.jar</p>
+<p>Daemon Scripts<br>/usr/hdp/current/hadoop-hdfs-namenode/../hadoop/sbin/hadoop-deamon.sh<br>/usr/hdp/current/hadoop-yarn-resourcemanager/sbin/yarn-daemon.sh<br>/usr/hdp/current/hadoop-yarn-nodemanager/sbin/yarn-daemon.sh<br>Configuration files<br>/etc/hadoop/conf<br>Bin Scripts<br>/usr/bin/hadoop -&gt; /usr/hdp/current/hadoop-client/bin/hadoop</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2015/大数据动态之201505/" data-id="cicsfvfjw000ubklmh5s26lsb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ambari/">Ambari</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hive/">Hive</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015/大数据动态之201502" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/大数据动态之201502/" class="article-date">
   <time datetime="2015-03-24T14:10:07.000Z" itemprop="datePublished">2015-03-24</time>
 </a>
     
@@ -144,7 +206,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/BIGDATA-Update-201502/">BIGDATA Update 201502</a>
+      <a class="article-title" href="/2015/大数据动态之201502/">大数据动态之201502</a>
     </h1>
   
 
@@ -160,7 +222,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/BIGDATA-Update-201502/" data-id="cicsezf310018tklm3xlwmc08" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/大数据动态之201502/" data-id="cicsfvfk80013bklm19mgd4z1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
@@ -172,10 +234,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/写好代码" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2005/JUnit使用心得" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/写好代码/" class="article-date">
-  <time datetime="2004-12-02T01:59:56.000Z" itemprop="datePublished">2004-12-02</time>
+    <a href="/2005/JUnit使用心得/" class="article-date">
+  <time datetime="2005-01-17T02:14:51.000Z" itemprop="datePublished">2005-01-17</time>
 </a>
     
   <div class="article-category">
@@ -190,7 +252,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/写好代码/">写好代码</a>
+      <a class="article-title" href="/2005/JUnit使用心得/">JUnit使用心得</a>
     </h1>
   
 
@@ -198,14 +260,29 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有一段时间一直在想，什么样子的代码是一个好的代码、高质量的代码，这些是在福建的时候写的，已经过去有一些日子了。想到那些日子里，承担者项目上的一些压力，工作之间<br>依然在思考代码，依然在读 软件敏捷开发 这本书。<br>软件设计的最终体现为源代码，满足设计标准的唯一软件文档就是源代码清单。源代码就是设计。具有灵活性、可维护性和可重用性的良好架构设计会带来高质量的代码，高质量的代码必然有良好的架构设计。<br>如何衡量软件的好坏呢？<br>僵化性(Rigidity):关联的地方太多，难以改动；实际发生改动之后，许多因改动带来的影响自己难以预测到，往往需要在庞大的代码中搜寻变动。<br>脆弱性(Fragility):关联了概念无关的地方，出现新问题的地方与改动的地方没有概念上的关联。<br>牢固性(Immobility):系统重能够被重用的地方难以抽取出来，需要巨大的努力和风险。<br>粘滞性(Viscosity):包括软件的粘滞性和环境的粘滞性。软件的粘滞性发生在保持系统设计的改动方法比那些破坏设计的生硬改动手法更难应用时；环境的粘滞性发生在环境迟钝、低效时，比如导致大规模重编译的改动或者需要几个小时check in几个文件中的改动。<br>不必要的复杂性(Needless Complexity):代码中预置的那些处理潜在变化的代码，致使设计中含有绝不会用到的结构。<br>不必要的重复性(Needless Repetition):开发人员忽视了抽象，对于系统的改动开始变得困难起来。<br>晦涩性(Opacity):模块难以理解。用清晰、富有表现力的方式编写代码。<br>                                     ――――读&lt;&gt;<br>这些都是软件在腐化的臭味道，软件的腐化是由代码来表现出来的。现在我对于代码的理解：<br>可读性：代码不仅是给用户写的，也是给team成员读，（对我们而言，还要给维护人员读）。只有代码具有可读性，才能具有好的可维护性、才能被复用。读好的代码能提高，读不好的代码也能发现问题。通过代码评审来提高团队的代码质量是一种非常有效的方式，能够直接影响了设计。<br>可测试性：测试用例是代码的第一个用户，如果代码难以测试，可以说是很难用，就更难复用。<br>复用性：保持代码的抽象性，代码能写到没有一点能让自己copy的地方只是第一步。如果我们自己设计的代码自己都不能进行复用，还谈什么系统复用，还谈什么提高复用性。我们不能等有一个万能的复用框架别人做好给我们使用，我们应该从建立自己的复用库开始，可以建立自己的CVS（CVSNT）来管理自己的源代码库。（在不断抽象之下，就是分析的结果，一般一个包的抽象类有50%左右的时候这个包是最稳定的。）<br>可维护性：代码要有好的复用性，必须有良好的架构，易读，易于测试，对于改动灵活。程序在运行中不可能不遇到各种各样的问题，对于我们的项目可能是对于现场运行环境的细小的变更，可能会是运行中的性能的问题？会不会导致系统的崩溃呢？能够提供观察系统运行状态的良好的接口，能够提供分析系统异常信息的合理的结构。当系统出现异常的时候，我们不希望系统立刻就会崩溃，我们不希望只是看到异常。</p>
+        <p>  来自<a href="http://junit.sourceforge.net/doc/cookstour/Image6.gif" target="_blank" rel="external">http://junit.sourceforge.net/doc/cookstour/Image6.gif</a></p>
+<p>1.在这个composite模式之中，TestSuite与它的接口Test的聚合关系。这种关系完美的满足了客户代码自由自在的组装自己的测试用例结构。称为面对对象的递归组合。现在TestCase和TestSuite都具有良好的扩充性。<br>2.TestResult：如何进行职责的分配永远是对象的话题。TestCase直接面对符合测试框架规范的测试用例的每一个方法，每一个方法都会致使一个TestCase的对象构造出来，这样测试用例的方法之间就很好的隔离；每一个TestCase都是一个独立的测试单元，TestCase正是保证这种自主性。测试用例运行中的信息收集和信息积累。用例和信息积累都是潜在可能各自发生变化的，区别用例的执行和信息的收集就可以得到更多的灵活性和潜在复用性。用例和信息积累各自都又具有很好的通用性。TestResult正是测试执行信息积累而被封装的类(Test提供了信息积累的收集点：countTestCases)，可以看到TestResult是作为访问者(Visitor)注册到Test中去的。对于测试执行信息的处理，向TestResult注册了estListener的Observer模式。<br>3.在TestResult通过接口Protectable将执行信息的处理优美的隔离到一个单独的方法中来：<br>public interface Protectable {</p>
+<p> /**</p>
+<ul>
+<li>Run the the following method protected.<br>*/<br>public abstract void protect() throws Throwable;<br>}</li>
+</ul>
+<p>在TestResult中：<br> /**</p>
+<ul>
+<li><p>Runs a TestCase.<br>*/<br>protected void run(final TestCase test) {<br>startTest(test);<br>Protectable p= new Protectable() {<br>public void protect() throws Throwable {<br>test.runBare();<br>}<br>};<br>runProtected(test, p);</p>
+<p>endTest(test);<br>}</p>
+<p>/**</p>
+</li>
+<li>Runs a TestCase.<br>*/<br>public void runProtected(final Test test, Protectable p) {<br>try {<br>p.protect();<br>}<br>catch (AssertionFailedError e) {<br>addFailure(test, e);<br>}<br>catch (ThreadDeath e) { // don’t catch ThreadDeath by accident<br>throw e;<br>}<br>catch (Throwable e) {<br>addError(test, e);<br>}<br>}<br>整个JUnit框架是功能完美而且精巧的。其中的核心代码也不过千余行而已，处处都能感觉到灵活和可扩充。</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/写好代码/" data-id="cicsezf46001ltklml2s171jy" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/JUnit使用心得/" data-id="cicsfvflb001qbklmpfj6nvrv" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JUunit/">JUunit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XP/">XP</a></li></ul>
+
     </footer>
   </div>
   
@@ -213,14 +290,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/String-In-Java" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2005/黄花菜" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/String-In-Java/" class="article-date">
-  <time datetime="2004-11-09T01:59:12.000Z" itemprop="datePublished">2004-11-09</time>
+    <a href="/2005/黄花菜/" class="article-date">
+  <time datetime="2005-01-03T04:13:34.000Z" itemprop="datePublished">2005-01-03</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
+    <a class="article-category-link" href="/categories/读书/">读书</a>
   </div>
 
   </div>
@@ -231,7 +308,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/String-In-Java/">String In Java</a>
+      <a class="article-title" href="/2005/黄花菜/">黄花菜</a>
     </h1>
   
 
@@ -239,88 +316,18 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>JDK1.4中关于String的几个实现方法：</p>
-<pre><code><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params">String original</span>) </span>{
-    <span class="keyword">this</span>.count = original.count;
-    <span class="keyword">if</span> (original.<span class="keyword">value</span>.length &gt; <span class="keyword">this</span>.count) {
-        <span class="comment">// The array representing the String is bigger than the new</span>
-        <span class="comment">// String itself.  Perhaps this constructor is being called</span>
-        <span class="comment">// in order to trim the baggage, so make a copy of the array.</span>
-        <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="keyword">this</span>.count];
-        System.arraycopy(original.<span class="keyword">value</span>, original.offset,
-        <span class="keyword">this</span>.<span class="keyword">value</span>, <span class="number">0</span>, <span class="keyword">this</span>.count);
-    } <span class="keyword">else</span> {
-        <span class="comment">// The array representing the String is the same</span>
-        <span class="comment">// size as the String, so no point in making a copy.</span>
-        <span class="keyword">this</span>.<span class="keyword">value</span> = original.<span class="keyword">value</span>;
-    }
-}
-
-<span class="function"><span class="keyword">public</span> boolean <span class="title">equals</span>(<span class="params">Object anObject</span>) </span>{
-    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) {
-        <span class="keyword">return</span> <span class="keyword">true</span>;
-    }
-
-    <span class="keyword">if</span> (anObject instanceof String) {
-        String anotherString = (String)anObject;
-        <span class="keyword">int</span> n = count;
-
-        <span class="keyword">if</span> (n == anotherString.count) {
-            <span class="keyword">char</span> v1[] = <span class="keyword">value</span>;
-            <span class="keyword">char</span> v2[] = anotherString.<span class="keyword">value</span>;
-            <span class="keyword">int</span> i = offset;
-            <span class="keyword">int</span> j = anotherString.offset;
-            <span class="keyword">while</span> (n-- != <span class="number">0</span>) {
-                <span class="keyword">if</span> (v1[i++] != v2[j++])
-                <span class="keyword">return</span> <span class="keyword">false</span>;
-            }
-            <span class="keyword">return</span> <span class="keyword">true</span>;
-        }
-    }
-    <span class="keyword">return</span> <span class="keyword">false</span>;
-}
+        <p>学名：Hemerocallis citrina Baroni<br>英文名：Citron Daylily<br>科名：百合科 Liliaceae<br>    根常稍肥厚或末端膨大。基生叶深绿色，宽线形，通常宽l－2厘米或更宽，</p>
+<p>较花茎短。花茎高1—2米；螺壳状聚伞花序排成圆锥状，花朵达几十朵，花午</p>
+<p>后开放，次日午前凋萎，黄色，芳香，长8—16厘米；花被管长3—5厘米，外轮</p>
+<p>裂片倒被针形，内轮长椭圆形。蒴果椭圆形，长约2．5厘米。花期8—10月。   </p>
+<pre><code>产本省各地，野生山坡、山谷草丛中，也有栽培；分布我国秦岭以南各省
+</code></pre><p>区，北方也有栽培。</p>
+<pre><code>花供食用；根有毒性，可作杀虫剂。
 </code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/String-In-Java/" data-id="cicsezf4s001rtklmok2luot8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/如何开始编码" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/如何开始编码/" class="article-date">
-  <time datetime="2004-10-28T01:58:15.000Z" itemprop="datePublished">2004-10-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/如何开始编码/">如何开始编码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.程序run起来。<br>2.程序能够被单元测试。<br>3.考虑引起变化的因素。<br>4.面对引起变化的因素，重构。<br>5.如何对变化进行单元测试，即面对了变化，如何进行单元测试。<br>6.如何做准确性的单元测试，如何做边界的单元测试。<br>7.如何保证代码在引起变化的时候仍然具有很好的可维护性（维护中需要好的单元测试做为支持的）。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/如何开始编码/" data-id="cicsezf3w001itklmfq34eng9" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/黄花菜/" data-id="cicsfvfl6001nbklm6pu4xqxp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -332,7 +339,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -343,7 +350,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">19</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -352,7 +359,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/CDH/" style="font-size: 16.67px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 13.33px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Spark/" style="font-size: 16.67px;">Spark</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/CDH/" style="font-size: 17.5px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 15px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JUnit/" style="font-size: 10px;">JUnit</a> <a href="/tags/JUunit/" style="font-size: 10px;">JUunit</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/XP/" style="font-size: 12.5px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
     </div>
   </div>
 
@@ -364,7 +371,7 @@ var _hmt = _hmt || [];
       <ul>
         
           <li>
-            <a href="/2015/BIGDATA-Update-201507/">BIGDATA Update 201507</a>
+            <a href="/2015/大数据动态之201507/">大数据动态之201507</a>
           </li>
         
           <li>
@@ -392,7 +399,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

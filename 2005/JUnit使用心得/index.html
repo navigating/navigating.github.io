@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JUnit使用心得 | On The Open Way</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="来自http://junit.sourceforge.net/doc/cookstour/Image6.gif
+1.在这个composite模式之中，TestSuite与它的接口Test的聚合关系。这种关系完美的满足了客户代码自由自在的组装自己的测试用例结构。称为面对对象的递归组合。现在TestCase和TestSuite都具有良好的扩充性。2.TestResult：如何进行职责的分配永远是对象的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JUnit使用心得">
+<meta property="og:url" content="http://navigating.github.io/2005/JUnit使用心得/index.html">
+<meta property="og:site_name" content="On The Open Way">
+<meta property="og:description" content="来自http://junit.sourceforge.net/doc/cookstour/Image6.gif
+1.在这个composite模式之中，TestSuite与它的接口Test的聚合关系。这种关系完美的满足了客户代码自由自在的组装自己的测试用例结构。称为面对对象的递归组合。现在TestCase和TestSuite都具有良好的扩充性。2.TestResult：如何进行职责的分配永远是对象的">
+<meta property="og:updated_time" content="2015-08-01T02:21:29.329Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JUnit使用心得">
+<meta name="twitter:description" content="来自http://junit.sourceforge.net/doc/cookstour/Image6.gif
+1.在这个composite模式之中，TestSuite与它的接口Test的聚合关系。这种关系完美的满足了客户代码自由自在的组装自己的测试用例结构。称为面对对象的递归组合。现在TestCase和TestSuite都具有良好的扩充性。2.TestResult：如何进行职责的分配永远是对象的">
+<meta name="twitter:creator" content="@xujinghui">
+  
+    <link rel="alternative" href="/atom.xml" title="On The Open Way" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?5554b1765137f9e84f6b5d1958c4bdfd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">On The Open Way</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">自信人生二百年，会当水击三千里！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">Sitemap</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://navigating.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2005/JUnit使用心得" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2005/JUnit使用心得/" class="article-date">
+  <time datetime="2005-01-17T02:14:51.000Z" itemprop="datePublished">2005-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JUnit使用心得
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  来自<a href="http://junit.sourceforge.net/doc/cookstour/Image6.gif" target="_blank" rel="external">http://junit.sourceforge.net/doc/cookstour/Image6.gif</a></p>
+<p>1.在这个composite模式之中，TestSuite与它的接口Test的聚合关系。这种关系完美的满足了客户代码自由自在的组装自己的测试用例结构。称为面对对象的递归组合。现在TestCase和TestSuite都具有良好的扩充性。<br>2.TestResult：如何进行职责的分配永远是对象的话题。TestCase直接面对符合测试框架规范的测试用例的每一个方法，每一个方法都会致使一个TestCase的对象构造出来，这样测试用例的方法之间就很好的隔离；每一个TestCase都是一个独立的测试单元，TestCase正是保证这种自主性。测试用例运行中的信息收集和信息积累。用例和信息积累都是潜在可能各自发生变化的，区别用例的执行和信息的收集就可以得到更多的灵活性和潜在复用性。用例和信息积累各自都又具有很好的通用性。TestResult正是测试执行信息积累而被封装的类(Test提供了信息积累的收集点：countTestCases)，可以看到TestResult是作为访问者(Visitor)注册到Test中去的。对于测试执行信息的处理，向TestResult注册了estListener的Observer模式。<br>3.在TestResult通过接口Protectable将执行信息的处理优美的隔离到一个单独的方法中来：<br>public interface Protectable {</p>
+<p> /**</p>
+<ul>
+<li>Run the the following method protected.<br>*/<br>public abstract void protect() throws Throwable;<br>}</li>
+</ul>
+<p>在TestResult中：<br> /**</p>
+<ul>
+<li><p>Runs a TestCase.<br>*/<br>protected void run(final TestCase test) {<br>startTest(test);<br>Protectable p= new Protectable() {<br>public void protect() throws Throwable {<br>test.runBare();<br>}<br>};<br>runProtected(test, p);</p>
+<p>endTest(test);<br>}</p>
+<p>/**</p>
+</li>
+<li>Runs a TestCase.<br>*/<br>public void runProtected(final Test test, Protectable p) {<br>try {<br>p.protect();<br>}<br>catch (AssertionFailedError e) {<br>addFailure(test, e);<br>}<br>catch (ThreadDeath e) { // don’t catch ThreadDeath by accident<br>throw e;<br>}<br>catch (Throwable e) {<br>addError(test, e);<br>}<br>}<br>整个JUnit框架是功能完美而且精巧的。其中的核心代码也不过千余行而已，处处都能感觉到灵活和可扩充。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2005/JUnit使用心得/" data-id="cicsfvflb001qbklmpfj6nvrv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JUunit/">JUunit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XP/">XP</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/大数据动态之201502/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          大数据动态之201502
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2005/黄花菜/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">黄花菜</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">23</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/BigData/" style="font-size: 10px;">BigData</a> <a href="/tags/CDH/" style="font-size: 17.5px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 15px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JUnit/" style="font-size: 10px;">JUnit</a> <a href="/tags/JUunit/" style="font-size: 10px;">JUunit</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/XP/" style="font-size: 12.5px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12.5px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/大数据动态之201507/">大数据动态之201507</a>
+          </li>
+        
+          <li>
+            <a href="/2015/使用Hexo搭建Github静态博客/">使用Hexo搭建Github静态博客</a>
+          </li>
+        
+          <li>
+            <a href="/2015/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/Hadoop-2-7-1-发布/">Hadoop 2.7.1 发布</a>
+          </li>
+        
+          <li>
+            <a href="/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/">读《Deploying Apache Kafka: A Practical FAQ》</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Steven Xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">Sitemap</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
