@@ -53,7 +53,7 @@
     <link href="http://navigating.github.io/2015/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BAGithub%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
     <id>http://navigating.github.io/2015/使用Hexo搭建Github静态博客/</id>
     <published>2015-07-28T09:20:22.000Z</published>
-    <updated>2015-08-01T04:45:49.464Z</updated>
+    <updated>2015-08-01T05:37:12.996Z</updated>
     <content type="html"><![CDATA[<p>环境：</p>
 <pre><code><span class="bullet">1. </span>Windows XP
 <span class="bullet">2. </span>Git
@@ -67,7 +67,8 @@
 <span class="bullet">7. </span>支持sitemap和feed
 <span class="bullet">8. </span>支持百度统计
 <span class="bullet">9. </span>支持图片
-<span class="bullet">10. </span>参考资源
+<span class="bullet">10. </span>支持Swiftype站内搜索
+<span class="bullet">11. </span>参考资源
 </code></pre><h2 id="安装Node-js">安装Node.js</h2><p>下载并安装，<a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></p>
 <h2 id="安装Hexo">安装Hexo</h2><p>通过命令 npm install -g hexo 安装</p>
 <pre><code><span class="attribute">D</span>:\git\hexo&gt;npm install -g hexo
@@ -181,8 +182,10 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
 </code></pre><p>添加统计，参考：<br><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">http://ibruce.info/2013/11/22/hexo-your-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a> </p>
 <h2 id="支持图片">支持图片</h2><p>在source目录下创建images目录，然后将图片放在其中。<br>在文章中引用本地图片的语法例如：</p>
 <pre><code>![<span class="link_label">这是一张图片</span>](<span class="link_url">/images/2005_TuoZhanXunLian.jpg</span>)
+</code></pre><h2 id="支持swiftype站内搜索">支持swiftype站内搜索</h2><p>在 <a href="http://siftype.com" target="_blank" rel="external">http://siftype.com</a> 注册一个帐号，按着网站引导流程就可以了。<br>安装 install code 代码到hexo，添加到 themes\landscape\layout_partial\after-footer.ejs，类似添加百度统计的代码。<br>然后回到swiftype网站对 install code 进行确认。通过会在下方弹出一条消息：</p>
+<pre><code><span class="title">Installation</span> successfully activated
 </code></pre><h2 id="添加robots-txt">添加robots.txt</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a> </p>
-<h2 id="参考资源">参考资源</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a><br><a href="https://github.com/bruce-sha" target="_blank" rel="external">https://github.com/bruce-sha</a><br><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a><br><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">http://zipperary.com/2013/05/29/hexo-guide-3/</a><br><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">http://zipperary.com/2013/05/30/hexo-guide-4/</a><br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a></p>
+<h2 id="参考资源">参考资源</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a><br><a href="https://github.com/bruce-sha" target="_blank" rel="external">https://github.com/bruce-sha</a><br><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a><br><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">http://zipperary.com/2013/05/29/hexo-guide-3/</a><br><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">http://zipperary.com/2013/05/30/hexo-guide-4/</a><br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br><a href="http://blog.moyizhou.cn/web/search-engine-for-static-pages/" target="_blank" rel="external">http://blog.moyizhou.cn/web/search-engine-for-static-pages/</a><br><a href="http://www.jerryfu.net/post/search-engine-for-hexo-with-swiftype.html" target="_blank" rel="external">http://www.jerryfu.net/post/search-engine-for-hexo-with-swiftype.html</a></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>环境：</p>
