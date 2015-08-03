@@ -438,6 +438,50 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
   </entry>
   
   <entry>
+    <title><![CDATA[响应式网页设计(Responsive Web Design)]]></title>
+    <link href="http://navigating.github.io/2013/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1-Responsive-Web-Design/"/>
+    <id>http://navigating.github.io/2013/响应式网页设计-Responsive-Web-Design/</id>
+    <published>2013-08-11T15:04:46.000Z</published>
+    <updated>2015-08-03T15:07:27.893Z</updated>
+    <content type="html"><![CDATA[<p>响应式网页设计，也叫：自适应网页设计。2010年，由Ethan Marcotte提出这个名词(Responsive Web Design) ，指可以自动识别屏幕宽度、并做出相应调整的网页设计。其目的就是希望搭建一个网站能够满足兼容多种终端的需求，不再是为每一种终端定制开发一个版本。应该是，这个思想主要是应对当前Web应用在各种移动终端上展示的挑战的。</p>
+<p>主要的应对策略：</p>
+<p>允许网页宽度自动调整；<br>不允许绝对宽度；<br>使用相对大小的字体；<br>流动布局；<br>选择加载CSS；<br>CSS的@media规则；<br>图片的自适应。<br>参考：<br><a href="http://alistapart.com/article/responsive-web-design" target="_blank" rel="external">http://alistapart.com/article/responsive-web-design</a><br><a href="http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html</a><br><a href="http://www.qianduan.net/responsive-web-design.html" target="_blank" rel="external">http://www.qianduan.net/responsive-web-design.html</a><br><a href="http://www.qianduan.net/media-type-and-media-query.html" target="_blank" rel="external">http://www.qianduan.net/media-type-and-media-query.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>响应式网页设计，也叫：自适应网页设计。2010年，由Ethan Marcotte提出这个名词(Responsive Web Design) ，指可以自动识别屏幕宽度、并做出相应调整的网页设计。其目的就是希望搭建一个网站能够满足兼容多种终端的需求，不再是为每一种终端定制开发一]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[HBTC 2012 见闻]]></title>
+    <link href="http://navigating.github.io/2012/HBTC-2012-%E8%A7%81%E9%97%BB/"/>
+    <id>http://navigating.github.io/2012/HBTC-2012-见闻/</id>
+    <published>2012-12-25T15:05:29.000Z</published>
+    <updated>2015-08-03T15:06:54.617Z</updated>
+    <content type="html"><![CDATA[<p>今年Hadoop大会，加上了BigData，全称“Hadoop&amp;Bigdata Technology Conference(Hadoop与大数据技术大会)”，随着“云计算”“Hadoop”“大数据”的热点，今年的大会事先很是期待，之后从中收获很多，坚信了我们在工作中的一些判断。从我的视角，今年HBTC主要覆盖如下的内容：<br>Hadoop与BigData主要的产品进展：<br>1.Hortonworks Hadoop/HBase<br>2.Intel Hadoop/Free Edition<br>3.Huawei Contributing Hadoop/HBase<br>4.Facebook Hadoop/HBase<br>5.Vmware Hadoop Virtualization<br>6.Oracle NoSQL<br>7.Taobao Tair<br>8.eBay Hadoop/HBase<br>意外的是Huawei对Hadoop社区的贡献度很大；Hortonworks只是一般性的宣讲，并没有重大的消息或者特性宣布。<br>Hadoop生态圈中本次被关注的技术：<br>1.Hadoop Security(Etu)<br>2.HIVE<br>3.HDFS Namenode<br>4.HBase<br>5.Pig<br>今年重点被关注的是HBase、Hive。<br>应用方面:<br>1.阿里Hadoop集群<br>a.3200台服务器，30K核，内存10TB，存储36K磁盘60PB。<br>b.支撑支付宝、CBU、聚划算、一淘、天猫、淘宝,1K+客户端/100+部门<br>c.Hadoop组件：Hive、Streaming MR、Mahout、Pig、HBase<br>d.客户端，用户/用户组权限管理/资源管理，申请/审批；云梯医生/JobTracker心跳频率/NameNode RPC性能指标；<br>e.数据采集：TimeTunnel分布式日志收集，DataX数据库同步，DBSync大表增量同步；<br>2.HIVE在腾讯分布式数据仓库<br>a.腾讯分布式数据仓库，简称：TDW；<br>b.基于Hadoop/Hive/PostgreSQL构建；<br>c.特性列表：存储和计算容灾/存储和计算线性扩展，SQL语言/SQL函数，过程语言，多维分析，MR，多种存储结构，SQL/MED，开发工具，任务调度系统，系统DB<br>d.TDW在Hive基础上进行的功能增强：    基于角色的权限管理；    兼容Oracle的分区功能；    窗口函数；多维分析；公用表表达式；DML(Update/Delete)；入库数据校验；命令行工具；DB存储引擎；SQL语法细节增强；Eclipse IDE开发环境/流程开发工具；自定义的存储格式；Hash Join；按行split；Order by limit优化；<br>3.阿里数据交换平台<br>a.平台能力：存储与计算的调度、元数据管理、数据建模、IDE；市场应用：应用市场、数据市场；数据管理：预警、质量监控、ODS、生命周期管理；数据开发：安全、审计、计量、监控；<br>b.分析可视化；数据可视化；<br>c.ODPS：开放；服务化；离线数据分析服务；<br>d.ODS：开放与共享；源头数据质量监控；元数据管理；<br>4.百度大数据平台<br>a.基础能力包括：分布式存储(KV/Table)；计算(批量计算/小批量计算/流式计算)；调度(底层资源管理/上层通用调度)；数据仓库体系(格式化/传输/数据仓库/报表&amp;多维分析引擎/Ad Hoc查询引擎/BI)<br>b.OLAP查询以MySQL作为前端。<br>5.IBM在Hadoop/大数据方面的架构与实践<br>6.Startup企业MemSQL提供实时查询方案<br>7.Yahoo Hadoop应用、运维，还有其基于Hadoop的Data workflow<br>学校<br>有不少做研究的老师过来传道，其中有不少精华的东西，特别是哈尔滨工业大学的李建中和俄亥俄州立大学的张晓东教授给我留下了深刻的印象。<br>缺失<br>1.实时查询/流计算内容很少；也许会是明年的热点吧；<br>2.Cloudera/MapR都厂商没有来，无法面对面了解其一些技术特点和产品特性；<br>个人总结<br>1.技术上，今年Hadoop生态圈的热点是HBase、HDFS NameNode、HDFS Security;<br>2.应用与平台上，阿里/淘宝发展最快，其次是腾讯/百度。这三个公司的Hadoop集群为公司内部众多部门提供hadoop平台服务，特别是阿里比较突出，其中共有的特性：<br>    a.工作的内容都是围绕为内部提供Hadoop集群/大数据服务平台；<br>    b.技术路线都是以Hadoop、HBase、Hive/Pig、关系型数据库为主；<br>    c.用户查询语言以兼容SQL语言为主；<br>    d.计算查询主要是以批量计算、实时查询为主；<br>    e.可视化方面的工作基本雷同：分析可视化、数据可视化、数据流程编排可视化；<br>    f.平台在安全、隔离、调度、元数据管理、监控、预警告警、服务化、数据集成与共享等方面提供功能。<br>3.实时查询/流计算，虽然今年没有覆盖，但是各个厂商都有提到自己已经在这两个方面着手或者取得了一些进展。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>今年Hadoop大会，加上了BigData，全称“Hadoop&amp;Bigdata Technology Conference(Hadoop与大数据技术大会)”，随着“云计算”“Hadoop”“大数据”的热点，今年的大会事先很是期待，之后从中收获很多，坚信了我们在工作中]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="Hive" scheme="http://navigating.github.io/tags/Hive/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[RubyOnRails实战]]></title>
     <link href="http://navigating.github.io/2007/RubyOnRails%E5%AE%9E%E6%88%98/"/>
     <id>http://navigating.github.io/2007/RubyOnRails实战/</id>
@@ -1381,40 +1425,6 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
     </summary>
     
       <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2006年中期反思]]></title>
-    <link href="http://navigating.github.io/2006/2006%E5%B9%B4%E4%B8%AD%E6%9C%9F%E5%8F%8D%E6%80%9D/"/>
-    <id>http://navigating.github.io/2006/2006年中期反思/</id>
-    <published>2006-08-12T03:08:04.000Z</published>
-    <updated>2015-08-01T03:08:30.673Z</updated>
-    <content type="html"><![CDATA[<p>一本流水账<br>1.前一段时间，换了几次机器，我就把我的数据导到了一块portal hard disk，包括我自己从去年到今年写的不少日志。这些数据随着portal hard disk一声巨响摔在地板上而销声匿迹。<br>2.考虑合同的问题，结果是和公司续约了。<br>3.dreamhead离开沈阳，去了北京。<br>4.定位项目组重组了。<br>5.学习英语.<br>6.在这近一年的项目开发之中，作为核心开发人员，实践迭代开发，试图让agile drive development，每一个月我们发布一个版本给最终用户试用，使得用户对我们的系统了解的成竹在其胸；在开发中引入了单元测试的全套方案，最大力度的进行功能单元测试和集成单元测试，开发的发布版本即是给用户的予发布版本；极力推崇简单设计，简单的解决方案；在项目组不断讨论，甚至到不带改进开发的许多细小环节；开始考虑自动build。在迭代开发，可能问题域不断的变化，对于软件的架构设计带来极大的考验，而且对于问题域的关注凸现重要出来。在项目结束之际，我们发现架构是如此重要，我们的架构是如此的脆弱，发现我们很多的软件设计没有架构或者不能称之为架构(有人把架构定义为一系列解决方案/模式的集合)，迭代要求架构的灵活性要更高。不论业务模型，架构模型，都应该有大的思想方向。<br>7.非常大的收获是vvenli送给我们的日记本，带有每天日期的日记本。在读SICP的时候，发现无论是一个规律，一个模式，都是循序渐进的积累过程。任何目标，理想，成功都不是一朝一夕的事情，在规律范围之类都是可以切分，度量的，都需要我们循序渐进的完成小单元的目标。<br>8.在最近一段时间和一些同事接触，觉得唯有好学才是进步和才力的源泉。想起诸葛亮的一句话，从google搜索下来：<br>夫君子之行，静以修身，俭以养德。非淡泊无以明志，非宁静无以致远。夫学须静也，才须学也，非学无以广才，非志无以成学。淫慢则不能励精，险躁则不能治性。年与时驰，意与日去，遂成枯落，多不接世，悲守穷庐，将复何及！<br>—&lt;&lt;诫子书&gt;&gt;<br>9.这半年书看的少，想问题想的多。<br>10.生命太短暂,太脆弱，谁都可能下一时刻看到上帝；生命需要关注眼前，需要策划。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>一本流水账<br>1.前一段时间，换了几次机器，我就把我的数据导到了一块portal hard disk，包括我自己从去年到今年写的不少日志。这些数据随着portal hard disk一声巨响摔在地板上而销声匿迹。<br>2.考虑合同的问题，结果是和公司续约了。<br>3]]>
-    </summary>
-    
-      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[走向设计(To Consider Design)]]></title>
-    <link href="http://navigating.github.io/2006/%E8%B5%B0%E5%90%91%E8%AE%BE%E8%AE%A1-To-Consider-Design/"/>
-    <id>http://navigating.github.io/2006/走向设计-To-Consider-Design/</id>
-    <published>2006-04-13T03:05:07.000Z</published>
-    <updated>2015-08-01T03:05:55.954Z</updated>
-    <content type="html"><![CDATA[<p>recently i always consider design:<br>1.keeping it simple,keeping it clean<br>2.coding for modularity<br>3.when working Bottom-Up,then working Top-Down.<br>4.abstract and high-cohesion,low-coupling<br>5.open one’s eyes for contract<br>today,when i’m reading the art of unix programming and get it:<br>Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove.</p>
-<p>The followings from 《the art of unix programming 》-Modularity</p>
-<p>There are two ways of constructing a software design. One is to make it so simple that there are obviously no deficiencies; the other is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult.<br>1.Modularity:Keeping It Clean,Keeping It Simple.<br>2.Hatton himself suggests as a rule of thumb a 2x conversion between logical and physical lines, suggesting an optimal range of 400–800 physical lines.<br>3.Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove<br>4.Modularity is expressed in good code, but it primarily comes from good design.<br>5.A good API makes sense and is understandable without looking at the implementation behind it.The classic test is this: Try to describe it to another programmer over the phone. If you fail, it is very probably too complex, and poorly designed.<br>6.Coding for Modularity</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>recently i always consider design:<br>1.keeping it simple,keeping it clean<br>2.coding for modularity<br>3.when working Bottom-Up,then wo]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
