@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://navigating.github.io/2015/Hadoop%E5%8F%91%E8%A1%8C%E7%89%88/</loc>
+    <lastmod>2015-08-03T14:44:59.713Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://navigating.github.io/2005/%E6%8B%93%E5%B1%95%E8%AE%AD%E7%BB%83/</loc>
+    <lastmod>2015-08-03T14:43:43.939Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://navigating.github.io/2005/JUnit%E5%AE%9E%E6%88%98/</loc>
     <lastmod>2015-08-01T14:53:39.379Z</lastmod>
   </url>
@@ -99,11 +109,6 @@
   <url>
     <loc>http://navigating.github.io/2005/%E8%AF%BB%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E7%B2%BE%E8%A7%A3/</loc>
     <lastmod>2015-08-01T02:55:38.927Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://navigating.github.io/2005/%E6%8B%93%E5%B1%95%E8%AE%AD%E7%BB%83/</loc>
-    <lastmod>2015-08-01T02:49:17.527Z</lastmod>
   </url>
   
   <url>
