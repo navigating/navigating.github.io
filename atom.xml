@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-04T07:08:40.853Z</updated>
+  <updated>2015-08-04T14:31:31.555Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[读《微软研发制胜策略》]]></title>
+    <link href="http://navigating.github.io/2015/%E8%AF%BB%E3%80%8A%E5%BE%AE%E8%BD%AF%E7%A0%94%E5%8F%91%E5%88%B6%E8%83%9C%E7%AD%96%E7%95%A5%E3%80%8B/"/>
+    <id>http://navigating.github.io/2015/读《微软研发制胜策略》/</id>
+    <published>2015-08-04T14:30:45.000Z</published>
+    <updated>2015-08-04T14:31:31.555Z</updated>
+    <content type="html"><![CDATA[<p>软件开发的核心就是：达成项目目标，提高生产率，提高软件的质量。除此之外，都不要重要。<br>管理上、复用上，一切的核心就是人的问题，提高人的能力是第一生产力。</p>
+<p>1.项目中一个现象就是紧紧的去控制进度，调整进度，进度的跟踪只是一种日常的事务工作。<br>2.观念的改变是第一位的，什么是观念改变的原则：规则不是法律，是可以触碰的。什么是我们要改变的规则，就是要有主动、计划、灵活。<br>3.紧密的进度计划，是一般的管理人员的通常做法，他的好处就是看到不断的工作，会有不断的压力；如果运用不当，就可能让人觉得厌烦和沮丧。<br>4.为了日程进度，牺牲质量往往是不值得的，除非你要一笑而过的做法。再不管这个项目的后续开发和维护了。对于产品或者项目的期限，要谨慎，要反思可能为了进度而牺牲质量。这叫着草率的期限。<br>5.一个好的日程表会兼顾公司和员工的利益的。<br>6.没有期限的目标不过是梦想而已。<br>7.把一个大项目，切分成n个小项目来做，每一个项目的周期大约是2个月。叫着阶段式的日程控制法。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>软件开发的核心就是：达成项目目标，提高生产率，提高软件的质量。除此之外，都不要重要。<br>管理上、复用上，一切的核心就是人的问题，提高人的能力是第一生产力。</p>
+<p>1.项目中一个现象就是紧紧的去控制进度，调整进度，进度的跟踪只是一种日常的事务工作。<br>2.观念]]>
+    </summary>
+    
+      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hadoop发行版]]></title>
@@ -1426,23 +1444,6 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
     </summary>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Miami Everglades]]></title>
-    <link href="http://navigating.github.io/2006/Miami-Everglades/"/>
-    <id>http://navigating.github.io/2006/Miami-Everglades/</id>
-    <published>2006-11-01T03:10:54.000Z</published>
-    <updated>2015-08-01T03:11:48.785Z</updated>
-    <content type="html"><![CDATA[<p>原文第一次发表在：<a href="http://www.blogbus.com/navigating-logs/3745900.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/3745900.html</a></p>
-<p>周末闲暇，和同事们驱车去了Everglades，身临其境，自然风光和静谧之境，让人流连忘返。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>原文第一次发表在：<a href="http://www.blogbus.com/navigating-logs/3745900.html" target="_blank" rel="external">http://www.blogbus.com/navigating-l]]>
-    </summary>
-    
-      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
