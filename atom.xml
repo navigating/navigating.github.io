@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-03T14:59:37.900Z</updated>
+  <updated>2015-08-04T07:08:40.853Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://navigating.github.io/2015/Hadoop%E5%8F%91%E8%A1%8C%E7%89%88/"/>
     <id>http://navigating.github.io/2015/Hadoop发行版/</id>
     <published>2015-08-01T14:40:02.000Z</published>
-    <updated>2015-08-03T14:59:37.900Z</updated>
-    <content type="html"><![CDATA[<p>自从Hadoop的出现，引领大数据的浪潮越来越热。大数据存储的主要技术路线有几种：<br>1.Hadoop<br>2.Cassandra<br>3.MongoDB<br>Hadoop是Apache的开源项目，同时有很多商业公司对Hadoop进行版本发行和商业支持,参见：<a href="http://wiki.apache.org/hadoop/Distributions%20and%20Commercial%20Support" target="_blank" rel="external">http://wiki.apache.org/hadoop/Distributions%20and%20Commercial%20Support</a><br>其中在最有名为人所知的三家：<br>1.Cloudera<br><img src="/images/2015/Hadoop_2015_1.JPG" alt="这是一张图片"></p>
-<p>2.Hortonwork<br><img src="/images/2015/Hadoop_2015_2.JPG" alt="这是一张图片"></p>
-<p>3.MapR<br><img src="/images/2015/Hadoop_2015_3.JPG" alt="这是一张图片"></p>
-<p>这三个厂商之中，MapR最为封闭；Hortonworks最为开放，产品线全开源，在线文档比较丰富。国内使用Cloudera CDH和Hortonworks的应该是最多的。<br>准实时计算框架/即席查询<br>1.CDH的框架有：Impala + Spark；<br>2.HDP的框架有：Tez + Spark；<br>3.MapR的框架有：Drill + Tez + Spark。<br>关于Spark：<br>2014年大数据最热门的技术路线就是算是Spark了，而且得力于Spark不遗余力的推广和快速成长。Cloudera是最早支持Spark，也是最激进的。下图即是Spark在Cloudera产品线中的定位：<br><img src="/images/2015/Hadoop_2015_4.JPG" alt="这是一张图片"></p>
+    <updated>2015-08-04T07:08:40.853Z</updated>
+    <content type="html"><![CDATA[<p>自从Hadoop的出现，引领大数据的浪潮越来越热。大数据存储的主要技术路线有几种：<br>1.Hadoop<br>2.Cassandra<br>3.MongoDB<br>Hadoop是Apache的开源项目，同时有很多商业公司对Hadoop进行版本发行和商业支持,参见：<a href="http://wiki.apache.org/hadoop/Distributions%20and%20Commercial%20Support" target="_blank" rel="external">http://wiki.apache.org/hadoop/Distributions%20and%20Commercial%20Support</a><br>其中在最有名为人所知的三家：<br>1.Cloudera<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Hadoop_2015_1.JPG" alt="这是一张图片"></p>
+<p>2.Hortonwork<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Hadoop_2015_2.JPG" alt="这是一张图片"></p>
+<p>3.MapR<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Hadoop_2015_3.JPG" alt="这是一张图片"></p>
+<p>这三个厂商之中，MapR最为封闭；Hortonworks最为开放，产品线全开源，在线文档比较丰富。国内使用Cloudera CDH和Hortonworks的应该是最多的。<br>准实时计算框架/即席查询<br>1.CDH的框架有：Impala + Spark；<br>2.HDP的框架有：Tez + Spark；<br>3.MapR的框架有：Drill + Tez + Spark。<br>关于Spark：<br>2014年大数据最热门的技术路线就是算是Spark了，而且得力于Spark不遗余力的推广和快速成长。Cloudera是最早支持Spark，也是最激进的。下图即是Spark在Cloudera产品线中的定位：<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Hadoop_2015_4.JPG" alt="这是一张图片"></p>
 <p>实际上快速计算框架的发展才刚刚开始，社区中已经有如下几种：<br>1.Spark/Shark<br>2.Hortonworks Tez/Stinger<br>3.Cloudera Impala<br>4.Apache Drill<br>5.Apache Flink<br>6.Apache Nifi<br>7.Facebook Presto</p>
 ]]></content>
     <summary type="html">
