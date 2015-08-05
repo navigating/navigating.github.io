@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-04T14:31:31.555Z</updated>
+  <updated>2015-08-05T05:26:18.047Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,96 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[13~14年收集的大数据的一些技术架构图]]></title>
+    <link href="http://navigating.github.io/2015/13-14%E5%B9%B4%E6%94%B6%E9%9B%86%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%9B%BE/"/>
+    <id>http://navigating.github.io/2015/13-14年收集的大数据的一些技术架构图/</id>
+    <published>2015-08-05T05:16:53.000Z</published>
+    <updated>2015-08-05T05:26:18.047Z</updated>
+    <content type="html"><![CDATA[<p>1 Big Data Solution</p>
+<p>1.1 HP</p>
+<p>HP BigData 1.png<br>HP BigData 2.png</p>
+<p>1.2 Oracle</p>
+<p>Oracle BigData 101.png<br>Oracle BigData 1.JPG</p>
+<p>1.3 IBM</p>
+<p>IBM BigData 102.jpg</p>
+<p>1.4 Microsoft</p>
+<p>Microsoft BigData 4.png</p>
+<p>1.5 Huawei</p>
+<p>Huawei BigData 1.png<br>Huawei BigData 2.jpg<br>Huawei BigData 3.jpg</p>
+<p>2 Big Data on Cloud</p>
+<p>2.1 Amazon AWS</p>
+<p>2.1.1 Netflix BigData on AWS<br>Netflix BigData 1.png</p>
+<p>2.2 Microsoft Azure</p>
+<p>Microsoft BigData 3.png</p>
+<p>2.3 Facebook</p>
+<p>Facebook BigData 101.png</p>
+<p>2.4 Linkedin</p>
+<p>Linkedin BigData 101.png</p>
+<p>2.5 Twitter</p>
+<p>Twitter BigData 101.png</p>
+<p>2.6 Alibaba/Taobao</p>
+<p>2.6.1 淘宝数据魔方<br>Taobao BigData 104.png</p>
+<p>2.6.2 阿里大数据应用平台<br>Taobao BigData 102.png<br>Taobao BigData 101.png</p>
+<p>2.6.3 阿里搜索实时流计算<br>Taobao BigData 103.png</p>
+<p>2.7 Tencent</p>
+<p>2.7.1 腾讯大规模Hadoop集群TDW<br>Tencent Hadoop 1.png</p>
+<p>2.7.2 腾讯实时计算平台 广点通<br>Tecent Realtiming 1.png</p>
+<p>2.8 JD(京东)</p>
+<p>JD BigData 101.png</p>
+<p>2.9 CMCC(中国移动)</p>
+<p>2.9.1 大云PaaS 2.5</p>
+<p>3 Hadoop Distribution</p>
+<p>3.1 Apache Hadoop</p>
+<p>Apache Hadoop 101.png</p>
+<p>3.2 Cloudera</p>
+<p>Cloudera BigData 101.png</p>
+<p>3.3 Hortonworks</p>
+<p>Hortonworks BigData 102.png</p>
+<p>3.4 MapR</p>
+<p>MapR BigData 102.png</p>
+<p>3.5 Intel</p>
+<p>Intel Hadoop 101.png</p>
+<p>3.6 EMC Pivotal HD</p>
+<p>Pivotal Hadoop 101.jpg</p>
+<p>3.7 IBM</p>
+<p>IBM BigData 101.jpg</p>
+<p>3.8 Huawei</p>
+<p>Huawei BigData 2.jpg</p>
+<p>4 Landscape</p>
+<p>Big-data-vendors1.jpg<br>Big-Data-Landscape-Jul-4-2012.00111.png<br>BigData Landscape 2.png</p>
+<p>5 参考</p>
+<ul>
+<li>IBM Report<a href="http://www-01.ibm.com/software/data/bigdata/platform/resources.html" target="_blank" rel="external">IBM Report</a></li>
+<li>[<a href="http://www.gartner.com/technology/reprints.do?id=1-1E7OTT7&amp;ct=130225&amp;st=sb" target="_blank" rel="external">http://www.gartner.com/technology/reprints.do?id=1-1E7OTT7&amp;ct=130225&amp;st=sb</a> Gartner - Hadoop Is Not a Data Integration Solution]</li>
+<li>[<a href="http://www.gartner.com/technology/reprints.do?id=1-1DBWMQY&amp;ct=121220&amp;st=sb" target="_blank" rel="external">http://www.gartner.com/technology/reprints.do?id=1-1DBWMQY&amp;ct=121220&amp;st=sb</a> Gartner - Magic Quadrant for Data Masking Technology 2012]</li>
+<li>[[媒体文件:The_Forrester_Wave_Big_Data_Predictive_Analytics_Solutions,_Q1_2013.pdf|The Forrester Wave Big Data Predictive Analytics Solutions, Q1 2013]]</li>
+<li>[<a href="http://www.gartner.com/technology/reprints.do?id=1-1IMDMZ5&amp;ct=130819&amp;st=sb" target="_blank" rel="external">http://www.gartner.com/technology/reprints.do?id=1-1IMDMZ5&amp;ct=130819&amp;st=sb</a> Magic Quadrant for Cloud Infrastructure as a Service 2013]</li>
+<li>[<a href="http://wenku.it168.com/d_000048434.shtml" target="_blank" rel="external">http://wenku.it168.com/d_000048434.shtml</a> Facebook Hadoop]</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>1 Big Data Solution</p>
+<p>1.1 HP</p>
+<p>HP BigData 1.png<br>HP BigData 2.png</p>
+<p>1.2 Oracle</p>
+<p>Oracle BigData 101.png<br>Oracle B]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
+    
+      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="MapR" scheme="http://navigating.github.io/tags/MapR/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[读《微软研发制胜策略》]]></title>
@@ -1356,94 +1446,6 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
     </summary>
     
       <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[JUnit 4 实战]]></title>
-    <link href="http://navigating.github.io/2006/JUnit-4-%E5%AE%9E%E6%88%98/"/>
-    <id>http://navigating.github.io/2006/JUnit-4-实战/</id>
-    <published>2006-12-20T03:12:38.000Z</published>
-    <updated>2015-08-01T03:16:48.735Z</updated>
-    <content type="html"><![CDATA[<p>尝试使用JDK 5.0进行开发，当然不能少了JUnit这个framework了。尽管在pre-release的时候我已经开始使用JUnit 4.0，真正用的时候还是翻了翻一下文档<a href="http://www.junit.org/index.htm，自己写了一个小例子。" target="_blank" rel="external">http://www.junit.org/index.htm，自己写了一个小例子。</a><br>JUnit通过Annotation的方式，让自己写完的Test Case看起来干净，简单，少了很多杂质似的。</p>
-<pre><code><span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.assertTrue;
-<span class="keyword">import</span> <span class="keyword">static</span> org.junit.Assert.fail;
-<span class="keyword">import</span> junit.framework.JUnit4TestAdapter;
-
-
-<span class="keyword">import</span> org.junit.After;
-<span class="keyword">import</span> org.junit.AfterClass;
-<span class="keyword">import</span> org.junit.Before;
-<span class="keyword">import</span> org.junit.BeforeClass;
-<span class="keyword">import</span> org.junit.Ignore;
-<span class="keyword">import</span> org.junit.Test;
-
-
-<span class="comment">/**
-* <span class="doctag">@author</span> Steven
-* 
-*/</span>
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JUnit4ExampleTest</span> </span>{
-
-
-      <span class="keyword">public</span> <span class="keyword">static</span> junit.framework.<span class="function">Test <span class="title">suite</span><span class="params">()</span> </span>{
-            <span class="keyword">return</span> <span class="keyword">new</span> JUnit4TestAdapter(JUnit4ExampleTest.class);
-      }
-
-
-      <span class="annotation">@BeforeClass</span>
-      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">setUpBeforeClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
-      }
-
-
-      <span class="annotation">@AfterClass</span>
-      <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">tearDownAfterClass</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
-      }
-
-
-      <span class="annotation">@Before</span>
-      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
-      }
-
-
-      <span class="annotation">@After</span>
-      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">tearDown</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>{
-      }
-
-
-      <span class="annotation">@Test</span>
-      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testCase</span><span class="params">()</span> </span>{
-            assertTrue(<span class="keyword">true</span>);
-      }
-
-
-      <span class="annotation">@Test</span>(expected = RuntimeException.class)
-      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testException</span><span class="params">()</span> </span>{
-            throwException();
-            fail(<span class="string">"after exception"</span>);
-      }
-
-
-      <span class="annotation">@Test</span>
-      <span class="annotation">@Ignore</span>(<span class="string">"Ignore flag!"</span>)
-      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testIgnore</span><span class="params">()</span> </span>{
-            fail(<span class="string">"The case should be ignored."</span>);
-      }
-
-
-      <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">throwException</span><span class="params">()</span> </span>{
-            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Random"</span>);
-      }
-
-
-}
-</code></pre><p>注：Maven2的surefire plugin对于JUnit4没有进行支持或者说仍然不兼容，这点是需要注意的。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>尝试使用JDK 5.0进行开发，当然不能少了JUnit这个framework了。尽管在pre-release的时候我已经开始使用JUnit 4.0，真正用的时候还是翻了翻一下文档<a href="http://www.junit.org/index.htm，自己写了一个小例]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
