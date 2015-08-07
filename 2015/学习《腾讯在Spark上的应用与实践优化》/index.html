@@ -3,17 +3,30 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: MapR | On The Open Way</title>
+  <title>学习《腾讯在Spark上的应用与实践优化》 | On The Open Way</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="On The Open Way">
-<meta property="og:url" content="http://navigating.github.io/tags/MapR/index.html">
+  <meta name="description" content="《腾讯在Spark上的应用与实践优化》原文参见：http://download.csdn.net/detail/happytofly/8637461
+TDW: Tencent Distributed Data Warehouse，腾讯分布式数据仓库；GAIA：腾讯自研的基于YARN定制化和优化的资源管理系统；Lhoste：腾讯自研的作业的工作流调度系统，类似于Oozie；
+TDW集群规模：
+1.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习《腾讯在Spark上的应用与实践优化》">
+<meta property="og:url" content="http://navigating.github.io/2015/学习《腾讯在Spark上的应用与实践优化》/index.html">
 <meta property="og:site_name" content="On The Open Way">
-<meta property="og:description">
+<meta property="og:description" content="《腾讯在Spark上的应用与实践优化》原文参见：http://download.csdn.net/detail/happytofly/8637461
+TDW: Tencent Distributed Data Warehouse，腾讯分布式数据仓库；GAIA：腾讯自研的基于YARN定制化和优化的资源管理系统；Lhoste：腾讯自研的作业的工作流调度系统，类似于Oozie；
+TDW集群规模：
+1.">
+<meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_1.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_4.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_5.JPG">
+<meta property="og:updated_time" content="2015-08-07T08:32:35.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="On The Open Way">
-<meta name="twitter:description">
+<meta name="twitter:title" content="学习《腾讯在Spark上的应用与实践优化》">
+<meta name="twitter:description" content="《腾讯在Spark上的应用与实践优化》原文参见：http://download.csdn.net/detail/happytofly/8637461
+TDW: Tencent Distributed Data Warehouse，腾讯分布式数据仓库；GAIA：腾讯自研的基于YARN定制化和优化的资源管理系统；Lhoste：腾讯自研的作业的工作流调度系统，类似于Oozie；
+TDW集群规模：
+1.">
 <meta name="twitter:creator" content="@xujinghui">
   
     <link rel="alternative" href="/atom.xml" title="On The Open Way" type="application/atom+xml">
@@ -85,39 +98,96 @@ var _hmt = _hmt || [];
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/13-14年收集的大数据的一些技术架构图/" class="archive-article-date">
-  <time datetime="2015-08-05T05:16:53.000Z" itemprop="datePublished">8月 5</time>
+        <section id="main"><article id="post-2015/学习《腾讯在Spark上的应用与实践优化》" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/学习《腾讯在Spark上的应用与实践优化》/" class="article-date">
+  <time datetime="2015-08-07T08:28:42.000Z" itemprop="datePublished">2015-08-07</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/13-14年收集的大数据的一些技术架构图/">13~14年收集的大数据的一些技术架构图</a>
+    <h1 class="article-title" itemprop="name">
+      学习《腾讯在Spark上的应用与实践优化》
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>《腾讯在Spark上的应用与实践优化》原文参见：<a href="http://download.csdn.net/detail/happytofly/8637461" target="_blank" rel="external">http://download.csdn.net/detail/happytofly/8637461</a></p>
+<p>TDW: Tencent Distributed Data Warehouse，腾讯分布式数据仓库；<br>GAIA：腾讯自研的基于YARN定制化和优化的资源管理系统；<br>Lhoste：腾讯自研的作业的工作流调度系统，类似于Oozie；<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_1.JPG" alt=""></p>
+<p>TDW集群规模：</p>
+<pre><code><span class="bullet">1. </span>Gaia集群节点数：8000+；
+<span class="bullet">2. </span>HDFS的存储空间：150PB+；
+<span class="bullet">3. </span>每天新增数据：1PB+；
+<span class="bullet">4. </span>每天任务数：1M+；
+<span class="bullet">5. </span>每天计算量：10PB+；
+</code></pre><p>Spark集群：</p>
+<pre><code><span class="bullet">1. </span>Spark部署在Gaia之上，即是Spark on YARN模式，每个节点是 24 cores 和 60G 内存；
+<span class="bullet">2. </span>底层存储包括：HDFS、HBase、Hive、MySQL；
+<span class="bullet">3. </span>作业类型，包括：ETL、SparkSQL、Machine Learning、Graph Compute、Streaming；
+<span class="bullet">4. </span>每天任务数，10K+；
+<span class="bullet">5. </span>腾讯从2013年开始引入Spark 0.6，已经使用2年了；
+</code></pre><p>Spark的典型应用：</p>
+<pre><code><span class="bullet">1. </span>预测用户的广告点击概率；
+<span class="bullet">2. </span>计算两个好友间的共同好友数；
+<span class="bullet">3. </span>用于ETL的SparkSQL和DAG任务；
+</code></pre><p>Case 1: 预测用户的广告点击概率<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_4.JPG" alt=""></p>
+<pre><code><span class="number">1</span>. 数据是通过<span class="function"><span class="title">DCT</span><span class="params">(Data Collect Tool)</span></span>推送到HDFS上，然后Spark直接将HDFS数据导入到 RDD&amp;Cache；
+<span class="number">2</span>. <span class="number">60</span>次迭代计算的时间为<span class="number">10</span>～<span class="number">15</span>分钟，即每次迭代<span class="number">10</span>～<span class="number">15</span>秒；
+</code></pre><p>Case 2: 计算两个好友间的共同好友数</p>
+<pre><code>1. 根据shuffle数量来确定partition数量；
+2. 尽量使用sort-based shuffle，减少reduce的内存使用；
+3. 当连接超时后选择重试来减少executor丢失的概率；
+4. 避免executor被YARN给<span class="operator"><span class="keyword">kill</span>掉，设置 spark.yarn.executor.memoryoverhead
+<span class="number">5.</span> 执行语句 <span class="keyword">INSERT</span> <span class="keyword">TABLE</span> test_result <span class="keyword">SELECT</span> t3.d, <span class="keyword">COUNT</span>(*) FROＭ( <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> a, b <span class="keyword">FROM</span> join_1 ) t1 <span class="keyword">JOIN</span> （<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> b, c <span class="keyword">FROM</span> join_2 ) t2 <span class="keyword">ON</span> (t1.a = t2.c) <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> c, d <span class="keyword">FROM</span> c, d <span class="keyword">FROM</span> join_3 ) t3 <span class="keyword">ON</span> (t2.b = t3.d) <span class="keyword">GROUP</span> <span class="keyword">BY</span> t3.d 使用Hive需要<span class="number">30</span>分钟，使用SparkSQL需要<span class="number">5</span>分钟；
+<span class="number">6.</span> 当有小表时使用broadcase <span class="keyword">join</span>代替Common <span class="keyword">join</span>；
+<span class="number">7.</span> 尽量使用ReduceByKey代替GroupByKey；
+<span class="number">8.</span> 设置spark.serializer = org.apache.spark.serializer.KryoSerializer；
+<span class="number">9.</span> 使用YARN时，设置spark.shuffle.service.enabled = <span class="literal">true</span>；
+<span class="number">10.</span> 在早期版本中Spark通过启动参数固定executor的数量，当前支持动态资源扩缩容特性
+
+    * spark.dynamicAllocation.enabled = <span class="literal">true</span>
+    * spark.dynamicAllocation.executorIdleTimeout = <span class="number">120</span>
+    * spark.dynamicAllocation.schedulerBacklogTimeout = <span class="number">10</span>
+    * spark.dynamicAllocation.minExecutors/maxExecutors
+
+<span class="number">11.</span> 当申请固定的executors时且task数大于executor数时，存在着资源的空闲状态。</span>
+</code></pre><p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_5.JPG" alt=""><br>&lt;完&gt;</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2015/学习《腾讯在Spark上的应用与实践优化》/" data-id="cid1dnrg0000cqclmzy7fpclb" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/13-14年收集的大数据的一些技术架构图/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">13~14年收集的大数据的一些技术架构图</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">

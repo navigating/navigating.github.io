@@ -87,6 +87,180 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2015/使用Hexo搭建Github静态博客" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/使用Hexo搭建Github静态博客/" class="article-date">
+  <time datetime="2015-07-28T09:20:22.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/使用Hexo搭建Github静态博客/">使用Hexo搭建Github静态博客</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>环境：</p>
+<pre><code><span class="bullet">1. </span>Windows XP
+<span class="bullet">2. </span>Git
+</code></pre><p>步骤：</p>
+<pre><code><span class="bullet">1. </span>安装Node.js
+<span class="bullet">2. </span>安装Hexo
+<span class="bullet">3. </span>创建博客(初始化Hexo)
+<span class="bullet">4. </span>创建文章本地调试
+<span class="bullet">5. </span>配置Github
+<span class="bullet">6. </span>远程发布
+<span class="bullet">7. </span>支持sitemap和feed
+<span class="bullet">8. </span>支持百度统计
+<span class="bullet">9. </span>支持图片
+<span class="bullet">10. </span>支持Swiftype站内搜索
+<span class="bullet">11. </span>参考资源
+</code></pre><h2 id="安装Node-js">安装Node.js</h2><p>下载并安装，<a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></p>
+<h2 id="安装Hexo">安装Hexo</h2><p>通过命令 npm install -g hexo 安装</p>
+<pre><code><span class="attribute">D</span>:\git\hexo&gt;npm install -g hexo
+
+npm WARN optional dep failed, continuing fsevents<span class="variable">@0</span>.<span class="number">3.6</span>
+npm WARN optional dep failed, continuing fsevents<span class="variable">@0</span>.<span class="number">3.6</span>
+-
+
+
+&gt; dtrace-provider<span class="variable">@0</span>.<span class="number">5.0</span> install <span class="attribute">C</span>:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo\node_modules\bunyan\node_modules\dtrace-provider
+&gt; node scripts/install.js
+
+<span class="attribute">C</span>:\Users\stevenxu\AppData\Roaming\npm\hexo -&gt; <span class="attribute">C</span>:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo\bin\hexo
+hexo<span class="variable">@3</span>.<span class="number">1.1</span> <span class="attribute">C</span>:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo
+├── pretty-hrtime<span class="variable">@1</span>.<span class="number">0.0</span>
+├── hexo-front-matter<span class="variable">@0</span>.<span class="number">2.2</span>
+├── abbrev<span class="variable">@1</span>.<span class="number">0.7</span>
+├── titlecase<span class="variable">@1</span>.<span class="number">0.2</span>
+├── archy<span class="variable">@1</span>.<span class="number">0.0</span>
+├── text-table<span class="variable">@0</span>.<span class="number">2.0</span>
+├── tildify<span class="variable">@1</span>.<span class="number">1.0</span> (os-homedir<span class="variable">@1</span>.<span class="number">0.1</span>)
+├── strip-indent<span class="variable">@1</span>.<span class="number">0.1</span> (get-stdin<span class="variable">@4</span>.<span class="number">0.1</span>)
+├── hexo-i18n<span class="variable">@0</span>.<span class="number">2.1</span> (sprintf-js<span class="variable">@1</span>.<span class="number">0.3</span>)
+├── chalk<span class="variable">@1</span>.<span class="number">1.0</span> (escape-string-regexp<span class="variable">@1</span>.<span class="number">0.3</span>, supports-color<span class="variable">@2</span>.<span class="number">0.0</span>, ansi-styles<span class="variable">@2</span>.<span class="number">1.0</span>, strip-ansi<span class="variable">@3</span>.<span class="number">0.0</span>, has-ansi<span class="variable">@2</span>.<span class="number">0.0</span>)
+├── bluebird<span class="variable">@2</span>.<span class="number">9.34</span>
+├── minimatch<span class="variable">@2</span>.<span class="number">0.10</span> (brace-expansion<span class="variable">@1</span>.<span class="number">1.0</span>)
+├── through2<span class="variable">@1</span>.<span class="number">1.1</span> (xtend<span class="variable">@4</span>.<span class="number">0.0</span>, readable-stream<span class="variable">@1</span>.<span class="number">1.13</span>)
+├── swig-extras<span class="variable">@0</span>.<span class="number">0.1</span> (markdown<span class="variable">@0</span>.<span class="number">5.0</span>)
+├── hexo-fs<span class="variable">@0</span>.<span class="number">1.3</span> (escape-string-regexp<span class="variable">@1</span>.<span class="number">0.3</span>, graceful-fs<span class="variable">@3</span>.<span class="number">0.8</span>, chokidar<span class="variable">@0</span>.<span class="number">12.6</span>)
+├── js-yaml<span class="variable">@3</span>.<span class="number">3.1</span> (esprima<span class="variable">@2</span>.<span class="number">2.0</span>, argparse<span class="variable">@1</span>.<span class="number">0.2</span>)
+├── nunjucks<span class="variable">@1</span>.<span class="number">3.4</span> (optimist<span class="variable">@0</span>.<span class="number">6.1</span>, chokidar<span class="variable">@0</span>.<span class="number">12.6</span>)
+├── warehouse<span class="variable">@1</span>.<span class="number">0.2</span> (graceful-fs<span class="variable">@3</span>.<span class="number">0.8</span>, cuid<span class="variable">@1</span>.<span class="number">2.5</span>, JSONStream<span class="variable">@0</span>.<span class="number">10.0</span>)
+├── cheerio<span class="variable">@0</span>.<span class="number">19.0</span> (entities<span class="variable">@1</span>.<span class="number">1.1</span>, dom-serializer<span class="variable">@0</span>.<span class="number">1.0</span>, css-select<span class="variable">@1</span>.<span class="number">0.0</span>, htmlparser2<span class="variable">@3</span>.<span class="number">8.3</span>)
+├── bunyan<span class="variable">@1</span>.<span class="number">4.0</span> (safe-json-stringify<span class="variable">@1</span>.<span class="number">0.3</span>, dtrace-provider<span class="variable">@0</span>.<span class="number">5.0</span>, mv<span class="variable">@2</span>.<span class="number">1.1</span>)
+
+├── hexo-cli<span class="variable">@0</span>.<span class="number">1.7</span> (minimist<span class="variable">@1</span>.<span class="number">1.2</span>)
+├── moment-timezone<span class="variable">@0</span>.<span class="number">3.1</span>
+├── moment<span class="variable">@2</span>.<span class="number">10.3</span>
+├── hexo-util<span class="variable">@0</span>.<span class="number">1.7</span> (ent<span class="variable">@2</span>.<span class="number">2.0</span>, highlight.js<span class="variable">@8</span>.<span class="number">6.0</span>)
+├── swig<span class="variable">@1</span>.<span class="number">4.2</span> (optimist<span class="variable">@0</span>.<span class="number">6.1</span>, uglify-js<span class="variable">@2</span>.<span class="number">4.24</span>)
+└── lodash<span class="variable">@3</span>.<span class="number">10.0</span>
+
+<span class="attribute">D</span>:\git\hexo&gt;
+</code></pre><h2 id="创建博客(初始化hexo)">创建博客(初始化hexo)</h2><p>创建博客站点的本地目录，然后在文件夹下执行命令：</p>
+<pre><code><span class="variable">$ </span>hexo init
+</code></pre><p>[info] Copying data<br>[info] You are almost done! Don’t forget to run <code>npm install</code> before you start b<br>logging with Hexo!</p>
+<p>Hexo会自动在目标文件夹下建立网站所需要的文件。然后按照提示，安装node_modules，执行如下命令：</p>
+<pre><code>$ hexo <span class="keyword">install</span>
+</code></pre><h2 id="创建文章本地调试">创建文章本地调试</h2><p>预览本地调试模式，执行如下命令：</p>
+<pre><code>$ hexo <span class="keyword">server</span>
+</code></pre><p>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.</p>
+<p>关键命令简介：</p>
+<pre><code><span class="title">hexo</span> n     <span class="comment">#创建新的文章</span>
+hexo g     <span class="comment">#重新生成站点</span>
+hexo s     <span class="comment">#启动本地服务</span>
+hexo d     <span class="comment">#发布到github</span>
+</code></pre><p>创建文章</p>
+<pre><code>$ hexo <span class="keyword">new</span> <span class="string">"使用Hexo搭建Github静态博客"</span> 
+</code></pre><p>在Hexo工作文件夹下source_posts发现新创建的md文件 使用Hexo搭建Github静态博客.md 。</p>
+<h2 id="配置Github">配置Github</h2><p>部署到Github需要修改配置文件_config.yml文件，在Hexo工作目录之下：</p>
+<pre><code># Deployment
+## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span>
+<span class="label">
+deploy:</span>
+<span class="label">    type:</span> git
+<span class="label">    repository:</span> git<span class="annotation">@github</span>.<span class="string">com:</span>&lt;Your Github Username&gt;/&lt;Your github.io url&gt;
+<span class="label">    branch:</span> master
+</code></pre><p>注意，当前type为git，而不是github</p>
+<p>测试Github是否好用    </p>
+<pre><code><span class="title">ssh</span> -T git<span class="variable">@github</span>.com
+</code></pre><h2 id="远程发布">远程发布</h2><p>远程部署到Github，通过执行如下命令：    </p>
+<pre><code><span class="variable">$ </span>hexi deploy
+</code></pre><p>Troubleshooting<br>出现错误：Error: spawn git ENOENT<br>解决方案：<br><a href="http://blog.csdn.net/rainloving/article/details/46595559" target="_blank" rel="external">http://blog.csdn.net/rainloving/article/details/46595559</a> </p>
+<p>使用github出现：fatal: unable to access: Failed connect to github.com:8080: No error<br>解决方案：<br><a href="http://www.zhihu.com/question/26954892" target="_blank" rel="external">http://www.zhihu.com/question/26954892</a> </p>
+<p>使用github出现：ssh:connect to host github.com port 22: Bad file number<br>解决方案：<br><a href="http://www.xnbing.org/?p=759" target="_blank" rel="external">http://www.xnbing.org/?p=759</a><br><a href="http://blog.csdn.net/temotemo/article/details/7641883" target="_blank" rel="external">http://blog.csdn.net/temotemo/article/details/7641883</a> </p>
+<h2 id="支持sitemap和feed">支持sitemap和feed</h2><p>首先安装sitemap和feed插件</p>
+<pre><code>$ npm <span class="keyword">install</span> hexo-generator-sitemap
+$ npm <span class="keyword">install</span> hexo-generator-feed
+</code></pre><p>修改配置，在文件 _config.yml 增加以下内容</p>
+<pre><code><span class="preprocessor"># Extensions</span>
+<span class="label">Plugins:</span>
+- hexo-generator-feed
+- hexo-generator-sitemap
+
+<span class="preprocessor">#Feed Atom</span>
+<span class="label">feed:</span>
+    type: atom
+    path: atom.xml
+    limit: <span class="number">20</span>
+
+<span class="preprocessor">#sitemap</span>
+<span class="label">sitemap:</span>
+    path: sitemap.xml
+</code></pre><p>在 themes\landscape_config.yml 中添加：</p>
+<pre><code><span class="attribute">menu</span>:
+    <span class="attribute">Home</span>: /
+    <span class="attribute">Archives</span>: /archives
+    <span class="attribute">Sitemap</span>: /sitemap.xml
+<span class="attribute">rss</span>: /atom.xml
+</code></pre><h2 id="支持百度统计">支持百度统计</h2><p>在 <a href="http://tongji.baidu.com" target="_blank" rel="external">http://tongji.baidu.com</a> 注册帐号，添加网站，生成统计功能的 JS 代码。</p>
+<p>在 themes\landscape_config.yml 中新添加一行：</p>
+<pre><code><span class="keyword">baidu_t</span>ongji: <span class="keyword">true</span>
+</code></pre><p>在 themes\landscape\layout_partial\head.ejs 中head的结束标签  之前新添加一行代码</p>
+<pre><code>&lt;<span class="preprocessor">%</span>- partial<span class="comment">('baidu_tongji')</span> <span class="preprocessor">%</span>&gt;
+</code></pre><p>在 themes\landscape\layout_partial 中新创建一个文件 baidu_tongji.ejs 并添加如下内容：</p>
+<pre><code><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (theme.baidu_tongji){ </span>%&gt;<span class="xml">
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="apache">
+    <span class="tag">&lt;百度统计的 JS 代码&gt;</span>
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+</span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml"></span>
+</code></pre><p>添加统计，参考：<br><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">http://ibruce.info/2013/11/22/hexo-your-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a> </p>
+<h2 id="支持图片">支持图片</h2><p>在source目录下创建images目录，然后将图片放在其中。<br>在文章中引用本地图片的语法例如：</p>
+<pre><code>![<span class="link_label">这是一张图片</span>](<span class="link_url">/images/2005_TuoZhanXunLian.jpg</span>)
+</code></pre><h2 id="支持swiftype站内搜索">支持swiftype站内搜索</h2><p>在 <a href="http://siftype.com" target="_blank" rel="external">http://siftype.com</a> 注册一个帐号，按着网站引导流程就可以了。<br>安装 install code 代码到hexo，添加到 themes\landscape\layout_partial\after-footer.ejs，类似添加百度统计的代码。<br>然后回到swiftype网站对 install code 进行确认。通过会在下方弹出一条消息：</p>
+<pre><code><span class="title">Installation</span> successfully activated
+</code></pre><h2 id="添加robots-txt">添加robots.txt</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a> </p>
+<h2 id="参考资源">参考资源</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a><br><a href="https://github.com/bruce-sha" target="_blank" rel="external">https://github.com/bruce-sha</a><br><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a><br><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">http://zipperary.com/2013/05/29/hexo-guide-3/</a><br><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">http://zipperary.com/2013/05/30/hexo-guide-4/</a><br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br><a href="http://blog.moyizhou.cn/web/search-engine-for-static-pages/" target="_blank" rel="external">http://blog.moyizhou.cn/web/search-engine-for-static-pages/</a><br><a href="http://www.jerryfu.net/post/search-engine-for-hexo-with-swiftype.html" target="_blank" rel="external">http://www.jerryfu.net/post/search-engine-for-hexo-with-swiftype.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2015/使用Hexo搭建Github静态博客/" data-id="cid1dnrha001eqclm4oy34ss4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2015/hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/hello-world/" class="article-date">
@@ -126,7 +300,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/hello-world/" data-id="cicycqd1p001k1wlmdk8nztpm" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/hello-world/" data-id="cid1dnrhk001mqclm8tvtucde" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/">hexo</a></li></ul>
@@ -171,7 +345,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/Hadoop-2-7-1-发布/" data-id="cicycqd23001v1wlmf6yfv2n0" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/Hadoop-2-7-1-发布/" data-id="cid1dnrhz001xqclmsh5ncijn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
@@ -237,7 +411,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/" data-id="cicycqczz00061wlmfocnbh80" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/" data-id="cid1dnrfr0006qclmvbpybgrd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li></ul>
@@ -284,82 +458,10 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/大数据动态之201506/" data-id="cicycqd0h000o1wlmmf9jwod6" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/大数据动态之201506/" data-id="cid1dnrge000qqclm97ij94jf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HBase/">HBase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2015/大数据动态之201505" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/大数据动态之201505/" class="article-date">
-  <time datetime="2015-05-19T02:17:28.000Z" itemprop="datePublished">2015-05-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/大数据动态之201505/">大数据动态之201505</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>近期动态：<br>Hadoop 2.7发布。<br>Hortonworks HDP 2.2.4.2发布。<br>Ambari 2.0发布。<br>Cloudera Enterperise 5.4发布。<br>Hive 1.2.0 发布，支持Hive on Spark。</p>
-<p>HDP 2.2/HDP 2.2.4/Ambari 2.0/Ambari 2.0.1</p>
-<pre><code><span class="bullet">1. </span>HDP支持异构存储Heterogeneous storage，主要是对SSD的支持；
-<span class="bullet">2. </span>Hive开始支持 ACID 事务，向企业级应用场景前进了一大步；
-<span class="bullet">3. </span>HDP支持Spark 1.2.1；
-<span class="bullet">4. </span>HDP支持通过DominantResourceCalculator对CPU的资源隔离与资源调度；
-<span class="bullet">5. </span>Ambari 支持Blurprint，通过 REST API 管理和运维有更好的支持；
-<span class="bullet">6. </span>Ambari 支持Stacks，通过Stacks方式来定义一系列的集成组件；
-<span class="bullet">7. </span>Ambari 2.0支持HDP 2.2平台的Rolling Upgrades；
-<span class="bullet">8. </span>Ambari 2.0支持安装、配置Apache Ranger；
-<span class="bullet">9. </span>Ambari 2.0开始集成Ambari Alerts；
-<span class="bullet">10. </span>Ambari 2.0开始集成Ambari Metrics，替代之前的Ganglia；
-<span class="bullet">11. </span>Ambari 2.0开始支持User Views功能，User Views提供给运维人员更好的界面，包括Tez View、Capacity Scheduler View、Hive View、Pig View、Files View；
-</code></pre><p>HDP 2.2之后部署的结构与之前有调整，新部署的结构与说明如下：</p>
-<p>目录结构<br>从HDP 2.2之后，HDP安装后的目录结构发生了变化，之前安装后的Hadoop在/usr/lib目录下，现在变更到/usr/hdp目录下，结构如下：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"> &#123;code&#125;</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop/bin</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop<span class="regexp">/conf -&gt; /</span>etc<span class="regexp">/hadoop/</span>conf</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop/lib</span><br><span class="line">│   │   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop<span class="regexp">/lib/</span>native</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop/libexec</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop/man</span><br><span class="line">│   └── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop/sbin</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop-hdfs</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop-hdfs/bin</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop-hdfs/lib</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop-hdfs/sbin</span><br><span class="line">│   └── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hadoop-hdfs/webapps</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hbase</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hbase/bin</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hbase<span class="regexp">/conf -&gt; /</span>etc<span class="regexp">/hbase/</span>conf</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hbase/doc</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hbase/include</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>hbase/lib</span><br><span class="line">└── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>zookeeper</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>zookeeper/bin</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>zookeeper<span class="regexp">/conf -&gt; /</span>etc<span class="regexp">/zookeeper/</span>conf</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>zookeeper/doc</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>zookeeper/lib</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.0.0-2041/</span>zookeeper/man</span><br><span class="line"> &#123;code&#125;</span><br><span class="line"> &#123;code&#125;</span><br><span class="line"><span class="regexp">/usr/</span>hdp/<span class="number">2.2</span>.3.0-<span class="number">2611</span></span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop/bin</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop<span class="regexp">/conf -&gt; /</span>etc<span class="regexp">/hadoop/</span>conf</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop/lib</span><br><span class="line">│   │   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop<span class="regexp">/lib/</span>native</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop/libexec</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop/man</span><br><span class="line">│   └── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop/sbin</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop-hdfs</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop-hdfs/bin</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop-hdfs/lib</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop-hdfs/sbin</span><br><span class="line">│   └── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hadoop-hdfs/webapps</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hbase</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hbase/bin</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hbase<span class="regexp">/conf -&gt; /</span>etc<span class="regexp">/hbase/</span>conf</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hbase/doc</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hbase/include</span><br><span class="line">│   ├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>hbase/lib</span><br><span class="line">└── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>zookeeper</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>zookeeper/bin</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>zookeeper<span class="regexp">/conf -&gt; /</span>etc<span class="regexp">/zookeeper/</span>conf</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>zookeeper/doc</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>zookeeper/lib</span><br><span class="line">├── <span class="regexp">/usr/</span>hdp<span class="regexp">/2.2.3.0-2611/</span>zookeeper/man</span><br><span class="line"> &#123;code&#125;</span><br></pre></td></tr></table></figure></p>
-<p>管理活动版本<br>HDP 2.0之后推出了hdp-select服务，通过这个服务可以管理活动版本，默认就会安装hdp-select，可以通过hdp-select命令验证是否安装。<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; hdp-<span class="keyword">select</span><br><span class="line"></span>&gt; hdp-<span class="keyword">select </span>versions</span><br></pre></td></tr></table></figure></p>
-<p>同样支持管理命令，例如：</p>
-<pre><code>&gt; <span class="tag">hdp-select</span> <span class="tag">set</span> <span class="tag">hadoop-hdfs-datanode</span> 2<span class="class">.2</span><span class="class">.3</span><span class="class">.0-2600</span>
-</code></pre><p>安装后的库、工具和脚本<br>库<br>HDP 2.0之前安装后库放在/usr/lib下，现在放在/usr/hdp/current下：</p>
-<pre><code><span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>hadoop-hdfs-namenode/
-<span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>hadoop-yarn-resourcemanager
-<span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>hadoop-mapreduce-client/hadoop-mapreduce-examples.jar
-</code></pre><p>Daemon Scripts</p>
-<pre><code><span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>hadoop-hdfs-namenode<span class="regexp">/../</span>hadoop<span class="regexp">/sbin/</span>hadoop-deamon.sh
-<span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>hadoop-yarn-resourcemanager<span class="regexp">/sbin/y</span>arn-daemon.sh
-<span class="regexp">/usr/</span>hdp<span class="regexp">/current/</span>hadoop-yarn-nodemanager<span class="regexp">/sbin/y</span>arn-daemon.sh
-</code></pre><p>Configuration files</p>
-<pre><code><span class="regexp">/etc/</span>hadoop<span class="regexp">/conf</span>
-</code></pre><p>Bin Scripts</p>
-<pre><code><span class="regexp">/usr/</span>bin<span class="regexp">/hadoop -&gt; /u</span>sr<span class="regexp">/hdp/</span>current<span class="regexp">/hadoop-client/</span>bin<span class="regexp">/hadoop</span>
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/大数据动态之201505/" data-id="cicycqd0v000x1wlmvbuf5i70" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ambari/">Ambari</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hive/">Hive</a></li></ul>
 
     </footer>
   </div>
@@ -381,7 +483,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">33</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -404,6 +506,10 @@ var _hmt = _hmt || [];
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/学习《腾讯在Spark上的应用与实践优化》/">学习《腾讯在Spark上的应用与实践优化》</a>
+          </li>
         
           <li>
             <a href="/2015/13-14年收集的大数据的一些技术架构图/">13~14年收集的大数据的一些技术架构图</a>
@@ -481,10 +587,6 @@ var _hmt = _hmt || [];
             <a href="/2007/2006年年终总结-原名：一篇没有写完的BLOG/">2006年年终总结(原名：一篇没有写完的BLOG)</a>
           </li>
         
-          <li>
-            <a href="/2007/开聊有益/">开聊有益</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -494,7 +596,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

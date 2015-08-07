@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-05T05:38:56.350Z</updated>
+  <updated>2015-08-07T08:32:35.655Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,61 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[学习《腾讯在Spark上的应用与实践优化》]]></title>
+    <link href="http://navigating.github.io/2015/%E5%AD%A6%E4%B9%A0%E3%80%8A%E8%85%BE%E8%AE%AF%E5%9C%A8Spark%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5%E4%BC%98%E5%8C%96%E3%80%8B/"/>
+    <id>http://navigating.github.io/2015/学习《腾讯在Spark上的应用与实践优化》/</id>
+    <published>2015-08-07T08:28:42.000Z</published>
+    <updated>2015-08-07T08:32:35.655Z</updated>
+    <content type="html"><![CDATA[<p>《腾讯在Spark上的应用与实践优化》原文参见：<a href="http://download.csdn.net/detail/happytofly/8637461" target="_blank" rel="external">http://download.csdn.net/detail/happytofly/8637461</a></p>
+<p>TDW: Tencent Distributed Data Warehouse，腾讯分布式数据仓库；<br>GAIA：腾讯自研的基于YARN定制化和优化的资源管理系统；<br>Lhoste：腾讯自研的作业的工作流调度系统，类似于Oozie；<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_1.JPG" alt=""></p>
+<p>TDW集群规模：</p>
+<pre><code><span class="bullet">1. </span>Gaia集群节点数：8000+；
+<span class="bullet">2. </span>HDFS的存储空间：150PB+；
+<span class="bullet">3. </span>每天新增数据：1PB+；
+<span class="bullet">4. </span>每天任务数：1M+；
+<span class="bullet">5. </span>每天计算量：10PB+；
+</code></pre><p>Spark集群：</p>
+<pre><code><span class="bullet">1. </span>Spark部署在Gaia之上，即是Spark on YARN模式，每个节点是 24 cores 和 60G 内存；
+<span class="bullet">2. </span>底层存储包括：HDFS、HBase、Hive、MySQL；
+<span class="bullet">3. </span>作业类型，包括：ETL、SparkSQL、Machine Learning、Graph Compute、Streaming；
+<span class="bullet">4. </span>每天任务数，10K+；
+<span class="bullet">5. </span>腾讯从2013年开始引入Spark 0.6，已经使用2年了；
+</code></pre><p>Spark的典型应用：</p>
+<pre><code><span class="bullet">1. </span>预测用户的广告点击概率；
+<span class="bullet">2. </span>计算两个好友间的共同好友数；
+<span class="bullet">3. </span>用于ETL的SparkSQL和DAG任务；
+</code></pre><p>Case 1: 预测用户的广告点击概率<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_4.JPG" alt=""></p>
+<pre><code><span class="number">1</span>. 数据是通过<span class="function"><span class="title">DCT</span><span class="params">(Data Collect Tool)</span></span>推送到HDFS上，然后Spark直接将HDFS数据导入到 RDD&amp;Cache；
+<span class="number">2</span>. <span class="number">60</span>次迭代计算的时间为<span class="number">10</span>～<span class="number">15</span>分钟，即每次迭代<span class="number">10</span>～<span class="number">15</span>秒；
+</code></pre><p>Case 2: 计算两个好友间的共同好友数</p>
+<pre><code>1. 根据shuffle数量来确定partition数量；
+2. 尽量使用sort-based shuffle，减少reduce的内存使用；
+3. 当连接超时后选择重试来减少executor丢失的概率；
+4. 避免executor被YARN给<span class="operator"><span class="keyword">kill</span>掉，设置 spark.yarn.executor.memoryoverhead
+<span class="number">5.</span> 执行语句 <span class="keyword">INSERT</span> <span class="keyword">TABLE</span> test_result <span class="keyword">SELECT</span> t3.d, <span class="keyword">COUNT</span>(*) FROＭ( <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> a, b <span class="keyword">FROM</span> join_1 ) t1 <span class="keyword">JOIN</span> （<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> b, c <span class="keyword">FROM</span> join_2 ) t2 <span class="keyword">ON</span> (t1.a = t2.c) <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> c, d <span class="keyword">FROM</span> c, d <span class="keyword">FROM</span> join_3 ) t3 <span class="keyword">ON</span> (t2.b = t3.d) <span class="keyword">GROUP</span> <span class="keyword">BY</span> t3.d 使用Hive需要<span class="number">30</span>分钟，使用SparkSQL需要<span class="number">5</span>分钟；
+<span class="number">6.</span> 当有小表时使用broadcase <span class="keyword">join</span>代替Common <span class="keyword">join</span>；
+<span class="number">7.</span> 尽量使用ReduceByKey代替GroupByKey；
+<span class="number">8.</span> 设置spark.serializer = org.apache.spark.serializer.KryoSerializer；
+<span class="number">9.</span> 使用YARN时，设置spark.shuffle.service.enabled = <span class="literal">true</span>；
+<span class="number">10.</span> 在早期版本中Spark通过启动参数固定executor的数量，当前支持动态资源扩缩容特性
+
+    * spark.dynamicAllocation.enabled = <span class="literal">true</span>
+    * spark.dynamicAllocation.executorIdleTimeout = <span class="number">120</span>
+    * spark.dynamicAllocation.schedulerBacklogTimeout = <span class="number">10</span>
+    * spark.dynamicAllocation.minExecutors/maxExecutors
+
+<span class="number">11.</span> 当申请固定的executors时且task数大于executor数时，存在着资源的空闲状态。</span>
+</code></pre><p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_5.JPG" alt=""><br>&lt;完&gt;</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>《腾讯在Spark上的应用与实践优化》原文参见：<a href="http://download.csdn.net/detail/happytofly/8637461" target="_blank" rel="external">http://download.csdn.]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[13~14年收集的大数据的一些技术架构图]]></title>
@@ -1424,22 +1479,6 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
 ]]></content>
     <summary type="html">
     <![CDATA[<p>2006已经过去，2007已经开始。<br>过去的一年，有高兴，有激动，有不少难以忘记的时刻，有很多痛苦的思考。当我面对和回首自己过去的一年，我不知道自己除了时间之外究竟还失去了什么，自己除了痛苦之外还有多少收获？<br>人是可以活的洒脱些，就看一个人究竟要的是什么？就看你]]>
-    </summary>
-    
-      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[开聊有益]]></title>
-    <link href="http://navigating.github.io/2007/%E5%BC%80%E8%81%8A%E6%9C%89%E7%9B%8A/"/>
-    <id>http://navigating.github.io/2007/开聊有益/</id>
-    <published>2007-03-13T03:27:30.000Z</published>
-    <updated>2015-08-01T03:28:00.083Z</updated>
-    <content type="html"><![CDATA[<p>偶尔看一下中央二套的两会节目，竟然在讨论青少年上网的社会/教育问题。<br>抨击我国现状教育的不在少数，学校教育大体上就是一种“推”的教育方式，是一种社会培养人才的最重要的体系，是对未来人才的储备机制，正如宣传所说青少年就是花儿的年华。人生只有一次，家长，社会的期望终归是一种期望，孩子有孩子的乐趣，孩子的年华，孩子的思想。<br>就针对个人而言，回想数十年“寒窗读书”有意思的好像真没多少，或许是背了些英语单词，记了些简单的英语句子；还有就是几篇语文的文章名字或者几个名句；还有几个数理化的专业术语。如果说是从业研究方向，可能还正能捡起些东西来。一般人对于孩子教育不外乎认为培养兴趣，培养性格等几个方面，当我们进入社会，发现做人本身就不是件容易的事情，何况培养人，培养人才。<br>一提到问题/隐患，很多人不约而同的想到改革这个话题，我有个朋友谈到，教育抓得是人的未来，医疗抓得人的命，谁都无法逃脱其中，改革这两项何其难啊。这真是一阵见血的评论。<br>培养性格是很重要的一方面，培养什么样的人才至少需要前瞻性的眼界了解社会的人才需求方向，所以做大师就不是那么简单的事情了。<br>一个人走出校门的同时进入社会，肯定能强烈感觉到社会需要什么样的人才的，很多时候就是社会在“拉”了，在这个过程中人类表现了异常聪明的一面，总是在做自我培养，提高自身。中国哲学的本身很大成分上都是和自己斗争的过程，大体上是自我培养的哲学体系，可见中国人对于社会还是异常重视尊重的。学校教育带来的很大的弊端就是自闭，一不小心就走入了以自我为中心的圈子；同时容易让人抑郁。估计很多人在人生的某些阶段都会有抑郁，自闭的问题；要提高自我必须要认清出这个问题，解决这个问题。<br>中国人大体上不怎么提倡Open这种方式，我们在社会中愈来愈发现Open的重要性，所以更多人都宁愿自己是一个心理，眼睛，思维都很Open的人。<br>我自身已近从事软件开发三年多，如果让我回首认为该毕业的时候如何策划培养自己，除了性格之外有三点：<br>1。沟通能力，做好任何一件事情，寻找任何一个机会，每一次自我的提高，都是从沟通开始的。世界变得越来越平，沟通的空间时间也在增长。<br>2。语言(掌控)能力，能够多掌握一门语言，相当于给自己多了一个世界，机会，眼界，空间。。。。。。<br>3。技术能力，这是一个从事软件开发人员的立身基础，也是对于行业知识的积累。<br>世界如此美丽，希望每一个人都要好好的珍惜。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>偶尔看一下中央二套的两会节目，竟然在讨论青少年上网的社会/教育问题。<br>抨击我国现状教育的不在少数，学校教育大体上就是一种“推”的教育方式，是一种社会培养人才的最重要的体系，是对未来人才的储备机制，正如宣传所说青少年就是花儿的年华。人生只有一次，家长，社会的期望终归是一]]>
     </summary>
     
       <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
