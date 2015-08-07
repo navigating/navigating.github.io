@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-07T08:32:35.655Z</updated>
+  <updated>2015-08-07T08:37:53.504Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://navigating.github.io/2015/%E5%AD%A6%E4%B9%A0%E3%80%8A%E8%85%BE%E8%AE%AF%E5%9C%A8Spark%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5%E4%BC%98%E5%8C%96%E3%80%8B/"/>
     <id>http://navigating.github.io/2015/学习《腾讯在Spark上的应用与实践优化》/</id>
     <published>2015-08-07T08:28:42.000Z</published>
-    <updated>2015-08-07T08:32:35.655Z</updated>
+    <updated>2015-08-07T08:37:53.504Z</updated>
     <content type="html"><![CDATA[<p>《腾讯在Spark上的应用与实践优化》原文参见：<a href="http://download.csdn.net/detail/happytofly/8637461" target="_blank" rel="external">http://download.csdn.net/detail/happytofly/8637461</a></p>
 <p>TDW: Tencent Distributed Data Warehouse，腾讯分布式数据仓库；<br>GAIA：腾讯自研的基于YARN定制化和优化的资源管理系统；<br>Lhoste：腾讯自研的作业的工作流调度系统，类似于Oozie；<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_1.JPG" alt=""></p>
 <p>TDW集群规模：</p>
@@ -65,6 +65,12 @@
     <summary type="html">
     <![CDATA[<p>《腾讯在Spark上的应用与实践优化》原文参见：<a href="http://download.csdn.net/detail/happytofly/8637461" target="_blank" rel="external">http://download.csdn.]]>
     </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
