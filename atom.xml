@@ -682,116 +682,164 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
   </entry>
   
   <entry>
-    <title><![CDATA[鲶鱼效应]]></title>
-    <link href="http://navigating.github.io/2009/%E9%B2%B6%E9%B1%BC%E6%95%88%E5%BA%94/"/>
-    <id>http://navigating.github.io/2009/鲶鱼效应/</id>
-    <published>2009-12-23T15:29:51.000Z</published>
-    <updated>2015-08-09T15:34:23.270Z</updated>
-    <content type="html"><![CDATA[<p>鲶鱼效应(Catfish Effect) ，也称鲇鱼效应(Weever Effect)<br>什么是鲶鱼效应<br>挪威人爱吃沙丁鱼，挪威人在海上捕得沙丁鱼后，如果能让他活着抵港，卖价就会比死鱼高好几倍。但是，由于沙丁鱼生性懒惰，不爱运动，返航的路途又很长，因此捕捞到的沙丁鱼往往一回到码头就死了，即使有些活的，也是奄奄一息。只有一位渔民的沙丁鱼总是活的，而且很生猛，所以他赚的钱也比别人的多。该渔民严守成功秘密，直到他死后，人们才打开他的鱼槽，发现只不过是多了一条鲶鱼。原来当鲶鱼装入鱼槽后，由于环境陌生，就会四处游动，而沙丁鱼发现这一异已分子后，也会紧张起来，加速游动，如此一来，沙丁鱼便活着回到港口。这就是所谓的“鲶鱼效应”。这一效应，即是通过个体的“中途介入”，对群体起到竞争作用。</p>
-<p>Catfish Effect<br>The catfish effect is the effect that a strong competitor has in causing the weak to better themselves.<br>In Norway, live sardines are a few times more expensive than frozen ones. It was said that only one ship could bring live Sardine home, and the ship master kept his method a secret. When he later died, people found that there was one catfish in the container. The catfish keeps swimming and the sardine becomes very active to avoid direct contact with this Catfish.<br>In human resource management, this is a method used to motivate a team so that each member feels a strong competition, thus keeping up the competitiveness of the whole team.</p>
+    <title><![CDATA[学习之--Stack Exchange网站架构]]></title>
+    <link href="http://navigating.github.io/2011/%E5%AD%A6%E4%B9%A0%E4%B9%8B-Stack-Exchange%E7%BD%91%E7%AB%99%E6%9E%B6%E6%9E%84/"/>
+    <id>http://navigating.github.io/2011/学习之-Stack-Exchange网站架构/</id>
+    <published>2011-03-20T15:59:05.000Z</published>
+    <updated>2015-08-09T16:04:30.767Z</updated>
+    <content type="html"><![CDATA[<p>Stack Exchange系统管理员blog 上发布了一篇架构的文章。</p>
+<p>网络流量 </p>
+<ul>
+<li>每月95M的PV</li>
+<li>每秒800个HTTP请求</li>
+<li>每秒180个DNS请求</li>
+<li>每秒55Mb的网络带宽</li>
+</ul>
+<p>数据中心 </p>
+<ul>
+<li>1个机柜位于俄勒冈的Peak Internet(用于chat和Data Explorer)</li>
+<li>2个机柜位于纽约的Peer 1 (用于其他的Stack Exchange Network)</li>
+</ul>
+<p>生产服务器 </p>
+<ul>
+<li>12 Web Servers (Windows Server 2008 R2)</li>
+<li>2 Database Servers (Windows Server 2008 R2 and SQL Server 2008 R2)</li>
+<li>2 Load Balancers (Ubuntu Server and HAProxy)</li>
+<li>2 Caching Servers (Redis on CentOS)</li>
+<li>1 Router / Firewall (Ubuntu Server)</li>
+<li>3 DNS Servers (Bind on CentOS)</li>
+</ul>
+<p>所有的软件和技术 </p>
+<ul>
+<li>开发语言: C# / .NET</li>
+<li>持续构建服务器: CruiseControl.NET</li>
+<li>源码管理: Mercurial / Kiln</li>
+<li>操作系统: Windows Server 2008 R2，Ubuntu Server，CentOS</li>
+<li>数据库服务器：SQL Server 2008 R2</li>
+<li>DNS服务器：Bind</li>
+<li>负载均衡软件：HAProxy</li>
+<li>缓存服务器：Redis</li>
+<li>日志: Splunk</li>
+<li>搜索索引技术: Lucene.NET</li>
+<li>备份: Bacula</li>
+<li>系统监控: Nagios (with n2rrd and drraw plugins)</li>
+<li>监控SQL Server: SQL Monitor from Red Gate</li>
+</ul>
+<p>程序员和系统管理员 </p>
+<ul>
+<li>14 位程序员</li>
+<li>2   位系统管理员</li>
+</ul>
+<p>(以上不含故障备份和管理服务器)<br>———————————————————–<br>分析：<br>1.使用了三种操作系统：Windows Server, CentOS, Ubuntu Server；共有22个服务器，三个机柜；<br>2.可能的架构：DNS Servers–Router/Firewall–Load Balancers–Web Servers–Caching Servers–Database Servers;<br>3.12个Web服务器每秒钟处理800个http请求，感觉投资回报比有点儿低；</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>鲶鱼效应(Catfish Effect) ，也称鲇鱼效应(Weever Effect)<br>什么是鲶鱼效应<br>挪威人爱吃沙丁鱼，挪威人在海上捕得沙丁鱼后，如果能让他活着抵港，卖价就会比死鱼高好几倍。但是，由于沙丁鱼生性懒惰，不爱运动，返航的路途又很长，因此捕捞到的沙丁]]>
+    <![CDATA[<p>Stack Exchange系统管理员blog 上发布了一篇架构的文章。</p>
+<p>网络流量 </p>
+<ul>
+<li>每月95M的PV</li>
+<li>每秒800个HTTP请求</li>
+<li>每秒180个DNS请求</li>
+<li>每秒55Mb的网络带宽</]]>
     </summary>
     
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
+      <category term="Architecture" scheme="http://navigating.github.io/tags/Architecture/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Jboss Netty架构图]]></title>
-    <link href="http://navigating.github.io/2009/Jboss-Netty%E6%9E%B6%E6%9E%84%E5%9B%BE/"/>
-    <id>http://navigating.github.io/2009/Jboss-Netty架构图/</id>
-    <published>2009-12-23T00:29:35.000Z</published>
-    <updated>2015-08-09T15:34:10.336Z</updated>
-    <content type="html"><![CDATA[<p><a href="http://www.jboss.org/file-access/default/members/netty/freezone/guide/3.1/html/architecture.html#d0e2134" target="_blank" rel="external">http://www.jboss.org/file-access/default/members/netty/freezone/guide/3.1/html/architecture.html#d0e2134</a><br>JBoss Netty的架构图如下：<br>&lt;图已遗失&gt;</p>
-<p>1.图中划分个人认为是比较好的NIO网络应用框架功能细分，主要是五个部分：<br>Core：中主要是NIO框架侦听事件、收发消息、消息调度、资源管理等功能，是框架的核型功能；<br>Transport Service：主要是传输/通讯方式的部分；<br>Protocol Support：主要是针对具体的消息如何收发，解析的部分，在非阻塞模式下，一个byte一个byte的解析都关联到整个消息的完整性，因此这部分是主要是外部接口之一；<br>Security Support:这个针对通用的通信问题和一些具体的协议有关；<br>Integration:主要是和第三方容器或者框架的集成部分；<br>2.比较有名的NIO应用框架如下：<br>Apache Mina <a href="http://mina.apache.org" target="_blank" rel="external">http://mina.apache.org</a><br>Jboss Netty <a href="http://jboss.org/netty" target="_blank" rel="external">http://jboss.org/netty</a><br>Sun Glassfish Grizzly <a href="https://grizzly.dev.java.net/" target="_blank" rel="external">https://grizzly.dev.java.net/</a><br>Soureforge NIO Framework <a href="http://nioframework.sourceforge.org" target="_blank" rel="external">http://nioframework.sourceforge.org</a><br>Soureforge xSocket <a href="http://xsocket.sourceforge.org" target="_blank" rel="external">http://xsocket.sourceforge.org</a><br>Quick Server <a href="http://www.quickserver.org/" target="_blank" rel="external">http://www.quickserver.org/</a><br>这些NIO的客户端服务器Socket网络通讯框架在功能上和提供给用户的编程扩展点几乎都很相似/一致。<br>3.网络应用开发中比较重要的两个部分，一个是通讯部分，链路维持以及消息收发部分；另外一个是消息的解析/打包过程(Serializable/Externalizable)。一个延伸的想法就是：NIO网络应用框架 + Google Protocol Buffers.</p>
+    <title><![CDATA[川西旅游]]></title>
+    <link href="http://navigating.github.io/2010/%E5%B7%9D%E8%A5%BF%E6%97%85%E6%B8%B8/"/>
+    <id>http://navigating.github.io/2010/川西旅游/</id>
+    <published>2010-11-06T15:58:48.000Z</published>
+    <updated>2015-08-09T16:03:47.588Z</updated>
+    <content type="html"><![CDATA[<p>川西之成都-四姑娘山-稻城亚丁-康定-海螺沟旅游-成都：<br>D1:成都-雅安-宝兴-夹金山-小金-日隆；午饭夹金山饭店，夜晚住日隆；<br>D2:看四姑娘山，双桥沟；下午日隆-小金-丹巴；午饭在双桥沟门口，住丹巴；<br>D3:丹巴-塔公-八美-新都桥；午饭在八美，住新都桥；<br>D4:新都桥-雅江-理塘-稻城；午饭在理塘，住稻城；<br>D5:稻城-亚丁-珍珠海：中午饭在景区，住亚丁村；<br>D6:亚丁-洛绒牛场-亚丁-稻城，午饭在亚丁，住稻城；<br>D7:稻城-理塘-雅江-新都桥-折多山-康定，午饭在雅江，住康定；<br>D8:康定-木格措-康定-泸定-摩西镇，午饭在泸定，住摩西镇；<br>D9:摩西镇-二郎山-雅安-成都，午饭在摩西镇，住成都；<br>D10:成都-宽窄巷-春熙路-双流机场;<br>喜欢在那儿待着的感觉，里面到底有什么呢？有什么魅力？为什么吸引人呢？也许它就在那儿吸引着你！</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><a href="http://www.jboss.org/file-access/default/members/netty/freezone/guide/3.1/html/architecture.html#d0e2134" target="_blank" rel="e]]>
+    <![CDATA[<p>川西之成都-四姑娘山-稻城亚丁-康定-海螺沟旅游-成都：<br>D1:成都-雅安-宝兴-夹金山-小金-日隆；午饭夹金山饭店，夜晚住日隆；<br>D2:看四姑娘山，双桥沟；下午日隆-小金-丹巴；午饭在双桥沟门口，住丹巴；<br>D3:丹巴-塔公-八美-新都桥；午饭在八美，住新]]>
+    </summary>
+    
+      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JDK 7 in JavaOne 2010]]></title>
+    <link href="http://navigating.github.io/2010/JDK-7-in-JavaOne-2010/"/>
+    <id>http://navigating.github.io/2010/JDK-7-in-JavaOne-2010/</id>
+    <published>2010-09-28T15:58:30.000Z</published>
+    <updated>2015-08-09T16:03:23.558Z</updated>
+    <content type="html"><![CDATA[<p>执行Plan B的JDK 7，愿景：“Making things programmers do everyday easier.”；其Coin项目公布的新特性：</p>
+<p>Improved numeric literals<br>Strings in switch<br>Reduced varargs warnings<br>Diamond operator<br>Multi-catch with more precise rethrow<br>try-with-resources statement</p>
+<p>细节请参考Joseph D.Darcy的博客：<a href="http://blogs.sun.com/darcy/entry/project_coin_javaone_2010" target="_blank" rel="external">http://blogs.sun.com/darcy/entry/project_coin_javaone_2010</a></p>
+<p>文档下载参考：<a href="http://blogs.sun.com/darcy/resource/JavaOne/J1_2010-ProjectCoin.pdf" target="_blank" rel="external">http://blogs.sun.com/darcy/resource/JavaOne/J1_2010-ProjectCoin.pdf</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>执行Plan B的JDK 7，愿景：“Making things programmers do everyday easier.”；其Coin项目公布的新特性：</p>
+<p>Improved numeric literals<br>Strings in switch<br]]>
     </summary>
     
       <category term="Java" scheme="http://navigating.github.io/tags/Java/"/>
     
-      <category term="NIO" scheme="http://navigating.github.io/tags/NIO/"/>
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
-      <category term="Netty" scheme="http://navigating.github.io/tags/Netty/"/>
+  </entry>
+  
+  <entry>
+    <title><![CDATA[摘要:40 Android Business Models]]></title>
+    <link href="http://navigating.github.io/2010/%E6%91%98%E8%A6%81-40-Android-Business-Models/"/>
+    <id>http://navigating.github.io/2010/摘要-40-Android-Business-Models/</id>
+    <published>2010-09-11T15:58:10.000Z</published>
+    <updated>2015-08-09T16:02:37.909Z</updated>
+    <content type="html"><![CDATA[<p>Alex Curelea在Blog中从Sell app to individuals/Freemium/other sorts of products/srevices不同角度归纳了Android的四十种Business Model,分别是：<br>Model #1: Build the App, Sell the App to Individuals<br>Model #2: Make the App, Sell the App to Enterprises<br>Model #3: Make the App, Sell the App to Schools or Universities<br>Model #4: Make the App, Sell the App to OEMs<br>Model #5: Make the App, Sell the App to Content Providers<br>Model #6: Make the App, Sell the App to Service Providers</p>
+<p>Model #7: Give Away the App, Sell the Customizations<br>Model #8: Give Away the App, Sell the Analytics<br>Model #9: Give Away the App, Sell the Remix<br>Model #10: Give Away the App, Sell the Bundle<br>Model #11: Give Away the App, Sell the Plugins<br>Model #12: Give Away the App, Sell the Feature Unlock Codes<br>Model #13: Give Away the App, Sell In-App Ads<br>Model #14: Give Away the App, Sell the Account<br>Model #15: Give Away the App, Sell Support<br>Model #16: Give Away the App, Sell the API<br>Model #17: Give Away the App, Sell the Content<br>Model #18: Give Away the App, Sell Premium Placement<br>Model #19: Give Away the App, Sell the Firm</p>
+<p>Model #20: Sell Development Tools<br>Model #21: Sell Portability Toolkits<br>Model #23: Create a Content Marketplace<br>Model #24: Create an Android Job Board<br>Model #25: Create an Android Site Ad Broker<br>Model #26: Create Hardware Add-Ons<br>Model #27: Create Device Accessories<br>Model #28: Write Books</p>
+<p>Model #31: Internationalization and Localization<br>Model #32: Bug Hunter<br>Model #33: User Experience Designer<br>Model #34: JAR Porter<br>Model #35: API Wrapper<br>Model #36: App Promoter<br>Model #37: App Market Agent<br>Model #38: Device Marketer<br>Model #39: Trainer<br>Model #40: Break Outside the Box</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Alex Curelea在Blog中从Sell app to individuals/Freemium/other sorts of products/srevices不同角度归纳了Android的四十种Business Model,分别是：<br>Model #1: Bu]]>
+    </summary>
+    
+      <category term="Android" scheme="http://navigating.github.io/tags/Android/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Google如何使用Linux《How Google uses Linux》]]></title>
-    <link href="http://navigating.github.io/2009/Google%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Linux%E3%80%8AHow-Google-uses-Linux%E3%80%8B/"/>
-    <id>http://navigating.github.io/2009/Google如何使用Linux《How-Google-uses-Linux》/</id>
-    <published>2009-12-17T15:29:18.000Z</published>
-    <updated>2015-08-09T15:32:51.997Z</updated>
-    <content type="html"><![CDATA[<p>文章How Google uses Linux讨论了Google如何使用Linux的情况，其中有一些有意思的信息。<br>1.Google一般在16-32个核的机器上面运行了大约5000个线程，平均每一个核上面运行了156-312个线程( 156-312 thread/core)。这个数据很值得参考、借鉴、验证。（And load balancing matters: Google runs something like 5000 threads on systems with 16-32 cores.）</p>
+    <title><![CDATA[Java服务器开发基础知识(1)]]></title>
+    <link href="http://navigating.github.io/2010/Java%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%BC%80%E5%8F%91%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-1/"/>
+    <id>http://navigating.github.io/2010/Java服务器开发基础知识-1/</id>
+    <published>2010-08-25T15:59:53.000Z</published>
+    <updated>2015-08-09T16:01:42.740Z</updated>
+    <content type="html"><![CDATA[<p>因为实际需要所致，我们不得不考虑在现有的开源/商用的应用服务器之外开发一个，有性能要求、有并发要求的服务端应用，从技术要求的角度来分析一下，用Java实现这件事情我们可能关注的知识层面。</p>
+<p>在整体上，可能需要我们从下面几个层面出发来考虑：</p>
+<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2010/Java_Server_01.jpg" alt=""> </p>
+<p>1.在硬件和操作系统层面：为什么需要关注这两个方面的知识，因为Java并没有自己的线程，使用的也是OS中的IO，所以我们不得不去了解系统在不同的硬件、OS上面的适用情况、运行情况。比方说，多核技术对于操作系统的影响，这种影响直接会传递到JVM层面；对于数据传输操作的DMA(Direct Memory Access, 存储器直接访问)方式的了解，便于我们更好的了解CPU和IO的关系。同样的，对于OS层面的select/poll/epoll的认识，不仅帮助我们去理解Java的IONIO(New IO)AIO(Asynchronous IO)的发展之路，同时让我们对IO/NIO/AIO在Java层面的体现有更清晰的思路。</p>
+<p>Select</p>
+<p>Select在1983年首次出现，是在4.2BSD中。通过select()的系统调用来监视包含多个文件描述符的数组；当select()返回后，该数组中就绪的文件描述符便会被内核修改标志位，使得进程可以获得这些文件描述符从而进行后续的读写操作。</p>
+<p>Select方式现在为几乎所有的平台支持，具备良好的跨平台支持。同时，select()方式需要维护一个存储文件描述符的数据结构，随着其的增加，对其的内存操作的开销也会线性增加；每次网络响应，进程在调用select()的时候都会对所有的socket做一次线性扫描，包括那些处于非活跃状态的连接，这也是一个巨大的开销；在系统方面，每个进程能够监视的文件描述符的数量是有最大限制的，通过宏FD_SETSIZE来指定的，在Linux中这个值默认是1024，修改这个宏值并生效，有时候可能需要重新编译OS的内核:).</p>
+<p>Poll</p>
+<p>Poll是在1986先首次出现，是在System V Release 3中。其和select相比在本质上变化不大，只是poll没有了select方式的最大文件描述符数量的限制。</p>
+<p>注：select()和poll()采用的模型都是：水平触发（Level Triggered）。</p>
+<p>Epoll</p>
+<p>Epoll是在Linux 2.6版本中开始有内核直接支持的实现方式。这种方式的三个特点：</p>
+<p>a. 同时支持水平触发LT和边缘触发ET。</p>
+<p>LT(Level Triggered)是缺省的工作方式，同时支持block和no-block socket。在这种模式中，内核将就绪的文件描述符告诉进程后，进程可以对这个就绪的fd进行IO操作。如果进程不作任何操作，那么内核会在下次调用中继续将这些文件描述符报告给进程，所以，这种模式在编程中出错误可能性要小一点。传统的select/poll都是这种模型的代表．</p>
+<p>ET (edge-triggered)是高速工作方式，只支持no-block socket。在这种模式中，当文件描述符从未就绪状态变为就绪状态时，内核通过epoll报告给进程。然后内核会假设进程知道文件描述符已经就绪，并且不会再为这个(种)文件描述符发送更多的就绪通知，直到进程做了某些操作导致这个(种)文件描述符不再为就绪状态了(比如，进程在发送，接收或者接收请求，或者发送接收的数据少于一定量时导致 了一个EWOULDBLOCK 错误）。同时请注意，如果一直不对这个(种)fd作IO操作(从而导致它再次变成未就绪)，内核不会发送更多的通知(only once)。不过在TCP协议中，ET模式的加速效用仍需要更多的benchmark确认。</p>
+<p>b. epoll模式在操作中获得就绪的文件描述符时，返回的不是实际的文件描述符，而是一个代表就绪文件描述符的值，然后在文件描述符数组中查询对应的的文件描述符。这样避免系统调用时候在内存中数据结构复制的开销。</p>
+<p>c. epoll采用事件通知方式。即每一个文件描述符都对应的注册了一个类似callback，当就绪激活时，通过callback和进程进行匹配操作。避免了select在每次调用的时候都遍历整个socket的扫描开销。</p>
+<p>因此epoll具备优势：支持一个进程打开大数目的socket描述符(FD)；IO效率不随FD数目增加而线性下降；用mmap加速内核与用户空间的消息传递；和内核微调一起协调工作。</p>
+<p>注：似乎Apache主要采用的是select模式；而lighttpd和nginx主要采用epoll模式—带考证确认。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>文章How Google uses Linux讨论了Google如何使用Linux的情况，其中有一些有意思的信息。<br>1.Google一般在16-32个核的机器上面运行了大约5000个线程，平均每一个核上面运行了156-312个线程( 156-312 thread/co]]>
+    <![CDATA[<p>因为实际需要所致，我们不得不考虑在现有的开源/商用的应用服务器之外开发一个，有性能要求、有并发要求的服务端应用，从技术要求的角度来分析一下，用Java实现这件事情我们可能关注的知识层面。</p>
+<p>在整体上，可能需要我们从下面几个层面出发来考虑：</p>
+<p><img]]>
     </summary>
     
-      <category term="Google" scheme="http://navigating.github.io/tags/Google/"/>
-    
-      <category term="Linux" scheme="http://navigating.github.io/tags/Linux/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Jboss Netty的Performance报告阅读]]></title>
-    <link href="http://navigating.github.io/2009/Jboss-Netty%E7%9A%84Performance%E6%8A%A5%E5%91%8A%E9%98%85%E8%AF%BB/"/>
-    <id>http://navigating.github.io/2009/Jboss-Netty的Performance报告阅读/</id>
-    <published>2009-12-17T00:29:03.000Z</published>
-    <updated>2015-08-09T15:32:04.178Z</updated>
-    <content type="html"><![CDATA[<p>在JBoss Netty的网站上引用了一个2008年10月6号的测试报告，参见：<br><a href="http://gleamynode.net/articles/2232/" target="_blank" rel="external">http://gleamynode.net/articles/2232/</a><br><a href="http://www.jboss.org/netty/performance-1.html" target="_blank" rel="external">http://www.jboss.org/netty/performance-1.html</a><br><a href="http://www.jboss.org/file-access/default/members/netty/freezone/performance.pdf" target="_blank" rel="external">http://www.jboss.org/file-access/default/members/netty/freezone/performance.pdf</a><br>通过这个报告，分析如下：<br>环境：<br>1.比较了Netty, Grizzly, MINA, NIO Framework, xSocket，基于2008/October/3rd的版本。<br>2.测试的客户机/服务器端都是双核机器。<br>3.客户机/服务器的操作系统都是：Linux 2.6.25.11-97.fc9 (Fedora 9)<br>4.服务器内存是6GiB, 客户机内存是3GiB<br>5.网络带宽是1G<br>配置：<br>1.“The number of I/O threads - the number of the CPU cores ”,那么大约也就是两三个。(这里有一个存疑地方，因为在以前自己测试Apache Mina的时候，发现在频繁的大并发量小消息处理情况下，selector的事件处理能力低下，随着Thread配置数量的增加其处理能力不断提高，这时候配置selector线程数量等于：(X * (the number of the CPU cores))+1)。<br>2.Handler的线程数量是：16<br>3.JDK版本：Sun JDK 1.6.0_07<br>4.JRE配置：-server -Xms2048m -Xmx2048m -XX:+UseParallelGC -XX:+AggressiveOpts -XX:+UseFastAccessorMethods  这个配置是很合适的，和我们经过验证的配置是一致的。<br>测试：这个测试主要测试了Throughput随着客户端的增加而变化的情况。<br>Throughput Definition:In communication networks, such as Ethernet or packet radio, throughput or network throughput is the average rate of successful message delivery over a communication channel. This data may be delivered over a physical or logical link, or pass through a certain network node. The throughput is usually measured in bits per second (bit/s or bps), and sometimes in data packets per second or data packets per time slot.(<a href="http://en.wikipedia.org/wiki/Throughput" target="_blank" rel="external">http://en.wikipedia.org/wiki/Throughput</a>)<br>定义：吞吐量是指在没有帧丢失的情况下，设备能够接受的最大速率。 (<a href="http://baike.baidu.com/view/188722.htm" target="_blank" rel="external">http://baike.baidu.com/view/188722.htm</a>)<br>这个测试报告主要是客户机、服务器在同一个机器上和客户机/服务器分开在不同的机器上两种模式下的测试结果：<br>1.随着消息的包不断增加，在达到最大限度之前，Throughput以同样的倍数在增加，可以得出结论：在消息大小固定时通信良好，稳定性极佳。Throughput会因为消息的大小变化而发生震荡。还有一个有意思的结论：Throughput不会因为并发链接数的变化而变化，但是会紧随通信消息内容的大小变化而变化。<br>2.一个NIO Server的服务器端能够并发支持5000到10000个链接。<br>3.测试结果可以看出，消息内容越大，框架处理的能力越稳定。(猜测：可能消息越小，引起的线程的切换越频繁，Buffer的各项操作也越频繁。)<br>4.对于1G的网络带宽，随着消息的大小等的增加，框架的throughput的能力,loopback模式下最大的数值是600MiB/s；而client/server网络模式下最大是100MiB/s，这个数值仅为带宽1G的10%。可见在网络环境下，throughput受制于网络因素的影响还是比较大的。<br>5.从这个测试结果来看，各种NIO框架(Netty, Grizzly, MINA, NIO Framework, xSocket)的throughput能力相差不大。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>在JBoss Netty的网站上引用了一个2008年10月6号的测试报告，参见：<br><a href="http://gleamynode.net/articles/2232/" target="_blank" rel="external">http://gleamyno]]>
-    </summary>
-    
-      <category term="Java" scheme="http://navigating.github.io/tags/Java/"/>
-    
-      <category term="NIO" scheme="http://navigating.github.io/tags/NIO/"/>
-    
-      <category term="Netty" scheme="http://navigating.github.io/tags/Netty/"/>
-    
-      <category term="Performance" scheme="http://navigating.github.io/tags/Performance/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[JDK 7 Platform]]></title>
-    <link href="http://navigating.github.io/2009/JDK-7-Platform/"/>
-    <id>http://navigating.github.io/2009/JDK-7-Platform/</id>
-    <published>2009-12-11T15:28:42.000Z</published>
-    <updated>2015-08-09T15:31:06.707Z</updated>
-    <content type="html"><![CDATA[<p>JDK 7 Platform图：<br>&lt;图已遗失&gt;<br>JDK 7 Platform<br>其中,比较关注：</p>
-<ol>
-<li>VisualVM</li>
-<li>Networking(Classloader)</li>
-<li>NIO</li>
-<li>Collections</li>
-<li>Concurrency</li>
-<li>Performance</li>
-<li>Garbage-First Collector</li>
-<li>Modularization</li>
-</ol>
-<p>Resource:<br><a href="http://openjdk.java.net/projects/jdk7/features/" target="_blank" rel="external">http://openjdk.java.net/projects/jdk7/features/</a><br><a href="http://java.sun.com/javase/7/docs/" target="_blank" rel="external">http://java.sun.com/javase/7/docs/</a><br><a href="http://java.sun.com/javase/7/webnotes/index.html" target="_blank" rel="external">http://java.sun.com/javase/7/webnotes/index.html</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>JDK 7 Platform图：<br>&lt;图已遗失&gt;<br>JDK 7 Platform<br>其中,比较关注：</p>
-<ol>
-<li>VisualVM</li>
-<li>Networking(Classloader)</li>
-<li>NIO</li>
-<]]>
-    </summary>
+      <category term="Architecture" scheme="http://navigating.github.io/tags/Architecture/"/>
     
       <category term="Java" scheme="http://navigating.github.io/tags/Java/"/>
     

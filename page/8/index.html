@@ -87,10 +87,10 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-2007/如何评审(Review)" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2009/加密算法概述" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2007/如何评审(Review)/" class="article-date">
-  <time datetime="2007-07-12T14:58:50.000Z" itemprop="datePublished">2007-07-12</time>
+    <a href="/2009/加密算法概述/" class="article-date">
+  <time datetime="2009-12-10T15:21:27.000Z" itemprop="datePublished">2009-12-10</time>
 </a>
     
   <div class="article-category">
@@ -105,7 +105,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2007/如何评审(Review)/">如何评审(Review)</a>
+      <a class="article-title" href="/2009/加密算法概述/">加密算法概述</a>
     </h1>
   
 
@@ -113,16 +113,15 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近在搞一个培训的文档的评审，步骤大约是：<br>1.有一个Session Topic；<br>2.讲师先要围绕这个Topic写一个大纲，主要是大约是将Topic拆分若干细节分支；<br>3.评审PPT等文档；<br>如何对这样的文档进行评审，因为文档只是第一步，也是讲师能否讲这个Topic讲好的关键，所以就开始想如何保证讲师的培训质量，如何保证评审的质量，如何尽量能够促使讲师讲某一个Topic的广度和深度展现给audient呢。<br>我的思路大约是：<br>从行业角度看，大家一般讨论这个Topic的角度；<br>从audient看，我们希望他们能接收到什么信息，他们自身提高中需要什么信息；<br>从讲师来看，能够给Topic带了什么special的东西；<br>在我读一个讲稿的时候，我希望我的第一感觉，感觉到一个明显的主线，知道这个讲稿在究竟要讲些什么；能够有一个完整的概念模型，简单易懂，这样便于大家理解；然后能够看到细节性的分析和讲解，就是深入的内容。觉得既要有葡萄蜜饯，也要有果酱颗粒，葡萄蜜饯不至于太突兀，通用的信息让大家理解起来容易，有一种背靠着行业的味道；对于我而言，我更加希望能够看到更多的个人理解的东西，更多的果酱颗粒，会带来思考的地方，带来讨论的地方，往往也是启迪人的地方。希望看多一些specail的地方，希望看到许多兴奋点。<br>附：果酱和葡萄蜜饯来源于《The Secrets of Consulting》<br>“只要还有果酱，草莓酱就永远都不会被涂抹得过薄。”<br>“永远不会有人抱怨葡萄蜜饯。”</p>
+        <p>加密算法<br>　　数据加密的基本过程就是对原来为明文的文件或数据按某种算法进行处理，使其成为不可读的一段代码，通常称为“密文”，使其只能在输入相应的密钥之后才能显示出本来内容，通过这样的途径来达到保护数据不被非法人窃取、阅读的目的。<br>　　该过程的逆过程为解密，即将该编码信息转化为其原来数据的过程.<br>      加密技术通常分为两大类：“对称式”和“非/不对称式”。<br>对称算法　<br>概述　<br>对称密码算法有时又叫传统密码算法，就是加密密钥能够从解密密钥中推算出来，反过来也成立。在大多数对称算法中，加密解密密钥是相同的。这些算法也叫秘密密钥算法或单密钥算法，它要求发送者和接收者在安全通信之前，商定一个密钥。对称算法的安全性依赖于密钥，泄漏密钥就意味着任何人都能对消息进行加密解密。只要通信需要保密，密钥就必须保密。对称算法的加密和解密表示为：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Ek</span><span class="params">(M)</span></span>=C</span><br><span class="line"><span class="function"><span class="title">Dk</span><span class="params">(C)</span></span>=M</span><br></pre></td></tr></table></figure></p>
+<p>其具备：Dk(Ek(M))=M<br>对称算法-对称算法可分为两类<br>一次只对明文中的单个位（有时对字节）运算的算法称为序列算法或序列密码。另一类算法是对明文的一组位进行运算，这些位组称为分组，相应的算法称为分组算法或分组密码。现代计算机密码算法的典型分组长度为64位――这个长度大到足以防止分析破译，但又小到足以方便作用。<br>对称算法-常用的采用对称密码术的加密方案有5个组成部分<br>l）明文：原始信息。<br>2) 加密算法：以密钥为参数，对明文进行多种置换和转换的规则和步骤，变换结果为密文。<br>3) 密钥：加密与解密算法的参数，直接影响对明文进行变换的结果。<br>4) 密文：对明文进行变换的结果。<br>5) 解密算法：加密算法的逆变换，以密文为输入、密钥为参数，变换结果为明文。<br>不对称加密算法<br>概述<br>　　非/不对称式加密使用两把完全不同但又是完全匹配的一对钥匙—公钥和私钥。在使用不对称加密算法加密文件时，只有使用匹配的一对公钥和私钥，才能完成对明文的加密和解密过程。加密明文时采用公钥加密，解密密文时使用私钥才能完成，而且发信方（加密者）知道收信方的公钥，只有收信方（解密者）才是唯一知道自己私钥的人。不对称加密算法的基本原理是，如果发信方想发送只有收信方才能解读的加密信息，发信方必须首先知道收信方的公钥，然后利用收信方的公钥来加密原文；收信方收到加密密文后，使用自己的私钥才能解密密文。显然，采用不对称加密算法，收发信双方在通信之前，收信方必须将自己早已随机生成的公钥送给发信方，而自己保留私钥。由于不对称算法拥有两个密钥，因而特别适用于分布式系统中的数据加密。广泛应用的不对称加密算法有RSA算法和美国国家标准局提出的DSA。以不对称加密算法为基础的加密技术应用非常广泛。<br>常见加密算法<br>　　DES（Data Encryption Standard）：对称算法，数据加密标准，速度较快，适用于加密大量数据的场合；<br>　　3DES（Triple DES）：是基于DES的对称算法，对一块数据用三个不同的密钥进行三次加密，强度更高；<br>　　RC2和 RC4：对称算法，用变长密钥对大量数据进行加密，比 DES 快；<br>　　IDEA（International Data Encryption Algorithm）国际数据加密算法，使用 128 位密钥提供非常强的安全性；<br>　　RSA：由 RSA 公司发明，是一个支持变长密钥的公共密钥算法，需要加密的文件块的长度也是可变的，非对称算法；<br>　　DSA（Digital Signature Algorithm）：数字签名算法，是一种标准的 DSS（数字签名标准），严格来说不算加密算法；<br>　　AES（Advanced Encryption Standard）：高级加密标准，对称算法，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法；<br>　　BLOWFISH，它使用变长的密钥，长度可达448位，运行速度很快；<br>　　MD5：严格来说不算加密算法，只能说是摘要算法</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/如何评审(Review)/" data-id="cid4ni9us004c8wlmqrxivix5" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/加密算法概述/" data-id="cid4ol7q8004ilslmwsxvmft4" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Review/">Review</a></li></ul>
-
     </footer>
   </div>
   
@@ -130,148 +129,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2007/Google技术栈" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2009/熊" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2007/Google技术栈/" class="article-date">
-  <time datetime="2007-07-11T13:56:26.000Z" itemprop="datePublished">2007-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/Google技术栈/">Google技术栈</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>和一个朋友讨论技术的学习，都有什么技术需要一个技术人员储备的，无意间朋友告诉我，Google关心的技术都有：<br>• algorithms<br>• artificial intelligence<br>• compiler optimization<br>• computer architecture<br>• computer graphics<br>• data compression<br>• data mining<br>• file system design<br>• genetic algorithms<br>• information retrieval<br>• machine learning<br>• natural language processing<br>• operating systems<br>• profiling<br>• robotics<br>• text processing<br>• user interface design<br>• web information retrieval<br>• and more!<br>参见 <a href="http://labs.google.com/" target="_blank" rel="external">http://labs.google.com/</a><br>细节 <a href="http://labs.google.com/papers.html" target="_blank" rel="external">http://labs.google.com/papers.html</a><br>中文 <a href="http://labs.google.cn/" target="_blank" rel="external">http://labs.google.cn/</a> 并没有这个。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Google技术栈/" data-id="cid4ni9x6004v8wlmrp83icyr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/Annotation实战" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/Annotation实战/" class="article-date">
-  <time datetime="2007-07-11T12:51:44.000Z" itemprop="datePublished">2007-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/Annotation实战/">Annotation实战</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现在annotation正在改变着java developer的一些开发生活，各种框架都在充分应用annotation来简化开发，我们来看看annotation到底是怎么一回事？<br>为什么引入annotation?<br>由于在Java的一些实际开发中，已经有了一些annotation出现的雏形.比方说webservice使用一些tag自动生成一些接口和实现，EJB的deployment descriptor对象,transient修饰符代表不能被serialization，@deprecated等。那么他们的共用特性是什么呢？尽管这些数据不会直接对Java的语义产生影响，但是是通过工具、库或者运行时程序的语义来散发影响力的。以这种方式出现的新功能称之为annotation机制。所以Java是在增强Java语言支持易于开发的背景下提出annotation机制的，annotation对于已有的Java机制的影响力主要在于Java source files、Java class files和运行时的reflection；主要关联java classes，interfaces,methods和fields。(,或者能够能够被javac compiler或者其他的工具读取、或者作为配置项能够被存贮在class文件中、或者在运行时用Java reflection API检测的到。)<br>虽然在第一天提出annotation这个特性，就一直在强调：annotion易于使用，但是应用开发者无须自己定义annotaion类型。但是不论是更好的使用现有的annotation类型，还是便于有朝一日自己确实需要扩展annotion类型，或者更好的理解开发模型，更好的理解程序的开发运行，都非常有必要了解一些annotation的。</p>
-<p>我们看一下Meta-annotations,看到底如何自己定义一个annnotation类型。Meta-annotations主要包括四个部分：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Target</span><br><span class="line">Retention</span><br><span class="line">Documented</span><br><span class="line"><span class="keyword">Inherited</span></span><br></pre></td></tr></table></figure></p>
-<p>Target里面的ElementType是用来指定Annotation类型可以用在哪一些元素上的.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.TYPE)</span></span>-can be applied to any element of <span class="tag">a</span> class</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.FIELD)</span></span>-can be applied to <span class="tag">a</span> field or property</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.METHOD)</span></span>-can be applied to <span class="tag">a</span> method level annotation</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.PARAMETER)</span></span>-can be applied to the parameters of <span class="tag">a</span> method</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.CONSTRUCTOR)</span></span>-can be applied to constructors</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.LOCAL_VARIABLE)</span></span>-can be applied to local variables</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.ANNOTATION_TYPE)</span></span>-indicates that the declared type itself is an annotation typ</span><br></pre></td></tr></table></figure></p>
-<p>Retention用来指定annotation类型保留在哪儿和多长时间。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RetentionPolicy.SOURCE-Annotations <span class="operator">with</span> this type will be <span class="keyword">by</span> retained only <span class="keyword">at</span> <span class="operator">the</span> source level <span class="operator">and</span> will be ignored <span class="keyword">by</span> <span class="operator">the</span> compiler</span><br><span class="line">RetentionPolicy.CLASS-Annotations <span class="operator">with</span> this type will be <span class="keyword">by</span> retained <span class="keyword">by</span> <span class="operator">the</span> compiler <span class="keyword">at</span> compile <span class="built_in">time</span>, but will be ignored <span class="keyword">by</span> <span class="operator">the</span> VM</span><br><span class="line">RetentionPolicy.RUNTIME-Annotations <span class="operator">with</span> this type will be retained <span class="keyword">by</span> <span class="operator">the</span> VM so they can be <span class="built_in">read</span> only <span class="keyword">at</span> run-<span class="built_in">time</span></span><br></pre></td></tr></table></figure></p>
-<p>Documented用来指定这个annotation类型应当被javadoc工具文档化使用。<br>Inherited用来指定使用这个类型的类是个继承来的。<br>举一个简单的例子：<br>测试用例：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationTestableTeseCase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> <span class="keyword">throws</span> SecurityException, ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> passed = <span class="number">0</span>, failed = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (Method m : Class.forName(Foo.class.getName()).getMethods()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (m.isAnnotationPresent(Testable.class)) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    m.invoke(<span class="keyword">null</span>);</span><br><span class="line">                    passed++;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line"></span><br><span class="line">                    failed++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>, passed);</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>, failed);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Annotation类型定义类：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="variable">@Target</span>(ElementType.METHOD)</span><br><span class="line">public <span class="variable">@interface</span> Testable &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用Testable类型的客户端代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Boom"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m5</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m6</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m7</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Crash"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m8</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Okey!<br>参考：<br><a href="http://java.sun.com/developer/technicalArticles/releases/j2se15/" target="_blank" rel="external">http://java.sun.com/developer/technicalArticles/releases/j2se15/</a><br><a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html" target="_blank" rel="external">http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html</a><br><a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html" target="_blank" rel="external">http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html</a><br><a href="http://www.developer.com/java/other/article.php/10936_3556176_3" target="_blank" rel="external">http://www.developer.com/java/other/article.php/10936_3556176_3</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Annotation实战/" data-id="cid4ni9xt00508wlmu2whl16n" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Annotation/">Annotation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/Ruby实战" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/Ruby实战/" class="article-date">
-  <time datetime="2007-07-11T00:46:07.000Z" itemprop="datePublished">2007-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/Ruby实战/">Ruby实战</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>先从一段Ruby程序开始，即欧几里德最大公约数的算法实现：<br>测试用例当然要先，<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">require 'test/unit'</span><br><span class="line">require './one/Apple'</span><br><span class="line"></span><br><span class="line">class TestApple &lt; Test::Unit::TestCase</span><br><span class="line"></span><br><span class="line">  def test_cal</span><br><span class="line">    ys = Apple.new</span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">35</span>,<span class="number">25</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">50</span>,ys.gcd<span class="params">(<span class="number">100</span>,<span class="number">50</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">9</span>,ys.gcd<span class="params">(<span class="number">27</span>,<span class="number">18</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">5</span>,<span class="number">10</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">5</span>,<span class="number">0</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(-<span class="number">5</span>,ys.gcd<span class="params">(-<span class="number">5</span>,<span class="number">0</span>)</span>)</span></span><br><span class="line">    assert_raise<span class="params">(ArgumentError)</span>&#123;ys.gcd<span class="params">(<span class="number">0</span>,<span class="number">0</span>)</span>&#125;</span><br><span class="line">    assert_equal<span class="params">(<span class="number">23</span>,ys.gcd<span class="params">(<span class="number">0</span>,<span class="number">23</span>)</span>)</span></span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>然后就是算法的实现代码了：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span></span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> </span>gcd(arg1=<span class="number">0</span>, arg2=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span>((arg1==<span class="number">0</span>)&amp;&amp;(arg2==<span class="number">0</span>))</span><br><span class="line">      raise <span class="constant">ArgumentError</span>, <span class="string">"arg1 and arg2 are 0."</span>, caller</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      gcdImpl(arg1,arg2)</span><br><span class="line">    <span class="keyword">end</span>    </span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> </span>gcdImpl(arg1=<span class="number">0</span>, arg2=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span>(arg2 == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> arg1</span><br><span class="line">    <span class="keyword">elsif</span></span><br><span class="line">      temp=arg1%arg2</span><br><span class="line">      <span class="keyword">if</span>(temp == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> arg2</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        gcdImpl(arg2,temp)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>从一个算法的描述来实现一个算法，仅仅是编写一段程序而已。而对于算法这种问题的程序化解决方案而言，需要如何一回事情呢？比方说，最大公约数到底是怎么一回事，5和0的最大公约数怎么可能是5呢？所以要学习算法到底是怎么一回事，需要探讨更多的问题？<br>对于问题的理解、性能、选择、数据结构、如何设计、算法的描述、正确性证明、分析、代码实现等等一系列单元。当程序实现仅仅是第一反应的时候，问题理解、分析、设计、验证就变得异常重要了。<br>算法所拥有的通用问题类型：排序、查找、字符串处理、图问题、组合问题、几何问题、数值问题；都是一些已经相当成熟的问题类型。很多使我们常常听说或者涉及的，也是算法设计和分析频繁的地方，算是很多的“肩膀”吧，算法都是都是在这里站立起来的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Ruby实战/" data-id="cid4ni9w8004k8wlm6uino5g1" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/">Ruby</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/算法学习第一季-读《算法设计与分析基础》" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/算法学习第一季-读《算法设计与分析基础》/" class="article-date">
-  <time datetime="2007-06-28T14:42:51.000Z" itemprop="datePublished">2007-06-28</time>
+    <a href="/2009/熊/" class="article-date">
+  <time datetime="2009-10-13T15:20:59.000Z" itemprop="datePublished">2009-10-13</time>
 </a>
     
   <div class="article-category">
@@ -286,7 +147,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2007/算法学习第一季-读《算法设计与分析基础》/">算法学习第一季-读《算法设计与分析基础》</a>
+      <a class="article-title" href="/2009/熊/">熊</a>
     </h1>
   
 
@@ -294,12 +155,135 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>大学修的计算机专业，毕业之时，《数据结构》《计算方法》《操作系统》《编译原理》等如同课本一样，永远的被打包起来。工作以来，一直在做Java的开发，Web开发和服务端应用，总是零星的涉及到些许数组、链表、树等数据结构，也主要以线性数据结构为主；算法基本上就是“经典”的数据结构书上所讨论的几种算法，JDK都有实现，在应用中早已无需我们思考太多。重要的是我们要把应用按着需求实现了，重要的是我们一步一步把应用带向我们认为简单务实美的方向前进。闲暇思索，对于虚拟机的看法不过是面试的话语；对于开发的认识同样如此，多是面试的谈资；对于一个更有经验的Java应用开发者，能够在开发提供一套解决方案，组合解决问题的模式积攒起来一段可预期时间内解决一系列问题，也许有人将这归之为架构师，谁又能说这不是一条Java应用架构师之路呢？有一天，恍然大悟，其实Java应用开发者比拼的是各自的开发经验、领域知识、开阔的思路、强悍的执著；事情总没有唯一的，以前和dreamhead讨论过业务，当然也有无数的把应用开发者的需求作为业务的Java开发“仁人志士”。而对于一个从事了几年Java应用开发的人来说，那么我们的激情下一个积攒点在哪儿呢？虽然刚开始接触计算机，就知道一句名言“程序=算法+数据结构”，现实中这几年算法对于我，如同鲁迅先生笔中的故乡，“愈远了”，“渐渐远离了我”，“模糊了”。<br>人生有多少个十年，人生有几多青春，对于一个个体，又有几多沉淀？<br>一如我刚毕业的青春年少无知，对于技术这个词汇激情澎湃，几乎认为是自己生命的全部。对于人来说，最重要的不是你能否学技术，学了多少技术，掌握了多少技术功底；而是一个人前进的方向是什么，你的人生想要的是什么，你的人生在计算机这个舞台你如何定位思考、如何的目标的？想好了再前行，前行了就不再犹豫。<br>算法是否总给人一种严肃的科学的概念，我相信，算法并不严肃，可以嬉笑怒骂，可以轻轻松松的和我们很多一线开发人员在一起。<br>非常感谢作者Anay Levitin著书《Introduction to the Design and Analysis of Algorithms》，感谢译者潘彦翻译这么好的书籍《算法设计与分析基础》，特别感谢dreamhead五一来沈阳一聚并送这本书给我。<br>虽然序言前言部分往往都有精髓的思想语句，然后对于算法无知的我决定直切正题，从绪论开始阅读。<br>为什么要学习算法？<br>由于“微积分”“算法”被并成为科学殿堂两大宝石的论断，很为大家熟知，至于算法是如何的英明神武，在现实中也许需要细细体会，我并未有多少深深体会悍然汗然。<br>作者直接扔出了为什么学习算法这个话题，一个是计算机专业人士必备，另外一个是能开发人们的分析能力。如果能有选择，我宁愿选择第二个，我想必备意味着用这个东西现在或者未来要解决切实的问题，我现在并不是先有棘手的问题—没有棘手的问题而去学习本身未必不是一个棘手的问题；如果籍此能够在具备计算机人士必须具备的基础之外，成就一下自己分析能力的增强，真是不错。<br>什么是算法？<br>该书中，对于算法的定义是“一系列解决问题的清晰指令，即对于符合一定规范的输入，能够在有限时间内获得所要求的输出。”可以看到算法，有输入，有输出，有指令，当然有执行这些指令的环境，也许第一个想到是计算机，对，计算机，但是也许是从事数学计算的人。定义等同于算法是解决问题的办法。<br>所以既然是解决问题，当然有问题域/值域；算法本身如何表达描述，算法自己的优劣之分；等等。<br>第一个例子是关于“计算两个整数的最大公约数”问题，记得在SICP一书中也阐述了这个例子。解决这个问题首先寻找的是“最大公约数的定义”，并仔细描述了欧几里得算法、连续整数检测算法、“艾拉托色尼筛”算法；并采用了结构化描述和伪码两种方式描述算法细节。<br>该书以如此简洁的言语和例子为我们打开了算法的道路。在接下来的一章节，会首先看到“算法是问题的程序化解决方案”，是的，我们就是要去寻找问题的程序化解决方案的。</p>
+        <p>简介<br>　　熊，食肉目，是属于熊科的杂食性大型哺乳类，以肉食为主。从寒带到热带都有分布。躯体粗壮，四肢强健有力，头圆颈短，眼小吻长。前后肢均具有5指、趾，弯爪强硬，不能伸缩。跖行性。短尾隐于体毛内。毛色一致，厚而密。齿大，但不尖锐，裂齿不如其他食肉目动物发达。杂食性。行动缓慢，营地栖生活，善于爬树，也能游泳。嗅觉、听觉较为灵敏。毛皮、肉、脂、胆、掌均有较大经济价值，有时对养蜂业、农、牧、果树等造成危害。种类较少，全世界仅有7种，我国有4种：马来熊、棕熊、亚洲黑熊、大熊猫。除澳洲、非洲南部外，多有分布。<br>动物学分类<br>　　熊,哺乳纲,熊科动物的总称.<br>　　熊是陆上肉食类中体形最大的动物.它们是由一种类似犬一样的祖先进化而成的,是犬科动物进化道路上的一个分支.熊科动物基本上都已偏离了食肉的习性,而成为杂食性动物了.有棕熊.黑熊,北极熊,印度熊,马来熊,美洲熊等等之分.其中棕熊体积最大, 北极熊次之,一般越靠近南方的体形越小.<br>外形特征<br>　　熊躯体粗壮肥大，体毛又长又密，脸形像狗，头大嘴长，眼睛与耳朵都较小，臼齿大而发达，咀嚼力强。四肢粗壮有力，脚上长有5只锋利的爪子，用来撕开食物和爬树。尾巴短小。熊平时用脚掌慢吞吞地行走，但是当追赶猎物时，它会跑得很快，而且后腿可以直立起来。<br>　　常见的特征有短尾、极佳的嗅觉、五个无法收缩的爪，以及长、密、粗的毛。刚出生时，它的大小与天竺鼠差不多，至少要与母亲生活一年。<br>　　熊的嗅觉十分灵敏，视力以及听觉比较差。它们的牙齿是用来防御和当作工具。它们的爪子可以用来撕扯、挖掘和抓取猎物。<br>　　熊氏家庭成员体型差别较大，块头有大有小。最大的是棕熊（约780千克），北极熊次之（约700千克），然后是美洲黑熊（约220千克）、亚洲黑熊（约150千克）、懒熊（约140千克）、眼镜熊（约140千克）、马来熊（约60千克）。<br>　　速度 最快的灰熊 ，时速可以达到48KM/H，棕熊在崎岖山路速度可以达到30KM/H 速度很快。可不能认为熊的速度很慢噢，比人类快多了。<br>生活习性<br>　　大多数熊食性很杂，既食青草、嫩枝芽、苔藓、浆果和坚果，也到溪边捕捉蛙、蟹和鱼，掘食鼠类，掏取鸟卵，更喜欢舔食蚂蚁，盗取蜂蜜，甚至袭击小型鹿、羊或觅食腐尸。但是北极熊比较特殊，主要吃鱼和海豹。熊的视觉和听觉都不十分灵敏，但嗅觉非常发达。<br>　　生活于北方寒冷地区的熊有冬眠现象，而位于亚热带和热带地区的黑熊往往不冬眠。熊冬眠时间可持续4～5个月，在冬眠过程中如果被惊动它会立即苏醒，偶然也会出洞活动。熊冬眠的洞穴一般选在向阳的避风山坡或枯树洞内。除冬眠期外，熊没有固定的栖息场所。除了发情交配期外，其余时间熊都单独活动。母熊一般1年产1～4崽。<br>　　熊一般是温和的、不主动攻击人的动物，也愿意避免冲突，但当它们认为必须保卫自己或自己的幼崽、食物或地盘时，也会变成非常危险而可怕的野兽。<br>　　爱吃植物的眼镜熊：眼镜熊又叫南美熊、安第斯熊，产于南美，是现在唯一分布于南半球的熊，也是最爱吃植物性食物的一种熊，吃各种果、叶、根、茎，很少吃昆虫，因眼睛四周有白圈而得名。眼镜熊善于登高爬树，通常独自活动，偶以小家庭为单位，共住在一棵大树上。<br>　　高度近视的亚洲黑熊：亚洲黑熊又叫狗熊、月熊，还有个俗称叫黑瞎子。为什么叫它”瞎子”呢?因为它天生近视，百米之外看不清东西，不过它的耳、鼻灵敏，顺风可闻到半公里以外的气味，能听到300步以外的脚步声。别看它外表愚拙，实际上机警过人。平时黑熊以植物为主食(你一定听过黑瞎子掰苞米的故事)，在秋季却大吃昆虫等动物性食品，在体内贮存大量脂肪准备在树洞里冬眠。特长是爬树、游泳。因为眼神不济，所以练就了一身昼夜都行动自如的本领。亚洲黑熊分布于中国、印度、俄罗斯、日本、蒙古等国。<br>　　胃口极好的棕熊：棕熊遍布亚、欧、北美三大洲，其中阿拉斯加棕熊最大，最重近800公斤，站立时有两人高，是现存世界上最大的食肉目动物。而叙利亚棕熊却很小，体重不足90公斤。我国的棕熊一般在200-500公斤。棕熊的胃口可以说是好极了，荤的、素的都爱吃。植物、昆虫、蜂蜜、鱼类，甚至鹿、羊、牛、都能一概吃下，所以比较凶猛，枪法不好的猎手往往反会成为棕熊的猎物。<br>　　靠”吸尘器” 过日子的懒熊：”吸尘器”是对懒熊的嘴部功能的形象比喻。生活于印度和斯里兰卡热带森林中的懒熊形象奇特，下唇长而善动，形状像舌头，没有上门牙，嘴可以伸进昆虫藏匿的缝隙中，像吸尘器一下把猎物席卷入口。懒熊的视觉极差，靠嗅觉和听觉活动，所以它选择了夜间出击、白天酣睡的生活作风，于是人称：懒熊。小懒熊常骑在母熊背上来来去去，寸步不离，这种母子感情大大强于其他熊类的母子关系。<br>　　喜欢”假离婚”的美洲黑熊：美洲黑熊分布在加拿大及美国中部和东部的森林，别看它叫”黑熊”，其实它的身体颜色有很多种，黑色、棕色、灰色……连白色都有。美洲黑熊常在6-7月份”娶妻生子”，不过等小熊过完一周岁生日后，一家子便各奔东西，熊爸爸、熊妈妈也各自生活，看上去像”离婚”一样，可到了下一年的6-7月份，它们就复婚，重新考虑生育下一代的事。<br>　　冰山巨无霸—白熊：”冰山巨无霸”就是指北极熊，也就是白熊。它们生活在北极的莽莽冰原上，体大凶猛，以猎取海豹、幼海象、幼鲸、海鸟、鱼类为生，在北极地区是”土皇帝”，几乎打遍北极无敌手!貌似笨重的北极熊，行动十分敏捷，短跑时甚至能撵上驯鹿或北极兔。同时，它也是冰泳高手，游泳时速达10公里，潜水时间可达2 分钟，在冰水中游上百公里不在话下，堪称”半水栖兽类”。北极熊是生活在最北部、食肉性最强的一种熊。<br>　　攀爬高手—马来熊：马来熊又叫太阳熊或日熊，分布于印尼、缅甸、泰国、马来半岛及中国南部边陲的热带、亚热带山林中，是熊家族中体型最小的一种，体重只有60公斤。马来熊的看家本领是攀爬，于是它把大部分时间都花在了树上，把家也安在枝叶之间。马来熊主要吃植物果、叶以及昆虫和白蚁。夜间是马来熊的天下，而白天它却会悠闲地躺在树上晒太阳。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/算法学习第一季-读《算法设计与分析基础》/" data-id="cid4ni9uj00488wlmlw8nuad5" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/熊/" data-id="cid4ol7pz004elslm75az08rq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/猴" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/猴/" class="article-date">
+  <time datetime="2009-10-12T05:20:46.000Z" itemprop="datePublished">2009-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/猴/">猴</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>简介一<br>    猴是一个俗称。灵长目中很多动物我们都称之为猴。灵长目是哺乳纲的1目。动物界最高等的类群,大脑发达；眼眶朝向前方，眶间距窄；手和脚的趾（指）分开，大拇指灵活，多数能与其他趾（指）对握。包括原猴亚目和猿猴亚目。原猴亚目颜面似狐；无颊囊和臀胼胝；前肢短于后肢,拇指与大趾发达，能与其他指（趾）相对；尾巴能卷曲或缺如。猿猴亚目颜面似人；大都具颊囊和臀胼胝；前肢大都长于后肢，大趾有的退化；尾长、有的能卷曲，有的无尾。按区域分布或鼻孔构造，猿猴亚目又分为阔鼻猴组，又称新大陆猴类；狭鼻猴组，又称旧大陆猴类。本目包括11科约51属180种,主要分布于亚洲、非洲和美洲温暖地带。大多栖息林区。灵长类中体型最大的是大猩猩，体重可达275千克，最小的是倭猴,体重只有70克。<br>　　灵长类的大多数头骨具大的颅腔，呈球状，这是由于颌部变短，脸部变扁所致；眶后突发育形成骨质眼环，或全封闭形成眼窝；多数种类鼻子短，其嗅觉次于视觉、触觉和听觉，某些低等种类在脑中具有高度发达的嗅觉中枢，并在很大程度上靠嗅觉行动。某些狐猴有较长的鼻部。金丝猴属和豚尾叶猴属的鼻骨退化，形成上仰的鼻孔。长鼻猴属的鼻子大又长。这些特殊的类型是因肌肉或软骨发育而形成的。脚的拇趾和它趾能对握，使得手和脚成为抓握器官。原猴类的5指只能同时屈伸,不能个别运用。掌面与□面裸出,有指、趾纹,纹路形态不一。具有非常软或宽的足垫,除黑猿外,皆为□行性。多数种类的指和趾端均具扁甲。一般前后肢长相差不大，唯长臂猿科和猩猩科的前肢比后肢长得多。猿类和人无尾，在有尾的种类中,其尾长差异很大, 从只有一个突起到超过身体长。卷尾猴科大部分种类的尾巴具抓握功能，有“第五只手”之称。一些旧大陆猴(如狒狒)的脸部、臀部或胸部皮肤具鲜艳色彩，在繁殖期尤其显著。臀部有粗硬皮肤组成的硬块，称为臀胼胝。<br>    多数种类在胸部或腋下有1对乳头，而指猴的 1对乳头在腹部。雄性的阴茎是悬垂形，多数具阴茎骨，而眼镜猴、绒毛猴、人和某些种类不具。精巢包于囊中。雌体具双角子宫或单子宫。体被毛，有的柔软细密，有的粗硬，或在局部很长，或在毛上具异色环节。有的头顶毛很长，形成丛状毛冠，或甚短，呈平顶，或秃顶无毛。有的在两颊或颌下具长毛，形如胡须。有的两肩、后背、臀部被以长毛。有的体毛非常艳丽。<br>　　绝大多数灵长类动物营不同形式的树栖或半树栖生活，只有环尾狐猴、狒狒和叟猴地栖或在多岩石地区生活。通常以小家族群活动，也结大群活动。多数能直立行走，但时间不长。多在白天活动，夜间活动的有指猴、一些大狐猴、夜猴等。大倭狐猴和倭狐猴在干热季节夏眠数日至数周。<br>　　猴子大多为杂食性、吃植物性或动物性食物。选择食物和取食方法各异，如指猴善于抠食树洞或石隙中的昆虫。猩猩的食量很大，几乎把绝大部分的活动时间用以觅食。疣猴科胃的构造特殊，大部分种类吃粗纤维多的植物性食物。<br>　　猴子每年繁殖1～2次，每胎1仔，少数可多到3仔。幼体生长比较缓慢。哺乳期多抓爬在母体胸、腹部或骑在母背上，由母带着活动。性成熟的雌性有月经，雄性能在任何时间交配。只有低等猴类，如狐猴、懒猴、指猴具有一定的交配、繁殖季节。<br>　　树科的头骨特征与某些十分原始的原猴类颇相似，许多解剖学家和古生物学家曾把它包括在灵长类内，但其外部形态和生态习性却与灵长类有很大差异，因此，现代分类学家已把它独立成树目。<br>　　灵长类化石发现于北美和欧洲、亚洲的古新世至渐新世地层中，在非洲和欧洲发现于中新世，而在南美、非洲和马达加斯加则发现于更新世。灵长类的进化已有 6000万年历史，从世界各地发现的早期灵长类化石属原猴类,其中60多属现已绝灭。现在美洲已没有原猴类，只是在亚非大陆、马达加斯加岛和印度洋一些岛屿上，还生存着少数与5000万年前的原猴类极为相似的种类。猿猴类的历史可追溯到 3000～5000万年以前，大约在1500～2000万年以前，猿类的祖先就已遍布欧、亚、非三大洲，但现今却仅残存于亚洲和非洲的热带。<br>　　在我国古籍中，猴子的别称有禺，果然，独，狨等。据《白虎通》记述：“猴，侯也，见人设食伏机，则凭高四望，善于侯者也。”侯，是等待、观望的意思。<br>　　印度尼西亚加里曼丹岛的北部山区，每年5月7日是“敬猴节”。而泰国的北部山区，每年的11月1日是“猴子运动节”。<br>简介二<br>      猴是一种群居动物，据动物学家长期观察，猴也有它的社会秩序，有位高、位低之分，其中统治群猴的是一只资格较老的霸主——猴王。猴王年龄太老或过于残暴，也会激起群猴的愤怒，予以罢免或被咬得奄奄一息。据载，前不久，北京八大岭野生动物园的群猴就把一只老猴王不仅罢免，而且咬成重伤，后居然又有一新猴王继位，看来也体现了它们的社会秩序。<br>     不过在猴的社会从无谦让的美德，就和人类当中极端的个人主义者一样。有的猴王也相当残暴，它可以把地上的食物集拢成一大堆，自己把屁股坐上去，也不准其它猴子吃。每只猴子都有颊囊（即所谓脖子下面的口袋），吃不完的食物就藏在颊囊中，但绝不给其它猴子吃。有时为了抢夺食物，彼此吱吱乱叫，甚至互相追打，毫不谦让。人类常把吝啬人说成“猴奸、猴奸！”猴看来就是奸。<br>     猴子好动，自古被视为聪明伶俐的形象。在动物园观看猴子时，很少能看到它不动的样子，要么在爬山，要么在爬树，要么在吃游客喂的食物，要么在挠蚤子，更甚者在模仿人的动作。神医华佗首创五禽戏，即仿效动物姿态的一种体育治疗法，《后汉书·华佗传》记他的话：“吾有一术，名五禽之戏：一曰虎，二曰鹿，三曰熊，四曰猨，五曰鸟。亦以除疾，并利蹄足，以当导引。”猨即猿，这里是说运动时模仿猴子的姿态动作。三国时代，曹植写诗《白马篇》，吟咏马上习武的豪爽，其中“仰手接飞猱，俯身散马蹄。狡捷过猴猿”之句，颇富动态感，是因为借助了猴的形象。猱，猿一类动物，攀授树木敏捷若飞。<br>     猴子也有它的特殊习性，猴捉虱子是人们常见的，其实猴身上并没有那么多虱子，据动物学家分析，原来猴子的长毛下面，在皮肤上附有一种分泌物的结晶体，略带咸味，猴子把它找出来放入口中咀嚼得津津有味，犹如人类嗑瓜子一样，也是一种闲趣。不过，这种捉虱子的动作，往往是“位分低”的给“位分高”的捉，尤其给猴王捉，显然有巴结的意思。有时母猴也给小猴捉，这一点可能还体现了一点母爱。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/猴/" data-id="cid4ol7pj0048lslmhyebvqow" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/豹" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/豹/" class="article-date">
+  <time datetime="2009-10-12T04:20:30.000Z" itemprop="datePublished">2009-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/豹/">豹</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>分布情况<br>    豹广泛产于中国，也广泛产于亚洲，因此有中国豹，有亚洲豹；它也广泛产于非洲，所以也有非洲豹。但是，欧洲就不产豹，澳洲(有袋类动物的老家)也不产豹。中国有3亚种：华南豹(P.pardus fusea)、华北豹(P.p.fontanieri)和东北豹(P.p.orientalis)。<br>　 中国豹最早从渐新世中期即已出现，这表明这种动物至少已生存过50万年了。<br>外形特征<br>    体型与虎相似，但较小，为大中型食肉兽类。体重50千克左右，，最重可达100千克；体长1～1.5米，尾长超过体长之半。头圆、耳短、四肢强健有力，爪锐利伸缩性强。豹全身颜色鲜亮，毛色棕黄，遍布黑色斑点和环纹，形成古钱状斑纹，故俗称之为“金钱豹”。雌雄毛色一致。其背部颜色较深，腹部为乳白色。还有一种黑化型个体，通体暗黑褐，细观仍见圆形斑，常被称为墨豹。<br>生活环境<br>    栖息于山地、丘陵、荒漠和草原，尤喜茂密的树林或大森林。无固定巢穴。单独活动。白日伏在树上，或卧在草丛中，或在悬崖的石洞中休息，夜晚出来游荡。<br>生活习性<br>      豹可以说是完美的猎手，矫健身材，灵活，奔跑时速可达65公里。即会游泳，又会爬树。性情机敏，嗅觉听觉视觉都很好，智力超常，隐蔽性强，这些是老虎狮子都办不到的。<br>　　豹的体能极强，视觉和嗅觉灵敏异常，性情机警，既会游泳，又善于爬树，成为食性广泛、胆大凶猛的食肉类。善于跳跃和攀爬，营独居夜行生活。常在林中往返游荡，捕食猿猴、野兔、野鹿和鸟类等，时而还猎食家畜。生性凶猛，伤人！<br>　　豹的猎物主要有鹿﹑羚羊及野猪，但亦会捕猎灵猫，猴子，雀鸟，啮齿动物等，甚至腐肉，视乎猎物产地而定。豹也有捕食黑猩猩的的纪录。在猎物缺乏时，它也会捕猎家畜，因而发生人豹之间的冲突。和一般猫科动物一样，豹会在密林的掩护下，潜近猎物，并来一个突袭，攻击猎物的颈部或口鼻部，令其窒息。非洲品种通常把猎物拖上树慢慢吃，以防狮子或鬣狗等食肉动物前来抢夺。在食物链上，豹处於次等捕猎者的位置，这亦意味着豹同时是老虎及狮子的猎物。<br>　　豹捕捉到的猎物如果被狮子，鬣狗狗等发现，多半会被抢走，因为豹不会同食肉动物搏击原因是一但有伤，就行动不便，上树，游泳等活动妨碍伤口愈合，加之免疫力低，所以豹宁愿再捉一个猎物也不愿同食肉动物搏击。<br>生长繁殖<br>　　繁殖期为冬末春初，3～4月份发情交配，孕期约三个月，6～7月份产仔，每胎2～3仔，初生幼体500克左右，幼豹于当年秋季就离开母豹，独立生活。约三年性成熟。寿命10～20年。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/豹/" data-id="cid4ol7p70044lslm7m38qmw8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/狮" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/狮/" class="article-date">
+  <time datetime="2009-10-12T03:20:19.000Z" itemprop="datePublished">2009-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/狮/">狮</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>特征<br>    雄狮重达220公斤，包括尾巴的全长达2.8米，母狮体型较公狮小，但体重仍重达160公斤，相当于两个成年男人的重量，是非洲最顶级的掠食者，公狮颈部周围包著一层的鬃毛名为”狮鬃”，狮鬃颜色不等，包括金褐、咖啡、黑色，有些狮的狮鬃浓密而杂乱，有的稀疏且平顺，科学家研究发现，狮鬃又黑又浓又乱的公狮因为长相较吓人因此很少受攻击，狮鬃太少颜色太淡看起来不吓人的公狮反而常受到攻击，狮鬃在打猎埋伏上并没有任何的帮助。有些狮体色为纯白，并不是因为白化病，而是色素细胞的突变，白狮会被认为身体虚弱，且会影响到猎食，但白狮十分的稀少。<br>生活环境<br>    过去从欧洲南部、西亚、印度和非洲都有狮。冰川期间一个亚种还在中欧和北美洲生存过，但冰川期后它们就消失了。按当时学者的报道，到古希腊时期在巴尔干半岛还有狮生存。一般认为欧洲的狮在公元1世纪由于人类的活动灭绝。<br>    今天绝大多数狮生活在非洲撒哈拉沙漠以南，撒哈拉沙漠以北的狮于1940年代灭绝。20世纪时在亚洲的狮几乎全部被消灭，只有在印度的一个自然公园还有少数幸存。<br>    过去除森林外，狮在所有的生态环境中都有，今天它们的生存环境大大地缩小了。它们比较喜欢草原，也在旱林和半沙漠中出现，但不生存在沙漠和雨林中。<br>社会结构<br>    与其它大型猫不同，狮是群体生活。一个狮群主要由互相之间有亲缘关系的雌兽组成。地形和猎物的多少决定一个群的大小，一个群可以由3至30只狮组成。雄兽在一个群内只待一段时间，此后它往往去找另一个群。虽然如此在一个狮群中雄狮的地位比雌狮的高。一般在一个狮群中只有一只成年的雄狮，幼狮在狮群中一般待三年，此后雄性的青年被驱逐出群，而雌兽则留在群内。<br>    年轻的雄狮组成不稳定的小群过着游荡的生活，直到它们自己成为一个狮群的首领。一般它们要到六岁或更老才能达到这个地位。<br>    往往一个狮群的领导地位会被另一个雄狮占据，一般当老的雄狮老了或虚弱了时，就会有年轻的雄狮向它挑战，战败的雄狮不是死亡就是逃亡。假如新来的雄狮战胜，它一般将它前任的幼兽杀死，这样雌兽就比较容易和它交配了。<br>    一个狮群的领地面积从20到400平方千米不等。一个领地的大小与狮群的大小和领地内猎物的多少有关。狮群一般用粪便、尿和从远方就听得见的呼叫声来标志它们的领地。<br>    也有的狮群没有领地而过着游荡的生活。<br>繁殖<br>    虽然雄狮在一个狮群中占最高的地位，但只有在一只雌狮同意的情况下它才能与它交配。假如雌狮愿意，它就趴到地上，让雄狮跨上。从雌狮对雄狮的态度上一般可以看得出雄狮在群中的地位有多高，以及它是否在下一次角斗中会被驱逐。<br>    雌狮的怀孕期一般是四个月，此后它生二至四只幼崽。幼崽的体重一般是1.5千克。幼崽不但可以在它的母亲身上吸奶，而且可以在群中的每只雌狮吸奶。对幼崽的抚养是整个狮群的任务。幼崽的吸奶期是四个月，此后它们还跟着母亲约两年。雌狮一般在三年后，雄狮在五年后性成熟。亦曾有研究指，雄狮跟雌狮成功交配出来超过一岁的小狮子在三只里只有一只。<br>    狮可以活20年。一般只有雌狮会活这么长。雄狮一般在此之前就会被一只年轻的雄狮杀死或驱逐，它们一般不会再找到一个群，往往饿死。一般雄狮的寿命不超过12年（与一个小学生的平均年龄持平），相反一般雌狮的寿命约15-18岁（与一个中学生的平均年龄持平）。在动物园中有些狮子活到34岁。<br>食物<br>    一般雌狮猎取食物，雄狮只在它们年轻时，鬃毛还没有完全成熟时狩猎。它们深色的鬃毛使它们比较容易被看见，因此不太容易获得成功。一般它们潜伏靠近猎物，然后跳起将猎物扑倒。小的猎物一般被咬断头颈，大的猎物的头颈被撕破或被压抑窒息。<br>    一般出猎的时间是夜晚或清晨凉爽的时候。<br>    猎物中包括羚羊、小羚羊、牛羚和斑马，也包括狒狒、兔、鸟，有时甚至鱼。猎物被捕获后按群内地位的高低捺食：首先是雄狮，然后是地位最高的雌狮，幼狮最后。往往会因此产生群内的地位争端，这样的争斗往往会导致受伤。<br>    狮子往往也食腐食。被从群内驱逐的雄狮一般只食尸体。它们抢夺其它食肉动物如豹或猎豹的猎物。狮子也从鬣狗口中抢夺食物。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/狮/" data-id="cid4ol7pu004clslmkul5s4ee" class="article-share-link">Share</a>
       
       
     </footer>
@@ -311,7 +295,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -322,7 +306,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">19</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">58</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">21</span></li></ul>
     </div>
   </div>
 
@@ -331,7 +315,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/BigData/" style="font-size: 15.71px;">BigData</a> <a href="/tags/CDH/" style="font-size: 17.14px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Google/" style="font-size: 11.43px;">Google</a> <a href="/tags/HBase/" style="font-size: 11.43px;">HBase</a> <a href="/tags/HDP/" style="font-size: 17.14px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.43px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.43px;">JUnit</a> <a href="/tags/Java/" style="font-size: 18.57px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 12.86px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.43px;">Netty</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 14.29px;">Spark</a> <a href="/tags/XP/" style="font-size: 11.43px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 11.67px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 16.67px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 16.67px;">BigData</a> <a href="/tags/CDH/" style="font-size: 18.33px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Google/" style="font-size: 11.67px;">Google</a> <a href="/tags/HBase/" style="font-size: 11.67px;">HBase</a> <a href="/tags/HDP/" style="font-size: 18.33px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.67px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.67px;">JUnit</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 13.33px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.67px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/XP/" style="font-size: 11.67px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
     </div>
   </div>
 
@@ -407,23 +391,23 @@ var _hmt = _hmt || [];
           </li>
         
           <li>
-            <a href="/2009/鲶鱼效应/">鲶鱼效应</a>
+            <a href="/2011/学习之-Stack-Exchange网站架构/">学习之--Stack Exchange网站架构</a>
           </li>
         
           <li>
-            <a href="/2009/Jboss-Netty架构图/">Jboss Netty架构图</a>
+            <a href="/2010/川西旅游/">川西旅游</a>
           </li>
         
           <li>
-            <a href="/2009/Google如何使用Linux《How-Google-uses-Linux》/">Google如何使用Linux《How Google uses Linux》</a>
+            <a href="/2010/JDK-7-in-JavaOne-2010/">JDK 7 in JavaOne 2010</a>
           </li>
         
           <li>
-            <a href="/2009/Jboss-Netty的Performance报告阅读/">Jboss Netty的Performance报告阅读</a>
+            <a href="/2010/摘要-40-Android-Business-Models/">摘要:40 Android Business Models</a>
           </li>
         
           <li>
-            <a href="/2009/JDK-7-Platform/">JDK 7 Platform</a>
+            <a href="/2010/Java服务器开发基础知识-1/">Java服务器开发基础知识(1)</a>
           </li>
         
       </ul>
@@ -435,7 +419,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
