@@ -87,10 +87,10 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-2006/走向设计-To-Consider-Design" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2007/Google-Guice实战" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2006/走向设计-To-Consider-Design/" class="article-date">
-  <time datetime="2006-04-13T03:05:07.000Z" itemprop="datePublished">2006-04-13</time>
+    <a href="/2007/Google-Guice实战/" class="article-date">
+  <time datetime="2007-05-31T03:54:49.000Z" itemprop="datePublished">2007-05-31</time>
 </a>
     
   <div class="article-category">
@@ -105,7 +105,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2006/走向设计-To-Consider-Design/">走向设计(To Consider Design)</a>
+      <a class="article-title" href="/2007/Google-Guice实战/">Google Guice实战</a>
     </h1>
   
 
@@ -113,14 +113,265 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>recently i always consider design:<br>1.keeping it simple,keeping it clean<br>2.coding for modularity<br>3.when working Bottom-Up,then working Top-Down.<br>4.abstract and high-cohesion,low-coupling<br>5.open one’s eyes for contract<br>today,when i’m reading the art of unix programming and get it:<br>Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove.</p>
-<p>The followings from 《the art of unix programming 》-Modularity</p>
-<p>There are two ways of constructing a software design. One is to make it so simple that there are obviously no deficiencies; the other is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult.<br>1.Modularity:Keeping It Clean,Keeping It Simple.<br>2.Hatton himself suggests as a rule of thumb a 2x conversion between logical and physical lines, suggesting an optimal range of 400–800 physical lines.<br>3.Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove<br>4.Modularity is expressed in good code, but it primarily comes from good design.<br>5.A good API makes sense and is understandable without looking at the implementation behind it.The classic test is this: Try to describe it to another programmer over the phone. If you fail, it is very probably too complex, and poorly designed.<br>6.Coding for Modularity</p>
+        <p>Guice(pronounced “juice”)发布了1.0版本.<br>首先看看Guice的定位：an ultra-lightweight, next-generation dependency injection container for Java 5 and later.<br>这是一个基于Java 5及后续版本的轻量级依赖注入容器。Martin Fowler关于依赖注入的精彩讨论参见：<a href="http://www.martinfowler.com/articles/injection.html#InversionOfControl" target="_blank" rel="external">http://www.martinfowler.com/articles/injection.html#InversionOfControl</a><br>在这篇讨论中涉及到几种注入方式：Constructor Injection、Setter Injection、Interface Injection;<br>实际应用开发中依赖的注入问题自始至终都伴随着我们，当我们走过了最简单直接的手动注入、运用模式进行注入，到依赖于框架，当前成熟的框架众多，例如：Spring IOC、PicoContainer、Hivemind等；那么Guice作为一个依赖注入的framework，又是怎么定位自己的呢？其special的地方又在哪儿呢？我们首先看一个非常简单的例子：<br>对于注入描述的类如下：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+    <span class="keyword">public</span> <span class="keyword">void</span> configure(Binder binder) {
+        binder.bind(Service.<span class="keyword">class</span>).to(ServiceImpl.<span class="keyword">class</span>).<span class="keyword">in</span>(Scopes.SINGLETON);
+    }
+}
+</code></pre><p>依赖注入发生的地方：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>{
+
+    <span class="keyword">private</span> <span class="keyword">final</span> Service service;
+
+    <span class="annotation">@Inject</span>
+    <span class="function"><span class="keyword">public</span> <span class="title">Client</span><span class="params">(Service service)</span> </span>{
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{
+        service.go();
+    }
+}
+</code></pre><p>从这个例子我们可以清晰看出，Guice的依赖注入已经不同于以往的三种注入模式了，Okey，你已经看到了Guice充分使用了Java的新特性annotation来进行依赖注入的，已经完全跨越了Constructor Injection、Setter Injection、Interface Injection的概念了。这样，依赖注入只是需要一个或者多个annotation而已，一切搞定。<br>下一步我看看Guice这个Framework是要如何进行依赖注入的？<br>我们首先看看Guice的Architecture.</p>
+<pre><code>public class MyModule implements Module {
+   <span class="keyword"> public</span> void<span class="function"> configure(</span>Binder binder<span class="function">)</span> {
+        // Bind Foo to FooImpl. Guice will create a<span class="instruction"> new
+</span>        //<span class="instruction"> instance </span>of FooImpl for every injection.
+       <span class="function"> binder.bind(</span>Foo.class<span class="function">)</span>.to(FooImpl.class<span class="function">)</span>;
+
+        // Bind Bar to an<span class="instruction"> instance </span>of Bar.
+        Bar bar =<span class="instruction"> new </span>Bar(<span class="function">)</span>;
+       <span class="function"> binder.bind(</span>Bar.class<span class="function">)</span>.toInstance(bar<span class="function">)</span>;
+    }
+}
+</code></pre><p>该部分代码的sequence diagram如下：</p>
+<p>运行时Guice的依赖注入的绑定器structure如下：</p>
+<p>很明显的看到，一个注入的绑定关联主键Key、Scope、Provider；其中Key包含了依赖的Type和Annotation.<br>看到了Guice的简单绑定，一定会有一个疑问：就是一个类型的多个绑定怎么实现？Guice是运行Annotation binding来解决这个问题的。<br>例如绑定代码如下：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingModule</span> <span class="keyword">implements</span> <span class="title">Module</span> {</span>
+
+    <span class="keyword">public</span> <span class="typename">void</span> configure(Binder binder) {
+        binder.bind(IService.<span class="keyword">class</span>).annotatedWith(Blue.<span class="keyword">class</span>).to(BlueService.<span class="keyword">class</span>);
+
+    }
+
+}
+注入代码如下：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingClient</span> {</span>
+    <span class="comment">// @Inject</span>
+    <span class="comment">// @Blue</span>
+    <span class="comment">// private IService service;</span>
+
+    <span class="keyword">private</span> IService service;
+
+    <span class="annotation">@Inject</span>
+    <span class="keyword">public</span> <span class="typename">void</span> injectService(<span class="annotation">@Blue</span> IService service) {
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> <span class="typename">void</span> go() {
+        <span class="keyword">this</span>.service.go();
+    }
+}
+annotation部分代码：
+
+<span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="annotation">@Target</span>({ElementType.FIELD, ElementType.PARAMETER})
+<span class="annotation">@BindingAnnotation</span>
+<span class="keyword">public</span> <span class="annotation">@interface</span> Blue {
+
+}
+</code></pre><p>如果再复杂一些，Guice还支持有属性的annotation:<br>绑定代码</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+
+<span class="comment">/*
+* (non-Javadoc)
+* 
+* @see com.google.inject.Module#configure(com.google.inject.Binder)
+*/</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(Binder binder)</span> </span>{
+    binder.bind(IPerson.class).annotatedWith(<span class="keyword">new</span> NamedAnnotation(<span class="string">"Bob"</span>)).to(Bob.class);
+}
+
+}
+注入代码：
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedClient</span> </span>{
+
+    <span class="annotation">@Inject</span>
+    <span class="annotation">@Named</span>(<span class="string">"Bob"</span>)
+    <span class="keyword">private</span> IPerson person;
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>{
+        <span class="keyword">this</span>.person.say();
+    }
+}
+annotation代码：
+
+<span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="annotation">@Target</span>({ElementType.FIELD, ElementType.PARAMETER})
+<span class="annotation">@BindingAnnotation</span>
+<span class="keyword">public</span> <span class="annotation">@interface</span> Named {
+    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedAnnotation</span> <span class="keyword">implements</span> <span class="title">Named</span> </span>{
+
+    <span class="keyword">private</span> String value;
+
+    <span class="function"><span class="keyword">public</span> <span class="title">NamedAnnotation</span><span class="params">(String value)</span></span>{
+        <span class="keyword">this</span>.value = value;
+    }
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.neusoft.anno.Named#value()
+    */</span>
+    <span class="function"><span class="keyword">public</span> String <span class="title">value</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> value;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> <span class="number">127</span> * <span class="string">"value"</span>.hashCode() ^ value.hashCode();
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>{
+    <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Named))
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+        Named other = (Named) o;
+        <span class="keyword">return</span> value.equals(other.value());
+    }
+
+    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> <span class="string">"@"</span> + Named.class.getName() + <span class="string">"(value="</span> + value + <span class="string">")"</span>;
+    }
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see java.lang.annotation.Annotation#annotationType()
+    */</span>
+    <span class="function"><span class="keyword">public</span> Class <span class="title">annotationType</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> Named.class;
+    }
+
+}
+</code></pre><p>通过这几个例子，可以清晰看到，Guice应用annotation进行注入的关联的，用module将依赖关系组装起来，提供给客户端代码进行使用；而且annotation是可以自由定制的，支持灵活扩展的。</p>
+<p>Guice本身也支持实现类的直接绑定：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MixerModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.google.inject.Module#configure(com.google.inject.Binder)
+    */</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> configure(Binder binder) {
+        binder.bind(Concrete.<span class="keyword">class</span>);
+
+    }
+
+}
+</code></pre><p>Guice有一种隐式绑定，其方法是这样，针对一个接口，如果缺少显式绑定，Guice 会寻找一个指向具体实现的@ImplementedBy标注。</p>
+<pre><code><span class="annotation">@ImplementedBy</span>(GoodNightImpl.class)
+    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IGoodNight</span> </span>{
+
+    <span class="function"><span class="keyword">void</span> <span class="title">goodNight</span><span class="params">()</span></span>;
+    }
+
+    <span class="annotation">@Singleton</span>
+    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodNightImpl</span> <span class="keyword">implements</span> <span class="title">IGoodNight</span> </span>{
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.neusoft.nobinding.IGoodNight#goodNight()
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goodNight</span><span class="params">()</span> </span>{
+        System.out.println(<span class="string">"Good night!"</span>);
+    }
+
+}
+</code></pre><p>那么，Provider是怎么回事呢？“有时对于每次注入，客户代码需要某个依赖的多个实例。其它时候，客户可能不想在一开始就真地获取对象，而是等到注入后的某个时候再获取。对于任意绑定类型 T，你可以不直接注入 T 的实例，而是注入一个 Provider，然后在需要的时候调用 Provider.get()”因此，可以使用Provider去真正的来创建依赖的对象实例，直到需要的时候才创建客户代码需要的实例。</p>
+<p>Provider等绑定代码：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetModule</span> <span class="keyword">implements</span> <span class="title">Module</span> {</span>
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.google.inject.Module#configure(com.google.inject.Binder)
+    */</span>
+    <span class="keyword">public</span> <span class="typename">void</span> configure(Binder binder) {
+        binder.bind(IService.<span class="keyword">class</span>).to(WidgetService.<span class="keyword">class</span>).<span class="keyword">in</span>(Scopes.SINGLETON);
+        binder.bind(Widget.<span class="keyword">class</span>).toProvider(WidgetProvider.<span class="keyword">class</span>);
+    }
+
+}
+Provider的注入：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
+    <span class="keyword">private</span> IService service;
+
+    <span class="annotation">@Inject</span> Provider provider;
+
+    <span class="keyword">public</span> Widget(IService service){
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> <span class="typename">void</span> go(){
+        <span class="keyword">this</span>.service.go();
+    }
+}
+Provider的实现：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetProvider</span> <span class="keyword">implements</span> <span class="title">Provider</span> {</span>
+
+    <span class="keyword">final</span> IService service;
+
+    <span class="annotation">@Inject</span>
+    WidgetProvider(IService service) {
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> Widget get() {
+        <span class="keyword">return</span> <span class="keyword">new</span> Widget(service);
+    }
+
+}
+</code></pre><p>Service的接口和实现：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IService</span> </span>{
+
+    <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>;
+
+}
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetService</span> <span class="keyword">implements</span> <span class="title">IService</span> </span>{
+
+    <span class="comment">/* (non-Javadoc)
+    * @see com.neusoft.service.IService#go()
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{
+        System.out.println(<span class="string">"Widget Service Hello."</span>);
+    }
+
+}
+</code></pre><p>客户代码：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetApplication</span> </span>{
+
+    <span class="comment">/**
+    * @param args
+    */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        Injector injector = Guice.createInjector(<span class="keyword">new</span> WidgetModule());
+        Widget widget = injector.getInstance(Widget.<span class="keyword">class</span>);
+        widget.go();
+    }
+
+}
+</code></pre><p>这个例子完全表达出了Provider的价值所在。<br>另外，Guice也提供了Constant Values以及Converting Stings的支持：<br>Guice会针对Primitive types、primitive wrapper types、Strings、Enums、Classes类型进行类型的自动判断绑定机制。对于Primitive types、primitive wrapper types,如果 Guice 仍然无法找到一个的显式绑定，它会去找一个拥有相同绑定标注的常量 String 绑定，并试图将字符串转换到相应的值。<br>这就是一个Guice如何进行依赖注入的一个基本的思路，可以看到Guice的代码量十分少，是一个不错的依赖注入的方案，也将会推动依赖注入的进步。<br>参考：<br>Guice项目：<a href="http://code.google.com/p/google-guice/" target="_blank" rel="external">http://code.google.com/p/google-guice/</a><br>Guice中文文档：<a href="http://docs.google.com/View?docid=dqp53rg_3hjf3ch" target="_blank" rel="external">http://docs.google.com/View?docid=dqp53rg_3hjf3ch</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/走向设计-To-Consider-Design/" data-id="cid4ol7v6006nlslmmn8zs808" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Google-Guice实战/" data-id="cid4p9fgx006yjglmv4x3hhrc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -130,51 +381,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2006/转-How-To-Become-A-Hacker" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2007/走向Miami-原名：重返Miami" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2006/转-How-To-Become-A-Hacker/" class="article-date">
-  <time datetime="2006-04-13T02:04:23.000Z" itemprop="datePublished">2006-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2006/转-How-To-Become-A-Hacker/">转: How To Become A Hacker</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>look to the master,<br>follow the master,<br>walk with the master,<br>see through the master,<br>become the master.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/转-How-To-Become-A-Hacker/" data-id="cid4ol7v2006mlslmb4fsyxyj" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2006/读《Managing-Open-Source-Projects》" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2006/读《Managing-Open-Source-Projects》/" class="article-date">
-  <time datetime="2006-04-05T03:01:50.000Z" itemprop="datePublished">2006-04-05</time>
+    <a href="/2007/走向Miami-原名：重返Miami/" class="article-date">
+  <time datetime="2007-05-20T03:53:21.000Z" itemprop="datePublished">2007-05-20</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
+    <a class="article-category-link" href="/categories/生活/">生活</a>
   </div>
 
   </div>
@@ -185,7 +399,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2006/读《Managing-Open-Source-Projects》/">读《Managing Open Source Projects》</a>
+      <a class="article-title" href="/2007/走向Miami-原名：重返Miami/">走向Miami(原名：重返Miami)</a>
     </h1>
   
 
@@ -193,12 +407,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>The following are two general principles of organization:<br>People must understand the organizational structure in which they are supposed to work.<br>There has to be someone who can make final decisions. This is especially important if the project or company is in a crisis. If the ship goes down, the captain does not call for a meeting. Everyone must obey orders, know exactly where to go and what to do, and do it without argument.</p>
+        <p>为什么重返Miami，在自己内心深处，不知道什么是出路的时候，这不是一种逃避，是一种面对，但不是“重新”，寻找到内心很多寂寥，若有若无的种种境地。<br>在飞机在北太平洋上空，在强气流，在阳光所洒在的云层中穿梭的时候，我多么强烈的意识到一个人是必须要面对人的一生必须要面对的许许多多事情的。如同人最后一定要离开一个世界一样，无所谓失败，无所谓失去，无所谓面对。我想我是太执著于在自己过去的阴影之下，太过于执著于一种心情。<br>“许多人生活在‘其实我很希望。。。只是很可惜。。。’的模式中，找借口完全接触不到你的生命，使你不能经历成长的喜悦。只有真刀真枪地面对自己，才了解生命和幸福的深度。”当我看到一个朋友的签名的时候，不禁也想起另外一个朋友的话，“如果你要找借口，一百个你都能找到。”<br>（翻开我的blog和自己的心情，就如同一个朋友曾经一语道破为如同“失恋”的心态。悲观的心态可能有积极的人生吗?）“先知，先觉，先行”，王阳明先生“知行合一”。无论多少心情，多少道理，都不如行动来的猛烈。<br>有梦想，有目标，究竟每一天能有多少东西能够沉淀下来？为了梦想，为了目标。““无产阶级失去的只是枷锁”，如果人的一生有枷锁，就是一个人的心；最难改变的是性格中的不肯改变。准备好了吗，改变一切不肯改变的？<br>重返Miami，在于能够释放自己，释放自己平和稳定的心境，放下、放松；真刀真枪的面对自己；改变不肯改变的自己；在自己的内心寻找到自己。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/读《Managing-Open-Source-Projects》/" data-id="cid4ol7vb006plslm9fia0z56" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/走向Miami-原名：重返Miami/" data-id="cid4p9fev0064jglmnpco2ipo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -208,14 +422,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2006/入手《Code-Complete-Second-Edition》" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2007/Java-5-0的Instrumentation特性" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2006/入手《Code-Complete-Second-Edition》/" class="article-date">
-  <time datetime="2006-04-02T03:00:36.000Z" itemprop="datePublished">2006-04-02</time>
+    <a href="/2007/Java-5-0的Instrumentation特性/" class="article-date">
+  <time datetime="2007-05-19T03:30:36.000Z" itemprop="datePublished">2007-05-19</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
+    <a class="article-category-link" href="/categories/技术/">技术</a>
   </div>
 
   </div>
@@ -226,7 +440,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2006/入手《Code-Complete-Second-Edition》/">入手《Code Complete Second Edition》</a>
+      <a class="article-title" href="/2007/Java-5-0的Instrumentation特性/">Java 5.0的Instrumentation特性</a>
     </h1>
   
 
@@ -234,12 +448,222 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>昨天冒着大雨和redwood跑去华储买回了cc2e。买的时候还是有些犹豫—这本书真是太重了。我们刚买完书出来，dreamhead打电话过来他在华储正在买这本书。:)感谢redwood帮我把这本书背回了家。<br>拿到这本书我最大的期望是：我早在一年前能拿到这本书该是多么美妙的事情啊。<br>“这个世界从来就不缺少十几岁的少年天才,而三十几岁的优秀软件设计师凤毛麟角”。<br>我们重来都不缺少工程师，总是缺少尽可能多的优秀的工程师。任何想成为优秀工程师的人都不能容忍忽略这本书—cc2e的价值。(“最好是好的敌人”)<br>我们深信，这本书就是献给那些愿意成为优秀软件构造者长期以来进行不断的努力、奉献、执著追求的人。只有这样的人，才能把这么一本“砖头”饶有兴趣的读下去、读完。</p>
+        <p>Java 5发布有一段时间了，Instrumentation这个feature是Java 5新提供的。其方式是通过修改字节码的方式使得Java开发人员能够操作类。官方文档说主要是给工具提供修改应用的状态、行为使用的:)<br>先来个简单的例子看看到底什么是Instrumentation:<br>在JSE 1.5.0的Javadoc的看到java.lang.instrument仅有两个接口ClassFileTransformer和Instrumentation。我们就看看着两个接口的用法：</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Greeting</span> <span class="title">implements</span> <span class="title">ClassFileTransformer</span> {
+
+    <span class="comment">//字节码转换在这个方法中进行。</span>
+    <span class="keyword">public</span> <span class="keyword">byte</span>[] transform(ClassLoader arg0, String classname, Class arg2, ProtectionDomain arg3, <span class="keyword">byte</span>[] arg4)
+    throws IllegalClassFormatException {
+        System.<span class="keyword">out</span>.printf(<span class="string">"hello:"</span> + classname);
+        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">byte</span>[]{};
+    }
+
+    <span class="comment">//options是通过命令行传递给虚拟机的参数。</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">premain</span>(<span class="params">String options, Instrumentation ins</span>) </span>{
+        <span class="keyword">if</span> (options != <span class="keyword">null</span>) {
+            System.<span class="keyword">out</span>.printf(<span class="string">" I've been called with options: \"%s\"\n"</span>, options);
+        } <span class="keyword">else</span>
+            System.<span class="keyword">out</span>.println(<span class="string">" I've been called with no options."</span>);
+            ins.addTransformer(<span class="keyword">new</span> Greeting());
+        }
+
+    }
+
+    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Sample</span> {
+
+    <span class="comment">/**
+    * @param args
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>{
+        (<span class="keyword">new</span> Sample()).hello();
+
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span>(<span class="params"></span>) </span>{
+        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) {
+        <span class="keyword">int</span> index =<span class="number">0</span>;
+        index++;
+        }
+    }
+
+}
+</code></pre><p>使用命令行参数的命令行：</p>
+<pre><code><span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">Greeting.jar=<span class="string">"Hello, Sample"</span> Sample</span></span>
+</code></pre><p>因此下一步是需要打个jar包，jar包中包含META-INF/MANIFEST.MF和Class文件。<br>其中META-INF/MANIFEST.MF的内容如下：<br>    Manifest-Version: 1.0<br>    Premain-Class: Timing</p>
+<p>包含的类文件有：Greeting.class和Sample.class<br>打包：</p>
+<pre><code>jar cvfM greeting<span class="class">.jar</span> *
+</code></pre><p>输出：<br>    adding: Greeting.class(in = 1774) (out= 869)(deflated 51%)<br>    adding: META-INF/(in = 0) (out= 0)(stored 0%)<br>    adding: META-INF/MANIFEST.MF(in = 44) (out= 46)(deflated -4%)<br>    adding: Sample.class(in = 556) (out= 371)(deflated 33%)</p>
+<pre><code>运行命令行：
+
+<span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">greeting.jar=<span class="string">"Hello,Sample"</span> Greeting</span></span>
+</code></pre><p>控制台输出：<br>    I’ve been called with options: “Hello,Sample”</p>
+<p>运行命令行：</p>
+<pre><code><span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">greeting.jar=<span class="string">"Hello,Sample"</span> Sample</span></span>
+</code></pre><p>控制台输出：<br>    I’ve been called with options: “Hello,Sample”<br>    hello:Sample</p>
+<p>通过这个例子估计Instrutment API使用的方法已经基本上有了个理解了。<br>下面就是举一个用apache bcel构造bytecode的Instrutment的实际的例子：</p>
+<p>使用 instrumentation ，使用Apache 开源项目 BCEL修改bytecode，实现用于计算一个方法运行时间的功能。这种方式，用于性能测量的语句与业务逻辑完全分离，同时也可以用于测量任意类的任意方法的 运行时间，提高了代码的重用性。</p>
+<pre><code><span class="keyword">import</span> java.io.<span class="type">ByteArrayOutputStream</span>;
+<span class="keyword">import</span> java.io.<span class="type">IOException</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">ClassFileTransformer</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">IllegalClassFormatException</span>;
+<span class="keyword">import</span> java.lang.instrument.<span class="type">Instrumentation</span>;
+
+<span class="keyword">import</span> org.apache.bcel.<span class="type">Constants</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">ClassParser</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">JavaClass</span>;
+<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">Method</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ClassGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ConstantPoolGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionConstants</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionFactory</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionList</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">MethodGen</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ObjectType</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">PUSH</span>;
+<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">Type</span>;
+
+public class <span class="type">Timing</span> implements <span class="type">ClassFileTransformer</span> {
+
+    private <span class="type">String</span> methodName;
+
+    private <span class="type">Timing</span>(<span class="type">String</span> methodName) {
+        this.methodName = methodName;
+        <span class="type">System</span>.<span class="keyword">out</span>.println(methodName);
+    }
+
+    public byte[] transform(<span class="type">ClassLoader</span> loader, <span class="type">String</span> className, <span class="type">Class</span> cBR, java.security.<span class="type">ProtectionDomain</span> pD, byte[] classfileBuffer) throws <span class="type">IllegalClassFormatException</span> {
+        <span class="keyword">try</span> {
+            <span class="type">ClassParser</span> cp = new <span class="type">ClassParser</span>(new java.io.<span class="type">ByteArrayInputStream</span>(classfileBuffer), className + <span class="string">".java"</span>);
+            <span class="type">JavaClass</span> jclas = cp.parse();
+            <span class="type">ClassGen</span> cgen = new <span class="type">ClassGen</span>(jclas);
+            <span class="type">Method</span>[] methods = jclas.getMethods();
+            <span class="type">int</span> index;
+            <span class="keyword">for</span> (index = <span class="number">0</span>; index &lt; methods.length; index++) {
+                <span class="keyword">if</span> (methods[index].getName().equals(methodName)) {
+                    <span class="keyword">break</span>;
+                }
+            }
+
+            <span class="keyword">if</span> (index &lt; methods.length) {
+                addTimer(cgen, methods[index]);
+                <span class="type">ByteArrayOutputStream</span> bos = new <span class="type">ByteArrayOutputStream</span>();
+                cgen.getJavaClass().dump(bos);
+                <span class="keyword">return</span> bos.toByteArray();
+            }
+            <span class="type">System</span>.err.println(<span class="string">"Method "</span> + methodName + <span class="string">" not found in "</span> + className);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+
+        } catch (<span class="type">IOException</span> e) {
+            <span class="type">System</span>.err.println(e);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+        }
+        <span class="keyword">return</span> null; // <span class="type">No</span> transformation required
+    }
+
+    private <span class="keyword">static</span> <span class="type">void</span> addTimer(<span class="type">ClassGen</span> cgen, <span class="type">Method</span> <span class="keyword">method</span>) {
+
+        // <span class="type">set</span> up the construction tools
+        <span class="type">InstructionFactory</span> ifact = new <span class="type">InstructionFactory</span>(cgen);
+        <span class="type">InstructionList</span> ilist = new <span class="type">InstructionList</span>();
+        <span class="type">ConstantPoolGen</span> pgen = cgen.getConstantPool();
+        <span class="type">String</span> cname = cgen.getClassName();
+        <span class="type">MethodGen</span> wrapgen = new <span class="type">MethodGen</span>(<span class="keyword">method</span>, cname, pgen);
+        wrapgen.setInstructionList(ilist);
+
+        // rename a copy <span class="keyword">of</span> the original <span class="keyword">method</span>
+        <span class="type">MethodGen</span> methgen = new <span class="type">MethodGen</span>(<span class="keyword">method</span>, cname, pgen);
+        cgen.removeMethod(<span class="keyword">method</span>);
+        <span class="type">String</span> iname = methgen.getName() + <span class="string">"_timing"</span>;
+        methgen.setName(iname);
+        cgen.addMethod(methgen.getMethod());
+        <span class="type">Type</span> <span class="literal">result</span> = methgen.getReturnType();
+
+        // compute the size <span class="keyword">of</span> the calling parameters
+        <span class="type">Type</span>[] parameters = methgen.getArgumentTypes();
+        <span class="type">int</span> stackIndex = methgen.isStatic() ? <span class="number">0</span> : <span class="number">1</span>;
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; parameters.length; i++) {
+            stackIndex += parameters[i].getSize();
+        }
+
+        // save time prior to invocation
+        ilist.append(ifact.createInvoke(<span class="string">"java.lang.System"</span>, <span class="string">"currentTimeMillis"</span>, <span class="type">Type</span>.<span class="type">LONG</span>, <span class="type">Type</span>.<span class="type">NO_ARGS</span>, <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>));
+        ilist.append(<span class="type">InstructionFactory</span>.createStore(<span class="type">Type</span>.<span class="type">LONG</span>, stackIndex));
+
+        // call the wrapped <span class="keyword">method</span>
+        <span class="type">int</span> offset = <span class="number">0</span>;
+        short invoke = <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>;
+        <span class="keyword">if</span> (!methgen.isStatic()) {
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="type">Type</span>.<span class="type">OBJECT</span>, <span class="number">0</span>));
+            offset = <span class="number">1</span>;
+            invoke = <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>;
+        }
+        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; parameters.length; i++) {
+            <span class="type">Type</span> <span class="keyword">type</span> = parameters[i];
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="keyword">type</span>, offset));
+            offset += <span class="keyword">type</span>.getSize();
+        }
+        ilist.append(ifact.createInvoke(cname, iname, <span class="literal">result</span>, parameters, invoke));
+
+        // store <span class="literal">result</span> <span class="keyword">for</span> <span class="keyword">return</span> later
+        <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">Type</span>.<span class="type">VOID</span>) {
+            ilist .append(<span class="type">InstructionFactory</span>.createStore(<span class="literal">result</span>, stackIndex + <span class="number">2</span>));
+        }
+
+        // print time required <span class="keyword">for</span> <span class="keyword">method</span> call
+        ilist.append(ifact.createFieldAccess(<span class="string">"java.lang.System"</span>, <span class="string">"out"</span>, new <span class="type">ObjectType</span>(<span class="string">"java.io.PrintStream"</span>), <span class="type">Constants</span>.<span class="type">GETSTATIC</span>));
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">DUP</span>);
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">DUP</span>);
+        <span class="type">String</span> text = <span class="string">"Call to method "</span> + methgen.getName() + <span class="string">" took "</span>;
+        ilist.append(new <span class="type">PUSH</span>(pgen, text));
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"print"</span>, <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">STRING</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+        ilist.append(ifact.createInvoke(<span class="string">"java.lang.System"</span>, <span class="string">"currentTimeMillis"</span>, <span class="type">Type</span>.<span class="type">LONG</span>, <span class="type">Type</span>.<span class="type">NO_ARGS</span>, <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>));
+        ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="type">Type</span>.<span class="type">LONG</span>, stackIndex));
+        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">LSUB</span>);
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"print"</span>,
+        <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">LONG</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+        ilist.append(new <span class="type">PUSH</span>(pgen, <span class="string">" ms."</span>));
+        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"println"</span>, <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">STRING</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
+
+        // <span class="keyword">return</span> <span class="literal">result</span> <span class="keyword">from</span> wrapped <span class="keyword">method</span> call
+        <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">Type</span>.<span class="type">VOID</span>) {
+            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="literal">result</span>, stackIndex + <span class="number">2</span>));
+        }
+        ilist.append(<span class="type">InstructionFactory</span>.createReturn(<span class="literal">result</span>));
+
+        // finalize the constructed <span class="keyword">method</span>
+        wrapgen.stripAttributes(<span class="literal">true</span>);
+        wrapgen.setMaxStack();
+        wrapgen.setMaxLocals();
+        cgen.addMethod(wrapgen.getMethod());
+        ilist.dispose();
+    }
+
+    public <span class="keyword">static</span> <span class="type">void</span> premain(<span class="type">String</span> options, <span class="type">Instrumentation</span> ins) {
+        <span class="keyword">if</span> (options != null) {
+            ins.addTransformer(new <span class="type">Timing</span>(options));
+        } <span class="keyword">else</span> {
+            <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Usage: java -javaagent:Timing.jar=\"class:method\""</span>);
+            <span class="type">System</span>.exit(<span class="number">0</span>);
+        }
+
+    }
+}
+</code></pre><p>打jar包:</p>
+<pre><code>$ jar cvfM timing<span class="class">.jar</span> *
+</code></pre><p>输出：<br>    adding: META-INF/(in = 0) (out= 0)(stored 0%)<br>    adding: META-INF/MANIFEST.MF(in = 44) (out= 46)(deflated -4%)<br>    adding: Sample.class(in = 556) (out= 371)(deflated 33%)<br>    adding: Timing.class(in = 7372) (out= 3442)(deflated 53%)</p>
+<p>运行命令行：</p>
+<pre><code>$ java -classpath bcel-<span class="number">5.2</span><span class="class">.jar</span> -javaagent:timing.jar=<span class="string">"hello"</span> Sample
+</code></pre><p>输出：<br>    hello<br>    Call to method hello_timing took 2047 ms.</p>
+<p>运行命令：</p>
+<pre><code>$ java -classpath bcel-<span class="number">5.2</span><span class="class">.jar</span> -javaagent:timing.jar=<span class="string">"main"</span> Sample
+</code></pre><p>输出：<br>    main<br>    Call to method main_timing took 2469 ms.</p>
+<p>通过这段代码，基本能够了解Instrument的用处之一了:)</p>
+<p>参考：<a href="http://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/入手《Code-Complete-Second-Edition》/" data-id="cid4ol7vr006tlslm97lldctm" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Java-5-0的Instrumentation特性/" data-id="cid4p9fgj006tjglmwmixc7mt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -249,14 +673,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2007/2006年年终总结-原名：一篇没有写完的BLOG" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/" class="article-date">
-  <time datetime="2005-09-06T02:59:07.000Z" itemprop="datePublished">2005-09-06</time>
+    <a href="/2007/2006年年终总结-原名：一篇没有写完的BLOG/" class="article-date">
+  <time datetime="2007-03-13T03:29:17.000Z" itemprop="datePublished">2007-03-13</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
+    <a class="article-category-link" href="/categories/生活/">生活</a>
   </div>
 
   </div>
@@ -267,7 +691,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/">读《Expert One on One J2EE Development Without EJB》C2</a>
+      <a class="article-title" href="/2007/2006年年终总结-原名：一篇没有写完的BLOG/">2006年年终总结(原名：一篇没有写完的BLOG)</a>
     </h1>
   
 
@@ -275,17 +699,55 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想重要。如同重构的时机一样：OO原则，针对接口编程；将任何特定的规范已经实现尽量隐藏一般特性之后，比如ejb的接口隐藏在pojo之后。<br>3.在我自己的技术选择中，几乎都是选择OpenSource社区的，很少受到规范驱动或者vendor驱动的影响。正好相反，也vendor driven才造就今天的我们。:)<br>4.项目成功，检验架构的标准：<br>simplicity<br>productivity<br>the fundamental importance of object orientation<br>the primacy of business requirements<br>the importance of empirical process<br>the importance of testability<br>5.一切皆来源于经验过程。spring比Expert One-on-One J2EE还要早。(没有working code就无法写出这本书。)springframework是Rod Johnson几个商业项目的经验而产生的。开发这个framework也应该是在模式大量复用中找到了突破点,如果一些模式大量的被复用，那么把这些模式的职责转嫁给framework来做，dry原则。当然，必须优先考虑模块化的原则，比方说对于log4j的如何集成到framework的方式。<br>6.Architecture and implementation should always be undertaken with clear goals in mind.</p>
-<p>Productivity<br>1.framework不断抽象，不断重构产生的,framework与代码生成的转换：If we see a requirement for boring repetitive code, we should apply an OO solution and abstract it into a framework,rather than generate it and live with the resulting duplication.<br>2.代码生成技术在解决生产率中扮着十分重要的角色。在j2ee开发中涉及到代码生成的层次很多。从dll,database schema到jsp.<br>3.There shouldn’t be vast amounts of repetitive plumbing code in J2EE applications.Better architectural choices and better frameworks can virtually eliminate such code,meaning that nearly all application code can be hand-authored.(注：framework形成的时机之一。)I’m not saying that code generation is a bad technology in general—merely that,when properly designed and built on appropriate frameworks, most J2EE applications should not contain enough boilerplate code to justify it and outweigh its negatives.<br>4.关于代码生成以及MDA作者的观点：The natural path of our industry is toward higher levels of abstraction. Perhaps one day MDA-powered code generation will prove to be an appropriate abstraction. However, I feel that this is 10–15 years away, if it ever happens.<br>5.Better Solutions for Higher Productivity：<br>Architecture<br>    Avoid unnecessary architectural complexity.<br>    Avoid unnecessary use of EJB.<br>    Use abstraction layers to hide the complexity of core J2EE and J2SE APIs.<br>    If possible, use an O/R mapping product to simplify the persistence layer.<br>    Use a good application framework.  </p>
-<p>Focus and methodology<br>    Focus! Know what problems you should be solving, and concentrate on them.<br>    Use a reference architecture and start from a template application.<br>    Use an agile development process.</p>
-<p>Use appropriate tools.<br>6.Different developers do the same thing in different ways, wasting<br>valuable development time and complicating maintenance.程序设计始终要做的就是不发生这样的事情。<br>7.Know What Problems to Solve 生产率即是知道要解决得是什么问题，将主要是domain problems而不是generic problems.<br>8.Use Reference Architectures and Templates一旦选择了技术，将着手reference architecture.begin work using a skeleton application that establishes the overall plumbing.<br>9.And remember that the more upfront effort before arriving at a working prototype, the greater the risk of inadequate performance or an unworkable architecture. 项目组也应该精化，微型化。<br>10.J2EE developers are fortunate in that all these requirements can be met by free, open source tools, such as Eclipse, JUnit, Ant, a good Eclipse XML plugin, CVS, and the standard Eclipse JUnit and CVS integration.</p>
-<p>OO<br>1.本身OO是一种范式，是一个模型，在SICP中对于讲到代换模型的理论：In general, when modeling phenomena in science and engineering, we begin with simplified, incomplete models. As we examine things in greater detail, these simple models become inadequate and must be replaced by more refined models.关于OO的讨论算是一个检查考虑问题的讨论。<br>2.作者提出的实践中运用oo的四个方面：封装domains concepts;运用polymorphism将共性和差异分离;代码复用；extensibility.<br>3.j2ee应用的对象常常都是一些fake objects，即是不具备objects的某些特征:identity,state,behavior.<br>4.oo针对接口编程的优点和误区。</p>
-<p>The importance of business requirements<br>1.这个问题因不同的角色而已。就我而言，如同我一样的普通程序员，对于generic technical problems常常都是难题，故而在这方面的需要长足的学习和提高的;对于我们而言，我们domain problems就是如何具备了generic technical方面的强大能力只是第一步。<br>The Importance of an Empirical Process<br>1.Always develop a vertical slice to validate your application’s architecture early in the project. Don’t trust our advice or anyone else’s without establishing that it’s appropriate to your needs.验证自己的想法。</p>
+        <p>2006已经过去，2007已经开始。<br>过去的一年，有高兴，有激动，有不少难以忘记的时刻，有很多痛苦的思考。当我面对和回首自己过去的一年，我不知道自己除了时间之外究竟还失去了什么，自己除了痛苦之外还有多少收获？<br>人是可以活的洒脱些，就看一个人究竟要的是什么？就看你付出了多少？<br>要行动，要思考，要计划，要不断的沟通。<br>技术的狂热，当我在Miami Java User Group第一次聚会上看到Michael Feather的依然这么执着，依然的狂热，对于C++,对于functional programming，一个普通的程序员的极限就是这样吗。</p>
+<p>一个Senior Programmer</p>
+<p>首先是一个人，要做一个什么样子的人？<br>“观身如身，观心如心。”<br>如果是一个人，一个人的架构一定要比程序员的架构高。我们要一个什么样的身，基本的是健康的，就要经常锻炼了；中国一向有一个修身的传统，可见修身包括很多，怎么去修身，社会有社会的价值，个人有个人的志向。修身对谁都是一个既迷茫又痛苦的话题，“求仁得仁”，回到一个很糟乱的话题了，一个人到底想要得是什么？为了想要的得到底付出了什么？包括痛苦，包括性命，“求仁得仁”这个成语本身，伯夷、叔齐并没有欢天喜地的结局，相反，太执著，太倔强，为了得到可以牺牲了权利，身份，温饱，生命。一个人想来想去，问来问去，问的都是自己，都是自己的心。屈原先生应当是这方面的最有权威的专家了。能研究做学问的学问—哲学的人智商肯定不能低，“观身如身，观心如心。”这句话理解起来费力；还说了“观身观心”，痛苦的时候观自己的心；走投无路的时候寻找去观他人的心。<br>如果人一生有幸福和痛苦的话，那痛苦和幸福一定有一个起点，那是不是凡事都有起点。如果一生有起点的话，这个起点在哪儿？一个人能不能自己选择起点？<br>技术，技术是什么？什么是技术？如果技术是一个世界，技术之外呢？技术之外的世界呢？<br>人类也不知道生命出现之前的状态，一个人是不知道前世的；也无法将来到这个世界的最初的感觉的存储在自己的大脑的。那么一个人还是能想象死亡的。<br>一个人最痛苦的是什么，失去生命吗？如果说失去生命是最痛苦的，那是为什么呢，有人体验过吗？肯定没有。为什么人要惧怕死亡呢，因为要失去一些东西吗还是人的状态要发生了转变还是人类无法预知死亡之后的东西？如果是这样，恐惧的是失去，恐惧的是巨变，恐惧的是未知。如果一个人要恐惧失去，就应该恐惧死亡；如果一个人恐惧巨变，就应该恐惧死亡；如果一个人恐惧未知，就应该恐惧死亡。同样，一个人恐惧死亡，肯定会恐惧失去，恐惧巨变，恐惧未知。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/" data-id="cid4ol7x60077lslmc7zafsqh" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/2006年年终总结-原名：一篇没有写完的BLOG/" data-id="cid4p9fhe0075jglm4sd8cayf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2007/开聊有益" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/开聊有益/" class="article-date">
+  <time datetime="2007-03-13T03:27:30.000Z" itemprop="datePublished">2007-03-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/生活/">生活</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2007/开聊有益/">开聊有益</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>偶尔看一下中央二套的两会节目，竟然在讨论青少年上网的社会/教育问题。<br>抨击我国现状教育的不在少数，学校教育大体上就是一种“推”的教育方式，是一种社会培养人才的最重要的体系，是对未来人才的储备机制，正如宣传所说青少年就是花儿的年华。人生只有一次，家长，社会的期望终归是一种期望，孩子有孩子的乐趣，孩子的年华，孩子的思想。<br>就针对个人而言，回想数十年“寒窗读书”有意思的好像真没多少，或许是背了些英语单词，记了些简单的英语句子；还有就是几篇语文的文章名字或者几个名句；还有几个数理化的专业术语。如果说是从业研究方向，可能还正能捡起些东西来。一般人对于孩子教育不外乎认为培养兴趣，培养性格等几个方面，当我们进入社会，发现做人本身就不是件容易的事情，何况培养人，培养人才。<br>一提到问题/隐患，很多人不约而同的想到改革这个话题，我有个朋友谈到，教育抓得是人的未来，医疗抓得人的命，谁都无法逃脱其中，改革这两项何其难啊。这真是一阵见血的评论。<br>培养性格是很重要的一方面，培养什么样的人才至少需要前瞻性的眼界了解社会的人才需求方向，所以做大师就不是那么简单的事情了。<br>一个人走出校门的同时进入社会，肯定能强烈感觉到社会需要什么样的人才的，很多时候就是社会在“拉”了，在这个过程中人类表现了异常聪明的一面，总是在做自我培养，提高自身。中国哲学的本身很大成分上都是和自己斗争的过程，大体上是自我培养的哲学体系，可见中国人对于社会还是异常重视尊重的。学校教育带来的很大的弊端就是自闭，一不小心就走入了以自我为中心的圈子；同时容易让人抑郁。估计很多人在人生的某些阶段都会有抑郁，自闭的问题；要提高自我必须要认清出这个问题，解决这个问题。<br>中国人大体上不怎么提倡Open这种方式，我们在社会中愈来愈发现Open的重要性，所以更多人都宁愿自己是一个心理，眼睛，思维都很Open的人。<br>我自身已近从事软件开发三年多，如果让我回首认为该毕业的时候如何策划培养自己，除了性格之外有三点：<br>1。沟通能力，做好任何一件事情，寻找任何一个机会，每一次自我的提高，都是从沟通开始的。世界变得越来越平，沟通的空间时间也在增长。<br>2。语言(掌控)能力，能够多掌握一门语言，相当于给自己多了一个世界，机会，眼界，空间。。。。。。<br>3。技术能力，这是一个从事软件开发人员的立身基础，也是对于行业知识的积累。<br>世界如此美丽，希望每一个人都要好好的珍惜。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2007/开聊有益/" data-id="cid4p9ffb006ajglmu6mu1bxg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -297,7 +759,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/13/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/15/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/13/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><a class="page-number" href="/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/15/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -308,7 +770,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">58</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">21</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">62</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -317,7 +779,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 11.67px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 16.67px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 16.67px;">BigData</a> <a href="/tags/CDH/" style="font-size: 18.33px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Google/" style="font-size: 11.67px;">Google</a> <a href="/tags/HBase/" style="font-size: 11.67px;">HBase</a> <a href="/tags/HDP/" style="font-size: 18.33px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.67px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.67px;">JUnit</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 13.33px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.67px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/XP/" style="font-size: 11.67px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 16.67px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 16.67px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 16.67px;">BigData</a> <a href="/tags/CDH/" style="font-size: 18.33px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Google/" style="font-size: 11.67px;">Google</a> <a href="/tags/HBase/" style="font-size: 11.67px;">HBase</a> <a href="/tags/HDP/" style="font-size: 18.33px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.67px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.67px;">JUnit</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 13.33px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.67px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.67px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
     </div>
   </div>
 
@@ -393,23 +855,23 @@ var _hmt = _hmt || [];
           </li>
         
           <li>
-            <a href="/2011/学习之-Stack-Exchange网站架构/">学习之--Stack Exchange网站架构</a>
+            <a href="/2011/佛教禅宗-六祖慧能/">佛教禅宗 六祖慧能</a>
           </li>
         
           <li>
-            <a href="/2010/川西旅游/">川西旅游</a>
+            <a href="/2011/集合-红色趣味丛书/">&lt;集合&gt;红色趣味丛书</a>
           </li>
         
           <li>
-            <a href="/2010/JDK-7-in-JavaOne-2010/">JDK 7 in JavaOne 2010</a>
+            <a href="/2011/Android实战第三季-调试/">Android实战第三季-调试</a>
           </li>
         
           <li>
-            <a href="/2010/摘要-40-Android-Business-Models/">摘要:40 Android Business Models</a>
+            <a href="/2011/安装windows-xp和ubuntu双操作系统的方法/">安装windows xp和ubuntu双操作系统的方法</a>
           </li>
         
           <li>
-            <a href="/2010/Java服务器开发基础知识-1/">Java服务器开发基础知识(1)</a>
+            <a href="/2011/Android实战第二季/">Android实战第二季</a>
           </li>
         
       </ul>
@@ -421,7 +883,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
