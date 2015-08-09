@@ -87,10 +87,10 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-2004/Java编程之log4j日志" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2006/走向设计-To-Consider-Design" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/Java编程之log4j日志/" class="article-date">
-  <time datetime="2004-09-28T14:09:50.000Z" itemprop="datePublished">2004-09-28</time>
+    <a href="/2006/走向设计-To-Consider-Design/" class="article-date">
+  <time datetime="2006-04-13T03:05:07.000Z" itemprop="datePublished">2006-04-13</time>
 </a>
     
   <div class="article-category">
@@ -105,7 +105,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/Java编程之log4j日志/">Java编程之log4j日志</a>
+      <a class="article-title" href="/2006/走向设计-To-Consider-Design/">走向设计(To Consider Design)</a>
     </h1>
   
 
@@ -113,28 +113,14 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一直以来，如何去写日志都萦绕我胸怀已久；直到最近又要开始新的project,关于系统中日志如何设计又一次让我踌躇，发散了思绪，化成了淡淡的笔迹，拿出来给自己，也给大家分享。</p>
-<p>在系统中分为两种日志：一种是流程日志，要包含用户最关心的信息，便于问题查找和跟踪；包含系统运行的状态信息和当前步骤；。。。。。。另外一种是调试信息，这有包含系统release debug信息和代码开发测试debug信息两种，release debug信息是希望在系统运行中可能运用到的日至类别；develop&amp;test debug message是在系统开发测试阶段实用，而在code release之后，这些部分需要被删除的（代码冗余,性能考虑,代码净化）。</p>
-<p>可以说是三种类型的日志，在code开发过程中都需要在代码中实现的，但是可能在release版本中会有所处理的；这就联系到处理机制。</p>
-<p>java一般使用apache的log4j来写日志，可能我们会在log4j的基础之上构建我们系统的日志服务组件，姑且不论哪一种.顺便可以提及log4j的一些feature:日志级别，日志patterns</p>
-<p>流程日志是系统运行的必须日志，因此它的级别至少是info级别的。eg:<br> if(log.isInfoEnabled()){<br>            log.info(“ Message! “);<br>        }<br> 或者<br>        {<br>            log.info(“ Message! “);<br>        }</p>
-<p>在这个日志信息中要包含：系统流程信息（有必要输入的），用户关心的信息（以优先级最高或者较高的为主），我们有必要在日志输出中关心的消息（以优先级最高为主）；。。。。。。（欢迎补充）</p>
-<p>该日志输入对于记录系统运行状态（定时查看系统是否运行良好，可能是一个守护进程），记录流程运行阶段性的信息（当前阶段系统中各个关注点的情况，比方用户的一些信息，或者用户关心的一些信息,以便于系统出现异常是问题跟踪使用，系统维护必须的一些信息）。。。。。。这些日志在系统任何时段都能够准确的输出，因此没有必要对他何种情况输入等进行考虑和限制。对于log.info级别的日志最好能对于条件进行以下判断会更好。</p>
-<p>系统release debug日志，是为了便于系统真正运行起来以后，可能进行debug的时候才需要进行日志输入，之所以对他们进行限制，主要是出于性能等方面的考虑。对日志输入的条件进行严格的限制，<br>        if(log.isDebugEnabled()){<br>            log.debug(“ Message! “);<br>        }</p>
-<p>尽管程序员是对代码充满自信（证明足够的健壮性），我们还需要在一些不确定，或者可能出现的，对于明天的事情做一些预测，今天对于问题进行防卫，（这些都是软件工程所反对的），我们都需要处理 跟踪 校验 排查等的区域，通过日志预先放置一些”监听器”.这种日志和系统的可维护性息息相关。这里面的很多日志信息都是“流程日志”的强大备份，也是系统通过test以后日志仍然需要变动的地方。也是和develop debug很难区分的一个区域。</p>
-<p>前两种日志都是可能会对系统的性能构成影响，或者产生冗余或者日志不完全。尽管编码没有什么难度，但是都需要一些清晰的规范支持(至少是team一级的)，主要是日志的可读性，覆盖的面积，可维护性。  </p>
-<p>develop log基本上上适用于代码调试阶段和单元测试阶段使用的log信息。根据程序员个人喜好和习惯来定制，但是这些log message在正式版本release以前都是要被删除的。需要一些灵活的机制和pattern实现等来支持。eg:<br>      DebugManager{<br>          public static boolean debug = true;<br>      }</p>
-<pre><code><span class="keyword">if</span><span class="params">(DebugManager.debug)</span>{
-    <span class="keyword">if</span><span class="params">(log.isDebugEnabled<span class="params">()</span>)</span>{
-        <span class="built_in">log</span>.debug<span class="params">(<span class="string">" Message! "</span>)</span>;
-    }
-}
-</code></pre><p>在编译期间中对于这种情况进行优化。</p>
+        <p>recently i always consider design:<br>1.keeping it simple,keeping it clean<br>2.coding for modularity<br>3.when working Bottom-Up,then working Top-Down.<br>4.abstract and high-cohesion,low-coupling<br>5.open one’s eyes for contract<br>today,when i’m reading the art of unix programming and get it:<br>Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove.</p>
+<p>The followings from 《the art of unix programming 》-Modularity</p>
+<p>There are two ways of constructing a software design. One is to make it so simple that there are obviously no deficiencies; the other is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult.<br>1.Modularity:Keeping It Clean,Keeping It Simple.<br>2.Hatton himself suggests as a rule of thumb a 2x conversion between logical and physical lines, suggesting an optimal range of 400–800 physical lines.<br>3.Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove<br>4.Modularity is expressed in good code, but it primarily comes from good design.<br>5.A good API makes sense and is understandable without looking at the implementation behind it.The classic test is this: Try to describe it to another programmer over the phone. If you fail, it is very probably too complex, and poorly designed.<br>6.Coding for Modularity</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Java编程之log4j日志/" data-id="cid1dre8f004l58lme7r6hg82" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/走向设计-To-Consider-Design/" data-id="cid4ni9y700588wlmwyykrfa8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -144,16 +130,12 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/Web开发起始篇" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2006/转-How-To-Become-A-Hacker" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/Web开发起始篇/" class="article-date">
-  <time datetime="2004-09-28T13:08:55.000Z" itemprop="datePublished">2004-09-28</time>
+    <a href="/2006/转-How-To-Become-A-Hacker/" class="article-date">
+  <time datetime="2006-04-13T02:04:23.000Z" itemprop="datePublished">2006-04-13</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -162,7 +144,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/Web开发起始篇/">Web开发起始篇</a>
+      <a class="article-title" href="/2006/转-How-To-Become-A-Hacker/">转: How To Become A Hacker</a>
     </h1>
   
 
@@ -170,64 +152,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>首先说一些题外话，做web页面开发，也是j2ee吧。</p>
-<p>现在学习mvc，应用struts的兄弟姐妹们多多，最近struts也release了1.2.2版本了。</p>
-<p>最近一个同事问我如何让一个新人快速进入到struts的开发中去。我理了理头绪，“往事一幕幕”。</p>
-<p>从个人职业规划来看，主要有几个思想的方向。前几天谈论理论与实践的距离和有效性，作为coder,我们是实践者，我们也是工作人，我们需要一些方法论来指导我们的思想，我们通过我们思想的脉络来把握技术的发展。</p>
-<p>主要有两个方向：一个是project management;一个是developer.</p>
-<p>每一个程序员都有把握整个项目的欲望和冲动；动力之后是方法论了。</p>
-<p>想到今天我也对别人怎么去coding指手画脚，:)。</p>
-<p>1．了解java的代码规范.刚开始是十分重要的。就像人生的第一步似的。</p>
-<p>3.了解一下jdk的版本，和在项目中jdk的控制。</p>
-<p>2.开发环境ide的版本，eclipse等，如果是eclipse，还有plugins的了解。(怎么配置代码的style.)</p>
-<p>3.对于tomcat的了解和配置；读读tomcat的源码也是不错的野味呢./sun one</p>
-<p>4.了解mvc的结构和发展。</p>
-<p>5.了解测试驱动开发和junit.</p>
-<p>6.了解jdbc,更好能了解一些关于数据连接的封装。</p>
-<p>7.了解presentation—business—persistence等layer结构；有时间了解framework更好。</p>
-<p>8.了解一些java pattern。</p>
-<p>9.有时间了解spring的bean管理想法，顺便就学到了依赖注入的思想了，看看martin fowler的文章，了解各个注入方法的特点。</p>
-<p>10.了解jsp的语法。</p>
-<p>11.了解javascript的语法。</p>
-<p>12.了解struts自带的taglib（JSTL）。apache有一个专门的taglib项目，我们所需要的所有的taglib在里面都有。通过我接触的一些开源的项目，taglib使用的十分广泛。<a href="http://jakarta.apache.org/taglibs/index.html" target="_blank" rel="external">http://jakarta.apache.org/taglibs/index.html</a> 一个tagunit网站<a href="http://www.tagunit.org/tagunit/index.jsp" target="_blank" rel="external">http://www.tagunit.org/tagunit/index.jsp</a></p>
-<p>13.有时间可以读struts的源码，我还没有读过，有点儿遗憾，如果能看一下servlet跟好了。</p>
-<p>14.了解servlet,filter,listener的用法。特别是filter,链职责模式也可以学到了。</p>
-<p>15.了解commons-logging,log4j.如何写log,什么时候写log.    <a href="http://logging.apache.org" target="_blank" rel="external">http://logging.apache.org</a></p>
-<p>16.servlet api javadoc:    <a href="http://java.sun.com/products/servlet/2.2/javadoc/" target="_blank" rel="external">http://java.sun.com/products/servlet/2.2/javadoc/</a></p>
-<p>17.apache struts:    <a href="http://struts.apache.org/" target="_blank" rel="external">http://struts.apache.org/</a>  <a href="http://struts.apache.org/api/index.html" target="_blank" rel="external">http://struts.apache.org/api/index.html</a> struts已经release了1.2.2版本，应该有不少新特性。</p>
-<p>18.junit site:    <a href="http://www.junit.org/junit/javadoc/index.htm" target="_blank" rel="external">http://www.junit.org/junit/javadoc/index.htm</a></p>
-<p>19.我们一般画图用的open source 的api也是apache的POI:    <a href="http://jakarta.apache.org/poi" target="_blank" rel="external">http://jakarta.apache.org/poi</a>     <a href="http://jakarta.apache.org/poi/apidocs/index.html" target="_blank" rel="external">http://jakarta.apache.org/poi/apidocs/index.html</a></p>
-<p>   如果一开始，我们还是自己写jdbc比较好吧，慢慢的可以接触or mapping的东西。</p>
-<p>1.jdbc怎么写可以看 java核心技术.里面还有怎么用java写存储过程的例子。</p>
-<p>2.过一段时间可以看看or mapping的东西（Object Relation Mapping）;现在比较热的开源的是：ibatis和hibernate.</p>
-<p>在学习过程中，xml和uml都会跑进来的。enjoy it!</p>
-<p>关于presentation layer，更多的涉及到jsp,javascript和struts.</p>
-<p>1.struts taglib的运用。</p>
-<p>2.struts里面有一个validation.xml和validator-rules.xml两个需要理解。</p>
-<p>3.struts的formbean的机制，执行顺序。</p>
-<p>4.actionmapping的原理。</p>
-<p>5.struts-config.xml的配置。（建议：在项目中将struts-config.xml分离，team中每一个成员维护自己的。）</p>
-<p>6.中文化的一些问题。unicode的编写。建议使用java提供的命令行：native2ascii -encoding gb2312 sourceFile.properties destFile.properties</p>
-<p>7.说明:在struts中，有一个c—control的概念，在我们应用层编码，是看不见它的存在的。它体现在struts中应该是一个org.apache.struts.action.RequestProcessor的类，我也记得不太清楚。</p>
-<p>8.了解struts开发中一个baseform的模式。(只有一个baseform的模式)</p>
-<p>9.在jpetstore4.0.5中，采取了只使用一个action的模式，这样做是为了将business和action分离，在action层进行了一个公用提取，利于business logic的公用和维护，也提高了可测试性。。。。。。</p>
-<p>10.那就看看jpetstore的源代码吧。注：jpetstore4.0.5版使用了ibatis的sql mapping和dao framework。</p>
-<p>有时间可以了解一下project management的一些工具，学习写ant和maven的脚本，这都是很重要的。</p>
-<ol>
-<li><p>学习cvs,了解版本控制。</p>
-</li>
-<li><p>了解exception机制，原理和发展始末以及方向。</p>
-</li>
-<li><p>学习xp开发方式。</p>
-</li>
-</ol>
-<p>4.开始学习分析设计了，掌握uml了，了解各个层次的pattern的时机到来了。</p>
-<p>还有一些书要看了。经常上网看别人对于现在的开发方向的讨论。。。</p>
+        <p>look to the master,<br>follow the master,<br>walk with the master,<br>see through the master,<br>become the master.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Web开发起始篇/" data-id="cid1dre83004f58lmt88t7kb5" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/转-How-To-Become-A-Hacker/" data-id="cid4ni9y400578wlm5fsxpdfl" class="article-share-link">Share</a>
       
       
     </footer>
@@ -237,14 +167,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/Eclipse之eclipse3.1M1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2006/读《Managing-Open-Source-Projects》" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/Eclipse之eclipse3.1M1/" class="article-date">
-  <time datetime="2004-09-28T12:08:50.000Z" itemprop="datePublished">2004-09-28</time>
+    <a href="/2006/读《Managing-Open-Source-Projects》/" class="article-date">
+  <time datetime="2006-04-05T03:01:50.000Z" itemprop="datePublished">2006-04-05</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
+    <a class="article-category-link" href="/categories/读书/">读书</a>
   </div>
 
   </div>
@@ -255,7 +185,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/Eclipse之eclipse3.1M1/">Eclipse之eclipse3.1M1</a>
+      <a class="article-title" href="/2006/读《Managing-Open-Source-Projects》/">读《Managing Open Source Projects》</a>
     </h1>
   
 
@@ -263,12 +193,99 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文参见：<a href="http://www.blogbus.com/navigating-logs/413323.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/413323.html</a></p>
+        <p>The following are two general principles of organization:<br>People must understand the organizational structure in which they are supposed to work.<br>There has to be someone who can make final decisions. This is especially important if the project or company is in a crisis. If the ship goes down, the captain does not call for a meeting. Everyone must obey orders, know exactly where to go and what to do, and do it without argument.</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Eclipse之eclipse3.1M1/" data-id="cid1dre8m004p58lm568epa5s" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/读《Managing-Open-Source-Projects》/" data-id="cid4ni9yc005a8wlmk3cqutt8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2006/入手《Code-Complete-Second-Edition》" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2006/入手《Code-Complete-Second-Edition》/" class="article-date">
+  <time datetime="2006-04-02T03:00:36.000Z" itemprop="datePublished">2006-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2006/入手《Code-Complete-Second-Edition》/">入手《Code Complete Second Edition》</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天冒着大雨和redwood跑去华储买回了cc2e。买的时候还是有些犹豫—这本书真是太重了。我们刚买完书出来，dreamhead打电话过来他在华储正在买这本书。:)感谢redwood帮我把这本书背回了家。<br>拿到这本书我最大的期望是：我早在一年前能拿到这本书该是多么美妙的事情啊。<br>“这个世界从来就不缺少十几岁的少年天才,而三十几岁的优秀软件设计师凤毛麟角”。<br>我们重来都不缺少工程师，总是缺少尽可能多的优秀的工程师。任何想成为优秀工程师的人都不能容忍忽略这本书—cc2e的价值。(“最好是好的敌人”)<br>我们深信，这本书就是献给那些愿意成为优秀软件构造者长期以来进行不断的努力、奉献、执著追求的人。只有这样的人，才能把这么一本“砖头”饶有兴趣的读下去、读完。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2006/入手《Code-Complete-Second-Edition》/" data-id="cid4ni9yl005e8wlmza1k1gib" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/" class="article-date">
+  <time datetime="2005-09-06T02:59:07.000Z" itemprop="datePublished">2005-09-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/">读《Expert One on One J2EE Development Without EJB》C2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想重要。如同重构的时机一样：OO原则，针对接口编程；将任何特定的规范已经实现尽量隐藏一般特性之后，比如ejb的接口隐藏在pojo之后。<br>3.在我自己的技术选择中，几乎都是选择OpenSource社区的，很少受到规范驱动或者vendor驱动的影响。正好相反，也vendor driven才造就今天的我们。:)<br>4.项目成功，检验架构的标准：<br>simplicity<br>productivity<br>the fundamental importance of object orientation<br>the primacy of business requirements<br>the importance of empirical process<br>the importance of testability<br>5.一切皆来源于经验过程。spring比Expert One-on-One J2EE还要早。(没有working code就无法写出这本书。)springframework是Rod Johnson几个商业项目的经验而产生的。开发这个framework也应该是在模式大量复用中找到了突破点,如果一些模式大量的被复用，那么把这些模式的职责转嫁给framework来做，dry原则。当然，必须优先考虑模块化的原则，比方说对于log4j的如何集成到framework的方式。<br>6.Architecture and implementation should always be undertaken with clear goals in mind.</p>
+<p>Productivity<br>1.framework不断抽象，不断重构产生的,framework与代码生成的转换：If we see a requirement for boring repetitive code, we should apply an OO solution and abstract it into a framework,rather than generate it and live with the resulting duplication.<br>2.代码生成技术在解决生产率中扮着十分重要的角色。在j2ee开发中涉及到代码生成的层次很多。从dll,database schema到jsp.<br>3.There shouldn’t be vast amounts of repetitive plumbing code in J2EE applications.Better architectural choices and better frameworks can virtually eliminate such code,meaning that nearly all application code can be hand-authored.(注：framework形成的时机之一。)I’m not saying that code generation is a bad technology in general—merely that,when properly designed and built on appropriate frameworks, most J2EE applications should not contain enough boilerplate code to justify it and outweigh its negatives.<br>4.关于代码生成以及MDA作者的观点：The natural path of our industry is toward higher levels of abstraction. Perhaps one day MDA-powered code generation will prove to be an appropriate abstraction. However, I feel that this is 10–15 years away, if it ever happens.<br>5.Better Solutions for Higher Productivity：<br>Architecture<br>    Avoid unnecessary architectural complexity.<br>    Avoid unnecessary use of EJB.<br>    Use abstraction layers to hide the complexity of core J2EE and J2SE APIs.<br>    If possible, use an O/R mapping product to simplify the persistence layer.<br>    Use a good application framework.  </p>
+<p>Focus and methodology<br>    Focus! Know what problems you should be solving, and concentrate on them.<br>    Use a reference architecture and start from a template application.<br>    Use an agile development process.</p>
+<p>Use appropriate tools.<br>6.Different developers do the same thing in different ways, wasting<br>valuable development time and complicating maintenance.程序设计始终要做的就是不发生这样的事情。<br>7.Know What Problems to Solve 生产率即是知道要解决得是什么问题，将主要是domain problems而不是generic problems.<br>8.Use Reference Architectures and Templates一旦选择了技术，将着手reference architecture.begin work using a skeleton application that establishes the overall plumbing.<br>9.And remember that the more upfront effort before arriving at a working prototype, the greater the risk of inadequate performance or an unworkable architecture. 项目组也应该精化，微型化。<br>10.J2EE developers are fortunate in that all these requirements can be met by free, open source tools, such as Eclipse, JUnit, Ant, a good Eclipse XML plugin, CVS, and the standard Eclipse JUnit and CVS integration.</p>
+<p>OO<br>1.本身OO是一种范式，是一个模型，在SICP中对于讲到代换模型的理论：In general, when modeling phenomena in science and engineering, we begin with simplified, incomplete models. As we examine things in greater detail, these simple models become inadequate and must be replaced by more refined models.关于OO的讨论算是一个检查考虑问题的讨论。<br>2.作者提出的实践中运用oo的四个方面：封装domains concepts;运用polymorphism将共性和差异分离;代码复用；extensibility.<br>3.j2ee应用的对象常常都是一些fake objects，即是不具备objects的某些特征:identity,state,behavior.<br>4.oo针对接口编程的优点和误区。</p>
+<p>The importance of business requirements<br>1.这个问题因不同的角色而已。就我而言，如同我一样的普通程序员，对于generic technical problems常常都是难题，故而在这方面的需要长足的学习和提高的;对于我们而言，我们domain problems就是如何具备了generic technical方面的强大能力只是第一步。<br>The Importance of an Empirical Process<br>1.Always develop a vertical slice to validate your application’s architecture early in the project. Don’t trust our advice or anyone else’s without establishing that it’s appropriate to your needs.验证自己的想法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/" data-id="cid4ni9zu005s8wlm88ok2rkt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -280,7 +297,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span>
+      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -291,7 +308,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -300,7 +317,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/BigData/" style="font-size: 16px;">BigData</a> <a href="/tags/CDH/" style="font-size: 18px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/HBase/" style="font-size: 12px;">HBase</a> <a href="/tags/HDP/" style="font-size: 18px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 12px;">Hive</a> <a href="/tags/JUnit/" style="font-size: 12px;">JUnit</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 14px;">Spark</a> <a href="/tags/XP/" style="font-size: 12px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/BigData/" style="font-size: 15.71px;">BigData</a> <a href="/tags/CDH/" style="font-size: 17.14px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Google/" style="font-size: 11.43px;">Google</a> <a href="/tags/HBase/" style="font-size: 11.43px;">HBase</a> <a href="/tags/HDP/" style="font-size: 17.14px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.43px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.43px;">JUnit</a> <a href="/tags/Java/" style="font-size: 18.57px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 12.86px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.43px;">Netty</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 14.29px;">Spark</a> <a href="/tags/XP/" style="font-size: 11.43px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
     </div>
   </div>
 
@@ -376,23 +393,23 @@ var _hmt = _hmt || [];
           </li>
         
           <li>
-            <a href="/2007/RubyOnRails实战/">RubyOnRails实战</a>
+            <a href="/2009/鲶鱼效应/">鲶鱼效应</a>
           </li>
         
           <li>
-            <a href="/2007/Google-Guice实战/">Google Guice实战</a>
+            <a href="/2009/Jboss-Netty架构图/">Jboss Netty架构图</a>
           </li>
         
           <li>
-            <a href="/2007/走向Miami-原名：重返Miami/">走向Miami(原名：重返Miami)</a>
+            <a href="/2009/Google如何使用Linux《How-Google-uses-Linux》/">Google如何使用Linux《How Google uses Linux》</a>
           </li>
         
           <li>
-            <a href="/2007/Java-5-0的Instrumentation特性/">Java 5.0的Instrumentation特性</a>
+            <a href="/2009/Jboss-Netty的Performance报告阅读/">Jboss Netty的Performance报告阅读</a>
           </li>
         
           <li>
-            <a href="/2007/2006年年终总结-原名：一篇没有写完的BLOG/">2006年年终总结(原名：一篇没有写完的BLOG)</a>
+            <a href="/2009/JDK-7-Platform/">JDK 7 Platform</a>
           </li>
         
       </ul>
@@ -404,7 +421,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

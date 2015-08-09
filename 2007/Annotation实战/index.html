@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Annotation实战 | On The Open Way</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="现在annotation正在改变着java developer的一些开发生活，各种框架都在充分应用annotation来简化开发，我们来看看annotation到底是怎么一回事？为什么引入annotation?由于在Java的一些实际开发中，已经有了一些annotation出现的雏形.比方说webservice使用一些tag自动生成一些接口和实现，EJB的deployment descriptor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Annotation实战">
+<meta property="og:url" content="http://navigating.github.io/2007/Annotation实战/index.html">
+<meta property="og:site_name" content="On The Open Way">
+<meta property="og:description" content="现在annotation正在改变着java developer的一些开发生活，各种框架都在充分应用annotation来简化开发，我们来看看annotation到底是怎么一回事？为什么引入annotation?由于在Java的一些实际开发中，已经有了一些annotation出现的雏形.比方说webservice使用一些tag自动生成一些接口和实现，EJB的deployment descriptor">
+<meta property="og:updated_time" content="2015-08-09T14:55:06.669Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Annotation实战">
+<meta name="twitter:description" content="现在annotation正在改变着java developer的一些开发生活，各种框架都在充分应用annotation来简化开发，我们来看看annotation到底是怎么一回事？为什么引入annotation?由于在Java的一些实际开发中，已经有了一些annotation出现的雏形.比方说webservice使用一些tag自动生成一些接口和实现，EJB的deployment descriptor">
+<meta name="twitter:creator" content="@xujinghui">
+  
+    <link rel="alternative" href="/atom.xml" title="On The Open Way" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?5554b1765137f9e84f6b5d1958c4bdfd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+  <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','W7_-_9WqoJq6hWaJJ8zZ','2.0.0');
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">On The Open Way</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">自信人生二百年，会当水击三千里！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">Sitemap</a>
+        
+      </nav>
+      <nav id="sub-nav">	    
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://navigating.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2007/Annotation实战" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/Annotation实战/" class="article-date">
+  <time datetime="2007-07-11T12:51:44.000Z" itemprop="datePublished">2007-07-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Annotation实战
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在annotation正在改变着java developer的一些开发生活，各种框架都在充分应用annotation来简化开发，我们来看看annotation到底是怎么一回事？<br>为什么引入annotation?<br>由于在Java的一些实际开发中，已经有了一些annotation出现的雏形.比方说webservice使用一些tag自动生成一些接口和实现，EJB的deployment descriptor对象,transient修饰符代表不能被serialization，@deprecated等。那么他们的共用特性是什么呢？尽管这些数据不会直接对Java的语义产生影响，但是是通过工具、库或者运行时程序的语义来散发影响力的。以这种方式出现的新功能称之为annotation机制。所以Java是在增强Java语言支持易于开发的背景下提出annotation机制的，annotation对于已有的Java机制的影响力主要在于Java source files、Java class files和运行时的reflection；主要关联java classes，interfaces,methods和fields。(,或者能够能够被javac compiler或者其他的工具读取、或者作为配置项能够被存贮在class文件中、或者在运行时用Java reflection API检测的到。)<br>虽然在第一天提出annotation这个特性，就一直在强调：annotion易于使用，但是应用开发者无须自己定义annotaion类型。但是不论是更好的使用现有的annotation类型，还是便于有朝一日自己确实需要扩展annotion类型，或者更好的理解开发模型，更好的理解程序的开发运行，都非常有必要了解一些annotation的。</p>
+<p>我们看一下Meta-annotations,看到底如何自己定义一个annnotation类型。Meta-annotations主要包括四个部分：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Target</span><br><span class="line">Retention</span><br><span class="line">Documented</span><br><span class="line"><span class="keyword">Inherited</span></span><br></pre></td></tr></table></figure></p>
+<p>Target里面的ElementType是用来指定Annotation类型可以用在哪一些元素上的.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.TYPE)</span></span>-can be applied to any element of <span class="tag">a</span> class</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.FIELD)</span></span>-can be applied to <span class="tag">a</span> field or property</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.METHOD)</span></span>-can be applied to <span class="tag">a</span> method level annotation</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.PARAMETER)</span></span>-can be applied to the parameters of <span class="tag">a</span> method</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.CONSTRUCTOR)</span></span>-can be applied to constructors</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.LOCAL_VARIABLE)</span></span>-can be applied to local variables</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.ANNOTATION_TYPE)</span></span>-indicates that the declared type itself is an annotation typ</span><br></pre></td></tr></table></figure></p>
+<p>Retention用来指定annotation类型保留在哪儿和多长时间。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RetentionPolicy.SOURCE-Annotations <span class="operator">with</span> this type will be <span class="keyword">by</span> retained only <span class="keyword">at</span> <span class="operator">the</span> source level <span class="operator">and</span> will be ignored <span class="keyword">by</span> <span class="operator">the</span> compiler</span><br><span class="line">RetentionPolicy.CLASS-Annotations <span class="operator">with</span> this type will be <span class="keyword">by</span> retained <span class="keyword">by</span> <span class="operator">the</span> compiler <span class="keyword">at</span> compile <span class="built_in">time</span>, but will be ignored <span class="keyword">by</span> <span class="operator">the</span> VM</span><br><span class="line">RetentionPolicy.RUNTIME-Annotations <span class="operator">with</span> this type will be retained <span class="keyword">by</span> <span class="operator">the</span> VM so they can be <span class="built_in">read</span> only <span class="keyword">at</span> run-<span class="built_in">time</span></span><br></pre></td></tr></table></figure></p>
+<p>Documented用来指定这个annotation类型应当被javadoc工具文档化使用。<br>Inherited用来指定使用这个类型的类是个继承来的。<br>举一个简单的例子：<br>测试用例：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationTestableTeseCase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> <span class="keyword">throws</span> SecurityException, ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> passed = <span class="number">0</span>, failed = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (Method m : Class.forName(Foo.class.getName()).getMethods()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (m.isAnnotationPresent(Testable.class)) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    m.invoke(<span class="keyword">null</span>);</span><br><span class="line">                    passed++;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line"></span><br><span class="line">                    failed++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>, passed);</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>, failed);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Annotation类型定义类：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="variable">@Target</span>(ElementType.METHOD)</span><br><span class="line">public <span class="variable">@interface</span> Testable &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用Testable类型的客户端代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Boom"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m5</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m6</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m7</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Crash"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m8</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Okey!<br>参考：<br><a href="http://java.sun.com/developer/technicalArticles/releases/j2se15/" target="_blank" rel="external">http://java.sun.com/developer/technicalArticles/releases/j2se15/</a><br><a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html" target="_blank" rel="external">http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html</a><br><a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html" target="_blank" rel="external">http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html</a><br><a href="http://www.developer.com/java/other/article.php/10936_3556176_3" target="_blank" rel="external">http://www.developer.com/java/other/article.php/10936_3556176_3</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2007/Annotation实战/" data-id="cid4ni9xt00508wlmu2whl16n" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Annotation/">Annotation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2007/Google技术栈/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Google技术栈
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2007/Ruby实战/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Ruby实战</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">19</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/BigData/" style="font-size: 15.71px;">BigData</a> <a href="/tags/CDH/" style="font-size: 17.14px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Google/" style="font-size: 11.43px;">Google</a> <a href="/tags/HBase/" style="font-size: 11.43px;">HBase</a> <a href="/tags/HDP/" style="font-size: 17.14px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.43px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.43px;">JUnit</a> <a href="/tags/Java/" style="font-size: 18.57px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 12.86px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.43px;">Netty</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 14.29px;">Spark</a> <a href="/tags/XP/" style="font-size: 11.43px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+  <input type="text" class="st-default-search-input">
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/学习《腾讯在Spark上的应用与实践优化》/">学习《腾讯在Spark上的应用与实践优化》</a>
+          </li>
+        
+          <li>
+            <a href="/2015/13-14年收集的大数据的一些技术架构图/">13~14年收集的大数据的一些技术架构图</a>
+          </li>
+        
+          <li>
+            <a href="/2015/读《微软研发制胜策略》/">读《微软研发制胜策略》</a>
+          </li>
+        
+          <li>
+            <a href="/2015/Hadoop发行版/">Hadoop发行版</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之201507/">大数据动态之201507</a>
+          </li>
+        
+          <li>
+            <a href="/2015/使用Hexo搭建Github静态博客/">使用Hexo搭建Github静态博客</a>
+          </li>
+        
+          <li>
+            <a href="/2015/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2015/Hadoop-2-7-1-发布/">Hadoop 2.7.1 发布</a>
+          </li>
+        
+          <li>
+            <a href="/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/">读《Deploying Apache Kafka: A Practical FAQ》</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之201506/">大数据动态之201506</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之201505/">大数据动态之201505</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之201502/">大数据动态之201502</a>
+          </li>
+        
+          <li>
+            <a href="/2013/2013年年终总结/">2013年年终总结</a>
+          </li>
+        
+          <li>
+            <a href="/2013/响应式网页设计-Responsive-Web-Design/">响应式网页设计(Responsive Web Design)</a>
+          </li>
+        
+          <li>
+            <a href="/2012/HBTC-2012-见闻/">HBTC 2012 见闻</a>
+          </li>
+        
+          <li>
+            <a href="/2009/鲶鱼效应/">鲶鱼效应</a>
+          </li>
+        
+          <li>
+            <a href="/2009/Jboss-Netty架构图/">Jboss Netty架构图</a>
+          </li>
+        
+          <li>
+            <a href="/2009/Google如何使用Linux《How-Google-uses-Linux》/">Google如何使用Linux《How Google uses Linux》</a>
+          </li>
+        
+          <li>
+            <a href="/2009/Jboss-Netty的Performance报告阅读/">Jboss Netty的Performance报告阅读</a>
+          </li>
+        
+          <li>
+            <a href="/2009/JDK-7-Platform/">JDK 7 Platform</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Steven Xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">Sitemap</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

@@ -87,10 +87,10 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-2005/Java对象之JavaBean" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2008/Java-NIO-TCP编程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2005/Java对象之JavaBean/" class="article-date">
-  <time datetime="2005-08-28T02:56:21.000Z" itemprop="datePublished">2005-08-28</time>
+    <a href="/2008/Java-NIO-TCP编程/" class="article-date">
+  <time datetime="2008-03-31T15:05:27.000Z" itemprop="datePublished">2008-03-31</time>
 </a>
     
   <div class="article-category">
@@ -105,7 +105,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2005/Java对象之JavaBean/">Java对象之JavaBean</a>
+      <a class="article-title" href="/2008/Java-NIO-TCP编程/">Java NIO TCP编程</a>
     </h1>
   
 
@@ -113,16 +113,19 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>使用javabean已经很久了，但是很少去研究和使用jdk中的java.beans包和java.beans.beancontext包。<br>时间和空间这个计算机的永恒话题，也一直是设计的折衷话题。记得刚开始写javabean的时候，对象的set get都是一行一行代码的手写。一次几十个方法下来，而且复制粘贴，复杂，维护修改都很费力。<br>现在apache jakarta commons的子项目已经有一些解决方案了，主要在包org.apache.commons.beanutils中,使用可以参见Test Case和《Jakarta Commons Cookbook》。当然，有时候也需要我们自己根据自己的应用编写自己的处理javabean的代码。今天正好看到了一些java.beans的代码，罗列如下：<br>java.beans.Introspector<br> public static String decapitalize(String name) {<br>  if (name == null || name.length() == 0) {<br>   return name;<br>  }<br>  if (name.length() &gt; 1 &amp;&amp; Character.isUpperCase(name.charAt(1)) &amp;&amp; Character.isUpperCase(name.charAt(0))) {<br>   return name;<br>  }<br>  char chars[] = name.toCharArray();<br>  chars[0] = Character.toLowerCase(chars[0]);<br>  return new String(chars);<br> }<br>java.beans.PropertyDescriptor<br> public PropertyDescriptor(String propertyName, Class beanClass) throws IntrospectionException {<br>  if (propertyName == null || propertyName.length() == 0) {<br>   throw new IntrospectionException(“bad property name”);<br>  }<br>  setName(propertyName);<br>  String base = capitalize(propertyName);</p>
-<p>  // Since there can be multiple setter methods but only one getter<br>  // method, find the getter method first so that you know what the<br>  // property type is. For booleans, there can be “is” and “get”<br>  // methods. If an “is” method exists, this is the official<br>  // reader method so look for this one first.<br>  try {<br>   readMethod = Introspector.findMethod(beanClass, “is” + base, 0);<br>  } catch (Exception getterExc) {<br>   // no “is” method, so look for a “get” method.<br>   readMethod = Introspector.findMethod(beanClass, “get” + base, 0);<br>  }<br>  Class params[] = { readMethod.getReturnType() };<br>  writeMethod = Introspector.findMethod(beanClass, “set” + base, 1, params);<br>  propertyType = findPropertyType(readMethod, writeMethod);<br> }<br>(注：代码格式为eclipse默认设置)<br>   我没有读过javabean的规范，今天针对javabean的使用和操作随处可见，也算是Rod Johnson所说的fake object了。如果javabean的property命名不符合规范，就有可能出错，一旦这种错误被framework捕获了还没有throw给应用，那么发现这种命名错误就更困难了。</p>
-<p>如今我会优先选择commons-beanutils和jdk的java.beans对java bean进行操作。</p>
+        <p>在Java1.4以前，Java的网络编程是只有阻塞方式的，在Java1.4以及之后，Java提供了非阻塞的网络编程API.从Java的发展来看，由于Java的快速发展，JVM性能的提升，涉足到服务端应用程序开发也越来越多，要求高性能的网络应用越来越多，这是Java推出非阻塞网络编程的最主要原因吧。<br>对我而言，以前的大部分服务端应用主要是搭建在应用服务器之上，所以通讯这部分工作都是有应用服务器来实现和管理的。这次由于通讯和协议，我们必须自己实现一个能处理大量并发客户端的高性能并行处理的Java服务端程序。因此，选择非阻塞的处理方式也是必然的。我们首先来看看阻塞的处理方式：<br>在阻塞的网络编程方式中，针对于每一个单独的网络连接，都必须有一个线程对应的绑定该网络连接，进行网络字节流的处理。下面是一段代码：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        ServerSocket ssc = <span class="keyword">new</span> ServerSocket(<span class="number">23456</span>);</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"Enter Accept:"</span>);</span><br><span class="line">            Socket s = ssc.accept();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                (<span class="keyword">new</span> Thread(<span class="keyword">new</span> Worker(s))).start();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                <span class="comment">// <span class="doctag">TODO</span></span></span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">Worker</span> <span class="title">implements</span> <span class="title">Runnable</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> Socket s;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> boolean running = <span class="keyword">true</span>;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Worker</span>(<span class="params">Socket s</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.s = s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            InputStream <span class="keyword">is</span> = s.getInputStream();</span><br><span class="line">            OutputStream os = s.getOutputStream();</span><br><span class="line">            <span class="keyword">while</span> (running) &#123;</span><br><span class="line">                <span class="keyword">byte</span>[] b = <span class="keyword">this</span>.readByLength(<span class="keyword">is</span>, <span class="number">1024</span>);</span><br><span class="line">                <span class="keyword">this</span>.process(b);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            <span class="comment">// <span class="doctag">TODO</span></span></span><br><span class="line">            t.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">byte</span>[] readByLength(InputStream <span class="keyword">is</span>, <span class="keyword">int</span> contLen) throws IOException &#123;</span><br><span class="line">        <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[contLen];</span><br><span class="line">        <span class="keyword">int</span> off = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> length = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> ((length = <span class="keyword">is</span>.read(b, off, contLen - off)) &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            off = +length;</span><br><span class="line">            <span class="keyword">if</span> (off &gt;= contLen) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">process</span>(<span class="params"><span class="keyword">byte</span>[] b</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在这段代码中，我们看到有两个阻塞的方法，是ServerSocket的accept()方法；和InputStream的read()方式。因此我们需要两类型的线程分别进行处理。而且每一个阻塞方法所绑定的线程的生命周期和网络连接的生命周期是一致的。基于以上的原因，NIO应运而生，一方面，为每一个网络连接建立一个线程对应，同时每一个线程有大量的线程处于读写以外的空闲状态，因此希望降低线程的数量，降低每个空闲状态，提高单个线程的运行执行效率，实际上是在更加充分运用CPU的计算、运行能力(因为，如果有大量的链路存在，就存在大量的线程，而大量的线程都阻塞在read()或者write()方法，同时CPU又需要来回频繁的在这些线程中间调度和切换,必然带来大量的系统调用和资源竞争.)；另外一方面希望提高网络IO和硬盘IO操作的性能。在NIO主要出现了三个新特性：<br>1.数据缓冲处理(ByteBuffer):由于操作系统和应用程序数据通信的原始类型是byte,也是IO数据操作的基本单元，在NIO中，每一个基本的原生类型(boolean除外)都有Buffer的实现：CharBuffer、IntBuffer、DoubleBuffer、ShortBuffer、LongBuffer、FloatBuffer和ByteBuffer，数据缓冲使得在IO操作中能够连续的处理数据流。当前有两种ByteBuffer，一种是Direct ByteBuffer，另外一种是NonDirect ByteBuffer；ByteBuffer是普通的Java对象，遵循Java堆中对象存在的规则；而Direct ByteBuffer是native代码，它内存的分配不在Java的堆栈中，不受Java内存回收的影响，每一个Direct ByteBuffer都是直接分配的一块连续的内存空间，也是NIO提高性能的重要办法之一。另外数据缓冲有一个很重要的特点是，基于一个数据缓冲可以建立一个或者多个逻辑的视图缓冲(View Buffer).比方说，通过View Buffer,可以将一个Byte类型的Buffer换作Int类型的缓冲；或者一个大的缓冲转作很多小的Buffer。之所以称为View Buffer是因为这个转换仅仅是逻辑上，在物理上并没有创建新的Buffer。这为我们操作Buffer带来诸多方便。<br>2.异步通道(Channel)：Channel是一个与操作系统紧密结合的本地代码较多的对象。通过Channel来实现网络编程的非阻塞操作，同时也是其与ByteBuffer、Socket有效结合充分利用非阻塞、ByteBuffer的特性的。在后面我们会看到具体的SocketChannel的用法。<br>3.有条件的选择(Readiness Selection):大多数操作系统都有支持有条件选择准备就绪IO通道的API，即能够保证一个线程同时有效管理多个IO通道。在NIO中，由Selector(维护注册进来的Channel和这些Channel的状态)、SelectableChannel(能被Selector管理的Channel)和SelectionKey(SelectionKey标识Selector和SelectableChannel之间的映射关系，一旦一个Channel注册到Selector中，就会返回一个SelectionKey对象。SelectionKey保存了两类状态：对应的Channel注册了哪些操作；对应的Channel的那些操作已经准备好了，可以进行相应的数据操作了)结合来实现这个功能的。<br>NIO非阻塞的典型编程模型如下：<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">private Selector selector = null;</span><br><span class="line"></span><br><span class="line">private static final int BUF_LENGTH = <span class="number">1024</span>;</span><br><span class="line"></span><br><span class="line">public void start<span class="params">()</span> throws IOException &#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="params">(selector != null)</span> &#123;</span><br><span class="line">        selector = Selector.open<span class="params">()</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ServerSocketChannel ssc = ServerSocketChannel.open<span class="params">()</span>;</span><br><span class="line">    ServerSocket serverSocket = ssc.socket<span class="params">()</span>;</span><br><span class="line">    serverSocket.bind<span class="params">(new InetSocketAddress<span class="params">(<span class="number">80</span>)</span>)</span>;</span><br><span class="line">    ssc.configureBlocking<span class="params">(<span class="literal">false</span>)</span>;</span><br><span class="line">    ssc.register<span class="params">(selector, SelectionKey.OP_ACCEPT)</span>;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        while <span class="params">(<span class="literal">true</span>)</span> &#123;</span><br><span class="line">            int nKeys = UnblockServer.this.selector.select<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="params">(nKeys &gt; <span class="number">0</span>)</span> &#123;</span><br><span class="line">                Iterator it = selector.selectedKeys<span class="params">()</span>.iterator<span class="params">()</span>;</span><br><span class="line">                while <span class="params">(it.hasNext<span class="params">()</span>)</span> &#123;</span><br><span class="line">                    SelectionKey key = <span class="params">(SelectionKey)</span> it.next<span class="params">()</span>;</span><br><span class="line">                    <span class="keyword">if</span> <span class="params">(key.isAcceptable<span class="params">()</span>)</span> &#123;</span><br><span class="line">                        ServerSocketChannel server = <span class="params">(ServerSocketChannel)</span> key.channel<span class="params">()</span>;</span><br><span class="line">                        SocketChannel channel = server.accept<span class="params">()</span>;</span><br><span class="line">                        <span class="keyword">if</span> <span class="params">(channel == null)</span> &#123;</span><br><span class="line">                            continue;</span><br><span class="line">                        &#125;</span><br><span class="line">                        channel.configureBlocking<span class="params">(<span class="literal">false</span>)</span>;</span><br><span class="line">                        channel.register<span class="params">(selector, SelectionKey.OP_READ)</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> <span class="params">(key.isReadable<span class="params">()</span>)</span> &#123;</span><br><span class="line">                        readDataFromSocket<span class="params">(key)</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    it.remove<span class="params">()</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; catch <span class="params">(IOException ioe)</span> &#123;</span><br><span class="line">        ioe.printStackTrace<span class="params">()</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * @param key</span><br><span class="line"> * @throws IOException</span><br><span class="line"> */</span></span><br><span class="line">private void readDataFromSocket<span class="params">(SelectionKey key)</span> throws IOException &#123;</span><br><span class="line">    ByteBuffer buf = ByteBuffer.allocate<span class="params">(BUF_LENGTH)</span>;</span><br><span class="line">    SocketChannel sc = <span class="params">(SocketChannel)</span> key.channel<span class="params">()</span>;</span><br><span class="line"></span><br><span class="line">    int readBytes = <span class="number">0</span>;</span><br><span class="line">    int ret;</span><br><span class="line"></span><br><span class="line">    try &#123;</span><br><span class="line">        while <span class="params">(<span class="params">(ret = sc.read<span class="params">(buf.buf<span class="params">()</span>)</span>)</span> &gt; <span class="number">0</span>)</span> &#123;</span><br><span class="line">            readBytes += ret;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; finally &#123;</span><br><span class="line">        buf.flip<span class="params">()</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// process buffer</span></span><br><span class="line">    <span class="comment">// buf.clear();</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>从这段程序，我们基本可以了解到NIO网络编程的一些特点，创建一个SocketServer的方式已经发生了变化，需要指定非阻塞模式，需要创建一个Channel然后注册到Selector中去，同样，建立一个网络连接过程也是一样的模式,然后就是有条件的选择(Readiness Selection).这样，我们的每一个线程只需要处理一类型的网络选择。在代码上，我们发现处理的方式和阻塞完全不一样了，我们需要完全重新考虑如何编写网络通信的模块了：<br>1.持久连接的超时问题(Timeout)，因为API没有直接的支持timeout的参数设置功能，因此需要我们自己实现一个这样功能。<br>2.如何使用Selector，由于每一个Selector的处理能力是有限的，因此在大量链接和消息处理过程中，需要考虑如何使用多个Selector.<br>3.在非阻塞情况下，read和write都不在是阻塞的，因此需要考虑如何完整的读取到确定的消息；如何在确保在网络环境不是很好的情况下，一定将数据写进IO中。<br>4.如何应用ByteBuffer，本身大量创建ByteBuffer就是很耗资源的；如何有效的使用ByteBuffer？同时ByteBuffer的操作需要仔细考虑，因为有position()、mark()、limit()、capacity等方法。<br>5.由于每一个线程在处理网络连接的时候，面对的都是一系列的网络连接，需要考虑如何更好的使用、调度多线程。在对消息的处理上，也需要保证一定的顺序，比方说，登录消息最先到达，只有登录消息处理之后，才有可能去处理同一个链路上的其他类型的消息。<br>6.在网络编程中可能出现的内存泄漏问题。<br>在NIO的接入处理框架上，大约有两种并发线程：<br>1.Selector线程，每一个Selector单独占用一个线程，由于每一个Selector的处理能力是有限的，因此需要多个Selector并行工作。<br>2.对于每一条处于Ready状态的链路，需要线程对于相应的消息进行处理；对于这一类型的消息，需要并发线程共同工作进行处理。在这个过程中，不断可能需要消息的完整性；还要涉及到，每个链路上的消息可能有时序，因此在处理上，也可能要求相应的时序性。<br>当前社区的开源NIO框架实现有MINA、Grizzly、NIO framework、QuickServer、xSocket等，其中MINA和Grizzly最为活跃，而且代码的质量也很高。他们俩在实现的方法上也完全大不一样。(大部分Java的开源服务器都已经用NIO重写了网络部分。 )<br>不管是我们自己实现NIO的网络编程框架，还是基于MINA、Grizzly等这样的开源框架进行开发，都需要理解确定的了解NIO带来的益处和NIO编程需要解决的众多类型的问题。充足、有效的单元测试，是我们写好NIO代码的好助手:)</p>
+<p>Resource:<br><a href="http://www.cis.temple.edu/~ingargio/cis307/readings/unix4.html#states" target="_blank" rel="external">http://www.cis.temple.edu/~ingargio/cis307/readings/unix4.html#states</a><br><a href="http://www.douban.com/subject/1433583/" target="_blank" rel="external">《Java NIO》</a><br><a href="http://www.douban.com/subject/2306878/" target="_blank" rel="external">《GlassFish—开源的Java EE应用服务器》</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/Java对象之JavaBean/" data-id="cid1dre6q003q58lmfsuagtb5" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2008/Java-NIO-TCP编程/" data-id="cid4ni9tp003v8wlm1b23cp3u" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li></ul>
+
     </footer>
   </div>
   
@@ -130,10 +133,60 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2005/拓展训练" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2007/Java线程编程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2005/拓展训练/" class="article-date">
-  <time datetime="2005-08-28T02:44:12.000Z" itemprop="datePublished">2005-08-28</time>
+    <a href="/2007/Java线程编程/" class="article-date">
+  <time datetime="2007-11-17T15:05:02.000Z" itemprop="datePublished">2007-11-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2007/Java线程编程/">Java线程编程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java程序开发中有大量的可复用资源，可复用的公用类；有很多中间件已经帮助我们解决了多线程的问题，所以很多开发人员是不需要深入的涉及到这个话题的，而要自己去开发一个服务端的应用的时候，多线程的编程、调试、发布、问题跟踪就变得无可避免了。<br>多线程编程需要涉及到两个方向，一个是使用Java语言进行程序设计，必须了解语言本身对于线程的支持和其编程模型；另外一个是运行时的运行状况，更多的是基于现有的硬件、先有的操作系统的配置问题。所有的应用都必须运行一定的硬件配置环境、一定的操作系统之上，所以线程的运行时状态无可避免的要在应用设计阶段进行考虑了。<br>1.对于共享可变数据的互斥(什么时候使用关键字synchronized)：Java虚拟机通过对象锁来实现互斥，达到多个线程在同一个共享数据上独立而互不干扰地工作。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> sequence = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="function"><span class="keyword">int</span> <span class="title">getSequence</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> sequence++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>线程间通讯，保证共享对象对于多线程访问是从一种一致的状态跃迁到另外一种一致的状态。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span> running = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">while</span>(isRunning())&#123;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">boolean</span> <span class="title">isRunning</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="keyword">this</span>.running;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">stop</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">this</span>.running = <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">startRequest</span><span class="params">()</span></span>&#123;</span><br><span class="line"><span class="keyword">this</span>.running = <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.协作(什么时候使用wait和notify)：主要是用于多线程为了同一个目标而共同协作性的工作，应用需要设计多线程的协作工作机制。一般性地是，线程需要反复检查某一个数据结构，在等待某些条件的发生，又避免忙等(busy-wait)的时候。<br>使用wait()是需要仔细阅读以下javadoc了，wait(0)的情况很特殊：线程一直处于等待，直到被唤醒(notify()或者notifyAll())。<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">private Object<span class="instruction"> monitor </span>=<span class="instruction"> new </span>Object(<span class="function">)</span>;</span><br><span class="line"><span class="keyword"></span><br><span class="line">public</span> void<span class="function"> run(</span><span class="function">)</span>&#123;</span><br><span class="line">synchronized(monitor<span class="function">)</span>&#123;</span><br><span class="line">while(<span class="function">)</span>&#123;</span><br><span class="line">try&#123;</span><br><span class="line">obj.wait(<span class="function">)</span></span><br><span class="line">&#125; catch<span class="function"> (</span>InterruptedException e<span class="function">)</span> &#123;</span><br><span class="line">// TODO Auto-generated catch block</span><br><span class="line">e.printStackTrace(<span class="function">)</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Java使用的同步机制是监视器，为了更好的使用同步机制，就需要虚拟机是怎么使用监视器的机制的？<br>Java监视器主要分成了三个区域，入口区、监视区、等待区，所有进入到监视器开始处的线程首先都是进入到入口去，(可能阻塞)等待成为监视区的持有者；监视区域同时只能被一个线程持有并执行，只有当一个线程执行完了监视区域动作(该线程将释放监视区域并推出监视器)或者执行了等待命令(该线程将释放监视区域进入到等待区，直到执行了唤醒命令才能重新持有监视区域)才能释放监视区域；只有那些持有监视区域的线程执行了等待命令之后就会进入到等待区。所以基本可以了解了监视区域的各个功能、线程进出的时机动作。而且分析互斥和协作情况下线程和监视器的工作状态基本也就清晰了。<br>1.互斥情况下，多线程将会在等待区阻塞的等待持有监视区域，因为同时只会有一个线程执行监视区域(代码即指令)，监视区域主要是共享数据或者共享资源。(例外就是虚拟机实现不是基于时间片的，那么监视器就会用来协调多线程的执行策略，将不仅仅是共享数据或者共享资源了。)<br>2.协作情况下，监视器主要协调多个线程之间共同工作，即是，一个已经持有监视区域的线程，通过执行等待命令，释放监视区域进入到等待区，那么该线程阻塞并一直持续暂停状态，只有监视区域持有线程执行了唤醒该线程命令并释放监视区域之后该线程才能重新持有监视区域，直到该线程再次释放监视区域。</p>
+<p>运行阶段，Java线程的线程模型又是什么样的呢，究竟需要应用设计开发人员需要注意什么呢？<br>这主要涉及到Java的内存模型(Memory Model)、JVM实现等，其中我正在使用的虚拟机是Sun基于Solaris系统的，其线程模型参考《Threading》。Java的线程在Java2都是操作系统的线程，并没有了”green threads”的概念了，每一个线程的申请在向JVM申请资源的同时也是在向操作系统申请资源，对于各家JVM在不同的操作系统之上的thread stack size大小也有一些差别，其中Sun JVM可以通过-XX:ThreadStackSize(-Xss)参数进行设置(在默认情况下，”Thread Stack Size (in Kbytes). (0 means use default stack size) [Sparc: 512; Solaris x86: 320 (was 256 prior in 5.0 and earlier); Sparc 64 bit: 1024; Linux amd64: 1024 (was 0 in 5.0 and earlier); all others 0.]”).<br>在我们设计并发要求比较高的服务端应用的时候，线程将会变得相当宝贵了，而且就针对操作系统而言，一个进程所能申请的线程的数量也是限制的，所以如何使用和调度多线程是一个重要的环节。在系统运行阶段，进行调优的时候不可避免的要面对多线程的资源相关的几个关注点：thread stack size、thread local heap、garbage collection affects、intimate shared memory。</p>
+<p>进行多线程的设计编码，要极力追求简洁原则，尽力将多线程的调度和编码和业务相关的逻辑进行解耦，这样多线程处理模块被抽象出来，可复用度变高，对于分析、调试、问题跟踪多线程的设计编码就不再变得臃肿复杂；避免复杂、过多的条件判断等待、wait-notify，线程意外退出或者形成死锁。</p>
+<p>在今天的编程生活中，我们也要面对和解决多线程编程的调试、单元测试、跟踪等方面的问题。解决这些问题也是我们的乐趣之一:)</p>
+<p>参考:<br>《Effective Java 中文版》<br>《深入Java虚拟机》<br><a href="http://java.sun.com/docs/hotspot/threads/threads.html" target="_blank" rel="external">http://java.sun.com/docs/hotspot/threads/threads.html</a><br><a href="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp" target="_blank" rel="external">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</a><br><a href="http://www.theserverside.com/tt/knowledgecenter/knowledgecenter.tss?l=ConcurrencyTestingJavaApps" target="_blank" rel="external">http://www.theserverside.com/tt/knowledgecenter/knowledgecenter.tss?l=ConcurrencyTestingJavaApps</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2007/Java线程编程/" data-id="cid4ni9wx004q8wlmttk6ihcw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2007/写在五一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/写在五一/" class="article-date">
+  <time datetime="2007-08-29T15:04:05.000Z" itemprop="datePublished">2007-08-29</time>
 </a>
     
   <div class="article-category">
@@ -148,7 +201,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2005/拓展训练/">拓展训练</a>
+      <a class="article-title" href="/2007/写在五一/">写在五一</a>
     </h1>
   
 
@@ -156,12 +209,15 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>周末参加了一个公司的导师拓展训练。<br>地点：沈阳棋盘上附近一个基地。<br>感受几点：<br>1.个人能力是有限的，团队和自己的能力的发挥。<br>2.在我们面对或者挑战平日里看来可怕的或者根本不可能去做的事情，在环境被逼的去做，做完了反而觉得十分有刺激和具有挑战性。人是应该富于挑战的，包括不断的自我挑战。<br>3.一旦目标确定,一个team同心协力的去做一件非常是有挑战性的事情的时候，所有的人都愿意同心协力的去创造一个个奇迹。<br>4.人人都有很强的荣誉感，在面对荣誉的时候，如何抉择取舍。team与team之间的良性对比是十分必要的,也总是伴随着恶性事件的到来。:)<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2005/2005_TuoZhanXunLian.jpg" alt="这是一张图片"></p>
+        <p>五一假期，老大结婚，一帮兄弟从各地感到郑州，一路旅行，很多朋友、同学很久没有见面，大家畅所欲言，把酒言欢，嬉笑怒骂，十分尽兴。旅途中重读了《The Secrets of Consulting》许多章节，书中很多做事的方法和原则，值得思考和品味。<br>1.“和我一样，维吉尼亚也很喜欢比喻，并且热衷于从各种地方—比如弗兰克.鲍姆的《绿野仙踪》—收集这些比喻。” 比喻是一种很好的表达的手段，通过类比和联想是很容易使人基于已知的世界去认识未知的世界的，而且往往很是深刻的。在这本书中看到作者是善于运用比喻的， 收集了很多比喻的。作者的工具箱中的所有物体都是现实世界中的实物，确能够被作者引申来说明一系列抽象的原则、远离、方法。</p>
+<ol>
+<li>《The Secrets of Consulting》中作者多次运用萨特的三个通用问题来分析问题的：<br>把问题分解成三个部分：自己、他人以及背景环境。在把自己作为研究焦点时，<br>我怎样到达这里的？(过去)<br>我在这里感觉如何？(现在)<br>我希望发生什么？(将来)<br>3.“做学问就要严谨”：这次聚会正好碰到一位非常要好的朋友，虽然做计算机行业，但是一向十分爱好文史，无论到哪儿，总带着各种小说、历史、书评等书 籍。这位朋友这次带着几本历史评论书，一闲下来就一本正经的分析书中的观点和历史中的来龙去脉，在我嘲笑之余，朋友的一句“做学问就要严谨”让我触动很 大，原来朋友读这些评论书始终是一颗做学问的严谨的心的。我也体会到读书做事是需要严谨的，而且是需要一颗严谨的心的。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/拓展训练/" data-id="cid1dre6m003o58lmtat49hfx" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/写在五一/" data-id="cid4ni9v3004g8wlmrx41oy94" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,10 +227,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2005/读设计模式精解" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2007/读《金字塔原理》" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2005/读设计模式精解/" class="article-date">
-  <time datetime="2005-08-10T02:42:23.000Z" itemprop="datePublished">2005-08-10</time>
+    <a href="/2007/读《金字塔原理》/" class="article-date">
+  <time datetime="2007-08-05T15:02:46.000Z" itemprop="datePublished">2007-08-05</time>
 </a>
     
   <div class="article-category">
@@ -189,7 +245,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2005/读设计模式精解/">读设计模式精解</a>
+      <a class="article-title" href="/2007/读《金字塔原理》/">读《金字塔原理》</a>
     </h1>
   
 
@@ -197,13 +253,13 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
-<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化的来源大抵有三种：1。新的功能需求；2。开发者对于问题领域的理解发生了变化，通过开发来提高问题领域的自动化程度；3。开发环境的变迁。),需求中的变化总是对于已经分解好的功能结构产生致命的冲击。仅仅将注意力集中在功能上是不够的，必须对数据结构和过程进行抽象、封装等，促使已有的实现能灵活应对需求的变化。<br>模块化：<br>通常我们还会选择模块化来进一步进行设计，其精髓就是高内聚低耦合。模块化能让我们写出更容易理解、更容易维护的代码。但是模块没有完全提出代码实现的抽象和封装，没有进一步提供粒度较小的抽象、封装和复用，可能一个过程或者数据结构的变动，确对一些地方的代码造成了意料之外的影响。<br>结论：<br>仅仅能实现当前需求的代码远远是不够的，而且仅仅使用功能分解然后实现之的分析设计思路也是糟糕的，因为需求总是在变化。我们必须从这里走得更远，作者就引入乐面对对象范式。<br>OOP在由抽象、封装、模块化、分层组成的对象模型之概念框架下，在语言级粒度上提供了封装、继承、多态的支持；这是人类复用技术的进步，但是使用了oop并不代表就能完全运用了对象模型的核心思想。(TDD是当前应对代码变化的最好的开发方式。需求变化的最大承受者就是代码，富于变化和善于应对变化的代码才能存活下来。)</p>
+        <p>粗粗的读完《金字塔原理——-思考、写作与制作图表的逻辑》第一个部分。第一部分分为五章，主要介绍的是：写作的逻辑。如同本文所要讲述的思想一样，第一部分显得的简单而有强烈的逻辑关系。首先简述为什么要选择金字塔结构，是人类思考方式的局限性、一般性，思维的一般惯性：自上而下组织思想；自下而上思考。然后讲叙了金字塔结构的一般原则：疑问/回答式对话的纵向关系结构、演绎或者归纳逻辑的横向关系结构、讲故事式的序言结构。接着讲述了构造金字塔结构的一般方法：自上而下法；自下而上法；注意事项。既然方法已经讲叙了，所谓“万事开头难”，切题即如何写序言变得异常重要，接下来的一章就是关注序言部分的具体写法。介绍了为什么、是什么、怎么做、怎么开始，最后一章介绍了演绎和归纳的区别，意在突出如何将一个一个的思想“点”联系在一些形成逻辑关系，即是演绎和归纳。<br>看完也有一丝丝小学学语文的感觉，其实本身就是一个方法论的问题。<br>读完第一章节之后，我有一种模糊的感觉，写作和程序设计之间似乎有很多很多相通的地方，一篇能将思想简单而清楚的讲出来的文章才是好文章，程序设计更是需要简单清晰的。无论写作，还是程序设计，都需要搞清楚问题，搞清楚复杂性，搞清楚如何简单化等等。</p>
+<p>以下是摘抄或者评注：<br>一个人的思维不能仅仅是线性的、一维的。<br>读者必然会将所读到的思想进行归类概括，以便记住这些思想。如果作者传达给读者的思想事先已经经过归类和概括，并且按自上而下的顺序表述出来，读者就能更容易的理解作者所表述的思想。这就是所说的“条理清楚”.<br>“因为你总是要不断地对思想进行归类和概括，直到没有可与之关联的思想可继续概括，因此，你写的每一篇文章的结构都必定只支持一个思想，即概括了所有各组思想的单一思想。”<br>“大多数人刚坐下来开始写作时，可能对他们想要表达的思想还只有一个模糊的想法，甚至根本不知如何下笔。在你不得不用话语或文字将你的思想用符号表示出来之前，你很可能无法准确地了解自己的思想。甚至连你认为已经构思好的第一个思想，写出来可能都不是十分准确。”<br>“为什么我们可以肯定一定会感兴趣？因为这种纵向联系迫使读者按照你的思想做出符合逻辑的反应。”<br>自上而下组织思想<br>自下而上思考<br>金字塔的子结构<br>纵向关系:不断地按照“引起读者疑问并回答疑问”的模式，一环扣一环如同波浪，直到读者不会再对新的表述提出任何疑问为止。<br>横向关系：保证一定的逻辑性，具备明确的归纳或者演绎关系。<br>序言结构:问题的起源和发展必然以讲故事的形式出现，因此也应当按照典型的讲故事模式发展。就是说，开头应向读者说明“情境(Situation)”的时间和地点。在这一“情境”中应当发展了某件事情称为“冲突(Complication)”,使读者提出(或将使读者提出)你的文章中将要回答 (Answer)的“疑问(Question)”。<br>作者在谈论“初学者注意事项”，所讨论的一些问题也是平时思维、做事等的一些通病，让人能觉察不仅仅是在写作上。<br>“文如其人”，写出来的东西完全是一个人思想的映像，写出来的东西透出的是一个人如何思考的。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/读设计模式精解/" data-id="cid1dre63003i58lmeqarz5mm" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/读《金字塔原理》/" data-id="cid4ni9ub00468wlmsgrpwskm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -213,10 +269,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2005/读《Berkeley-Unix二十年》" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2007/What-is-the-crazy" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2005/读《Berkeley-Unix二十年》/" class="article-date">
-  <time datetime="2005-05-31T02:41:23.000Z" itemprop="datePublished">2005-05-31</time>
+    <a href="/2007/What-is-the-crazy/" class="article-date">
+  <time datetime="2007-07-31T15:01:45.000Z" itemprop="datePublished">2007-07-31</time>
 </a>
     
   <div class="article-category">
@@ -231,7 +287,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2005/读《Berkeley-Unix二十年》/">读《Berkeley Unix二十年》</a>
+      <a class="article-title" href="/2007/What-is-the-crazy/">What is the crazy</a>
     </h1>
   
 
@@ -239,59 +295,19 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>16 May 2005<br>    在unix的早期历史里面，没有策划，没有估计，没有进度表；在这个年代，硬件的代价是昂贵的，在硬件资源固定的情况下，所有的人都希望通过自己的努力进行优化，进行维护，进行调试，进行移植，进行集成。。。这时构建系统、发布系统还处于萌芽状态，大量的工作都是针对与操作系统的。(同也是编程语言狂热的年代。)这完全是个人表现，人类对于计算机一个个基本的需求解决的年代。理想也是满足自己的开发所需和硬件的平滑更换。经过暴风骤雨的成长发展，系统进入了分支期，这样路就越来越窄了，可以选择的空间似乎总是在缩小。NetBSD专注于支持多平台，FreeBSD专注于支持PC体系，OpenBSD专注于系统的安全性。<br>   人才的流动，人才的流失对于一个team来说是一个损失，同时team有引进了新的人才。对于整个行业来说开始平衡的，人才的流动带给一个行业的是经验的互补，每一个人都各有所长。关键人才的流动带给系统的是新的特性切入点，同类型的系统也越来越有竞争力，火拼最激烈的时候正是新的力量可能诞生的时候。BSD的发展就是DARPA(Defense Advanced Research Projects Agency)给了它这个绝佳的机会。Bill Joy、Bob Fabry、Leffler…的离开，Leffler、Pauline Schwartz、Domenico Ferrari、Susan Graham、<br>Mike Karels…的介入。<br>   早期的Unix开发者都是小范围的孤军奋战，而且也总是在增大交流的范畴，交流越广泛，对于系统的提高所起到的隐含动力越大。在系统的开发前行中，越来越多的贡献者希望代码的共享，常常会触及到版权的问题，这种共享缩短了个人和行业的发展历程。今天OpenSource已经深入到我们这些开发者的心灵之中，感谢这些先行者和贡献者。同样感受到，官事没有什么可怕的，足以证明这个系统、这个行业非常成熟了，有了越来越多的共利益者了，分蛋糕的人拼的热火朝天呢，大家在同一个级别上一较高下了。</p>
-
+        <p>James Gosling在他May 08,2004的Blog的帖子：《The world needs more crazy people》谈到了一些做事的原则，可以作为思考的引子；更要警醒、反省、鼓励自己。</p>
+<p>“Most real innovation is done by crazy people doing crazy things. The keys are:</p>
+<pre><code>* Learn all you can before you go adventuring.
+* Don<span class="comment">'t be afraid to make mistakes.</span>
+* Only make <span class="keyword">new</span> mistakes.
+* Keep your eyes open.
+* Don<span class="comment">'t just look straight ahead: develop your peripheral vision.</span>
+* It<span class="comment">'s the things that go in unexpected directions are the most important."</span>
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/读《Berkeley-Unix二十年》/" data-id="cid1dre6g003m58lmifsj1o3i" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2005/转载：你注意过你的父母吗" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2005/转载：你注意过你的父母吗/" class="article-date">
-  <time datetime="2005-02-24T02:39:41.000Z" itemprop="datePublished">2005-02-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2005/转载：你注意过你的父母吗/">转载：你注意过你的父母吗....</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>你注意过你的父母吗？(写给 30岁以上的人，让30岁以下的人思考) </p>
-<p>如果有一天，你发现妈妈的厨房不再像以前那么干净<br>如果有一天，你发现家中的碗筷好像没洗干净<br>如果有一天，你发现母亲的锅子不再雪亮<br>如果有一天，你发现父亲的花草树木已渐荒废<br>如果有一天，你发现家中的地板衣柜经常沾满灰尘<br>如果有一天，你发现母亲煮的菜太咸太难吃<br>如果有一天，你发现父母经常忘记关瓦斯 </p>
-<p>如果有一天，你发现老父老母的一些习惯不再是习惯时， 就像他们不再想要天天洗澡时<br>如果有一天，你发现父母不再爱吃青脆的蔬果<br>如果有一天，你发现父母爱吃煮得烂烂的菜<br>如果有一天，你发现父母喜欢吃稀饭<br>如果有一天，你发现他们过马路行动反应都慢了<br>如果有一天，你发现在吃饭时间他们老是咳个不停 千万别误以为他们感冒或着凉，<br>(那是吞咽神经老化的现象)<br>如果有一天，你发觉他们不再爱出门… </p>
-<p>如果有这么一天 我要告诉你，你要警觉父母真的已经老了<br>器官已经退化到需要别人照料了<br>如果你不能照料，<br>请你替他们找人照料<br>并请你请你千万千万要常常探望<br>不要让他们觉得被遗弃了 </p>
-<p>每个人都会老<br>父母比我们先老<br>我们要用角色互换的心情去照料他<br>才会有耐心、才不会有怨言<br>当父母不能料理自己的时候，<br>为人子女要警觉，<br>他们可能会大小便失禁、可能会很多事都做不好，<br>如果房间有异味，可能他们自己也闻不到，请不要嫌他脏或嫌他臭，<br>为人子女的只能帮他清理，并请维持他们的’自尊心’。</p>
-<p>当他们不再爱洗澡时，<br>请抽空定期帮他们洗身体，<br>因为纵使他们自己洗也可能洗不干净。<br>当我们在享受食物的时候，<br>请替他们准备一份大小适当、容易咀嚼的一小碗，<br>因为他们不爱吃可能是牙齿咬不动了。<br>从我们出生开始，喂奶换尿布、生病的不眠不休照料、<br>教我们生活基本能力、供给读书、吃喝玩乐和补习，<br>关心和行动永远都不停歇。</p>
-<p>如果有一天，<br>他们真的动不了了，角色互换不也是应该的吗？<br>为人子女者要切记，看父母就是看自己的未来，孝顺要及时。<br>如果有一天，<br>你像他们一样老时，你希望怎么过？<br>现在的你，<br>是在当单身寄生虫、还是已婚双料或多料寄生虫？<br>你留意过自己的父母吗 ?</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/转载：你注意过你的父母吗/" data-id="cid1dre5y003g58lm098qel84" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/What-is-the-crazy/" data-id="cid4ni9vt004i8wlms0xumwr7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -303,7 +319,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/6/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/8/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -314,7 +330,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">46</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">19</span></li></ul>
     </div>
   </div>
 
@@ -323,7 +339,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/BigData/" style="font-size: 16px;">BigData</a> <a href="/tags/CDH/" style="font-size: 18px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/HBase/" style="font-size: 12px;">HBase</a> <a href="/tags/HDP/" style="font-size: 18px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 12px;">Hive</a> <a href="/tags/JUnit/" style="font-size: 12px;">JUnit</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 14px;">Spark</a> <a href="/tags/XP/" style="font-size: 12px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/BigData/" style="font-size: 15.71px;">BigData</a> <a href="/tags/CDH/" style="font-size: 17.14px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Google/" style="font-size: 11.43px;">Google</a> <a href="/tags/HBase/" style="font-size: 11.43px;">HBase</a> <a href="/tags/HDP/" style="font-size: 17.14px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.43px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.43px;">JUnit</a> <a href="/tags/Java/" style="font-size: 18.57px;">Java</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 12.86px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.43px;">Netty</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 14.29px;">Spark</a> <a href="/tags/XP/" style="font-size: 11.43px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
     </div>
   </div>
 
@@ -399,23 +415,23 @@ var _hmt = _hmt || [];
           </li>
         
           <li>
-            <a href="/2007/RubyOnRails实战/">RubyOnRails实战</a>
+            <a href="/2009/鲶鱼效应/">鲶鱼效应</a>
           </li>
         
           <li>
-            <a href="/2007/Google-Guice实战/">Google Guice实战</a>
+            <a href="/2009/Jboss-Netty架构图/">Jboss Netty架构图</a>
           </li>
         
           <li>
-            <a href="/2007/走向Miami-原名：重返Miami/">走向Miami(原名：重返Miami)</a>
+            <a href="/2009/Google如何使用Linux《How-Google-uses-Linux》/">Google如何使用Linux《How Google uses Linux》</a>
           </li>
         
           <li>
-            <a href="/2007/Java-5-0的Instrumentation特性/">Java 5.0的Instrumentation特性</a>
+            <a href="/2009/Jboss-Netty的Performance报告阅读/">Jboss Netty的Performance报告阅读</a>
           </li>
         
           <li>
-            <a href="/2007/2006年年终总结-原名：一篇没有写完的BLOG/">2006年年终总结(原名：一篇没有写完的BLOG)</a>
+            <a href="/2009/JDK-7-Platform/">JDK 7 Platform</a>
           </li>
         
       </ul>
@@ -427,7 +443,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
