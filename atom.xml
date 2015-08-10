@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-07T08:37:53.504Z</updated>
+  <updated>2015-08-10T06:49:56.789Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[学习《七牛是如何搞定每天500亿条日志的》]]></title>
+    <link href="http://navigating.github.io/2015/%E5%AD%A6%E4%B9%A0%E3%80%8A%E4%B8%83%E7%89%9B%E6%98%AF%E5%A6%82%E4%BD%95%E6%90%9E%E5%AE%9A%E6%AF%8F%E5%A4%A9500%E4%BA%BF%E6%9D%A1%E6%97%A5%E5%BF%97%E7%9A%84%E3%80%8B/"/>
+    <id>http://navigating.github.io/2015/学习《七牛是如何搞定每天500亿条日志的》/</id>
+    <published>2015-08-10T06:48:00.000Z</published>
+    <updated>2015-08-10T06:49:56.789Z</updated>
+    <content type="html"><![CDATA[<p>七牛是如何搞定每天500亿条日志的 <a href="http://www.csdn.net/article/2015-07-30/2825342" target="_blank" rel="external">http://www.csdn.net/article/2015-07-30/2825342</a><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/qiniu_01.JPG" alt=""><br>日志处理的大致分为三步：</p>
+<pre><code><span class="bullet">1. </span>日志采集，主要是通过Agent和Flume；
+<span class="bullet">2. </span>日志流转，主要是通过Kafka；
+<span class="bullet">3. </span>日志计算，主要是通过Spark Streaming作为计算引擎；
+</code></pre><p>大致的处理流程：</p>
+<pre><code><span class="number">1.</span> Agent/<span class="built_in">Local</span> Kafka <span class="subst">-&gt; </span>Flume <span class="subst">-&gt; </span>Kafka <span class="subst">-&gt; </span>HDFS <span class="subst">-&gt; </span>mongoDB
+<span class="number">2.</span> Agent/<span class="built_in">Local</span> Kafka <span class="subst">-&gt; </span>Flume <span class="subst">-&gt; </span>Kafka <span class="subst">-&gt; </span>Spark <span class="subst">-&gt; </span>mongoDB
+<span class="number">3.</span> Agent/<span class="built_in">Local</span> Kafka <span class="subst">-&gt; </span>Flume <span class="subst">-&gt; </span>Kafka <span class="subst">-&gt; </span>Spark <span class="subst">-&gt; </span>opentsdb 
+</code></pre><p>流程3只是见于图上，文字上没有任何提到。<br>在日志采集中，通过Agent将业务应用和日志采集进行了分离，采取了Agent主动来拉的模式。专门强调了Agent 的设计需求：<br>···<br>每台机器上会有一个Agent去同步这些日志，这是个典型的队列模型，业务进程在不断的push，Agent在不停的pop。Agent需要有记忆功能，用来保存同步的位置(offset)，这样才尽可能保证数据准确性，但不可能做到完全准确。由于发送数据和保存offset是两个动作，不具有事务性，不可避免的会出现数据不一致性情况，通常是发送成功后保存offset，那么在Agent异常退出或机器断电时可能会造成多余的数据。<br>在这里，Agent需要足够轻，这主要体现在运维和逻辑两个方面。Agent在每台机器上都会部署，运维成本、接入成本是需要考虑的。Agent不应该有解析日志、过滤、统计等动作，这些逻辑应该给数据消费者。倘若Agent有较多的逻辑，那它是不可完成的，不可避免的经常会有升级变更动作。<br>···<br>为什么Agent没有直接将日志发送给Kafka，而是通过Flume来做：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">具体架构上，Agent并没把数据直接发送到Kafka，在Kafka前面有层由Flume构成的<span class="keyword">forward</span>。这样做有两个原因：</span><br><span class="line"><span class="number">1</span>. Kafka的API对非JVM系的语言支持很不友好，<span class="keyword">forward</span>对外提供更加通用的http接口。</span><br><span class="line"><span class="number">2</span>. <span class="keyword">forward</span>层可以做路由、Kafka topic和Kafka partition key等逻辑，进一步减少Agent端的逻辑。</span><br></pre></td></tr></table></figure></p>
+<p>Kafka使用建议<br>1.Topic划分。尽量通过划分Topic分离不同类型的数据；<br>2.Kafka partition数目直接关系整体的吞吐量。3个Partition能够跑满一块磁盘的IO。<br>3.Partition key设计。partition key选择不当，可能会造成数据倾斜。在对数据有顺序性要求才需使用partition key。Kafka的producer sdk在没指定partition key时，在一定时间内只会往一个partition写数据，这种情况下当producer数少于partition数也会造成数据倾斜，可以提高producer数目来解决这个问题。<br>实时计算Spark Streaming<br>1.当前Spark只用作统计，没有进行迭代计算(DAG)。场景比较简单。<br>2.Spark Streaming从Kafka中读数据，统计完结果如mongoDB。可以理解是Spark Streaming + mongoDB的应用。<br>3.Spark Streaming对存储计算结果的数据库tps要求较高。比如有10万个域名需要统计流量，batch interval为10s，每个域名有4个相关统计项，算下来平均是4万 tps，考虑到峰值可能更高，固态硬盘上的mongo也只能抗1万tps，后续我们会考虑用redis来抗这么高的tps。难道Redis能够支持很高的TPS？<br>4.有状态的Task的挑战：有外部状态的task逻辑上不可重入的，当开启speculation参数时候，可能会造成计算的结果不准确。说个简单的例子。这个任务，如果被重做了，会造成落入mongo的结果比实际多。有状态的对象生命周期不好管理，这种对象不可能做到每个task都去new一个。我们的策略是一个JVM内一个对象，同时在代码层面做好并发控制。<br>七牛数据平台规模<br>‘’’<br>线上的规模：Flume ＋ Kafka ＋ Spark8台高配机器，日均500亿条数据，峰值80万tps。<br>‘’’<br>因此，<br>1.如果是Flume/Kafka/Spark共享同一个物理集群，硬件压力如何？<br>2.如果每条日志 0.1K，那么每天总数据量 50G <em> 0.1K = 5T，每个节点每秒 5T/24</em>3600/8 = 7.23M。 </p>
+<p>参考：<br>【微信分享】王团结：七牛是如何搞定每天500亿条日志的<br><a href="http://www.csdn.net/article/2015-07-30/2825342" target="_blank" rel="external">http://www.csdn.net/article/2015-07-30/2825342</a><br>对七牛云存储日志处理的思考<br><a href="http://hadoop1989.com/2015/08/02/Think-QiNiu-Cloud/" target="_blank" rel="external">http://hadoop1989.com/2015/08/02/Think-QiNiu-Cloud/</a> </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>七牛是如何搞定每天500亿条日志的 <a href="http://www.csdn.net/article/2015-07-30/2825342" target="_blank" rel="external">http://www.csdn.net/article/201]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="Flume" scheme="http://navigating.github.io/tags/Flume/"/>
+    
+      <category term="Kafka" scheme="http://navigating.github.io/tags/Kafka/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[学习《腾讯在Spark上的应用与实践优化》]]></title>
@@ -495,7 +529,7 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201506/"/>
     <id>http://navigating.github.io/2015/大数据动态之201506/</id>
     <published>2015-06-09T13:52:23.000Z</published>
-    <updated>2015-08-01T02:16:57.704Z</updated>
+    <updated>2015-08-10T06:25:16.483Z</updated>
     <content type="html"><![CDATA[<p>Pinot：LinkedIn的实时数据分析系统<br><a href="http://www.infoq.com/cn/news/2014/10/linkdln" target="_blank" rel="external">http://www.infoq.com/cn/news/2014/10/linkdln</a><br><a href="https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot" target="_blank" rel="external">https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot</a></p>
 <p>Twitter Heron：Twitter发布新的大数据实时分析系统Heron<br><a href="http://geek.csdn.net/news/detail/33750" target="_blank" rel="external">http://geek.csdn.net/news/detail/33750</a><br><a href="http://www.longda.us/?p=529" target="_blank" rel="external">http://www.longda.us/?p=529</a> </p>
 <p>Cloudera<br>HBase对MOBs( Moderate Objects, 主要是大小100K到10M的对象存储 )的支持<br><a href="http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/</a><br>准实时计算架构模式<br><a href="http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/</a><br>(翻译：<a href="http://zhuanlan.zhihu.com/donglaoshi/20082628" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20082628</a> )<br>CDH 5.4 新功能：敏感数据处理(Sensitive Data Redaction)<br><a href="http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/</a> </p>
@@ -506,9 +540,9 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     <![CDATA[<p>Pinot：LinkedIn的实时数据分析系统<br><a href="http://www.infoq.com/cn/news/2014/10/linkdln" target="_blank" rel="external">http://www.infoq.com/cn/]]>
     </summary>
     
-      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
     
-      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
     
       <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
     
@@ -525,7 +559,7 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201505/"/>
     <id>http://navigating.github.io/2015/大数据动态之201505/</id>
     <published>2015-05-19T02:17:28.000Z</published>
-    <updated>2015-08-01T09:57:53.841Z</updated>
+    <updated>2015-08-10T06:24:50.273Z</updated>
     <content type="html"><![CDATA[<p>近期动态：<br>Hadoop 2.7发布。<br>Hortonworks HDP 2.2.4.2发布。<br>Ambari 2.0发布。<br>Cloudera Enterperise 5.4发布。<br>Hive 1.2.0 发布，支持Hive on Spark。</p>
 <p>HDP 2.2/HDP 2.2.4/Ambari 2.0/Ambari 2.0.1</p>
 <pre><code><span class="bullet">1. </span>HDP支持异构存储Heterogeneous storage，主要是对SSD的支持；
@@ -563,13 +597,13 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     
       <category term="Ambari" scheme="http://navigating.github.io/tags/Ambari/"/>
     
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
       <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
     
       <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
     
       <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="Hive" scheme="http://navigating.github.io/tags/Hive/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -580,7 +614,7 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201502/"/>
     <id>http://navigating.github.io/2015/大数据动态之201502/</id>
     <published>2015-03-24T14:10:07.000Z</published>
-    <updated>2015-08-01T02:27:00.393Z</updated>
+    <updated>2015-08-10T06:24:29.444Z</updated>
     <content type="html"><![CDATA[<p>本月Hadoop技术动态：<br>1.经过6年的孵化，Hive 1.0 发布了。<br>2.经过7年的孵化，HBase 1.0 发布了。<br>3.Cloudera 开始提供 Hive-on-Spark Beta版的下载。</p>
 <p>HBase 1.0 需要特别关注的特性：<br>1.API的重新组织和变更；<br>2.读的高可用；<br>3.在线配置变更；</p>
 <p>HDP 2.2 发布有一段时间：<br><a href="http://hortonworks.com/blog/announcing-hive-1-0-stable-moment-time/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-hive-1-0-stable-moment-time/</a><br><a href="http://hortonworks.com/blog/start-new-era-apache-hbase-1-0/" target="_blank" rel="external">http://hortonworks.com/blog/start-new-era-apache-hbase-1-0/</a><br><a href="http://blog.cloudera.com/blog/2015/02/apache-hbase-1-0-is-released/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/02/apache-hbase-1-0-is-released/</a><br><a href="http://blog.cloudera.com/blog/2015/02/download-the-hive-on-spark-beta/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/02/download-the-hive-on-spark-beta/</a><br><a href="https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf" target="_blank" rel="external">https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf</a></p>
@@ -590,6 +624,8 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     <![CDATA[<p>本月Hadoop技术动态：<br>1.经过6年的孵化，Hive 1.0 发布了。<br>2.经过7年的孵化，HBase 1.0 发布了。<br>3.Cloudera 开始提供 Hive-on-Spark Beta版的下载。</p>
 <p>HBase 1.0 需要特别关注的特]]>
     </summary>
+    
+      <category term="Bigdata" scheme="http://navigating.github.io/tags/Bigdata/"/>
     
       <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
     
@@ -904,100 +940,6 @@ KMT参战：
     </summary>
     
       <category term="Ubuntu" scheme="http://navigating.github.io/tags/Ubuntu/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Android实战第二季]]></title>
-    <link href="http://navigating.github.io/2011/Android%E5%AE%9E%E6%88%98%E7%AC%AC%E4%BA%8C%E5%AD%A3/"/>
-    <id>http://navigating.github.io/2011/Android实战第二季/</id>
-    <published>2011-10-23T16:12:20.000Z</published>
-    <updated>2015-08-09T16:18:43.035Z</updated>
-    <content type="html"><![CDATA[<p>Android 通用架构</p>
-<p>Android 有一个通用的展示软件栈的架构，即是如此图：</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2011/Android_01.png" alt="">  </p>
-<p>简单介绍：</p>
-<p>Applications 层：主要是 Android 自带的 GMS(Google Mobile Service) 应用和应用开发者开发的应用；</p>
-<p>Application Framework ：主要是为 Application 开发者提供各种功能、服务和开发 API 。</p>
-<p>Android Runtime(Core libraries and Dalvik Virtual Mache) ：为应用运行提供运行环境的 Java 虚拟机和运行时库。</p>
-<p>Libraries ：主要是 Android 系统运行库和工具集；</p>
-<pre><code><span class="keyword">C</span>/<span class="keyword">C</span>++ 库：
-</code></pre><p>a)       标准 C/C++ 库 bionic ： BSD 许可证，可以修改而无需公开源代码。提供 C/C++ 标准库绝大部分的功能，是一个专为嵌入式系统设计的轻量级标准库实现。相对于传统的 glibc ，其体积和内存占用很小。</p>
-<p>b)      C 语言工具库 libcutils ：是 Android 系统中的基石库，基本上 Android 中所有的本地库和程序都链接了这个库。</p>
-<p>c)      init 进程：此进程是 Android 设备启动后，系统执行的第一个用户空间的可执行程序，由内核缺省直接启动，以守护进程的形式后台运行。提供以下功能：设备管理、解析并执行初始化脚本 init.rc 。</p>
-<p>d)      shell 工具： sh 和 toolbox 、 busybox 。</p>
-<p>e)       C++ 语言工具库 libutils ：属于 Android 的底层库。以 C++ 实现，提供的 API 也是 C++ 接口规范。提供基本头文件、 Binder 框架以及使用 Binder 机制的相关库。</p>
-<p>通过 Android 应用程序框架为开发者提供服务的 C/C++ 库 :</p>
-<p>a)       系统 C 库：一个从 BSD 继承来的标准 C/C++ 系统函数库， 是专门为基于嵌入式 Linux 系统的设备定制的。即 bionic libc 库。</p>
-<p>b)      媒体库：基于 PacketVideo OpenCORE 。该库支持多种常用的音频、视频格式回放和录制，同时支持静态图像文件。编码格式包括 MPEG4, H.264, MP3, AAC, AMR, JPG, PNG 。</p>
-<p>c)      Surface Manager ：对显示子系统的管理，并且为多个应用程序提 供了 2D 和 3D 图层的无缝融合。</p>
-<p>d)      LibWebCore ：一个最新的 web 浏览器引擎用，支持 Android 浏览器和一个可嵌入的 web 视图</p>
-<p>e)       SGL - 底层的 2D 图形引擎</p>
-<p>f)       3D libraries ：基于 OpenGL ES 1.0 APIs 实现；该库可以使用硬件 3D 加速（如果可用）或者使用高度优化的 3D 软加速。</p>
-<p>g)      SQLite ：一个对于所有应用程序可用，功能强劲的轻型关系型数据库引擎。</p>
-<p>系统工具集 :</p>
-<p>a)       主要以 busybox 为主，链接 bionic libc 库，为大多数嵌入式 Linux 所采用。主要包含一些系统管理工具，全为文本命令行工具。</p>
-<p>b)      另外 Android 官方也提供了专门的调试守护进程，如 adbd 等。</p>
-<p>HAL ：一个对硬件访问虚拟化的中间抽象层，接着我们详细介绍；</p>
-<p>Linux Kernel ：基于开源 Linux kernel 经过修改的支撑整个软件栈的基础操作系统内核，当前主要是依赖于 Linux kernel 2.6 。驱动主要分为两类，一类是 Android 专用驱动，其并不是硬件驱动，而主要是一些为上层提供服务的辅助功能层，比如 ashmem 、 logger 、 binder 、 power manager ；另一类则是设备驱动则，其多是硬件驱动，属于 Linux 内核标准的驱动，比如 fb 显示驱动 (LCD) 、输入设备驱动 ( 游戏杆、鼠标、键盘、触摸屏 ) 、视频驱动 (Camera) 、音频驱动、 MTD 存储设备驱动、网络驱动 ( 蓝牙、 WiFi 、 Ethernet) 等。驱动在内存映射的时候也分为 kernel space 和 user space ，放在 kernel space 都是需要遵循 GPL 开源的；放在 user space 中的驱动，是遵循 Apache/MIT 许可证的，可以不开源，其运行在 kernel space 之上。</p>
-<p>Hardware Abstraction Layer:</p>
-<p>HAL 是 Google 为了解决 Linux 开源许可证 GPL 和 Android 本身的 Apache 许可证冲突的一个硬件抽象层，主要原则是把控制硬件的动作都放到了 Android HAL 中，而 linux driver 仅仅完成一些简单的数据交互作用，甚至把硬件寄存器空间直接映射到 user space 。</p>
-<p>HAL 存在的原因：</p>
-<ol>
-<li><p>快速适配硬件设备中非 linux kernel 标准的接口；</p>
-</li>
-<li><p>解决 Linux 开源许可证 GPL 与硬件设备厂商驱动的专利不兼容；通过 Android 的 Apache 许可证和 HAL 技术实现来解决这一难题；</p>
-</li>
-<li><p>开放的满足设备厂商开发开与之驱动对应的特定需求的要求；</p>
-</li>
-</ol>
-<p>HAL 层具备如下特点：</p>
-<ol>
-<li><p>在用户空间 (user space) 而不是内核空间 (kernel space) ，可以是 c/c++ 库；</p>
-</li>
-<li><p>将 Android platform 部分和系统硬件完全的进行了隔离开；</p>
-</li>
-<li><p>向上层提供 Android platform 操作硬件的接口，向下要求硬件驱动对其功能进行实现； ( 比方说上层应用对于 Graphics, Audio, Camera, Bluetooth, GPS, Radio(RIL), Wifi 等的操作。 )</p>
-</li>
-</ol>
-<p>在编程方式上，上层应用通过 HAL 对硬件的操作有两种方式：</p>
-<ol>
-<li>通过 Java-&gt;JNI-&gt;*.so 库 (c/c++) ；</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2011/Android_02.png" alt="">  </p>
-<ol>
-<li>通过 Java app-&gt;ApplicationManager-&gt;Service(java)-&gt;service(jni)-&gt;HAL-&gt;HAL stub-&gt;System Call 方式进行调用；</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2011/Android_03.png" alt="">  </p>
-<p>注：一般 HAL 动态库放在位置 /system/lib/hw 目录。</p>
-<p>一般开发类型</p>
-<ol>
-<li>Android 手机产品：构建硬件系统，移植 Android 软件平台系统；主要涉及设备驱动程序，以及在硬件抽象层实现标准接口等。</li>
-</ol>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2011/Android_04.png" alt="">  </p>
-<ol>
-<li><p>Android 应用程序：基于 Application Framework 和其他应用，开发应用程序；</p>
-</li>
-<li><p>Android 系统开发：主要是增强或者完善 Android 平台系统的功能，开发中主要包含如下部分：</p>
-</li>
-</ol>
-<p>a)         开发 c 或者 c++ 库；</p>
-<p>b)        定义将要通过 JNI 提供的上层 Java 的系统 API 接口；</p>
-<p>c)        封装 JNI ；</p>
-<p>d)        通过 JNI 封装 Java 类和接口 API ，提供给 Android 应用使用；</p>
-<p>Android 开发社区</p>
-<p>Cyanogenmod 社区： <a href="http://www.cyanogenmod.com/" target="_blank" rel="external">http://www.cyanogenmod.com/</a></p>
-<p>涉及开发语言： C/C++/Java 等。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Android 通用架构</p>
-<p>Android 有一个通用的展示软件栈的架构，即是如此图：</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.gith]]>
-    </summary>
-    
-      <category term="Android" scheme="http://navigating.github.io/tags/Android/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
