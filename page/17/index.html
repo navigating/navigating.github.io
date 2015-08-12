@@ -87,6 +87,93 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2006/入手《Code-Complete-Second-Edition》" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2006/入手《Code-Complete-Second-Edition》/" class="article-date">
+  <time datetime="2006-04-02T03:00:36.000Z" itemprop="datePublished">2006-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2006/入手《Code-Complete-Second-Edition》/">入手《Code Complete Second Edition》</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天冒着大雨和redwood跑去华储买回了cc2e。买的时候还是有些犹豫—这本书真是太重了。我们刚买完书出来，dreamhead打电话过来他在华储正在买这本书。:)感谢redwood帮我把这本书背回了家。<br>拿到这本书我最大的期望是：我早在一年前能拿到这本书该是多么美妙的事情啊。<br>“这个世界从来就不缺少十几岁的少年天才,而三十几岁的优秀软件设计师凤毛麟角”。<br>我们重来都不缺少工程师，总是缺少尽可能多的优秀的工程师。任何想成为优秀工程师的人都不能容忍忽略这本书—cc2e的价值。(“最好是好的敌人”)<br>我们深信，这本书就是献给那些愿意成为优秀软件构造者长期以来进行不断的努力、奉献、执著追求的人。只有这样的人，才能把这么一本“砖头”饶有兴趣的读下去、读完。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2006/入手《Code-Complete-Second-Edition》/" data-id="cid8u18ke007ywglmlyt81q3k" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/" class="article-date">
+  <time datetime="2005-09-06T02:59:07.000Z" itemprop="datePublished">2005-09-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/">读《Expert One on One J2EE Development Without EJB》C2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想重要。如同重构的时机一样：OO原则，针对接口编程；将任何特定的规范已经实现尽量隐藏一般特性之后，比如ejb的接口隐藏在pojo之后。<br>3.在我自己的技术选择中，几乎都是选择OpenSource社区的，很少受到规范驱动或者vendor驱动的影响。正好相反，也vendor driven才造就今天的我们。:)<br>4.项目成功，检验架构的标准：<br>simplicity<br>productivity<br>the fundamental importance of object orientation<br>the primacy of business requirements<br>the importance of empirical process<br>the importance of testability<br>5.一切皆来源于经验过程。spring比Expert One-on-One J2EE还要早。(没有working code就无法写出这本书。)springframework是Rod Johnson几个商业项目的经验而产生的。开发这个framework也应该是在模式大量复用中找到了突破点,如果一些模式大量的被复用，那么把这些模式的职责转嫁给framework来做，dry原则。当然，必须优先考虑模块化的原则，比方说对于log4j的如何集成到framework的方式。<br>6.Architecture and implementation should always be undertaken with clear goals in mind.</p>
+<p>Productivity<br>1.framework不断抽象，不断重构产生的,framework与代码生成的转换：If we see a requirement for boring repetitive code, we should apply an OO solution and abstract it into a framework,rather than generate it and live with the resulting duplication.<br>2.代码生成技术在解决生产率中扮着十分重要的角色。在j2ee开发中涉及到代码生成的层次很多。从dll,database schema到jsp.<br>3.There shouldn’t be vast amounts of repetitive plumbing code in J2EE applications.Better architectural choices and better frameworks can virtually eliminate such code,meaning that nearly all application code can be hand-authored.(注：framework形成的时机之一。)I’m not saying that code generation is a bad technology in general—merely that,when properly designed and built on appropriate frameworks, most J2EE applications should not contain enough boilerplate code to justify it and outweigh its negatives.<br>4.关于代码生成以及MDA作者的观点：The natural path of our industry is toward higher levels of abstraction. Perhaps one day MDA-powered code generation will prove to be an appropriate abstraction. However, I feel that this is 10–15 years away, if it ever happens.<br>5.Better Solutions for Higher Productivity：<br>Architecture<br>    Avoid unnecessary architectural complexity.<br>    Avoid unnecessary use of EJB.<br>    Use abstraction layers to hide the complexity of core J2EE and J2SE APIs.<br>    If possible, use an O/R mapping product to simplify the persistence layer.<br>    Use a good application framework.  </p>
+<p>Focus and methodology<br>    Focus! Know what problems you should be solving, and concentrate on them.<br>    Use a reference architecture and start from a template application.<br>    Use an agile development process.</p>
+<p>Use appropriate tools.<br>6.Different developers do the same thing in different ways, wasting<br>valuable development time and complicating maintenance.程序设计始终要做的就是不发生这样的事情。<br>7.Know What Problems to Solve 生产率即是知道要解决得是什么问题，将主要是domain problems而不是generic problems.<br>8.Use Reference Architectures and Templates一旦选择了技术，将着手reference architecture.begin work using a skeleton application that establishes the overall plumbing.<br>9.And remember that the more upfront effort before arriving at a working prototype, the greater the risk of inadequate performance or an unworkable architecture. 项目组也应该精化，微型化。<br>10.J2EE developers are fortunate in that all these requirements can be met by free, open source tools, such as Eclipse, JUnit, Ant, a good Eclipse XML plugin, CVS, and the standard Eclipse JUnit and CVS integration.</p>
+<p>OO<br>1.本身OO是一种范式，是一个模型，在SICP中对于讲到代换模型的理论：In general, when modeling phenomena in science and engineering, we begin with simplified, incomplete models. As we examine things in greater detail, these simple models become inadequate and must be replaced by more refined models.关于OO的讨论算是一个检查考虑问题的讨论。<br>2.作者提出的实践中运用oo的四个方面：封装domains concepts;运用polymorphism将共性和差异分离;代码复用；extensibility.<br>3.j2ee应用的对象常常都是一些fake objects，即是不具备objects的某些特征:identity,state,behavior.<br>4.oo针对接口编程的优点和误区。</p>
+<p>The importance of business requirements<br>1.这个问题因不同的角色而已。就我而言，如同我一样的普通程序员，对于generic technical problems常常都是难题，故而在这方面的需要长足的学习和提高的;对于我们而言，我们domain problems就是如何具备了generic technical方面的强大能力只是第一步。<br>The Importance of an Empirical Process<br>1.Always develop a vertical slice to validate your application’s architecture early in the project. Don’t trust our advice or anyone else’s without establishing that it’s appropriate to your needs.验证自己的想法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/" data-id="cid8u18lc008cwglm5te1bccc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2005/Java对象之JavaBean" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2005/Java对象之JavaBean/" class="article-date">
@@ -120,7 +207,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/Java对象之JavaBean/" data-id="cid601i3q008asglmztj4qrhk" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/Java对象之JavaBean/" data-id="cid8u18lu008iwglms6ypgqx2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -161,7 +248,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/拓展训练/" data-id="cid601i3l0088sglm9ugmtm8y" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/拓展训练/" data-id="cid8u18lp008gwglmq979wbxu" class="article-share-link">Share</a>
       
       
     </footer>
@@ -203,95 +290,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/读设计模式精解/" data-id="cid601i300082sglmenf8d2hn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2005/读《Berkeley-Unix二十年》" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2005/读《Berkeley-Unix二十年》/" class="article-date">
-  <time datetime="2005-05-31T02:41:23.000Z" itemprop="datePublished">2005-05-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2005/读《Berkeley-Unix二十年》/">读《Berkeley Unix二十年》</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>16 May 2005<br>    在unix的早期历史里面，没有策划，没有估计，没有进度表；在这个年代，硬件的代价是昂贵的，在硬件资源固定的情况下，所有的人都希望通过自己的努力进行优化，进行维护，进行调试，进行移植，进行集成。。。这时构建系统、发布系统还处于萌芽状态，大量的工作都是针对与操作系统的。(同也是编程语言狂热的年代。)这完全是个人表现，人类对于计算机一个个基本的需求解决的年代。理想也是满足自己的开发所需和硬件的平滑更换。经过暴风骤雨的成长发展，系统进入了分支期，这样路就越来越窄了，可以选择的空间似乎总是在缩小。NetBSD专注于支持多平台，FreeBSD专注于支持PC体系，OpenBSD专注于系统的安全性。<br>   人才的流动，人才的流失对于一个team来说是一个损失，同时team有引进了新的人才。对于整个行业来说开始平衡的，人才的流动带给一个行业的是经验的互补，每一个人都各有所长。关键人才的流动带给系统的是新的特性切入点，同类型的系统也越来越有竞争力，火拼最激烈的时候正是新的力量可能诞生的时候。BSD的发展就是DARPA(Defense Advanced Research Projects Agency)给了它这个绝佳的机会。Bill Joy、Bob Fabry、Leffler…的离开，Leffler、Pauline Schwartz、Domenico Ferrari、Susan Graham、<br>Mike Karels…的介入。<br>   早期的Unix开发者都是小范围的孤军奋战，而且也总是在增大交流的范畴，交流越广泛，对于系统的提高所起到的隐含动力越大。在系统的开发前行中，越来越多的贡献者希望代码的共享，常常会触及到版权的问题，这种共享缩短了个人和行业的发展历程。今天OpenSource已经深入到我们这些开发者的心灵之中，感谢这些先行者和贡献者。同样感受到，官事没有什么可怕的，足以证明这个系统、这个行业非常成熟了，有了越来越多的共利益者了，分蛋糕的人拼的热火朝天呢，大家在同一个级别上一较高下了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/读《Berkeley-Unix二十年》/" data-id="cid601i3f0086sglm521aoffd" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2005/转载：你注意过你的父母吗" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2005/转载：你注意过你的父母吗/" class="article-date">
-  <time datetime="2005-02-24T02:39:41.000Z" itemprop="datePublished">2005-02-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2005/转载：你注意过你的父母吗/">转载：你注意过你的父母吗....</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>你注意过你的父母吗？(写给 30岁以上的人，让30岁以下的人思考) </p>
-<p>如果有一天，你发现妈妈的厨房不再像以前那么干净<br>如果有一天，你发现家中的碗筷好像没洗干净<br>如果有一天，你发现母亲的锅子不再雪亮<br>如果有一天，你发现父亲的花草树木已渐荒废<br>如果有一天，你发现家中的地板衣柜经常沾满灰尘<br>如果有一天，你发现母亲煮的菜太咸太难吃<br>如果有一天，你发现父母经常忘记关瓦斯 </p>
-<p>如果有一天，你发现老父老母的一些习惯不再是习惯时， 就像他们不再想要天天洗澡时<br>如果有一天，你发现父母不再爱吃青脆的蔬果<br>如果有一天，你发现父母爱吃煮得烂烂的菜<br>如果有一天，你发现父母喜欢吃稀饭<br>如果有一天，你发现他们过马路行动反应都慢了<br>如果有一天，你发现在吃饭时间他们老是咳个不停 千万别误以为他们感冒或着凉，<br>(那是吞咽神经老化的现象)<br>如果有一天，你发觉他们不再爱出门… </p>
-<p>如果有这么一天 我要告诉你，你要警觉父母真的已经老了<br>器官已经退化到需要别人照料了<br>如果你不能照料，<br>请你替他们找人照料<br>并请你请你千万千万要常常探望<br>不要让他们觉得被遗弃了 </p>
-<p>每个人都会老<br>父母比我们先老<br>我们要用角色互换的心情去照料他<br>才会有耐心、才不会有怨言<br>当父母不能料理自己的时候，<br>为人子女要警觉，<br>他们可能会大小便失禁、可能会很多事都做不好，<br>如果房间有异味，可能他们自己也闻不到，请不要嫌他脏或嫌他臭，<br>为人子女的只能帮他清理，并请维持他们的’自尊心’。</p>
-<p>当他们不再爱洗澡时，<br>请抽空定期帮他们洗身体，<br>因为纵使他们自己洗也可能洗不干净。<br>当我们在享受食物的时候，<br>请替他们准备一份大小适当、容易咀嚼的一小碗，<br>因为他们不爱吃可能是牙齿咬不动了。<br>从我们出生开始，喂奶换尿布、生病的不眠不休照料、<br>教我们生活基本能力、供给读书、吃喝玩乐和补习，<br>关心和行动永远都不停歇。</p>
-<p>如果有一天，<br>他们真的动不了了，角色互换不也是应该的吗？<br>为人子女者要切记，看父母就是看自己的未来，孝顺要及时。<br>如果有一天，<br>你像他们一样老时，你希望怎么过？<br>现在的你，<br>是在当单身寄生虫、还是已婚双料或多料寄生虫？<br>你留意过自己的父母吗 ?</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2005/转载：你注意过你的父母吗/" data-id="cid601i2r0080sglmrhyetnyg" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/读设计模式精解/" data-id="cid8u18l8008awglm0vfr6zjg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -314,7 +313,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">65</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -323,7 +322,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 14.29px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 14.29px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 17.14px;">BigData</a> <a href="/tags/Bigdata/" style="font-size: 10px;">Bigdata</a> <a href="/tags/CDH/" style="font-size: 15.71px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.43px;">Google</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 15.71px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 18.57px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.43px;">JUnit</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 11.43px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 12.86px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.43px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 14.29px;">Spark</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.43px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 15px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 18.33px;">BigData</a> <a href="/tags/Bigdata/" style="font-size: 10px;">Bigdata</a> <a href="/tags/CDH/" style="font-size: 16.67px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.67px;">Google</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.67px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.67px;">JUnit</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 11.67px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 13.33px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.67px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.67px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.67px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
     </div>
   </div>
 
@@ -339,6 +338,14 @@ var _hmt = _hmt || [];
       <ul>
         
           <li>
+            <a href="/2015/Hadoop发行版(2015第二季)/">Hadoop发行版(2015第二季)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/doubanclaim7e82c09050fe8699/">doubanclaim7e82c09050fe8699</a>
+          </li>
+        
+          <li>
             <a href="/2015/学习《七牛是如何搞定每天500亿条日志的》/">学习《七牛是如何搞定每天500亿条日志的》</a>
           </li>
         
@@ -352,10 +359,6 @@ var _hmt = _hmt || [];
         
           <li>
             <a href="/2015/读《微软研发制胜策略》/">读《微软研发制胜策略》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/Hadoop发行版/">Hadoop发行版</a>
           </li>
         
           <li>
@@ -391,6 +394,10 @@ var _hmt = _hmt || [];
           </li>
         
           <li>
+            <a href="/2015/Hadoop发行版(2015第一季)/">Hadoop发行版(2015第一季)</a>
+          </li>
+        
+          <li>
             <a href="/2013/2013年年终总结/">2013年年终总结</a>
           </li>
         
@@ -410,14 +417,6 @@ var _hmt = _hmt || [];
             <a href="/2011/集合-红色趣味丛书/">&lt;集合&gt;红色趣味丛书</a>
           </li>
         
-          <li>
-            <a href="/2011/Android实战第三季-调试/">Android实战第三季-调试</a>
-          </li>
-        
-          <li>
-            <a href="/2011/安装windows-xp和ubuntu双操作系统的方法/">安装windows xp和ubuntu双操作系统的方法</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -427,7 +426,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

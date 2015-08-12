@@ -87,6 +87,166 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2011/Android实战第三季-调试" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/Android实战第三季-调试/" class="article-date">
+  <time datetime="2011-10-31T00:20:32.000Z" itemprop="datePublished">2011-10-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/Android实战第三季-调试/">Android实战第三季-调试</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android 初调试</p>
+<p>在 Android 平台开发，需要在一个模式或者真实的环境之下进行一下调试、验证，至少有三种方式：</p>
+<ol>
+<li><p>Eclipse + AVD ，通过 Eclipse 或者 Android SDK 自带的命令行创建 Android Virtual Device ;</p>
+</li>
+<li><p>Eclipse + Android Device ，通过一个真实 Android 设备通过 USB 和电脑相连进行调试；</p>
+</li>
+<li><p>Eclipse + Android System over Virtual Machine ，在系统安装一个虚拟机软件，比方说： VirtualBox ， VmWare ， VirtualPC 等，然后下载一个 Android ROM 安装到虚拟机之中，配置虚拟机的网络和 Host 主机相连，然后在 Host 主机中通过 adb 命令 adb connect android-ip 连接虚拟机中的 Android 系统，然后就可以进行调试了。</p>
+</li>
+</ol>
+<p>对于一些和 ROM 相关的开发、调试，最后现在虚拟机环境下进行调试，以免于把真实 Android Phone 给“砖头”了。</p>
+<p>Android 源代码下载和编译：</p>
+<ol>
+<li><p>拥有 Ubuntu 系统，进入到 Ubuntu 系统；</p>
+</li>
+<li><p>安装 cURL 。什么是 cURL ，官方解释：支持很多协议： FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET, DICT, FILE 以及 LDAP 。 curl 同样支持 HTTPS 认证， HTTP POST 方法 , HTTP PUT 方法 , FTP 上传 , kerberos 认证 , HTTP 上传 , 代理服务器 , cookies, 用户名 / 密码认证 , 下载文件断点续传 , 上载文件断点续传 , http 代理服务器管道（ proxy tunneling ） , 甚至它还支持 IPv6, socks5 代理服务器 , 通过 http 代理服务器上传文件到 FTP 服务器等等，功能十分强大。下载地址： <a href="http://curl.haxx.se/download.html" target="_blank" rel="external">http://curl.haxx.se/download.html</a></p>
+</li>
+<li><p>安装 Git ；</p>
+</li>
+<li><p>建立 ~/bin 目录，将这个目录配置到环境变量 ~/.bashrc 里面： export PATH=~/bin:$PATH</p>
+</li>
+<li><p>安装 Repo ，通过命令： curl <a href="http://android.git.kernel.org/repo" target="_blank" rel="external">http://android.git.kernel.org/repo</a> &gt;~/bin/repo</p>
+</li>
+<li><p>改变 ~/bin/repo的权限： chmod a+x ~/bin/repo</p>
+</li>
+<li><p>初始化版本库： repo init -u git://android.git.kernel.org/platform/manifest.git -b froyo</p>
+</li>
+<li><p>同步 repo sync</p>
+</li>
+<li><p>make(make 的时候出错了,注意查看，极有可能是缺少系统库，根据错误提示安装 系统库即可 )</p>
+</li>
+<li><p>最后编译完的库文件，主要集中在 out\target 路径下面。例如编译后的 framework. jar 位置在 out\target\common\obj\JAVA_LIBRARIES\framework_intermediates\classes.jar 。</p>
+</li>
+</ol>
+<p>并且可以参考：<br><a href="http://mintelong.iteye.com/blog/466893" target="_blank" rel="external">http://mintelong.iteye.com/blog/466893</a><br><a href="http://www.williamhua.com/2009/04/29/" target="_blank" rel="external">http://www.williamhua.com/2009/04/29/</a><br><a href="http://source.android.com/source/build-numbers.html" target="_blank" rel="external">http://source.android.com/source/build-numbers.html</a></p>
+<p>在 ubuntu 下使用 Eclipse+VirtualBox 进行 Android 开发： </p>
+<ol>
+<li>安装 Sun JDK;</li>
+<li>安装 Eclipse + Android plugin;</li>
+<li>安装 Android SDK for linux, 配置 adb 的所在目录到 path 中； </li>
+<li>下载 Android 源代码并且编译； </li>
+<li>安装 virtualbox;</li>
+<li>下载到开发版本的 android rom 的 iso 文件 ;</li>
+<li>在 virtualbox 中创建一个虚拟机，将 iso 加载到虚拟机的光盘中，将 android rom 安装到硬盘中，在安装过程中选择 /system 目录为 read-write ，并且创建 sdk 虚拟卡。 android 自动将其挂在到安装后的 /sdcard 路径 ;<br>选择虚拟机的网络方式是 :bridged adapter ，虚拟机的操作系统会自动从 ubuntu 一样，从外部路由器中获取一个独立的 ip ，可以和 ubuntu 互通，也可以通过路由器上网。 </li>
+<li>登录到虚拟机中的 android 系统，通过 devtools 应用的子项 Terminal simulator 进入到命令行界面，通过 ip addr 看到本机的 ip(android-ip).</li>
+<li>在 ubuntu 的命令行中： adb connect android-ip</li>
+<li>进入到 Eclipse 中，模拟器可以选择 AVD 调试 app 开发，也可以选择 manual 方式到虚拟机中的 android 环境进行开发。 Eclipse 调试环境自动将 apk 发布到虚拟机 Android 的目录 /system/app 下。 .</li>
+<li>在 ubuntu 下，鼠标在 ubuntu 和虚拟机之间切换的快捷键：键盘中的 右 ctrl + i 就可以了。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2011/Android实战第三季-调试/" data-id="cid8u187o003swglml05b7nbq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2011/安装windows-xp和ubuntu双操作系统的方法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/安装windows-xp和ubuntu双操作系统的方法/" class="article-date">
+  <time datetime="2011-10-30T16:19:14.000Z" itemprop="datePublished">2011-10-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/安装windows-xp和ubuntu双操作系统的方法/">安装windows xp和ubuntu双操作系统的方法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先装xp，再装ubuntu：</p>
+<p>1.分别按着XP和ubuntu的方法一次安装即可，安装之后系统grub默认就会有ubuntu/xp的启动选项；每次启动系统的时候会有选项可以选择。<br>先装ubuntu，再装xp：</p>
+<ol>
+<li><p>按着ubuntu的方法安装ubuntu；</p>
+</li>
+<li><p>启动系统，安装xp后，自动清除系统grub，如果系统命令行引导或者grub引导界面，找到win pe光盘从光盘启动进入win pe，下载clear mbr软件clsmbr进行清除；</p>
+</li>
+<li><p>重启系统，使用xp安装盘安装xp；</p>
+</li>
+<li><p>安装XP之后系统启动ubuntu的grub选项丢失；</p>
+</li>
+<li><p>通过ubuntu live cd或者启动盘进入ubuntu。</p>
+</li>
+<li><p>查看ubuntu所在分区的盘符的uuid，比方说我的现在是：xxxxxxxxxxxxxxxxxx(可以直接在ubuntu所在分区盘符上面的图标查看属性得到，也可以通过命令ls -l /dev/disk/by-uuid获得)</p>
+</li>
+<li><p>在ubuntu中使用命令:sudo grub-install —root-directory=/media/{uuid} /dev/sda，命令执行成功之后，会有提示：”Installation finished. No error reported.”</p>
+</li>
+<li><p>重启机器，进入grub界面，这时候恢复了ubuntu下面的grub启动界面。这时候你发现xp的启动选项可能不工作，别着急。</p>
+</li>
+<li><p>按键c进入grub的命令行界面，键入root (hd0,之后按键tab键。这时候注意查看，在xp的分区信息中有一个uuid，记下来uuid，然后quit到ubuntu的grub启动界面。选择 xp的grub项，然后按键e,进入编辑模式，把记下来的uuid替换原来的uuid.这只后F10就可启动xp了。</p>
+</li>
+<li><p>其实也可以不操作第9步，直接从ubuntu grub登录进入ubuntu系统，然后编辑：/boot/grub/grub.cfg文件，将xp启动项中的uuid替换成新的xp系统的uuid即可。我的修改之后的内容为：<br>insmod part_msdos<br>insmod ntfs<br>set root=’(/dev/sda,msdos1)’<br>search —no-floppy —fs-uuid —set=root 0E48A65048A6367D<br>drivemap -s (hd0) ${root}<br>chainloader +1</p>
+</li>
+<li><p>OK一切搞定。</p>
+</li>
+</ol>
+<p>另可参考：<a href="http://www.blags.org/windows-xp-disk-to-install-ubuntu-10-04/" target="_blank" rel="external">http://www.blags.org/windows-xp-disk-to-install-ubuntu-10-04/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2011/安装windows-xp和ubuntu双操作系统的方法/" data-id="cid8u185x0038wglmb2qky9ev" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2011/Android实战第二季" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2011/Android实战第二季/" class="article-date">
@@ -192,7 +352,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/Android实战第二季/" data-id="cid601hq4003gsglmd8smkgbo" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2011/Android实战第二季/" data-id="cid8u187e003owglmv2ca5tsw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -315,7 +475,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/Android实战第一季/" data-id="cid601hr4003nsglmtw1uv22q" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2011/Android实战第一季/" data-id="cid8u187u003vwglmpok5y3k7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -575,115 +735,11 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/Java时间简史/" data-id="cid601hpx003csglmfxrgshx5" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2011/Java时间简史/" data-id="cid8u186z003kwglmd33zirmg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2011/一些关塞-关口-关卡" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/一些关塞-关口-关卡/" class="article-date">
-  <time datetime="2011-10-21T16:09:58.000Z" itemprop="datePublished">2011-10-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/一些关塞-关口-关卡/">一些关塞(关口)(关卡)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>天下九塞 ，出自吕氏春秋，现在泛指雁门关，居庸关， 八达岭长城， 紫荆关 ，楚长城 ，黄草梁， 井陉关 ，句注塞 ，平靖关。</p>
-<p>紫荆关 ，位于河北省易县县城西北 45 公里的紫荆岭上，关城东为万仞山，城西有犀牛山，与盘石口相接；城北为拒马河；城南是黄土岭。紫荆关城就建在这依坡傍水、两山相夹的盆地之内。 紫荆关是长城上一座著名的关城，位于居庸关和倒马关之间，号称 “ 内三关 ” 。</p>
-<p>居庸关 ，位于北京西北部，距北京约 60 公里。居庸关设于太行山余脉之军都山峡谷之间，两侧均有高山耸立，纵深约 20 公里，地势险要。与附近的八达岭长城同为北京西北方的重要屏障。与倒马关和紫荆关合称 “ 内三关 ” 。</p>
-<p>雁门关 ，又名西陉关，位于山西省忻州市代县县城以北约 20 公里处的雁门山中，是长城上的重要关隘，与宁武关、偏关合称为 “ 外三关 ” 。</p>
-<p>宁武关 ，在今山西忻州市宁武县城区，与偏关和雁门关合称山西 “ 外三关 ” 。</p>
-<p>偏头关 ，简称为偏关，关城即今山西省忻州市偏关县县城，与宁武关、雁门关合称 “ 外三关 ” ，是三关中最西边的一座。得名一说是因为关城东仰西伏，状如人首之偏；另一说是因为五代时期、宋代和金代在这里设立偏头寨的原因。今天的关城为明代所建。</p>
-<p>嘉峪关 ，位于甘肃嘉峪关市向西 5 公里处，是明长城西端的第一重关，古代 “ 丝绸之路 ” 的交通要冲。嘉峪关关城位于嘉峪关最狭窄的山谷中部，地势最高的嘉峪山 上，城关两翼的城墙横穿沙漠戈壁，其以地势险要，巍峨壮观著称于世，被称为 “ 天下第一雄关 ” 。 与万里之外的 “ 天下第一关 ” 山海关遥相呼应。</p>
-<p>潼关 ，位于陕西省渭南市潼关县北，北临黄河，南踞山腰。潼关是关中东大门，历来为兵家必争之地。</p>
-<p>虎牢关 ，又称汜水关，因为避唐高祖的祖父李虎的忌讳亦称武牢关，在洛阳以东，今河南省荥阳市市区西北部 16 公里的汜水镇境内。它作为洛阳东边门户和重要的 关隘，因西周穆王在此牢虎而得名。南连嵩岳，北濒黄河，山岭交错，自成天险。大有 “ 一夫当关，万夫莫开 ” 之势，为历代兵家必争之地。</p>
-<p>娘子关 ，为中国万里长城著名关隘，位于太行山脉西侧河北省井陉县西口，山西省平定县东北的绵山山麓。娘子关原名 “ 苇泽关 ” ，因唐平阳公主曾率兵驻守于此，平 阳公主的部队当时人称 “ 娘子军 ” ， 故得今名。为山西和河北之间为数不多的通道之一，石太铁路和晋冀公路均从此关口经过，为交通要道。</p>
-<p>友谊关 ，原称镇南关，位于中国广西壮族自治区凭祥市西南 15 公里处，湘桂铁路穿越峡谷连接越南谅山，是中国和越南之间的重要关口。自西汉始建，曾用名鸡陵关、大南关和界首关。 “ 友谊关 ” 三字由当年任国务院副总理兼外交部长陈毅元帅题写，用汉白玉雕刻。</p>
-<p>山海关 ，又称 “ 榆关 ” ，以古渝水而得名，位于河北省最东部与辽宁省接壤处，秦皇岛市山海关区境内，燕山与渤海之间，素有 “ 天下第一关 ” 之称。。北靠燕山，南临渤海，扼守华北与东北之间狭长的陆路交通要道，地势险要，自古以来就是兵家必争之地。</p>
-<p>平型关 ，位于中国山西省大同市灵丘县西南白崖乡，临近忻州市繁峙县东北，是明代内长城的一个重要关口。平型关因为中国抗日战争的平型关战役而家喻户晓。</p>
-<p>昆仑关 ，广西南宁市东北方向 59 公里，宾阳县城西南方 30.5 公里，宾阳县和邕宁两县交界，相传是秦朝尉屠睢征服岭南以后建立。 1926 年南柳公路经山下 绕关而出，成为桂越国际交通线上之扼要关隘，控制着宾邕公路，堪称 “ 一夫当关，万夫莫敌 ” ，兵家必争之地。著名的桂南会战第二阶段的核心战役昆仑关战役地点。</p>
-<p>娄山关 ，原名娄关，后称太平关。关名的来历，源于古代对娄山山脉的称谓。它是大娄山脉的主峰，海拨 1576 米，南距遵义市 50 公里，在遵义、桐梓两县的交 界处，北距巴蜀，南扼黔桂，为黔北咽喉，兵家必争之地。 红军长征遵义战役的序幕战，毛主席填有《忆秦娥 · 娄山关》词一首。</p>
-<p>函谷关 ，是中国古代著名关隘，遗址位于今天河南省灵宝市东北方，距三门峡市市区 75 公里；最早在春秋战国时代由秦国所建。关隘地处深险谷地，地势险要，窄处只能容一辆马车通行，所谓 “ 车不方轨，马不并辔 ” 。传说老子是在此地创作《道德经》的。</p>
-<p>玉门关 ，俗称小方盘城，位于中国甘肃省敦煌市西北约 90 公里处，是中国境内连通丝绸之路上的重要关隘之一。汉武帝置，因西城输入玉石取道于此得名；关城方 形如盘，北、西两面有门，北门外不及百米即到疏勒河；和西南的阳关同为当时通往西域各地的交通门户，出玉门关的北道，出阳关为南道。</p>
-<p>武胜关 ，位于 湖北省 广水市 与 河南省 信阳市 交界处、 桐柏山 与 大别山 之间，是 长江 与 淮河 的分水岭。 京广铁路 、 107 国道由此通过。</p>
-<p>平靖关 ，古称冥扼，又名恨这关、憾这关、石城山，为古代天下九塞之一。位于武胜关西，鄂豫交界处，信应公路由此通过。这里地势险要，两侧群山对峙，道路狭 窄险阻。历代为中原战略要地，南北交通要道，曾在此设驿站或巡检司。自春秋以来，这里战事频繁，皆为争关踞险之利。吴楚柏举之战，军事家孙武曾率吴兵经 此，夺关南下，几使楚国遭灭顶之灾。关侧有北伐战争烈士墓。</p>
-<p>九里关 ，位于 湖北省 广水市 与 河南省 信阳市 交界处、 桐柏山 与 大别山 之间，是 长江 与 淮河 的分水岭。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/一些关塞-关口-关卡/" data-id="cid601hpo003asglmloa1og0n" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2011/秦末汉初乱之阶段划分" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/秦末汉初乱之阶段划分/" class="article-date">
-  <time datetime="2011-10-09T16:09:47.000Z" itemprop="datePublished">2011-10-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/秦末汉初乱之阶段划分/">秦末汉初乱之阶段划分</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>秦末汉初一段的读书笔记：<br>阶段一，秦始皇末年至三十七年：秦朝没落阶段 ，秦二世是前210年即位，陈胜吴广前209年七月就揭竿而起，发动了著名的反秦大起义。在秦二世继位的不到一年的时间里面，主要是还是在王室内部搞整肃，正在杀兄弟呢啊。所以秦王朝的崩溃主要是还是来自秦始皇末年的行政和政策。<br>秦始皇帝在统一全国后，在政治、整体、经济、文化等各方面针对政权建设的有诸多的改革和成就，在政体上推广了郡县制，开创了宗主理念的中央集权体制；地理上划定了中国的疆土轮廓；在文化交流上统一了文字、度量衡，打破了地方垄断；在军事上形成了中央军队；在建设上，修了长城，管道，水利等；等等；此处主要是看看引发秦末起义的隐患。<br>1.政治对手隐患，秦灭六国，开始全面使用使用郡县制管理国家。原来东方六国的王族和贵族仍然有不少遗留势力，本来是王侯将相，一下在变成了平民百姓啥也不是了，能不斗争吗？比方说代表人物，楚国项梁项羽、齐国田氏、韩国王族、赵国、燕国、魏国等；<br>2.各种工程：军事工程，北边为了防守匈奴，修长城；南边为了开疆扩土，修水利运军事物质；交通工程，大修直道，就是官道；长安的宫殿工程，墓地工程，特别是骊山的墓地工程；巡游工程，始皇帝喜欢全国出差，封禅，立碑啥的，这得修路架桥，砍树，上山，挖大石头刻字啥的等等；长生工程，始皇帝为了求仙和炼仙药，啥事都能干的出来，搞个几千人跑到海里射大鱼；移民工程，动不动就搞移民几万到几十万的移民工程。<br>3.军事行动，现在直接的证据一个是是蒙恬在北方长达数十年和匈奴作战、修长城；陈胜吴广起义前的身份，是到渔阳(密云附近)的900百人部队里面的军官、幕僚。<br>平民老百姓在这一段时间，是何其辛苦，要么参加劳役—秦时农民工；要么去当兵，参加各种军事行动。<br>4.关中和关东的关系，在秦统一六国和统一之后，老百姓无法生存的现状，主要是发生在函谷关以东部分。为什么呢啊，在秦末期看到关中的人民不堪的记录很少，也就是秦二世当政之后才有的，在后来的义军时期，即没有发生关中起义；也没有发生关中人民残杀秦王室、贵族、官吏的记录，反而陈胜吴广还要打着扶苏没死的旗号。可以得出结论，秦统一六国之后，关中和关东是分别对待的。秦虽然实现了郡县制，但春秋战国以来形成的东西对抗的局面并没有改变。<br>5.秦政权统治的基石是什么呢，主要在关中的王族贵族宗室、功勋大臣、父老豪杰；关外的郡县官吏，但是六国的底层在秦郡县制度管理之下是无法生存的。在后来的反秦斗争中领袖陈胜吴广是下级军官，刘邦、齐国田氏、英布、彭越、吴苪、张耳、陈馀、周市等等都不是普通老百姓，都是六国的基层官员或者地方豪杰。</p>
-<p>阶段二，秦二世元年(前209年)至三年(前207年)：反秦阶段 ，在陈胜吴广起义之后，各地纷纷涌现义军，这阶段主要是关东反秦义军与秦势力的斗争阶段，开始标志是陈胜吴广起义，结束标志是项羽分封天下，自立”西楚霸王”。<br>1.反秦义军中比较有影响的力量是：陈胜吴广的张楚，刘邦的沛势力，项梁项羽的江东楚势力，张耳陈馀为核心的赵势力，周市开创的魏势力，隐藏人物吴苪，以田氏为主的齐势力，韩广开创的燕势力。其中陈胜吴广、刘邦、项梁项羽是坚决的反秦派，攻击力十足；剩下的其他势力自守有余，没有坚决西进入关中灭秦的决心。陈胜吴广、刘邦，还有后期的彭越、英布为代表的出身比较平民化(下级军官，低级公务员，奴隶，豪强等)；项羽出生楚国贵族，受过良好教育，田氏也是齐国贵族，燕、赵、魏多多少少都和六国王族或者贵族有一些关系。</p>
-<p>阶段三，汉元年(前206年)至汉五年(前202年)：诸侯争霸阶段 ，在反秦胜利之后，反秦义军内部矛盾急剧上升，形成楚汉东西(汉在西部，楚在东部)两大阵营长达五年的争霸斗争，最后以汉取胜结束。<br>1.此阶段，汉军兵分三路，北边是韩信，攻击西魏、赵、燕、齐等；中路东出潼关是刘邦亲自在前线作战，始终是和项羽直接作战为主；南边是出武关，主要是韩王信经营，并不是主要的战场，起到牵制作用。楚军以项羽力量为主，一面和汉军作战，一面还要和其他封王作战，其中势力最强的是齐和彭越，后来的英布。</p>
-<p>阶段四，汉五年之后(前202年到前195年)：大汉建国阶段 ，在消灭项羽之后，诸侯尊刘邦为皇帝，大汉开始了和平建国、武装削藩的路。<br>1.此阶段，主要是建立稳定的汉政权，一面定都长安，大封功臣，建立制度规章，确立继承人，一面诛杀异姓王，分封子弟就藩。大局确定，社会稳定，经济和建设得到恢复。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/秦末汉初乱之阶段划分/" data-id="cid601hos002ysglmli6omyxh" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -704,7 +760,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">65</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -713,7 +769,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 14.29px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 14.29px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 17.14px;">BigData</a> <a href="/tags/Bigdata/" style="font-size: 10px;">Bigdata</a> <a href="/tags/CDH/" style="font-size: 15.71px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.43px;">Google</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 15.71px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 18.57px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.43px;">JUnit</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 11.43px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 12.86px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.43px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 10px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 14.29px;">Spark</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.43px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 15px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 18.33px;">BigData</a> <a href="/tags/Bigdata/" style="font-size: 10px;">Bigdata</a> <a href="/tags/CDH/" style="font-size: 16.67px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.67px;">Google</a> <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.67px;">HDP</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.67px;">JUnit</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Kafka/" style="font-size: 11.67px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/NIO/" style="font-size: 13.33px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.67px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.67px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 15px;">Spark</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.67px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/mongoDB/" style="font-size: 10px;">mongoDB</a>
     </div>
   </div>
 
@@ -729,6 +785,14 @@ Sun 的第 <span class="number">21</span> 名雇员。
       <ul>
         
           <li>
+            <a href="/2015/Hadoop发行版(2015第二季)/">Hadoop发行版(2015第二季)</a>
+          </li>
+        
+          <li>
+            <a href="/2015/doubanclaim7e82c09050fe8699/">doubanclaim7e82c09050fe8699</a>
+          </li>
+        
+          <li>
             <a href="/2015/学习《七牛是如何搞定每天500亿条日志的》/">学习《七牛是如何搞定每天500亿条日志的》</a>
           </li>
         
@@ -742,10 +806,6 @@ Sun 的第 <span class="number">21</span> 名雇员。
         
           <li>
             <a href="/2015/读《微软研发制胜策略》/">读《微软研发制胜策略》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/Hadoop发行版/">Hadoop发行版</a>
           </li>
         
           <li>
@@ -781,6 +841,10 @@ Sun 的第 <span class="number">21</span> 名雇员。
           </li>
         
           <li>
+            <a href="/2015/Hadoop发行版(2015第一季)/">Hadoop发行版(2015第一季)</a>
+          </li>
+        
+          <li>
             <a href="/2013/2013年年终总结/">2013年年终总结</a>
           </li>
         
@@ -800,14 +864,6 @@ Sun 的第 <span class="number">21</span> 名雇员。
             <a href="/2011/集合-红色趣味丛书/">&lt;集合&gt;红色趣味丛书</a>
           </li>
         
-          <li>
-            <a href="/2011/Android实战第三季-调试/">Android实战第三季-调试</a>
-          </li>
-        
-          <li>
-            <a href="/2011/安装windows-xp和ubuntu双操作系统的方法/">安装windows xp和ubuntu双操作系统的方法</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -817,7 +873,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
