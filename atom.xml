@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-11T14:56:06.872Z</updated>
+  <updated>2015-08-17T04:42:02.346Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,87 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[学习《Hadoop生态技术在阿里全网商品搜索实战》]]></title>
+    <link href="http://navigating.github.io/2015/%E5%AD%A6%E4%B9%A0%E3%80%8AHadoop%E7%94%9F%E6%80%81%E6%8A%80%E6%9C%AF%E5%9C%A8%E9%98%BF%E9%87%8C%E5%85%A8%E7%BD%91%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2%E5%AE%9E%E6%88%98%E3%80%8B/"/>
+    <id>http://navigating.github.io/2015/学习《Hadoop生态技术在阿里全网商品搜索实战》/</id>
+    <published>2015-08-17T04:41:00.000Z</published>
+    <updated>2015-08-17T04:42:02.346Z</updated>
+    <content type="html"><![CDATA[<p>资料参见文档：<a href="http://wenku.it168.com/d_001428550.shtml" target="_blank" rel="external">http://wenku.it168.com/d_001428550.shtml</a><br>版本:</p>
+<pre><code>1. 基于 <span class="tag">Hadoop</span> 2<span class="class">.2</span> 的阿里定制版
+2. 基于 <span class="tag">HBase</span> 0<span class="class">.94</span> 的阿里定制版
+</code></pre><p>部署方式：</p>
+<pre><code><span class="bullet">1. </span>服务总数近1000台，分2个集群；
+<span class="bullet">2. </span>Hadoop/HBase共同部署；
+</code></pre><p>分析：服务器数量可能是2014年初的数据；HBase部署方式可能是RS和DN部署在同一个节点上。<br>服务器配置：</p>
+<pre><code><span class="bullet">1. </span>CPU：24/32 Cores
+<span class="bullet">2. </span>Memory：48G/96G
+<span class="bullet">3. </span>Disk：12 <span class="bullet">* 1T SATA Disk 或者 12 *</span> 2T SATA Disk
+</code></pre><p>分析：服务器配置计算能力比较强，内存和磁盘配置都不是很高。<br>大数据组件：</p>
+<pre><code><span class="bullet">1. </span>HDFS + YARN
+<span class="bullet">2. </span>HBase
+<span class="bullet">3. </span>MR
+<span class="bullet">4. </span>iStream
+<span class="bullet">5. </span>Spark
+<span class="bullet">6. </span>HQueue
+<span class="bullet">7. </span>Phoenix
+<span class="bullet">8. </span>OpenTSDB
+<span class="bullet">9. </span>Zookeeper
+</code></pre><p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Ali_Search_2015_01.JPG" alt="这是一张图片"><br>分析：</p>
+<pre><code>* 对于基于HBase的HQueue是一个创新，当前没有看到更多的资料，无法和Kafka对比。(在性能和TPC上可能Kafka更强大，但通过对HBase的复用做出Queue，很赞。)
+* iStream是一个Steaming <span class="function_start"><span class="keyword">on</span></span> YARN的产品，从架构上看很类似storm的设计理念。
+</code></pre><p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Ali_Search_2015_02.JPG" alt="这是一张图片"><br>HBase<br>HBase应用</p>
+<pre><code><span class="number">1</span>. <span class="function"><span class="title">Phoenix</span><span class="params">(SQL on HBase)</span></span>
+<span class="number">2</span>. <span class="function"><span class="title">OpenTSDB</span><span class="params">(Metrics on HBase)</span></span>
+<span class="number">3</span>. <span class="function"><span class="title">HQueue</span><span class="params">(Queue on HBase)</span></span>
+</code></pre><p>分析：</p>
+<pre><code><span class="bullet">* </span>在HBase集群上运行了Phoenix、OpenTSDB、HQueue三种应用，因此HBase具有作为一种数据存储的基础设施的能力。
+</code></pre><p>HBase网页库存储方案</p>
+<pre><code>1. 版本从0<span class="class">.25</span>、0<span class="class">.26</span>、0<span class="class">.90</span>、0<span class="class">.92</span>、0<span class="class">.94</span>、0<span class="class">.98</span>逐步升级的。
+2. <span class="tag">HBase</span>集群规模从30多台持续升级到300多台。
+3. <span class="tag">HBase</span> <span class="tag">Region</span>个数从 1<span class="tag">K</span> 增长到 20<span class="tag">K</span>。
+4. 网页数量从 十亿 增长到 百亿。
+</code></pre><p>存储业务数据的CF如下：<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Ali_Search_2015_05.JPG" alt="这是一张图片"><br>在HBase/Hadoop的I/O上的优化如下：</p>
+<pre><code><span class="bullet">1. </span>Compression：Snappy/Gzip
+<span class="bullet">2. </span>Block Encoding：Diff
+<span class="bullet">3. </span>Block Size：64KB - 1MB
+<span class="bullet">4. </span>Block Cache：InMemory
+<span class="bullet">5. </span>Bloom Filter：ROW
+</code></pre><p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Ali_Search_2015_06.JPG" alt="这是一张图片"><br>HBase Coprocessor应用<br>在网页库中使用了三种Coprocessor：</p>
+<pre><code><span class="bullet">1. </span>Trace Coprocessor
+<span class="bullet">2. </span>Clone Coprocessor
+<span class="bullet">3. </span>Incremental Coprocessor
+</code></pre><p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Ali_Search_2015_07.JPG" alt="这是一张图片"><br>分析：</p>
+<pre><code><span class="keyword">*</span> 如果HBase集群就是两个集群中的一个，那么裸存储容量最大为：12 <span class="keyword">*</span> 2T <span class="keyword">*</span> 300 = 7200T = 7.2P，如果考虑到压缩、复制因子、数据冗余、容量冗余，可以存储有效数据约为：8P 数据。 
+<span class="keyword">*</span> 平均每台服务器运行的Region个数：20K/300 = 67 个，这个数字比较符合HBase官方推荐的值。
+<span class="keyword">*</span> Compression方法用了snappy和gzip两种。CF访问频繁，使用snappy，速度快；Raw CF访问较少，使用gzip，压缩比高。
+<span class="keyword">*</span> Block Encoding使用Diff，0.98后改用PrefixTree；
+<span class="keyword">*</span> Block Size的大小为 64KB - 1MB 
+</code></pre><p>实时处理架构<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Ali_Search_2015_08.JPG" alt="这是一张图片"><br>分析</p>
+<pre><code><span class="subst">*</span> Metrics实时采集的流程大约是：HBase <span class="subst">-&gt; </span>HQueue <span class="subst">-&gt; </span>iStream <span class="subst">-&gt; </span>OpenTSDB <span class="keyword">on</span> HBase
+<span class="subst">*</span> 流处理的全流程：HBase <span class="subst">-&gt; </span>HQueue <span class="subst">-&gt; </span>iStream <span class="subst">-&gt; </span>HQueue <span class="subst">-&gt; </span>iSearch/iStream
+<span class="subst">*</span> 参见前文分析，猜测iStream是一个类似Storm的YARN框架。
+</code></pre><p>关于阿里搜索自研的iStream的架构与文档参加如下：<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Ali_Search_2015_09.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Ali_Search_2015_10.JPG" alt="这是一张图片"></p>
+<p><a href="http://www.infoq.com/cn/news/2014/09/hadoop-alibaba-yarn" target="_blank" rel="external">http://www.infoq.com/cn/news/2014/09/hadoop-alibaba-yarn</a><br><a href="http://club.alibabatech.org/resource_detail.htm?topicId=140" target="_blank" rel="external">http://club.alibabatech.org/resource_detail.htm?topicId=140</a> </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>资料参见文档：<a href="http://wenku.it168.com/d_001428550.shtml" target="_blank" rel="external">http://wenku.it168.com/d_001428550.shtml</a><br>]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="HQueue" scheme="http://navigating.github.io/tags/HQueue/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="iStream" scheme="http://navigating.github.io/tags/iStream/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hadoop发行版(2015第二季)]]></title>
@@ -825,68 +906,6 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     <summary type="html">
     <![CDATA[<p>佛教禅宗 六祖慧能</p>
 <p>慧能 （公元 638 年－ 713 年），俗姓卢氏，唐代岭南新州（今广东新兴县）人，父亲名卢行瑫，早逝，母李氏，其籍贯为范阳（今北京大兴） , 因其父贬于岭南才南迁。慧能生于贞观，圆寂于开元初年，经历了唐朝太宗、高宗、中宗、睿宗、武周 ( ]]>
-    </summary>
-    
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[<集合>红色趣味丛书]]></title>
-    <link href="http://navigating.github.io/2011/%E9%9B%86%E5%90%88-%E7%BA%A2%E8%89%B2%E8%B6%A3%E5%91%B3%E4%B8%9B%E4%B9%A6/"/>
-    <id>http://navigating.github.io/2011/集合-红色趣味丛书/</id>
-    <published>2011-11-03T16:20:42.000Z</published>
-    <updated>2015-08-09T16:22:48.085Z</updated>
-    <content type="html"><![CDATA[<p>《老总小传》作者：马甲同志 <a href="http://blog.sina.com.cn/s/blog_5091b1dd0100c3nq.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_5091b1dd0100c3nq.html</a></p>
-<pre><code>以非常不传统的视角书写总司令的光辉历程。
-</code></pre><p>《非常轨迹——记中央红军长征中的四渡赤水抢渡金沙江之战》 作者：双石 <a href="http://zhoujun.blshe.com/category/349/9197" target="_blank" rel="external">http://zhoujun.blshe.com/category/349/9197</a></p>
-<pre><code>以电报文和分析为基础，重现“四渡赤水”；
-
-时间，从<span class="number">1934</span>年<span class="number">12</span>月至<span class="number">1935</span>年<span class="number">5</span>月；
-
-地点，湘<span class="comment">(湖南)</span>、桂<span class="comment">(广西)</span>、黔<span class="comment">(贵州)</span>、川<span class="comment">(四川)</span>、滇<span class="comment">(云南)</span>；
-
-中共参战部队：
-
-    军委纵队，叶剑英、陈云；
-
-    红一军团，林彪、聂荣臻；
-
-    红三军团，彭德怀、杨尚昆；
-
-    红五军团，董振堂、李卓然；
-
-    红九军团，罗炳辉、何长工；
-
-    游击队若干；
-
-KMT参战：
-
-    中央军，薛岳；
-
-    湘军，何健；
-
-    黔军，王家烈；
-
-    川军，刘湘；
-
-    川军，刘文辉；
-
-    桂军，李宗仁，白崇禧；
-
-    滇军，龙云；
-
-    地方民团若干；            
-</code></pre><p>《朱毛之争》 作者：双石 <a href="http://zhoujun.blshe.com/category/349/9689" target="_blank" rel="external">http://zhoujun.blshe.com/category/349/9689</a></p>
-<pre><code>主要是叙述，分析发生在1929年6月的朱毛之争的前前后后，左左右右的一些事儿。
-</code></pre><p>《Ifuleu红色八卦系列：【井冈山】》作者： 双石 <a href="http://zhoujun.blshe.com/category/349/34826" target="_blank" rel="external">http://zhoujun.blshe.com/category/349/34826</a></p>
-<pre><code>主要是叙述开始于1927年秋朱毛红军在井冈山的成长、战斗的事儿。
-</code></pre><p>《十大元帅的情缘》 作者：孔庆东 <a href="http://blog.sina.com.cn/s/blog_476da36101000axq.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_476da36101000axq.html</a></p>
-<p>《红军林彪》 作者：子金山 <a href="http://blog.sina.com.cn/s/articlelist_1256636234_10_1.html" target="_blank" rel="external">http://blog.sina.com.cn/s/articlelist_1256636234_10_1.html</a></p>
-<pre><code>主要是叙述了林彪元帅从1927年南昌起义到1935年红军长征结束这一段时间内的战斗历程。
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<p>《老总小传》作者：马甲同志 <a href="http://blog.sina.com.cn/s/blog_5091b1dd0100c3nq.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blo]]>
     </summary>
     
       <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
