@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-18T05:36:54.298Z</updated>
+  <updated>2015-08-18T05:46:25.533Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://navigating.github.io/2015/SparkOnHBase-Cloudera/"/>
     <id>http://navigating.github.io/2015/SparkOnHBase-Cloudera/</id>
     <published>2015-08-18T05:35:51.000Z</published>
-    <updated>2015-08-18T05:36:54.298Z</updated>
+    <updated>2015-08-18T05:46:25.533Z</updated>
     <content type="html"><![CDATA[<p>2014年2月4日，Cloudera宣布CDH支持Spark，在CDH 4.4中引入Spark 0.9。<br><a href="http://vision.cloudera.com/apache-spark-welcome-to-the-cdh-family/" target="_blank" rel="external">http://vision.cloudera.com/apache-spark-welcome-to-the-cdh-family/</a><br>在引入的时候强调了三点：</p>
 <pre><code><span class="bullet">1. </span>Machine Learning
 <span class="bullet">2. </span>Spark Streaming
@@ -30,7 +30,7 @@
 2. 支持bulk <span class="operator"><span class="keyword">load</span>；
 <span class="number">3.</span> 支持<span class="keyword">get</span>, put, <span class="keyword">delete</span>等bulk操作(bulk operation)；
 <span class="number">4.</span> 支持成为<span class="keyword">SQL</span> <span class="keyword">engines</span>。</span>
-</code></pre><p>2015年8月SparkOnHBase项目有了里程碑似的进展，被提交到HBase的主干(trunk)上，模块名为HBase-Spark Module，HBASE-13992 。<br><a href="http://blog.cloudera.com/blog/2015/08/apache-spark-comes-to-apache-hbase-with-hbase-spark-module/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/apache-spark-comes-to-apache-hbase-with-hbase-spark-module/</a><br><a href="https://issues.apache.org/jira/browse/HBASE-13992" target="_blank" rel="external">https://issues.apache.org/jira/browse/HBASE-13992</a><br>HBase-Spark module相比于SparkOnHBase在架构上没有什么变化：<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Cloudera_Spark_2015_01.PNG" alt="这是一张图片"><br>在具体实现上当前有三点改进：</p>
+</code></pre><p>2015年8月SparkOnHBase项目有了里程碑似的进展，被提交到HBase的主干(trunk)上，模块名为HBase-Spark Module，HBASE-13992 。<br><a href="http://blog.cloudera.com/blog/2015/08/apache-spark-comes-to-apache-hbase-with-hbase-spark-module/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/apache-spark-comes-to-apache-hbase-with-hbase-spark-module/</a><br><a href="https://issues.apache.org/jira/browse/HBASE-13992" target="_blank" rel="external">https://issues.apache.org/jira/browse/HBASE-13992</a><br>HBase-Spark module相比于SparkOnHBase在架构上没有什么变化：<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Cloudera_Spark_2015_01.png" alt="这是一张图片"><br>在具体实现上当前有三点改进：</p>
 <pre><code><span class="bullet">1. </span>使用了全新的HBase 1.0+的API；
 <span class="bullet">2. </span>从RDD和DStream functions操作HBase的直接支持；
 <span class="bullet">3. </span>简化 foreach 和 map functions；
