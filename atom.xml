@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-08-18T05:46:25.533Z</updated>
+  <updated>2015-09-07T08:17:00.928Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,45 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[大数据动态之201508]]></title>
+    <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201508/"/>
+    <id>http://navigating.github.io/2015/大数据动态之201508/</id>
+    <published>2015-09-07T08:13:04.000Z</published>
+    <updated>2015-09-07T08:17:00.928Z</updated>
+    <content type="html"><![CDATA[<p>Cloudera：<br>Cloudera Navigator路线图<br><a href="http://blog.cloudera.com/blog/2015/08/whats-next-for-apache-hadoop-data-management-and-governance-cloudera-navigator-roadmap/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/whats-next-for-apache-hadoop-data-management-and-governance-cloudera-navigator-roadmap/</a><br>NoSQL性能测试开放标准套件YCSB加入Cloudera实验室项目中<br><a href="http://blog.cloudera.com/blog/2015/08/ycsb-the-open-standard-for-nosql-benchmarking-joins-cloudera-labs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/ycsb-the-open-standard-for-nosql-benchmarking-joins-cloudera-labs/</a><br>Spark在TripAdvisor的机器学习应用案例<br><a href="http://blog.cloudera.com/blog/2015/08/using-apache-spark-for-massively-parallel-nlp-at-tripadvisor/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/using-apache-spark-for-massively-parallel-nlp-at-tripadvisor/</a><br>CDH支持Mesos<br><a href="http://blog.cloudera.com/blog/2015/08/how-to-run-apache-mesos-on-cdh/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/how-to-run-apache-mesos-on-cdh/</a><br>HBase开始支持HBase-Spark模块<br><a href="http://blog.cloudera.com/blog/2015/08/apache-spark-comes-to-apache-hbase-with-hbase-spark-module/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/apache-spark-comes-to-apache-hbase-with-hbase-spark-module/</a><br>Navigator Encrypt开始支持YARN Container安全<br><a href="http://blog.cloudera.com/blog/2015/08/how-to-secure-yarn-containers-with-cloudera-navigator-encrypt/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/how-to-secure-yarn-containers-with-cloudera-navigator-encrypt/</a><br>基于Kafka和HBase的近实时集成架构案例: Santanders<br><a href="http://blog.cloudera.com/blog/2015/08/inside-santanders-near-real-time-data-ingest-architecture/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/inside-santanders-near-real-time-data-ingest-architecture/</a> </p>
+<p>Hortonworks:<br>Microsoft Azure Gallery开始支持HDP 2.3<br><a href="http://hortonworks.com/blog/hortonworks-sandbox-with-hdp-2-3-is-now-available-on-microsoft-azure-gallery/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-sandbox-with-hdp-2-3-is-now-available-on-microsoft-azure-gallery/</a><br>Microsoft Azure支持Spark<br><a href="http://hortonworks.com/blog/microsoft-and-hortonworks-do-spark-in-the-cloud/" target="_blank" rel="external">http://hortonworks.com/blog/microsoft-and-hortonworks-do-spark-in-the-cloud/</a><br>Storm的容错Nimbus架构<br><a href="http://hortonworks.com/blog/fault-tolerant-nimbus-in-apache-storm/" target="_blank" rel="external">http://hortonworks.com/blog/fault-tolerant-nimbus-in-apache-storm/</a> </p>
+<p>MapR<br>Spark Streaming with HBase<br><a href="https://www.mapr.com/blog/spark-streaming-hbase" target="_blank" rel="external">https://www.mapr.com/blog/spark-streaming-hbase</a><br>Apache Drill Architecture: The Ultimate Guide<br><a href="https://www.mapr.com/blog/apache-drill-architecture-ultimate-guide" target="_blank" rel="external">https://www.mapr.com/blog/apache-drill-architecture-ultimate-guide</a><br>HBase架构深度剖析<br><a href="https://www.mapr.com/blog/in-depth-look-hbase-architecture" target="_blank" rel="external">https://www.mapr.com/blog/in-depth-look-hbase-architecture</a><br>HBase Schema设计指导<br><a href="https://www.mapr.com/blog/guidelines-hbase-schema-design" target="_blank" rel="external">https://www.mapr.com/blog/guidelines-hbase-schema-design</a><br>如何利用Spark进行机器学习的并行与交互处理<br><a href="https://www.mapr.com/blog/parallel-and-iterative-processing-machine-learning-recommendations-spark" target="_blank" rel="external">https://www.mapr.com/blog/parallel-and-iterative-processing-machine-learning-recommendations-spark</a></p>
+<p>Databricks<br>Spark 1.5发布，包含Tungsten，其利用代码生成技术和Cache感知算法，大幅度提升运行时的性能：<br><a href="https://databricks.com/blog/2015/08/18/spark-1-5-preview-now-available-in-databricks.html" target="_blank" rel="external">https://databricks.com/blog/2015/08/18/spark-1-5-preview-now-available-in-databricks.html</a><br><a href="https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html" target="_blank" rel="external">https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html</a></p>
+<p>mongoDB<br>mongoDB 2.x版本发布了2个，3.x发布了3个：<br><a href="http://blog.mongodb.org/post/128063809158/mongodb-306-rc2-is-released" target="_blank" rel="external">http://blog.mongodb.org/post/128063809158/mongodb-306-rc2-is-released</a><br><a href="http://blog.mongodb.org/post/127802855483/mongodb-317-is-released" target="_blank" rel="external">http://blog.mongodb.org/post/127802855483/mongodb-317-is-released</a><br><a href="http://blog.mongodb.org/post/126436298628/mongodb-2611-is-released" target="_blank" rel="external">http://blog.mongodb.org/post/126436298628/mongodb-2611-is-released</a><br><a href="http://blog.mongodb.org/post/126436227873/mongodb-306-rc0-is-released" target="_blank" rel="external">http://blog.mongodb.org/post/126436227873/mongodb-306-rc0-is-released</a><br><a href="http://blog.mongodb.org/post/125850939688/mongodb-2611-rc0-is-released" target="_blank" rel="external">http://blog.mongodb.org/post/125850939688/mongodb-2611-rc0-is-released</a> </p>
+<p>Redis</p>
+<p>参考：<br>NoSQL大数据分类<br><a href="http://www.nosql-database.org/" target="_blank" rel="external">http://www.nosql-database.org/</a><br>Autodesk基于Mesos的通用事件系统架构<br><a href="http://www.csdn.net/article/2015-08-27/2825550" target="_blank" rel="external">http://www.csdn.net/article/2015-08-27/2825550</a><br>QingCloud推出Spark即服务<br><a href="http://mt.sohu.com/20150826/n419752360.shtml" target="_blank" rel="external">http://mt.sohu.com/20150826/n419752360.shtml</a><br>Spark大数据分析框架的核心部件<br><a href="http://my.oschina.net/u/2306127/blog/489024?p=1" target="_blank" rel="external">http://my.oschina.net/u/2306127/blog/489024?p=1</a><br>Hadoop和大数据：60款顶级开源工具<br><a href="http://os.51cto.com/art/201508/487936.htm" target="_blank" rel="external">http://os.51cto.com/art/201508/487936.htm</a><br>【微信分享】QingCloud周小四：Spark学习简谈<br><a href="http://www.csdn.net/article/2015-08-07/2825404" target="_blank" rel="external">http://www.csdn.net/article/2015-08-07/2825404</a><br>【微信分享】李滔：搜狐基于Spark的新闻和广告推荐实战<br><a href="http://www.csdn.net/article/2015-07-31/2825353" target="_blank" rel="external">http://www.csdn.net/article/2015-07-31/2825353</a><br>【微信分享】王团结：七牛是如何搞定每天500亿条日志的<br><a href="http://www.csdn.net/article/2015-07-30/2825342" target="_blank" rel="external">http://www.csdn.net/article/2015-07-30/2825342</a><br>对七牛云存储日志处理的思考<br><a href="http://hadoop1989.com/2015/08/02/Think-QiNiu-Cloud/" target="_blank" rel="external">http://hadoop1989.com/2015/08/02/Think-QiNiu-Cloud/</a><br>STORM在线业务实践-集群空闲CPU飙高问题排查<br><a href="http://daiwa.ninja/index.php/2015/07/18/storm-cpu-overload/" target="_blank" rel="external">http://daiwa.ninja/index.php/2015/07/18/storm-cpu-overload/</a><br>Spark与Flink：对比与分析<br><a href="http://www.csdn.net/article/2015-07-16/2825232" target="_blank" rel="external">http://www.csdn.net/article/2015-07-16/2825232</a><br>一共81个，开源大数据处理工具汇总（上）<br><a href="http://www.36dsj.com/archives/24852" target="_blank" rel="external">http://www.36dsj.com/archives/24852</a><br>一共81个，开源大数据处理工具汇总（下）<br><a href="http://home.hylanda.com/show_26_11558.html" target="_blank" rel="external">http://home.hylanda.com/show_26_11558.html</a></p>
+<p>总结：</p>
+<pre><code><span class="bullet">1. </span>Cloudera和Hortonworks都开始注重数据管理和数据治理，Cloudera是通过增强Cloudera Navigator来实现，Hortonworks通过引入Informatic组件Fabric来实现。
+<span class="bullet">2. </span>Spark 1.5发布；
+<span class="bullet">3. </span>HBase、Cassandra是Column Families/Wide Column Store；
+<span class="bullet">4. </span>MongoDB是Document Store；
+<span class="bullet">5. </span>Redis是Key Value/Tuple Store；
+<span class="bullet">6. </span>Neo4J是Graph Databases；
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<p>Cloudera：<br>Cloudera Navigator路线图<br><a href="http://blog.cloudera.com/blog/2015/08/whats-next-for-apache-hadoop-data-management-and-gov]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+    
+      <category term="mongoDB" scheme="http://navigating.github.io/tags/mongoDB/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[SparkOnHBase(Cloudera)]]></title>
@@ -62,10 +101,10 @@
     <link href="http://navigating.github.io/2015/%E5%AD%A6%E4%B9%A0%E3%80%8AHadoop%E7%94%9F%E6%80%81%E6%8A%80%E6%9C%AF%E5%9C%A8%E9%98%BF%E9%87%8C%E5%85%A8%E7%BD%91%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2%E5%AE%9E%E6%88%98%E3%80%8B/"/>
     <id>http://navigating.github.io/2015/学习《Hadoop生态技术在阿里全网商品搜索实战》/</id>
     <published>2015-08-17T04:41:00.000Z</published>
-    <updated>2015-08-17T04:42:02.346Z</updated>
+    <updated>2015-08-18T08:55:01.529Z</updated>
     <content type="html"><![CDATA[<p>资料参见文档：<a href="http://wenku.it168.com/d_001428550.shtml" target="_blank" rel="external">http://wenku.it168.com/d_001428550.shtml</a><br>版本:</p>
-<pre><code>1. 基于 <span class="tag">Hadoop</span> 2<span class="class">.2</span> 的阿里定制版
-2. 基于 <span class="tag">HBase</span> 0<span class="class">.94</span> 的阿里定制版
+<pre><code><span class="bullet">1. </span>Hadoop: 基于 Hadoop 2.2 的阿里定制版
+<span class="bullet">2. </span>HBase: 基于 HBase 0.94 的阿里定制版
 </code></pre><p>部署方式：</p>
 <pre><code><span class="bullet">1. </span>服务总数近1000台，分2个集群；
 <span class="bullet">2. </span>Hadoop/HBase共同部署；
@@ -771,7 +810,7 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201502/"/>
     <id>http://navigating.github.io/2015/大数据动态之201502/</id>
     <published>2015-03-24T14:10:07.000Z</published>
-    <updated>2015-08-10T06:24:29.444Z</updated>
+    <updated>2015-08-18T06:42:18.267Z</updated>
     <content type="html"><![CDATA[<p>本月Hadoop技术动态：<br>1.经过6年的孵化，Hive 1.0 发布了。<br>2.经过7年的孵化，HBase 1.0 发布了。<br>3.Cloudera 开始提供 Hive-on-Spark Beta版的下载。</p>
 <p>HBase 1.0 需要特别关注的特性：<br>1.API的重新组织和变更；<br>2.读的高可用；<br>3.在线配置变更；</p>
 <p>HDP 2.2 发布有一段时间：<br><a href="http://hortonworks.com/blog/announcing-hive-1-0-stable-moment-time/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-hive-1-0-stable-moment-time/</a><br><a href="http://hortonworks.com/blog/start-new-era-apache-hbase-1-0/" target="_blank" rel="external">http://hortonworks.com/blog/start-new-era-apache-hbase-1-0/</a><br><a href="http://blog.cloudera.com/blog/2015/02/apache-hbase-1-0-is-released/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/02/apache-hbase-1-0-is-released/</a><br><a href="http://blog.cloudera.com/blog/2015/02/download-the-hive-on-spark-beta/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/02/download-the-hive-on-spark-beta/</a><br><a href="https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf" target="_blank" rel="external">https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf</a></p>
@@ -782,7 +821,7 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
 <p>HBase 1.0 需要特别关注的特]]>
     </summary>
     
-      <category term="Bigdata" scheme="http://navigating.github.io/tags/Bigdata/"/>
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
     
       <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
     
@@ -873,32 +912,6 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     <summary type="html">
     <![CDATA[<p>响应式网页设计，也叫：自适应网页设计。2010年，由Ethan Marcotte提出这个名词(Responsive Web Design) ，指可以自动识别屏幕宽度、并做出相应调整的网页设计。其目的就是希望搭建一个网站能够满足兼容多种终端的需求，不再是为每一种终端定制开发一]]>
     </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[HBTC 2012 见闻]]></title>
-    <link href="http://navigating.github.io/2012/HBTC-2012-%E8%A7%81%E9%97%BB/"/>
-    <id>http://navigating.github.io/2012/HBTC-2012-见闻/</id>
-    <published>2012-12-25T15:05:29.000Z</published>
-    <updated>2015-08-03T15:06:54.617Z</updated>
-    <content type="html"><![CDATA[<p>今年Hadoop大会，加上了BigData，全称“Hadoop&amp;Bigdata Technology Conference(Hadoop与大数据技术大会)”，随着“云计算”“Hadoop”“大数据”的热点，今年的大会事先很是期待，之后从中收获很多，坚信了我们在工作中的一些判断。从我的视角，今年HBTC主要覆盖如下的内容：<br>Hadoop与BigData主要的产品进展：<br>1.Hortonworks Hadoop/HBase<br>2.Intel Hadoop/Free Edition<br>3.Huawei Contributing Hadoop/HBase<br>4.Facebook Hadoop/HBase<br>5.Vmware Hadoop Virtualization<br>6.Oracle NoSQL<br>7.Taobao Tair<br>8.eBay Hadoop/HBase<br>意外的是Huawei对Hadoop社区的贡献度很大；Hortonworks只是一般性的宣讲，并没有重大的消息或者特性宣布。<br>Hadoop生态圈中本次被关注的技术：<br>1.Hadoop Security(Etu)<br>2.HIVE<br>3.HDFS Namenode<br>4.HBase<br>5.Pig<br>今年重点被关注的是HBase、Hive。<br>应用方面:<br>1.阿里Hadoop集群<br>a.3200台服务器，30K核，内存10TB，存储36K磁盘60PB。<br>b.支撑支付宝、CBU、聚划算、一淘、天猫、淘宝,1K+客户端/100+部门<br>c.Hadoop组件：Hive、Streaming MR、Mahout、Pig、HBase<br>d.客户端，用户/用户组权限管理/资源管理，申请/审批；云梯医生/JobTracker心跳频率/NameNode RPC性能指标；<br>e.数据采集：TimeTunnel分布式日志收集，DataX数据库同步，DBSync大表增量同步；<br>2.HIVE在腾讯分布式数据仓库<br>a.腾讯分布式数据仓库，简称：TDW；<br>b.基于Hadoop/Hive/PostgreSQL构建；<br>c.特性列表：存储和计算容灾/存储和计算线性扩展，SQL语言/SQL函数，过程语言，多维分析，MR，多种存储结构，SQL/MED，开发工具，任务调度系统，系统DB<br>d.TDW在Hive基础上进行的功能增强：    基于角色的权限管理；    兼容Oracle的分区功能；    窗口函数；多维分析；公用表表达式；DML(Update/Delete)；入库数据校验；命令行工具；DB存储引擎；SQL语法细节增强；Eclipse IDE开发环境/流程开发工具；自定义的存储格式；Hash Join；按行split；Order by limit优化；<br>3.阿里数据交换平台<br>a.平台能力：存储与计算的调度、元数据管理、数据建模、IDE；市场应用：应用市场、数据市场；数据管理：预警、质量监控、ODS、生命周期管理；数据开发：安全、审计、计量、监控；<br>b.分析可视化；数据可视化；<br>c.ODPS：开放；服务化；离线数据分析服务；<br>d.ODS：开放与共享；源头数据质量监控；元数据管理；<br>4.百度大数据平台<br>a.基础能力包括：分布式存储(KV/Table)；计算(批量计算/小批量计算/流式计算)；调度(底层资源管理/上层通用调度)；数据仓库体系(格式化/传输/数据仓库/报表&amp;多维分析引擎/Ad Hoc查询引擎/BI)<br>b.OLAP查询以MySQL作为前端。<br>5.IBM在Hadoop/大数据方面的架构与实践<br>6.Startup企业MemSQL提供实时查询方案<br>7.Yahoo Hadoop应用、运维，还有其基于Hadoop的Data workflow<br>学校<br>有不少做研究的老师过来传道，其中有不少精华的东西，特别是哈尔滨工业大学的李建中和俄亥俄州立大学的张晓东教授给我留下了深刻的印象。<br>缺失<br>1.实时查询/流计算内容很少；也许会是明年的热点吧；<br>2.Cloudera/MapR都厂商没有来，无法面对面了解其一些技术特点和产品特性；<br>个人总结<br>1.技术上，今年Hadoop生态圈的热点是HBase、HDFS NameNode、HDFS Security;<br>2.应用与平台上，阿里/淘宝发展最快，其次是腾讯/百度。这三个公司的Hadoop集群为公司内部众多部门提供hadoop平台服务，特别是阿里比较突出，其中共有的特性：<br>    a.工作的内容都是围绕为内部提供Hadoop集群/大数据服务平台；<br>    b.技术路线都是以Hadoop、HBase、Hive/Pig、关系型数据库为主；<br>    c.用户查询语言以兼容SQL语言为主；<br>    d.计算查询主要是以批量计算、实时查询为主；<br>    e.可视化方面的工作基本雷同：分析可视化、数据可视化、数据流程编排可视化；<br>    f.平台在安全、隔离、调度、元数据管理、监控、预警告警、服务化、数据集成与共享等方面提供功能。<br>3.实时查询/流计算，虽然今年没有覆盖，但是各个厂商都有提到自己已经在这两个方面着手或者取得了一些进展。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>今年Hadoop大会，加上了BigData，全称“Hadoop&amp;Bigdata Technology Conference(Hadoop与大数据技术大会)”，随着“云计算”“Hadoop”“大数据”的热点，今年的大会事先很是期待，之后从中收获很多，坚信了我们在工作中]]>
-    </summary>
-    
-      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
-    
-      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
-    
-      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
-    
-      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="Hive" scheme="http://navigating.github.io/tags/Hive/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
