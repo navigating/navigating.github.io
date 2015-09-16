@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-09-16T07:02:17.042Z</updated>
+  <updated>2015-09-16T09:35:47.738Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -20,21 +20,25 @@
     <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E6%8A%80%E6%9C%AF%E7%99%BE%E5%BA%A6%E6%8C%87%E6%95%B0201508/"/>
     <id>http://navigating.github.io/2015/大数据技术百度指数201508/</id>
     <published>2015-09-16T06:17:00.000Z</published>
-    <updated>2015-09-16T07:02:17.042Z</updated>
+    <updated>2015-09-16T09:35:47.738Z</updated>
     <content type="html"><![CDATA[<p>关于大数据技术点的搜索指数，这里只关注一下百度指数的结果。</p>
-<pre><code><span class="bullet">1. </span>当前最热的依次是：Hadoop、Redis、MongoDB、Spark、Storm。可以看到国内Redis、MongoDB的用户很多，有时候比HBase都热，可见热度之高。
-<span class="bullet">2. </span>从趋势来看，Spark是最强劲的，Hadoop、Redis表现都很不错。
-<span class="bullet">3. </span>从搜索热词看，当前主要表现在入门介绍、安装、教程的需求量非常大。对于使用中的问题、优化议题还不多，对于监控更少。
-<span class="bullet">4. </span>当前搜索热词来源Top5的城市：北京、上海、深圳、广州、南京。北京、珠三角、长三角，同时整体上中部IT发展的相对不错。
-<span class="bullet">5. </span>用户人群的年龄主要是30～39之间，几乎达到50%，其次是20～29，几乎40%，其他年龄段的人很少。
-</code></pre><p>首先是意外的收获，就是发现Redis和MongoDB在国内这么火，热词竟然超过了Hadoop了，也许是两个比较简单易用，不像Hadoop如今已经发展成为了一个大家族了。第二个意外是，发现Cloudera、Hortonworks、CHD、HDP尽然不是指数热词，看来一般影响的大数据技术等于Hadoop真的是偏见啊。第三个意外，发现中部城市IT整体发展的不错，除了上海、南京，还包括：成都、重庆、武汉、长沙、西安、郑州。</p>
+<ol>
+<li>当前最热的依次是：Hadoop、Redis、MongoDB、Spark、Storm。可以看到国内Redis、MongoDB的用户很多，有时候比HBase都热，可见热度之高。</li>
+<li>从趋势来看，Spark是最强劲的，Hadoop、Redis表现都很不错。</li>
+<li>从搜索热词看，当前主要表现在入门介绍、安装、教程的需求量非常大。对于使用中的问题、优化议题还不多，对于监控更少。</li>
+<li>当前搜索热词来源Top5的城市：北京、上海、深圳、广州、南京。北京、珠三角、长三角，同时整体上中部IT发展的相对不错。</li>
+<li>用户人群的年龄主要是30～39之间，几乎达到50%，其次是20～29，几乎40%，其他年龄段的人很少。</li>
+</ol>
+<p>首先是意外的收获，就是发现Redis和MongoDB在国内这么火，热词竟然超过了Hadoop了，也许是两个比较简单易用，不像Hadoop如今已经发展成为了一个大家族了。<br>第二个意外是，发现Cloudera、Hortonworks、CHD、HDP尽然不是指数热词，看来一般印象的大数据技术等于Hadoop真的是偏见啊。<br>第三个意外，发现中部城市IT整体发展的不错，除了上海、南京，还包括：成都、重庆、武汉、长沙、西安、郑州。</p>
 <p>趋势研究<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_01.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_02.JPG" alt="这是一张图片"></p>
 <p>需求图谱<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_03.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_04.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_05.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_06.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_07.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_08.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_09.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_10.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_11.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_12.JPG" alt="这是一张图片"></p>
 <p>人群画像<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_13.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_14.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/bigdata_zhishu_baidu_15.JPG" alt="这是一张图片"></p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>关于大数据技术点的搜索指数，这里只关注一下百度指数的结果。</p>
-<pre><code><span class="bullet">1. </span>当前最热的依次是：Hadoop、Redis、MongoDB、Spark、Storm。可以看到国内Redis、MongoDB]]>
+<ol>
+<li>当前最热的依次是：Hadoop、Redis、MongoDB、Spark、Storm。可以看到国内Redis、MongoDB的用户很多，有时候比HBase都热，可见热度之高。</li>
+<l]]>
     </summary>
     
       <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
