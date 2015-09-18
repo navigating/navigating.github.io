@@ -87,6 +87,58 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2008/JNI实战" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/JNI实战/" class="article-date">
+  <time datetime="2008-04-01T15:15:01.000Z" itemprop="datePublished">2008-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2008/JNI实战/">JNI实战</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>JNI即是Java Native Interface，主要用来Java和其他语言之间的交互，多半是和平台依赖的调用、其他高级语言的库甚至是低级语言交互。相信大家平时在JDK中看到很多native的方法，但是自己写JNI应用的会确很少。这次因为在进行开发中，遇到需要Java调用一个现成的成熟的功能完善的C语言应用库，因此 JNI便成了Java和C库之间的桥的功能。既然是初探，那么下面我们就从HelloWorld开始吧：虽然Java是一个跨平台的语言，但是C语言是一个和平台密切相关的语言；所以针对Unix、Linux、Windows等不同的操作系统，C语言的预编译，动态库的创建等都有一些差别，也需要我们分别进行处理之。下面仅基于Sun的Unix平台Sun Solaris开发为例。<br>1.首先声明第一个Java native程序：HelloWorld.java。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> native <span class="keyword">int</span> <span class="title">hello</span>(<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sayHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> hello();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * @param args</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        HelloWorld hw = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Say in Java:"</span> + hw.sayHello());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Starting to load HelloWorld lib."</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.loadLibrary(<span class="string">"HelloWorld"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"Load unsuccessfully."</span>);</span><br><span class="line">            t.printStackTrace();</span><br><span class="line">            System.exit(-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Load successfully."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.编译该Java文件。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">javac</span> <span class="tag">HelloWorld</span><span class="class">.java</span></span><br></pre></td></tr></table></figure></p>
+<p>3.生成相应的C语言的HelloWorld.h头文件，javah HelloWorld，头文件内容如下：(其中，static Java方法和非static Java方法经过javah -jni生成的C头文件是有区别的，差异在于参数，static Java方法生成的相应的C方法的第二个参数是jclass类型，非static Java方法生成的相应的C方法的第二个参数是jobject类型。)<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">more</span> HelloWorld.<span class="literal">h</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* DO NOT EDIT THIS FILE - it is machine generated */</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;jni.h&gt;</span></span><br><span class="line"><span class="comment">/* Header for class HelloWorld */</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#ifndef _Included_HelloWorld</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> _Included_HelloWorld</span></span><br><span class="line"><span class="preprocessor">#ifdef __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * Class:     HelloWorld</span><br><span class="line"> * Method:    hello</span><br><span class="line"> * Signature: ()I</span><br><span class="line"> */</span></span><br><span class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Java_HelloWorld_hello</span></span><br><span class="line">  <span class="params">(JNIEnv *, jobject)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#ifdef __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="number">4.</span>开始编写第一个c语言的JNI的本地(native)方法:</span><br><span class="line">vi HelloWorld.c</span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;jni.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "HelloWorld.h"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Java_HelloWorld_hello</span></span><br><span class="line"><span class="params">(JNIEnv* env, jobject target)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Hello World in C program!!!\n"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.生成Unix下的动态库.so文件：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cc</span> -<span class="keyword">G</span> -I. -I<span class="label">$JAVA_HOME</span>/<span class="keyword">include</span> -I<span class="label">$JAVA_HOME</span>/<span class="keyword">include</span>/solaris HelloWorld.c -o libHelloWorld.<span class="keyword">so</span></span><br></pre></td></tr></table></figure></p>
+<p>在当前目录下看到新生成的libHelloWorld.so文件。也许你会注意到我们在Java程序中System.loadLibrary()加载的是库HelloWorld，那么这其实是一个命名的规范而已。以lib开头的.so文件即是Unix下的动态库，而JNI加载器通过HelloWorld这个名字实际上希望加载的动态库是libHelloWorld.so。<br>6.设置环境变量，查看LD_LIBRARY_PATH并设置：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">vi</span> <span class="class">.cshrc</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">setenv</span> LD_LIBRARY_PATH <span class="string">'.:/usr/local/lib:<span class="variable">$LD_LIBRARY_PATH</span>'</span></span><br><span class="line">source .cshrc</span><br></pre></td></tr></table></figure>
+<p>这个环境变量设置的是Java的动态库加载器需要加载的C动态库所在的路径。因此，我们生成的libHelloWorld.so一定要在这个环境变量中设置，在这个例子中我就把当前目录.加到环境变量LD_LIBRARY_PATH了:)<br>7.执行HelloWorld文件，java HelloWorld，在标准输出上看到：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Starting to load HelloWorld lib.</span><br><span class="line">Load successfully.</span><br><span class="line">Hello World in C program!!!</span><br><span class="line"><span class="keyword">Say</span> in Java:2</span><br></pre></td></tr></table></figure></p>
+<p>一切Okey,如此的easy,一阵狂喜！接下来就是将这个例子运用于JNI的开发之中了。</p>
+<p>Resource:<br>《Java Native Interface: Programmer’s Guide and Specification》<br><a href="http://java.sun.com/docs/books/jni/html/start.html#27008" target="_blank" rel="external">http://java.sun.com/docs/books/jni/html/start.html#27008</a><br><a href="http://linuxmafia.com/faq/Admin/ld-lib-path.html" target="_blank" rel="external">http://linuxmafia.com/faq/Admin/ld-lib-path.html</a><br><a href="https://www6.software.ibm.com/developerworks/cn/education/java/j-jni/tutorial/j-jni-2-15.html" target="_blank" rel="external">https://www6.software.ibm.com/developerworks/cn/education/java/j-jni/tutorial/j-jni-2-15.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2008/JNI实战/" data-id="ciepsyq82007kh4lmpkmifh70" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JNI/">JNI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2008/Java-NIO-TCP编程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2008/Java-NIO-TCP编程/" class="article-date">
@@ -121,7 +173,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2008/Java-NIO-TCP编程/" data-id="ciepspodv007a9glmd98bomb0" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2008/Java-NIO-TCP编程/" data-id="ciepsyq7u007gh4lmtl4psu2j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li></ul>
@@ -171,7 +223,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Java线程编程/" data-id="ciepspofr00859glm3tuwwoqg" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Java线程编程/" data-id="ciepsyqa5008bh4lmcs6bew4j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -217,7 +269,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/写在五一/" data-id="ciepspof4007v9glm3c1difor" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/写在五一/" data-id="ciepsyq9b0081h4lmate0augr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -259,7 +311,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/读《金字塔原理》/" data-id="ciepspoef007l9glmlyg3y8w8" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/读《金字塔原理》/" data-id="ciepsyq8j007rh4lmkpdqh43r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -307,7 +359,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/What-is-the-crazy/" data-id="ciepspof9007x9glm6e3n7zcw" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/What-is-the-crazy/" data-id="ciepsyq9h0083h4lmoqu784b9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -348,7 +400,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/如何评审(Review)/" data-id="ciepspoey007r9glmzxkyxvej" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/如何评审(Review)/" data-id="ciepsyq94007xh4lm3t0mpb2q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Review/">Review</a></li></ul>
@@ -391,7 +443,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Google技术栈/" data-id="ciepspog2008a9glm1f0rf2g2" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Google技术栈/" data-id="ciepsyqam008gh4lm30ln74pk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li></ul>
@@ -441,7 +493,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Annotation实战/" data-id="ciepspoge008f9glm6jh3yfah" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Annotation实战/" data-id="ciepsyqb3008lh4lmku4yf9mc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Annotation/">Annotation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -486,52 +538,11 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Ruby实战/" data-id="ciepspofe007z9glm6ipe9wvp" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Ruby实战/" data-id="ciepsyq9m0085h4lmp9jq0vul" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/">Ruby</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/算法学习第一季-读《算法设计与分析基础》" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/算法学习第一季-读《算法设计与分析基础》/" class="article-date">
-  <time datetime="2007-06-28T14:42:51.000Z" itemprop="datePublished">2007-06-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/算法学习第一季-读《算法设计与分析基础》/">算法学习第一季-读《算法设计与分析基础》</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>大学修的计算机专业，毕业之时，《数据结构》《计算方法》《操作系统》《编译原理》等如同课本一样，永远的被打包起来。工作以来，一直在做Java的开发，Web开发和服务端应用，总是零星的涉及到些许数组、链表、树等数据结构，也主要以线性数据结构为主；算法基本上就是“经典”的数据结构书上所讨论的几种算法，JDK都有实现，在应用中早已无需我们思考太多。重要的是我们要把应用按着需求实现了，重要的是我们一步一步把应用带向我们认为简单务实美的方向前进。闲暇思索，对于虚拟机的看法不过是面试的话语；对于开发的认识同样如此，多是面试的谈资；对于一个更有经验的Java应用开发者，能够在开发提供一套解决方案，组合解决问题的模式积攒起来一段可预期时间内解决一系列问题，也许有人将这归之为架构师，谁又能说这不是一条Java应用架构师之路呢？有一天，恍然大悟，其实Java应用开发者比拼的是各自的开发经验、领域知识、开阔的思路、强悍的执著；事情总没有唯一的，以前和dreamhead讨论过业务，当然也有无数的把应用开发者的需求作为业务的Java开发“仁人志士”。而对于一个从事了几年Java应用开发的人来说，那么我们的激情下一个积攒点在哪儿呢？虽然刚开始接触计算机，就知道一句名言“程序=算法+数据结构”，现实中这几年算法对于我，如同鲁迅先生笔中的故乡，“愈远了”，“渐渐远离了我”，“模糊了”。<br>人生有多少个十年，人生有几多青春，对于一个个体，又有几多沉淀？<br>一如我刚毕业的青春年少无知，对于技术这个词汇激情澎湃，几乎认为是自己生命的全部。对于人来说，最重要的不是你能否学技术，学了多少技术，掌握了多少技术功底；而是一个人前进的方向是什么，你的人生想要的是什么，你的人生在计算机这个舞台你如何定位思考、如何的目标的？想好了再前行，前行了就不再犹豫。<br>算法是否总给人一种严肃的科学的概念，我相信，算法并不严肃，可以嬉笑怒骂，可以轻轻松松的和我们很多一线开发人员在一起。<br>非常感谢作者Anay Levitin著书《Introduction to the Design and Analysis of Algorithms》，感谢译者潘彦翻译这么好的书籍《算法设计与分析基础》，特别感谢dreamhead五一来沈阳一聚并送这本书给我。<br>虽然序言前言部分往往都有精髓的思想语句，然后对于算法无知的我决定直切正题，从绪论开始阅读。<br>为什么要学习算法？<br>由于“微积分”“算法”被并成为科学殿堂两大宝石的论断，很为大家熟知，至于算法是如何的英明神武，在现实中也许需要细细体会，我并未有多少深深体会悍然汗然。<br>作者直接扔出了为什么学习算法这个话题，一个是计算机专业人士必备，另外一个是能开发人们的分析能力。如果能有选择，我宁愿选择第二个，我想必备意味着用这个东西现在或者未来要解决切实的问题，我现在并不是先有棘手的问题—没有棘手的问题而去学习本身未必不是一个棘手的问题；如果籍此能够在具备计算机人士必须具备的基础之外，成就一下自己分析能力的增强，真是不错。<br>什么是算法？<br>该书中，对于算法的定义是“一系列解决问题的清晰指令，即对于符合一定规范的输入，能够在有限时间内获得所要求的输出。”可以看到算法，有输入，有输出，有指令，当然有执行这些指令的环境，也许第一个想到是计算机，对，计算机，但是也许是从事数学计算的人。定义等同于算法是解决问题的办法。<br>所以既然是解决问题，当然有问题域/值域；算法本身如何表达描述，算法自己的优劣之分；等等。<br>第一个例子是关于“计算两个整数的最大公约数”问题，记得在SICP一书中也阐述了这个例子。解决这个问题首先寻找的是“最大公约数的定义”，并仔细描述了欧几里得算法、连续整数检测算法、“艾拉托色尼筛”算法；并采用了结构化描述和伪码两种方式描述算法细节。<br>该书以如此简洁的言语和例子为我们打开了算法的道路。在接下来的一章节，会首先看到“算法是问题的程序化解决方案”，是的，我们就是要去寻找问题的程序化解决方案的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/算法学习第一季-读《算法设计与分析基础》/" data-id="ciepspoel007n9glmodf9bb2b" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -552,7 +563,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">69</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">70</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -561,7 +572,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 15px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 16.25px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 13.75px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Kafka/" style="font-size: 11.25px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 17.5px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a> <a href="/tags/mongoDB/" style="font-size: 11.25px;">mongoDB</a>
+      <a href="/tags/Ambari/" style="font-size: 10px;">Ambari</a> <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 15px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 16.25px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 13.75px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 10px;">Hive</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/Java/" style="font-size: 18.75px;">Java</a> <a href="/tags/Kafka/" style="font-size: 11.25px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 17.5px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a> <a href="/tags/mongoDB/" style="font-size: 11.25px;">mongoDB</a>
     </div>
   </div>
 
@@ -575,6 +586,10 @@ var _hmt = _hmt || [];
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/Oozie：入门概述/">Oozie：入门概述</a>
+          </li>
         
           <li>
             <a href="/2015/大数据技术百度指数201508/">大数据技术百度指数201508</a>
@@ -652,10 +667,6 @@ var _hmt = _hmt || [];
             <a href="/2013/2013年年终总结/">2013年年终总结</a>
           </li>
         
-          <li>
-            <a href="/2013/响应式网页设计-Responsive-Web-Design/">响应式网页设计(Responsive Web Design)</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -665,7 +676,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

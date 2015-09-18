@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-09-16T09:35:47.738Z</updated>
+  <updated>2015-09-18T15:27:50.239Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Oozie：入门概述]]></title>
+    <link href="http://navigating.github.io/2015/Oozie%EF%BC%9A%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/"/>
+    <id>http://navigating.github.io/2015/Oozie：入门概述/</id>
+    <published>2015-09-18T15:24:54.000Z</published>
+    <updated>2015-09-18T15:27:50.239Z</updated>
+    <content type="html"><![CDATA[<p>Oozie能做什么(What Oozie Does)<br>Oozie是一个Java Web应用，用于Apache Hadoop的任务(jobs)调度。Oozie顺序的合并多个任务(jobs)成为一个可工作的逻辑单元。其主要是集成了Hadoop技术栈，包括YARN等，支持Apache MapReduce, Apache Pig, Apache Hive, Apache Sqoop等。Oozie使得用户能够通过Java应用或者Shell脚本的方式调度任务。<br>Oozie任务有两种基本类型</p>
+<pre><code>* Oozie Workflow jobs：这种任务是一个有向无环图(DAG, <span class="keyword">Direct</span> Acyclical Graph)，并按着规则顺序的执行，即上一个<span class="keyword">Action</span>运行完成后才能运行下一个<span class="keyword">Action</span>。所以其经常不得不等待。
+* Oozie Coordinator jobs：这种任务是重复性的工作流，一般被时间或者数据达到可用会被触发。
+</code></pre><p>Oozie Bundle提供一个复合的方式，将多个Workflow jobs和Coordinator jobs打包合并在一起并能对它们的生命周期进行管理。<br>Oozie如何工作(How Oozie works)<br>一个Oozie Workflow是一系列编排成有向无环图（DAG）的Action集合。控制节点定义job时间,设置开始和结束workflow的规则(rules)。这样，Oozie通过decision，fork和join节点控制工作流的执行路径。Action节点触发任务的执行。<br>Oozie触发工作流的action操作，实际上由Hadoop MapReduce去执行。Oozie利用Hadoop技术栈来均衡负载和处理失败。<br>Oozie通过回调(callback)和轮询(polling)来检测任务的是否完成。当Oozie开始一个任务(task)，它的提供了一个唯一的可以回调的HTTP URL，当这个任务完成的时候就通知这个URL。如果任务失败就调用回调URL，Oozie可以设置任务完成。<br>经常有这种需求，在规则的时间间隔内运行Oozie workflow，处理那些无法预期的有效数据或者时间。在这些情况下，Oozie Coordinator允许你根据、时间或者事件的条件对工作流触发的时机进行建模。在这些条件得到满足之后，工作流任务就就开始启动。<br>Oozie Coordinator也可以管理多个工作流，是依赖于子工作流的输出结果。子工作流程的输出将会成为下一个工作流的输入。这条链被称为“数据应用管道”(data application pipeline)。<br>工作流定义<br>定义一个Oozie工作流，两个配置文件是必须的，job.properties和workflow.xml。<br>job.properties的环境变量如下：<br>nameNodehdfs://mycluster:8020HDFS地址jobTrackerlocalhost:8034jobTracker地址queueNamedefaultOozie队列examplesRootexamples全局目录oozie.usr.system.libpathtrue是否加载用户的lib库oozie.libpathshare/lib/user用户lib库oozie.wf.application.path${nameNode}/user/${user.name}/Oozie流程所在的HDFS地址</p>
+<p>workflow.xml示例如下：<br>&lt;!—<br>  Licensed to the Apache Software Foundation (ASF) under one<br>  or more contributor license agreements.  See the NOTICE file<br>  distributed with this work for additional information<br>  regarding copyright ownership.  The ASF licenses this file<br>  to you under the Apache License, Version 2.0 (the<br>  “License”); you may not use this file except in compliance<br>  with the License.  You may obtain a copy of the License at</p>
+<pre><code><span class="label">http:</span>//www.apache<span class="preprocessor">.org</span>/licenses/LICENSE-<span class="number">2.0</span>
+</code></pre><p>  Unless required by applicable law or agreed to in writing, software<br>  distributed under the License is distributed on an “AS IS” BASIS,<br>  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br>  See the License for the specific language governing permissions and<br>  limitations under the License.<br>—&gt;</p>
+<p><workflow-app xmlns="uri:oozie:workflow:0.2" name="map-reduce-wf"><br>    <start to="mr-node"><br>    <action name="mr-node"><br>        <map-reduce><br>            <job-tracker>${jobTracker}</job-tracker><br>            <name-node>${nameNode}</name-node><br>            <prepare><br>                <delete path="${nameNode}/user/${wf:user()}/${examplesRoot}/output-data/${outputDir}"><br>            </delete></prepare><br>            <configuration><br>                <property><br>                    <name>mapred.job.queue.name</name><br>                    <value>${queueName}</value><br>                </property><br>                <property><br>                    <name>mapred.mapper.class</name><br>                    <value>org.apache.oozie.example.SampleMapper</value><br>                </property><br>                <property><br>                    <name>mapred.reducer.class</name><br>                    <value>org.apache.oozie.example.SampleReducer</value><br>                </property><br>                <property><br>                    <name>mapred.map.tasks</name><br>                    <value>1</value><br>                </property><br>                <property><br>                    <name>mapred.input.dir</name><br>                    <value>/user/${wf:user()}/${examplesRoot}/input-data/text</value><br>                </property><br>                <property><br>                    <name>mapred.output.dir</name><br>                    <value>/user/${wf:user()}/${examplesRoot}/output-data/${outputDir}</value><br>                </property><br>            </configuration><br>        </map-reduce><br>        <ok to="end"><br>        <error to="fail"><br>    </error></ok></action><br>    <kill name="fail"><br>        <message>Map/Reduce failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message><br>    </kill><br>    <end name="end"><br></end></start></workflow-app><br>执行命令<br>上传example目录到hdfs用户oozie根目录(/user/oozie)下：<br>su - oozie<br>cd /usr/hdp/current/oozie-server/doc<br>hdfs dfs -put example example</p>
+<p>启动任务命令：<br>oozie job -oozie <a href="http://localhost:11000/oozie" target="_blank" rel="external">http://localhost:11000/oozie</a> -config examples/apps/map-reduce/job.properties -run</p>
+<p>停止任务命令：<br>oozie job -oozie <a href="http://localhost:11000/oozie" target="_blank" rel="external">http://localhost:11000/oozie</a> -kill 0000002-150914143759473-oozie-oozi-W</p>
+<p>Oozie Web UI效果图：<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_001.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_002.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_003.JPG" alt="这是一张图片"></p>
+<p>参考：<br><a href="http://hortonworks.com/hadoop/oozie/" target="_blank" rel="external">http://hortonworks.com/hadoop/oozie/</a><br><a href="http://oozie.apache.org/" target="_blank" rel="external">http://oozie.apache.org/</a><br><a href="http://hortonworks.com/hadoop/oozie/#blog" target="_blank" rel="external">http://hortonworks.com/hadoop/oozie/#blog</a><br><a href="http://hortonworks.com/hadoop/oozie/#forums" target="_blank" rel="external">http://hortonworks.com/hadoop/oozie/#forums</a><br><a href="http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/" target="_blank" rel="external">http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/</a><br><a href="https://github.com/yahoo/oozie" target="_blank" rel="external">https://github.com/yahoo/oozie</a><br>书籍：<br>《Apache Oozie: The Workflow Scheduler for Hadoop》<br><a href="http://book.douban.com/subject/26348732/" target="_blank" rel="external">http://book.douban.com/subject/26348732/</a> </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Oozie能做什么(What Oozie Does)<br>Oozie是一个Java Web应用，用于Apache Hadoop的任务(jobs)调度。Oozie顺序的合并多个任务(jobs)成为一个可工作的逻辑单元。其主要是集成了Hadoop技术栈，包括YARN等，支持A]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="Oozie" scheme="http://navigating.github.io/tags/Oozie/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[大数据技术百度指数201508]]></title>
@@ -925,24 +958,6 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
     </summary>
     
       <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[响应式网页设计(Responsive Web Design)]]></title>
-    <link href="http://navigating.github.io/2013/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1-Responsive-Web-Design/"/>
-    <id>http://navigating.github.io/2013/响应式网页设计-Responsive-Web-Design/</id>
-    <published>2013-08-11T15:04:46.000Z</published>
-    <updated>2015-08-03T15:07:27.893Z</updated>
-    <content type="html"><![CDATA[<p>响应式网页设计，也叫：自适应网页设计。2010年，由Ethan Marcotte提出这个名词(Responsive Web Design) ，指可以自动识别屏幕宽度、并做出相应调整的网页设计。其目的就是希望搭建一个网站能够满足兼容多种终端的需求，不再是为每一种终端定制开发一个版本。应该是，这个思想主要是应对当前Web应用在各种移动终端上展示的挑战的。</p>
-<p>主要的应对策略：</p>
-<p>允许网页宽度自动调整；<br>不允许绝对宽度；<br>使用相对大小的字体；<br>流动布局；<br>选择加载CSS；<br>CSS的@media规则；<br>图片的自适应。<br>参考：<br><a href="http://alistapart.com/article/responsive-web-design" target="_blank" rel="external">http://alistapart.com/article/responsive-web-design</a><br><a href="http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html" target="_blank" rel="external">http://www.ruanyifeng.com/blog/2012/05/responsive_web_design.html</a><br><a href="http://www.qianduan.net/responsive-web-design.html" target="_blank" rel="external">http://www.qianduan.net/responsive-web-design.html</a><br><a href="http://www.qianduan.net/media-type-and-media-query.html" target="_blank" rel="external">http://www.qianduan.net/media-type-and-media-query.html</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>响应式网页设计，也叫：自适应网页设计。2010年，由Ethan Marcotte提出这个名词(Responsive Web Design) ，指可以自动识别屏幕宽度、并做出相应调整的网页设计。其目的就是希望搭建一个网站能够满足兼容多种终端的需求，不再是为每一种终端定制开发一]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   

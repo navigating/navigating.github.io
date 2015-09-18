@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>如何评审(Review) | On The Open Way</title>
+  <title>Oozie：入门概述 | On The Open Way</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近在搞一个培训的文档的评审，步骤大约是：1.有一个Session Topic；2.讲师先要围绕这个Topic写一个大纲，主要是大约是将Topic拆分若干细节分支；3.评审PPT等文档；如何对这样的文档进行评审，因为文档只是第一步，也是讲师能否讲这个Topic讲好的关键，所以就开始想如何保证讲师的培训质量，如何保证评审的质量，如何尽量能够促使讲师讲某一个Topic的广度和深度展现给audient呢">
+  <meta name="description" content="Oozie能做什么(What Oozie Does)Oozie是一个Java Web应用，用于Apache Hadoop的任务(jobs)调度。Oozie顺序的合并多个任务(jobs)成为一个可工作的逻辑单元。其主要是集成了Hadoop技术栈，包括YARN等，支持Apache MapReduce, Apache Pig, Apache Hive, Apache Sqoop等。Oozie使得用户能够">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何评审(Review)">
-<meta property="og:url" content="http://navigating.github.io/2007/如何评审(Review)/index.html">
+<meta property="og:title" content="Oozie：入门概述">
+<meta property="og:url" content="http://navigating.github.io/2015/Oozie：入门概述/index.html">
 <meta property="og:site_name" content="On The Open Way">
-<meta property="og:description" content="最近在搞一个培训的文档的评审，步骤大约是：1.有一个Session Topic；2.讲师先要围绕这个Topic写一个大纲，主要是大约是将Topic拆分若干细节分支；3.评审PPT等文档；如何对这样的文档进行评审，因为文档只是第一步，也是讲师能否讲这个Topic讲好的关键，所以就开始想如何保证讲师的培训质量，如何保证评审的质量，如何尽量能够促使讲师讲某一个Topic的广度和深度展现给audient呢">
-<meta property="og:updated_time" content="2015-08-09T15:00:18.851Z">
+<meta property="og:description" content="Oozie能做什么(What Oozie Does)Oozie是一个Java Web应用，用于Apache Hadoop的任务(jobs)调度。Oozie顺序的合并多个任务(jobs)成为一个可工作的逻辑单元。其主要是集成了Hadoop技术栈，包括YARN等，支持Apache MapReduce, Apache Pig, Apache Hive, Apache Sqoop等。Oozie使得用户能够">
+<meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_001.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_002.JPG">
+<meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_003.JPG">
+<meta property="og:updated_time" content="2015-09-18T15:27:50.239Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何评审(Review)">
-<meta name="twitter:description" content="最近在搞一个培训的文档的评审，步骤大约是：1.有一个Session Topic；2.讲师先要围绕这个Topic写一个大纲，主要是大约是将Topic拆分若干细节分支；3.评审PPT等文档；如何对这样的文档进行评审，因为文档只是第一步，也是讲师能否讲这个Topic讲好的关键，所以就开始想如何保证讲师的培训质量，如何保证评审的质量，如何尽量能够促使讲师讲某一个Topic的广度和深度展现给audient呢">
+<meta name="twitter:title" content="Oozie：入门概述">
+<meta name="twitter:description" content="Oozie能做什么(What Oozie Does)Oozie是一个Java Web应用，用于Apache Hadoop的任务(jobs)调度。Oozie顺序的合并多个任务(jobs)成为一个可工作的逻辑单元。其主要是集成了Hadoop技术栈，包括YARN等，支持Apache MapReduce, Apache Pig, Apache Hive, Apache Sqoop等。Oozie使得用户能够">
 <meta name="twitter:creator" content="@xujinghui">
   
     <link rel="alternative" href="/atom.xml" title="On The Open Way" type="application/atom+xml">
@@ -86,10 +89,10 @@ var _hmt = _hmt || [];
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-2007/如何评审(Review)" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2015/Oozie：入门概述" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2007/如何评审(Review)/" class="article-date">
-  <time datetime="2007-07-12T14:58:50.000Z" itemprop="datePublished">2007-07-12</time>
+    <a href="/2015/Oozie：入门概述/" class="article-date">
+  <time datetime="2015-09-18T15:24:54.000Z" itemprop="datePublished">2015-09-18</time>
 </a>
     
   <div class="article-category">
@@ -104,7 +107,7 @@ var _hmt = _hmt || [];
         
   
     <h1 class="article-title" itemprop="name">
-      如何评审(Review)
+      Oozie：入门概述
     </h1>
   
 
@@ -112,15 +115,26 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近在搞一个培训的文档的评审，步骤大约是：<br>1.有一个Session Topic；<br>2.讲师先要围绕这个Topic写一个大纲，主要是大约是将Topic拆分若干细节分支；<br>3.评审PPT等文档；<br>如何对这样的文档进行评审，因为文档只是第一步，也是讲师能否讲这个Topic讲好的关键，所以就开始想如何保证讲师的培训质量，如何保证评审的质量，如何尽量能够促使讲师讲某一个Topic的广度和深度展现给audient呢。<br>我的思路大约是：<br>从行业角度看，大家一般讨论这个Topic的角度；<br>从audient看，我们希望他们能接收到什么信息，他们自身提高中需要什么信息；<br>从讲师来看，能够给Topic带了什么special的东西；<br>在我读一个讲稿的时候，我希望我的第一感觉，感觉到一个明显的主线，知道这个讲稿在究竟要讲些什么；能够有一个完整的概念模型，简单易懂，这样便于大家理解；然后能够看到细节性的分析和讲解，就是深入的内容。觉得既要有葡萄蜜饯，也要有果酱颗粒，葡萄蜜饯不至于太突兀，通用的信息让大家理解起来容易，有一种背靠着行业的味道；对于我而言，我更加希望能够看到更多的个人理解的东西，更多的果酱颗粒，会带来思考的地方，带来讨论的地方，往往也是启迪人的地方。希望看多一些specail的地方，希望看到许多兴奋点。<br>附：果酱和葡萄蜜饯来源于《The Secrets of Consulting》<br>“只要还有果酱，草莓酱就永远都不会被涂抹得过薄。”<br>“永远不会有人抱怨葡萄蜜饯。”</p>
+        <p>Oozie能做什么(What Oozie Does)<br>Oozie是一个Java Web应用，用于Apache Hadoop的任务(jobs)调度。Oozie顺序的合并多个任务(jobs)成为一个可工作的逻辑单元。其主要是集成了Hadoop技术栈，包括YARN等，支持Apache MapReduce, Apache Pig, Apache Hive, Apache Sqoop等。Oozie使得用户能够通过Java应用或者Shell脚本的方式调度任务。<br>Oozie任务有两种基本类型</p>
+<pre><code>* Oozie Workflow jobs：这种任务是一个有向无环图(DAG, <span class="keyword">Direct</span> Acyclical Graph)，并按着规则顺序的执行，即上一个<span class="keyword">Action</span>运行完成后才能运行下一个<span class="keyword">Action</span>。所以其经常不得不等待。
+* Oozie Coordinator jobs：这种任务是重复性的工作流，一般被时间或者数据达到可用会被触发。
+</code></pre><p>Oozie Bundle提供一个复合的方式，将多个Workflow jobs和Coordinator jobs打包合并在一起并能对它们的生命周期进行管理。<br>Oozie如何工作(How Oozie works)<br>一个Oozie Workflow是一系列编排成有向无环图（DAG）的Action集合。控制节点定义job时间,设置开始和结束workflow的规则(rules)。这样，Oozie通过decision，fork和join节点控制工作流的执行路径。Action节点触发任务的执行。<br>Oozie触发工作流的action操作，实际上由Hadoop MapReduce去执行。Oozie利用Hadoop技术栈来均衡负载和处理失败。<br>Oozie通过回调(callback)和轮询(polling)来检测任务的是否完成。当Oozie开始一个任务(task)，它的提供了一个唯一的可以回调的HTTP URL，当这个任务完成的时候就通知这个URL。如果任务失败就调用回调URL，Oozie可以设置任务完成。<br>经常有这种需求，在规则的时间间隔内运行Oozie workflow，处理那些无法预期的有效数据或者时间。在这些情况下，Oozie Coordinator允许你根据、时间或者事件的条件对工作流触发的时机进行建模。在这些条件得到满足之后，工作流任务就就开始启动。<br>Oozie Coordinator也可以管理多个工作流，是依赖于子工作流的输出结果。子工作流程的输出将会成为下一个工作流的输入。这条链被称为“数据应用管道”(data application pipeline)。<br>工作流定义<br>定义一个Oozie工作流，两个配置文件是必须的，job.properties和workflow.xml。<br>job.properties的环境变量如下：<br>nameNodehdfs://mycluster:8020HDFS地址jobTrackerlocalhost:8034jobTracker地址queueNamedefaultOozie队列examplesRootexamples全局目录oozie.usr.system.libpathtrue是否加载用户的lib库oozie.libpathshare/lib/user用户lib库oozie.wf.application.path${nameNode}/user/${user.name}/Oozie流程所在的HDFS地址</p>
+<p>workflow.xml示例如下：<br>&lt;!—<br>  Licensed to the Apache Software Foundation (ASF) under one<br>  or more contributor license agreements.  See the NOTICE file<br>  distributed with this work for additional information<br>  regarding copyright ownership.  The ASF licenses this file<br>  to you under the Apache License, Version 2.0 (the<br>  “License”); you may not use this file except in compliance<br>  with the License.  You may obtain a copy of the License at</p>
+<pre><code><span class="label">http:</span>//www.apache<span class="preprocessor">.org</span>/licenses/LICENSE-<span class="number">2.0</span>
+</code></pre><p>  Unless required by applicable law or agreed to in writing, software<br>  distributed under the License is distributed on an “AS IS” BASIS,<br>  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.<br>  See the License for the specific language governing permissions and<br>  limitations under the License.<br>—&gt;</p>
+<p><workflow-app xmlns="uri:oozie:workflow:0.2" name="map-reduce-wf"><br>    <start to="mr-node"><br>    <action name="mr-node"><br>        <map-reduce><br>            <job-tracker>${jobTracker}</job-tracker><br>            <name-node>${nameNode}</name-node><br>            <prepare><br>                <delete path="${nameNode}/user/${wf:user()}/${examplesRoot}/output-data/${outputDir}"><br>            </delete></prepare><br>            <configuration><br>                <property><br>                    <name>mapred.job.queue.name</name><br>                    <value>${queueName}</value><br>                </property><br>                <property><br>                    <name>mapred.mapper.class</name><br>                    <value>org.apache.oozie.example.SampleMapper</value><br>                </property><br>                <property><br>                    <name>mapred.reducer.class</name><br>                    <value>org.apache.oozie.example.SampleReducer</value><br>                </property><br>                <property><br>                    <name>mapred.map.tasks</name><br>                    <value>1</value><br>                </property><br>                <property><br>                    <name>mapred.input.dir</name><br>                    <value>/user/${wf:user()}/${examplesRoot}/input-data/text</value><br>                </property><br>                <property><br>                    <name>mapred.output.dir</name><br>                    <value>/user/${wf:user()}/${examplesRoot}/output-data/${outputDir}</value><br>                </property><br>            </configuration><br>        </map-reduce><br>        <ok to="end"><br>        <error to="fail"><br>    </error></ok></action><br>    <kill name="fail"><br>        <message>Map/Reduce failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message><br>    </kill><br>    <end name="end"><br></end></start></workflow-app><br>执行命令<br>上传example目录到hdfs用户oozie根目录(/user/oozie)下：<br>su - oozie<br>cd /usr/hdp/current/oozie-server/doc<br>hdfs dfs -put example example</p>
+<p>启动任务命令：<br>oozie job -oozie <a href="http://localhost:11000/oozie" target="_blank" rel="external">http://localhost:11000/oozie</a> -config examples/apps/map-reduce/job.properties -run</p>
+<p>停止任务命令：<br>oozie job -oozie <a href="http://localhost:11000/oozie" target="_blank" rel="external">http://localhost:11000/oozie</a> -kill 0000002-150914143759473-oozie-oozi-W</p>
+<p>Oozie Web UI效果图：<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_001.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_002.JPG" alt="这是一张图片"><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Oozie_003.JPG" alt="这是一张图片"></p>
+<p>参考：<br><a href="http://hortonworks.com/hadoop/oozie/" target="_blank" rel="external">http://hortonworks.com/hadoop/oozie/</a><br><a href="http://oozie.apache.org/" target="_blank" rel="external">http://oozie.apache.org/</a><br><a href="http://hortonworks.com/hadoop/oozie/#blog" target="_blank" rel="external">http://hortonworks.com/hadoop/oozie/#blog</a><br><a href="http://hortonworks.com/hadoop/oozie/#forums" target="_blank" rel="external">http://hortonworks.com/hadoop/oozie/#forums</a><br><a href="http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/" target="_blank" rel="external">http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/</a><br><a href="https://github.com/yahoo/oozie" target="_blank" rel="external">https://github.com/yahoo/oozie</a><br>书籍：<br>《Apache Oozie: The Workflow Scheduler for Hadoop》<br><a href="http://book.douban.com/subject/26348732/" target="_blank" rel="external">http://book.douban.com/subject/26348732/</a> </p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/如何评审(Review)/" data-id="ciepsyq94007xh4lm3t0mpb2q" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/Oozie：入门概述/" data-id="ciepsypui002wh4lmqa2s8pdp" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Review/">Review</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Oozie/">Oozie</a></li></ul>
 
     </footer>
   </div>
@@ -128,19 +142,10 @@ var _hmt = _hmt || [];
     
 <nav id="article-nav">
   
-    <a href="/2007/What-is-the-crazy/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          What is the crazy
-        
-      </div>
-    </a>
   
-  
-    <a href="/2007/Google技术栈/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2015/大数据技术百度指数201508/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Google技术栈</div>
+      <div class="article-nav-title">大数据技术百度指数201508</div>
     </a>
   
 </nav>
@@ -151,7 +156,7 @@ var _hmt = _hmt || [];
 
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="post-2007/如何评审(Review)" data-title="如何评审(Review)" data-url="http://navigating.github.io/2007/如何评审(Review)/"></div>
+  <div class="ds-thread" data-thread-key="post-2015/Oozie：入门概述" data-title="Oozie：入门概述" data-url="http://navigating.github.io/2015/Oozie：入门概述/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
