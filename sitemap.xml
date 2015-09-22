@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://navigating.github.io/2015/Hortonworks-HDP-2-3-0/</loc>
+    <lastmod>2015-09-22T02:26:21.433Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://navigating.github.io/2015/Oozie%EF%BC%9A%E5%85%A5%E9%97%A8%E6%A6%82%E8%BF%B0/</loc>
     <lastmod>2015-09-18T15:40:18.791Z</lastmod>
   </url>

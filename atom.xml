@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-09-18T15:40:18.791Z</updated>
+  <updated>2015-09-22T02:26:21.433Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,78 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Hortonworks HDP 2.3.0]]></title>
+    <link href="http://navigating.github.io/2015/Hortonworks-HDP-2-3-0/"/>
+    <id>http://navigating.github.io/2015/Hortonworks-HDP-2-3-0/</id>
+    <published>2015-09-22T02:23:39.000Z</published>
+    <updated>2015-09-22T02:26:21.433Z</updated>
+    <content type="html"><![CDATA[<p>HDP 2.3 相对于 HDP 2.2.6</p>
+<ol>
+<li>HBase版本变化比较大，HBase 1.1.1；</li>
+<li>新增加了一些组件；</li>
+<li>Ambari在配置、监控等方面有较大的升级；</li>
+</ol>
+<p>新增加的组件：</p>
+<pre><code>1. <span class="tag">Apache</span> <span class="tag">Atlas</span> 0<span class="class">.5</span><span class="class">.0</span>
+2. <span class="tag">Apache</span> <span class="tag">Calcite</span> 1<span class="class">.2</span><span class="class">.0</span>
+3. <span class="tag">Apache</span> <span class="tag">Solr</span> 5<span class="class">.2</span><span class="class">.1</span>
+4. <span class="tag">Cascading</span> 3<span class="class">.0</span><span class="class">.1</span>
+5. <span class="tag">Cloudbreak</span> 1<span class="class">.0</span>
+6. <span class="tag">SmartSense</span>
+</code></pre><p>版本升级的组件：</p>
+<pre><code>1. <span class="tag">Apache</span> <span class="tag">Ambari</span> 2<span class="class">.1</span>
+2. <span class="tag">Apache</span> <span class="tag">Hadoop</span> 2<span class="class">.7</span><span class="class">.1</span>
+3. <span class="tag">Apache</span> <span class="tag">HBase</span> 1<span class="class">.1</span><span class="class">.1</span>
+4. <span class="tag">Apache</span> <span class="tag">Spark</span> 1<span class="class">.3</span><span class="class">.1</span>
+5. <span class="tag">Apache</span> <span class="tag">Hive</span> 1<span class="class">.2</span><span class="class">.1</span>
+6. <span class="tag">Apache</span> <span class="tag">Kafka</span> 0<span class="class">.8</span><span class="class">.2</span>
+7. <span class="tag">Apache</span> <span class="tag">Phoenix</span> 4<span class="class">.4</span><span class="class">.0</span>
+8. <span class="tag">Apache</span> <span class="tag">Pig</span> 0<span class="class">.15</span><span class="class">.0</span>
+9. <span class="tag">Apache</span> <span class="tag">Sqoop</span> 1<span class="class">.4</span><span class="class">.6</span>
+10. <span class="tag">Apache</span> <span class="tag">Oozie</span> 4<span class="class">.2</span><span class="class">.0</span>
+11. <span class="tag">Apache</span> <span class="tag">Knox</span> 0<span class="class">.6</span><span class="class">.0</span>
+12. <span class="tag">Apache</span> <span class="tag">Ranger</span> 0<span class="class">.5</span><span class="class">.0</span>
+13. <span class="tag">Apache</span> <span class="tag">Falcon</span> 0<span class="class">.6</span><span class="class">.1</span>
+14. <span class="tag">Slider</span> 0<span class="class">.80</span><span class="class">.0</span>
+15. <span class="tag">Tez</span> 0<span class="class">.7</span><span class="class">.0</span>
+16. <span class="tag">Storm</span> 0<span class="class">.10</span><span class="class">.0</span>
+</code></pre><p>Ambari 2.1新特性：</p>
+<pre><code><span class="bullet">1. </span>通过Ambari参数配置UI优化；
+<span class="bullet">2. </span>各项服务Metrics可以进行监控指标添加，通过添加Widgets就可以；
+<span class="bullet">3. </span>支持Hive, Pig, Files, Capacity Scheduler的User Views界面，可以通过UI执行Hive、Pig语句；
+<span class="bullet">4. </span>配置 Capacity Scheduler 支持图形化了，更加方便；
+<span class="bullet">5. </span>支持 SQL User View；
+<span class="bullet">6. </span>支持机架感应(Rack Awareness)配置：通过Ambari来配置；
+<span class="bullet">7. </span>支持 Cloudbreak；
+<span class="bullet">8. </span>支持 SmartSense；
+</code></pre><p>系统要求：</p>
+<pre><code>1. <span class="tag">Red</span> <span class="tag">Hat</span> <span class="tag">Enterprise</span> <span class="tag">Linux</span> (<span class="tag">RHEL</span>) <span class="tag">v6</span><span class="class">.x</span> 或者 <span class="tag">Red</span> <span class="tag">Hat</span> <span class="tag">Enterprise</span> <span class="tag">Linux</span> (<span class="tag">RHEL</span>) <span class="tag">v7</span><span class="class">.x</span>
+2. <span class="tag">Oracle</span> <span class="tag">JDK</span> 1<span class="class">.8</span> 64<span class="tag">-bit</span> (<span class="tag">minimum</span> <span class="tag">JDK</span> 1<span class="class">.8_40</span>) (<span class="tag">default</span>) 或者 <span class="tag">Oracle</span> <span class="tag">JDK</span> 1<span class="class">.7</span> 64<span class="tag">-bit</span> (<span class="tag">minimum</span> <span class="tag">JDK</span> 1<span class="class">.7_67</span>)
+</code></pre><p>参考：<br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0/bk_HDP_RelNotes/content/ch_relnotes_v230.html" target="_blank" rel="external">http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.3.0/bk_HDP_RelNotes/content/ch_relnotes_v230.html</a><br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.6/bk_HDP_RelNotes/content/ch_relnotes_v226.html" target="_blank" rel="external">http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.6/bk_HDP_RelNotes/content/ch_relnotes_v226.html</a> </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>HDP 2.3 相对于 HDP 2.2.6</p>
+<ol>
+<li>HBase版本变化比较大，HBase 1.1.1；</li>
+<li>新增加了一些组件；</li>
+<li>Ambari在配置、监控等方面有较大的升级；</li>
+</ol>
+<p>新增加的组件：</p>]]>
+    </summary>
+    
+      <category term="Ambari" scheme="http://navigating.github.io/tags/Ambari/"/>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Oozie：入门概述]]></title>
@@ -924,40 +996,6 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
       <category term="SQL on Hadoop" scheme="http://navigating.github.io/tags/SQL-on-Hadoop/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[2013年年终总结]]></title>
-    <link href="http://navigating.github.io/2013/2013%E5%B9%B4%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/"/>
-    <id>http://navigating.github.io/2013/2013年年终总结/</id>
-    <published>2013-12-31T14:23:51.000Z</published>
-    <updated>2015-08-04T14:25:21.847Z</updated>
-    <content type="html"><![CDATA[<p>又到了一年总结的时候，今年倒是有点晚了。感觉今年的时间过得飞快，放佛没感觉到时光的流逝，一直没想总结这事，这两天才开始琢磨。</p>
-<p>年初给自己的两个目标，一个是多读书，一个是多了解架构知识。</p>
-<p>多读书，这点上今年倒是读了不少杂书，包括：</p>
-<p>重读了金庸的几本武侠小说，几本书基本上以前也读过，再次阅读，一是回想当初读的那个情景、那个思绪映像，另外再读的时候完全换了视角了，以一种置身世外的解读的心态来看，常常揣摩主人公在场景下的心态与抉择；</p>
-<p>重读了四大名著除红楼之外的三部，特别是《西游记》，是第一次去读，以前只翻过几页，都没看过，一直觉得应该当着故事会来读，真读起来，才发现书中有很多有意思的地方，比方说书的第一主角真应该算是孙悟空吧，还有唐僧、孙悟空、猪八戒、沙和尚的关系和观念，都很有意思，还有孙悟空的诚心打动了猪八戒，确是一本可以细读的书。</p>
-<p>读了《明朝那些事儿》《浪潮之巅》《乔布斯传》《基业长青》《创新者的窘境》等，读的都很粗线条，大部分都没有细读和做笔记。</p>
-<p>另外有Kindle读了一些书，Kindle读书确实很方便，对我来说唯一的缺陷就是翻页查找太不方便了，对于我这种记忆里不好的人来说比较累。</p>
-<p>了解架构，关于架构的书读得少，了解一下架构的范围和大致概念，比较收获的是开始去理解EA和TOGAF，可能他们对工作不会起到很大的直接作用，但发现对工作有非常大的辅助作用。架构方面实际脚踏实地的做事上做的很欠缺。</p>
-<p>工作上今年做的事，大部分都能反映到WIKI上去，这里就不说了，想对自己说的就是：太被动，主动做的事儿太少。</p>
-<p>言而总之，总而言之，这一年在读书和工作上对自己的评价是，看的多，做的少，创新的东西更少。身体健康方面是：体重增加了，锻炼减少了。</p>
-<p>今年给自己打分，也就60分吧。</p>
-<p>说了过去，就得展望一下未来：</p>
-<p>读书这块，当然要继续读，下一步可能会更聚焦，有目的性的去读一些书。少随意性的阅读，多一些专注的阅读。</p>
-<p>同时会把博客捡起来，坚持写博客，记录自己的想法。</p>
-<p>工作这块，现在还没有想好，脑子里就是一些可能大家都知道的关键词，希望自己能做到：多创新，多行动，就是坚持做一些没做过的事；要主动，要规划，要坚持；要能落地的事，多总结积累。</p>
-<p>用这篇小文，记录那渐行渐远的2013，迎接蓬勃而来的2014。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>又到了一年总结的时候，今年倒是有点晚了。感觉今年的时间过得飞快，放佛没感觉到时光的流逝，一直没想总结这事，这两天才开始琢磨。</p>
-<p>年初给自己的两个目标，一个是多读书，一个是多了解架构知识。</p>
-<p>多读书，这点上今年倒是读了不少杂书，包括：</p>
-<p>重]]>
-    </summary>
-    
-      <category term="生活" scheme="http://navigating.github.io/categories/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
