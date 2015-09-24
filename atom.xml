@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-09-22T02:26:21.433Z</updated>
+  <updated>2015-09-24T04:59:01.109Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,74 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[学习《Impala vs. Hive Performance Benchmark》]]></title>
+    <link href="http://navigating.github.io/2015/%E5%AD%A6%E4%B9%A0%E3%80%8AImpala-vs-Hive-Performance-Benchmark%E3%80%8B/"/>
+    <id>http://navigating.github.io/2015/学习《Impala-vs-Hive-Performance-Benchmark》/</id>
+    <published>2015-09-24T04:56:08.000Z</published>
+    <updated>2015-09-24T04:59:01.109Z</updated>
+    <content type="html"><![CDATA[<p>原文：<a href="http://hortonworks.com/blog/impala-vs-hive-performance-benchmark/" target="_blank" rel="external">http://hortonworks.com/blog/impala-vs-hive-performance-benchmark/</a><br>学习如下：</p>
+<p>本文是Yahoo! JAPAN针对自己的场景需求进行设计书选型，对Impala和Hive(Tez on YARN)所做的评测。<br>场景数据和要求：</p>
+<ol>
+<li>数据格式为 Text 或者 gz ;</li>
+<li>每天新增数据文件为10G，数据记录为13亿行；</li>
+<li>数据留存(retention)周期为13个月，共有数据6000G，共有4500亿行；</li>
+<li>每个小时需要生成 15000 个报表(reporting)；</li>
+<li>查询条件包含少量的的 grouping ，grouping的条件主要是地区(region)或者性别(gender)；</li>
+<li>没有过滤条件查询；</li>
+<li>绝大部分基于时间的报表(report)生成都是周期性的，除了小时报表，还有天报表和周报表；</li>
+</ol>
+<p>技术选型：</p>
+<ol>
+<li>Cloudera Impala，没提到所评估的版本，估计为最近的版本。当前Impala的最新版本为。</li>
+<li>Hortonworks HDP 2.2, Apache Hive-0.14, Apache Tez。</li>
+</ol>
+<p>考虑Impala</p>
+<ol>
+<li>Imapa查询耗时比较少，一般在几秒到几十秒之间；</li>
+<li>当一次查询的响应时间为15秒，每小时能够执行240次查询；</li>
+<li>针对单位时间内处理量的不断增加，需要考虑通过增加单位时间内的并行查询数量来提升查询的数量；使用Impala遇到的问题是，随着查询并行度的增加，Impala查询的响应时间线性增加；因此，在每天数据更新之后Impala无法自动处理完成所有的批量查询。</li>
+</ol>
+<p>考虑Hive和Tez on YARN<br>Hadoop-2.x, YARN有更好粒度的并行执行控制，Tez引擎能大幅度的降低MapReduce的延时。<br>YARN和Tez大幅度的增加处理能力，每小时需要处理超过15000个任务。之前的Hadoop 1.0集群，每天已经能够处理100000个任务。</p>
+<p>测试验证</p>
+<p>测试条件</p>
+<ol>
+<li>计划模拟真实业务场景测试执行近2000个SQL；</li>
+<li>绝大部分查询返回的结果少于 1000 行数据；</li>
+<li>少数查询返回的结果超过100000行数据;</li>
+<li>执行近2000个SQL的并发请求为32；</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/HiveImpala_001.png" alt="这是一张图片"></p>
+<p>测试结果</p>
+<ol>
+<li>Hive请求的大部分请求在20秒以内返回，随着返回结果集数据的增加查询时间也随之增加，最长返回时间为70秒；</li>
+<li>Impala请求的大部分请求返回在30秒～60秒之间，最长返回时间为10分钟，随着返回结果集数据的增加查询时间大幅度显著的增加；</li>
+<li>在一些低负载(low load)条件的查询中，Impala能够达到毫秒(milliseconds)级返回；如果没有SQL并行化的处理需求，Impala是有效的选择。</li>
+<li>对于要求批处理，并且SQL并行化是必须的场景中，Hive on Tez是更好的选择。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/HiveImpala_002.png" alt="这是一张图片"></p>
+<p>Hive的并发性<br>对于单个的HiveServer2实例，我们测试验证多少个并行查询可以被执行，多少并行度的处理是最有效的。<br>我们以16作为SQL并发执行的提升倍数，衡量的指标是SQL执行的处理时间。<br>在并发达到64之前查询的吞吐量快速增加，在这点之后开始下降，因此在当前环境下64是最好的并发数。</p>
+<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/HiveImpala_003.png" alt="这是一张图片"></p>
+<p>结论<br>对于Hive on Tez，单个SQL执行时间一般为15秒，会随着并行度的提升而增加。(并行度的限制主要依赖于集群的大小和性能。)<br>在低负载状态下Impala有非常快的响应时间，但并不适合于SQL并行度非常高的场景。<br>最后的结论是测试者最后选择了Hive on Tez，因为测试者的场景是每小时至少处理15000个SQL请求。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>原文：<a href="http://hortonworks.com/blog/impala-vs-hive-performance-benchmark/" target="_blank" rel="external">http://hortonworks.com/blog]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="Hive" scheme="http://navigating.github.io/tags/Hive/"/>
+    
+      <category term="Impala" scheme="http://navigating.github.io/tags/Impala/"/>
+    
+      <category term="Tez" scheme="http://navigating.github.io/tags/Tez/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[Hortonworks HDP 2.3.0]]></title>
@@ -964,36 +1032,6 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
       <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
     
       <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hadoop发行版(2015第一季)]]></title>
-    <link href="http://navigating.github.io/2015/Hadoop%E5%8F%91%E8%A1%8C%E7%89%88(2015%E7%AC%AC%E4%B8%80%E5%AD%A3)/"/>
-    <id>http://navigating.github.io/2015/Hadoop发行版(2015第一季)/</id>
-    <published>2015-01-09T14:40:02.000Z</published>
-    <updated>2015-08-11T14:54:26.940Z</updated>
-    <content type="html"><![CDATA[<p>自从Hadoop的出现，引领大数据的浪潮越来越热。大数据存储的主要技术路线有几种：<br>1.Hadoop<br>2.Cassandra<br>3.MongoDB<br>Hadoop是Apache的开源项目，同时有很多商业公司对Hadoop进行版本发行和商业支持,参见：<a href="http://wiki.apache.org/hadoop/Distributions%20and%20Commercial%20Support" target="_blank" rel="external">http://wiki.apache.org/hadoop/Distributions%20and%20Commercial%20Support</a><br>其中在最有名为人所知的三家：<br>1.Cloudera<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Hadoop_2015_1.JPG" alt="这是一张图片"></p>
-<p>2.Hortonwork<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Hadoop_2015_2.JPG" alt="这是一张图片"></p>
-<p>3.MapR<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Hadoop_2015_3.JPG" alt="这是一张图片"></p>
-<p>这三个厂商之中，MapR最为封闭；Hortonworks最为开放，产品线全开源，在线文档比较丰富。国内使用Cloudera CDH和Hortonworks的应该是最多的。<br>准实时计算框架/即席查询<br>1.CDH的框架有：Impala + Spark；<br>2.HDP的框架有：Tez + Spark；<br>3.MapR的框架有：Drill + Tez + Spark。<br>关于Spark：<br>2014年大数据最热门的技术路线就是算是Spark了，而且得力于Spark不遗余力的推广和快速成长。Cloudera是最早支持Spark，也是最激进的。下图即是Spark在Cloudera产品线中的定位：<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/Hadoop_2015_4.JPG" alt="这是一张图片"></p>
-<p>实际上快速计算框架的发展才刚刚开始，社区中已经有如下几种：<br>1.Spark/Shark<br>2.Hortonworks Tez/Stinger<br>3.Cloudera Impala<br>4.Apache Drill<br>5.Apache Flink<br>6.Apache Nifi<br>7.Facebook Presto</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>自从Hadoop的出现，引领大数据的浪潮越来越热。大数据存储的主要技术路线有几种：<br>1.Hadoop<br>2.Cassandra<br>3.MongoDB<br>Hadoop是Apache的开源项目，同时有很多商业公司对Hadoop进行版本发行和商业支持,参见：<a]]>
-    </summary>
-    
-      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
-    
-      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
-    
-      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
-    
-      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="SQL on Hadoop" scheme="http://navigating.github.io/tags/SQL-on-Hadoop/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
