@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-09-24T04:59:01.109Z</updated>
+  <updated>2015-10-16T02:43:52.651Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[大数据动态之201509]]></title>
+    <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201509/"/>
+    <id>http://navigating.github.io/2015/大数据动态之201509/</id>
+    <published>2015-10-16T02:41:31.000Z</published>
+    <updated>2015-10-16T02:43:52.651Z</updated>
+    <content type="html"><![CDATA[<p>Apache Kylin<br>Apache Kylin v1.0 发布，分布式分析引擎<br><a href="http://www.oschina.net/news/65938/apache-kylin-1-0-released" target="_blank" rel="external">http://www.oschina.net/news/65938/apache-kylin-1-0-released</a> </p>
+<p>Apache Calcite<br>Apache Calcite：Hadoop中新型大数据查询引擎<br><a href="http://www.infoq.com/cn/articles/new-big-data-hadoop-query-engine-apache-calcite" target="_blank" rel="external">http://www.infoq.com/cn/articles/new-big-data-hadoop-query-engine-apache-calcite</a> </p>
+<p>Apache Flink<br><a href="http://flink.apache.org/" target="_blank" rel="external">http://flink.apache.org/</a> </p>
+<p>Cloudera<br>新的快数据存储Hadoop组件，Kudu:<br><a href="http://blog.cloudera.com/blog/2015/09/kudu-new-apache-hadoop-storage-for-fast-analytics-on-fast-data/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/09/kudu-new-apache-hadoop-storage-for-fast-analytics-on-fast-data/</a><br>Hadoop细粒度的安全增强组件，RecordService：<br><a href="http://blog.cloudera.com/blog/2015/09/recordservice-for-fine-grained-security-enforcement-across-the-hadoop-ecosystem/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/09/recordservice-for-fine-grained-security-enforcement-across-the-hadoop-ecosystem/</a><br>HDFS Erasure Coding特性<br><a href="http://blog.cloudera.com/blog/2015/09/introduction-to-hdfs-erasure-coding-in-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/09/introduction-to-hdfs-erasure-coding-in-apache-hadoop/</a><br>Spark测试基础库<br><a href="http://blog.cloudera.com/blog/2015/09/making-apache-spark-testing-easy-with-spark-testing-base/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/09/making-apache-spark-testing-easy-with-spark-testing-base/</a><br>如何使用Impala对非结构化数据进行分析：<br><a href="http://blog.cloudera.com/blog/2015/09/how-to-prepare-unstructured-data-in-impala-for-analysis/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/09/how-to-prepare-unstructured-data-in-impala-for-analysis/</a><br>BI场景下Impala测试结果<br><a href="http://blog.cloudera.com/blog/2015/09/how-impala-scales-for-business-intelligence-new-test-results/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/09/how-impala-scales-for-business-intelligence-new-test-results/</a><br>揭秘Apache Hadoop YARN:<br><a href="http://blog.cloudera.com/blog/2015/09/untangling-apache-hadoop-yarn-part-1/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/09/untangling-apache-hadoop-yarn-part-1/</a><br><a href="http://blog.cloudera.com/blog/2013/11/migrating-to-mapreduce-2-on-yarn-for-users/" target="_blank" rel="external">http://blog.cloudera.com/blog/2013/11/migrating-to-mapreduce-2-on-yarn-for-users/</a><br><a href="http://blog.cloudera.com/blog/2013/11/migrating-to-mapreduce-2-on-yarn-for-operators/" target="_blank" rel="external">http://blog.cloudera.com/blog/2013/11/migrating-to-mapreduce-2-on-yarn-for-operators/</a><br>Impala支持shell执行的动态进度报告(Impala’s debug webpages (http:::25000))：<br><a href="http://blog.cloudera.com/blog/2015/09/dynamic-progress-reports-in-the-impala-shell/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/09/dynamic-progress-reports-in-the-impala-shell/</a><br>Cloudera One Platform:<br><a href="http://vision.cloudera.com/one-platform/" target="_blank" rel="external">http://vision.cloudera.com/one-platform/</a> </p>
+<p>Hortonworks<br>Microsoft Azure HDInsight对Ubuntu Linux支持，可以支持到Hadoop 2.6：<br><a href="http://hortonworks.com/blog/microsoft-azure-hdinsight-on-linux-choice/" target="_blank" rel="external">http://hortonworks.com/blog/microsoft-azure-hdinsight-on-linux-choice/</a><br>HDP 2.3 Sandbox在Microsoft Azure Gallery上线：<br><a href="http://hortonworks.com/blog/hortonworks-sandbox-with-hdp-2-3-is-now-available-on-microsoft-azure-gallery/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-sandbox-with-hdp-2-3-is-now-available-on-microsoft-azure-gallery/</a><br>Impala与Hive性能对比<br><a href="http://hortonworks.com/blog/impala-vs-hive-performance-benchmark/" target="_blank" rel="external">http://hortonworks.com/blog/impala-vs-hive-performance-benchmark/</a><br>HDP迁移案例：<br><a href="http://hortonworks.com/blog/migration-to-hdp-as-easy-as-1-2-3-without-downtime-or-disruption/" target="_blank" rel="external">http://hortonworks.com/blog/migration-to-hdp-as-easy-as-1-2-3-without-downtime-or-disruption/</a> </p>
+<p>MapR<br>Spark on YARN资源分配配置<br><a href="https://www.mapr.com/blog/resource-allocation-configuration-spark-yarn#.VfoRrSWqqko" target="_blank" rel="external">https://www.mapr.com/blog/resource-allocation-configuration-spark-yarn#.VfoRrSWqqko</a><br><a href="https://spark.apache.org/docs/latest/running-on-yarn.html" target="_blank" rel="external">https://spark.apache.org/docs/latest/running-on-yarn.html</a><br><a href="https://spark.apache.org/docs/latest/job-scheduling.html#dynamic-resource-allocation" target="_blank" rel="external">https://spark.apache.org/docs/latest/job-scheduling.html#dynamic-resource-allocation</a><br>SAP HANA与Mapr DP混合架构<br><a href="https://www.mapr.com/blog/sap-hana-vora-and-mapr-data-platform#.VfoRsCWqqko" target="_blank" rel="external">https://www.mapr.com/blog/sap-hana-vora-and-mapr-data-platform#.VfoRsCWqqko</a><br>Spark Streaming with HBase<br><a href="https://www.mapr.com/blog/spark-streaming-hbase#.VfoR0SWqqko" target="_blank" rel="external">https://www.mapr.com/blog/spark-streaming-hbase#.VfoR0SWqqko</a><br>MapR对Docker的支持<br><a href="https://www.mapr.com/blog/how-create-instant-mapr-clusters-docker#.VfoR2CWqqko" target="_blank" rel="external">https://www.mapr.com/blog/how-create-instant-mapr-clusters-docker#.VfoR2CWqqko</a><br><a href="https://www.mapr.com/blog/my-experience-running-docker-containers-on-mesos#.Vfoc_yWqqkp" target="_blank" rel="external">https://www.mapr.com/blog/my-experience-running-docker-containers-on-mesos#.Vfoc_yWqqkp</a> </p>
+<p>Databricks<br>Spark Survey 2015调查结果：<br><a href="https://databricks.com/blog/2015/09/24/spark-survey-results-2015-are-now-available.html" target="_blank" rel="external">https://databricks.com/blog/2015/09/24/spark-survey-results-2015-are-now-available.html</a><br>Spark代码调试：实时进度条和Spark UI<br><a href="https://databricks.com/blog/2015/09/23/easier-spark-code-debugging-real-time-progress-bar-and-spark-ui-integration-in-databricks.html" target="_blank" rel="external">https://databricks.com/blog/2015/09/23/easier-spark-code-debugging-real-time-progress-bar-and-spark-ui-integration-in-databricks.html</a><br>新版本Spark 1.5上LDA算法的性能提升：<br><a href="https://databricks.com/blog/2015/09/22/large-scale-topic-modeling-improvements-to-lda-on-spark.html" target="_blank" rel="external">https://databricks.com/blog/2015/09/22/large-scale-topic-modeling-improvements-to-lda-on-spark.html</a><br>Spark 1.5 DataFrame API:<br><a href="https://databricks.com/blog/2015/09/16/spark-1-5-dataframe-api-highlights-datetimestring-handling-time-intervals-and-udafs.html" target="_blank" rel="external">https://databricks.com/blog/2015/09/16/spark-1-5-dataframe-api-highlights-datetimestring-handling-time-intervals-and-udafs.html</a><br>Spark 1.5发布，在性能、可用性、运维、Data Science API等方面有重大改进：<br><a href="https://databricks.com/blog/2015/09/09/announcing-spark-1-5.html" target="_blank" rel="external">https://databricks.com/blog/2015/09/09/announcing-spark-1-5.html</a><br><a href="http://www.csdn.net/article/2015-09-29/2825825" target="_blank" rel="external">http://www.csdn.net/article/2015-09-29/2825825</a><br><a href="http://www.csdn.net/article/2015-09-10/2825669" target="_blank" rel="external">http://www.csdn.net/article/2015-09-10/2825669</a> </p>
+<p>MongoDB<br>MongoDB性能优化五个简单步骤：<br><a href="http://www.csdn.net/article/2015-09-30/2825833" target="_blank" rel="external">http://www.csdn.net/article/2015-09-30/2825833</a><br>MongoDB开发版本3.1.8发布<br><a href="http://www.csdn.net/article/2015-09-17/2825734" target="_blank" rel="external">http://www.csdn.net/article/2015-09-17/2825734</a><br>分布式文档数据库MongoDB开发版本3.1.7发布<br><a href="http://www.csdn.net/article/2015-09-01/2825599-mongodb-317-is-released" target="_blank" rel="external">http://www.csdn.net/article/2015-09-01/2825599-mongodb-317-is-released</a> </p>
+<p>参考<br>逆水行舟，看前行中的Spark<br><a href="http://www.csdn.net/article/2015-09-21/2825754" target="_blank" rel="external">http://www.csdn.net/article/2015-09-21/2825754</a><br>微店的大数据平台建设实践与探讨<br><a href="http://www.csdn.net/article/2015-09-21/2825756" target="_blank" rel="external">http://www.csdn.net/article/2015-09-21/2825756</a><br>打造数据驱动的组织：第二年<br><a href="http://zhuanlan.zhihu.com/donglaoshi/20205116" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20205116</a><br>揭开 Growth Hacking 的神秘面纱（上篇）<br><a href="http://zhuanlan.zhihu.com/qinchao/20190015" target="_blank" rel="external">http://zhuanlan.zhihu.com/qinchao/20190015</a><br>京东大数据基础架构和实践—王彦明<br><a href="http://share.csdn.net/slides/9138" target="_blank" rel="external">http://share.csdn.net/slides/9138</a><br>京东数据仓库海量数据交换工具—张侃<br><a href="http://share.csdn.net/slides/9137" target="_blank" rel="external">http://share.csdn.net/slides/9137</a><br>京东大数据分析与创新应用<br><a href="http://share.csdn.net/slides/9139" target="_blank" rel="external">http://share.csdn.net/slides/9139</a><br>LinkedIn架构这十年<br><a href="http://engineering.linkedin.com/architecture/brief-history-scaling-linkedin" target="_blank" rel="external">http://engineering.linkedin.com/architecture/brief-history-scaling-linkedin</a><br><a href="http://colobu.com/2015/07/24/brief-history-scaling-linkedin/" target="_blank" rel="external">http://colobu.com/2015/07/24/brief-history-scaling-linkedin/</a><br>LinkedIn是如何优化Kafka的<br><a href="http://www.infoq.com/cn/articles/linkedIn-improving-kafka" target="_blank" rel="external">http://www.infoq.com/cn/articles/linkedIn-improving-kafka</a><br><a href="http://engineering.linkedin.com/apache-kafka/how-we%E2%80%99re-improving-and-advancing-kafka-linkedin" target="_blank" rel="external">http://engineering.linkedin.com/apache-kafka/how-we%E2%80%99re-improving-and-advancing-kafka-linkedin</a><br>阿里CDN从自建到服务<br><a href="http://share.csdn.net/slides/8319" target="_blank" rel="external">http://share.csdn.net/slides/8319</a><br>系统架构设计-负载均衡和高可用<br><a href="http://share.csdn.net/slides/12338" target="_blank" rel="external">http://share.csdn.net/slides/12338</a><br>OSTC2015-朱照远（叔度）阿里开源经验分享<br><a href="http://share.csdn.net/slides/13730" target="_blank" rel="external">http://share.csdn.net/slides/13730</a><br>Voidbox<br><a href="http://dongxicheng.org/mapreduce-nextgen/voidbox-docker-on-hadoop-hulu/" target="_blank" rel="external">http://dongxicheng.org/mapreduce-nextgen/voidbox-docker-on-hadoop-hulu/</a><br>深入理解Spark Streaming执行模型<br><a href="http://www.csdn.net/article/2015-09-13/2825689" target="_blank" rel="external">http://www.csdn.net/article/2015-09-13/2825689</a><br>Apache Spark 1.5新特性介绍<br><a href="http://www.csdn.net/article/2015-09-10/2825669" target="_blank" rel="external">http://www.csdn.net/article/2015-09-10/2825669</a><br>盘点大数据生态圈，那些繁花似锦的开源项目<br><a href="http://www.csdn.net/article/2015-09-11/2825674" target="_blank" rel="external">http://www.csdn.net/article/2015-09-11/2825674</a><br>Redis整合Spring项目搭建实例<br><a href="http://www.csdn.net/article/2015-09-01/2825600" target="_blank" rel="external">http://www.csdn.net/article/2015-09-01/2825600</a><br>MongoDB开发版本3.1.8发布<br><a href="http://www.csdn.net/article/2015-09-17/2825734" target="_blank" rel="external">http://www.csdn.net/article/2015-09-17/2825734</a><br>分布式并行数据库将在 OLTP 领域促进去“Oracle”<br><a href="http://www.csdn.net/article/2015-09-11/2825678" target="_blank" rel="external">http://www.csdn.net/article/2015-09-11/2825678</a><br>Gartner 2015新兴技术发展周期简评：大数据实用化、机器学习崛起<br><a href="http://www.csdn.net/article/2015-09-06/2825620" target="_blank" rel="external">http://www.csdn.net/article/2015-09-06/2825620</a><br>Hortonworks收购Onyara，启动数据流自动化<br><a href="http://www.csdn.net/article/2015-09-02/2825612" target="_blank" rel="external">http://www.csdn.net/article/2015-09-02/2825612</a> </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Apache Kylin<br>Apache Kylin v1.0 发布，分布式分析引擎<br><a href="http://www.oschina.net/news/65938/apache-kylin-1-0-released" target="_blank" rel]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="MongoDB" scheme="http://navigating.github.io/tags/MongoDB/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[学习《Impala vs. Hive Performance Benchmark》]]></title>
@@ -233,7 +267,7 @@
     <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201508/"/>
     <id>http://navigating.github.io/2015/大数据动态之201508/</id>
     <published>2015-09-07T08:13:04.000Z</published>
-    <updated>2015-09-07T08:17:00.928Z</updated>
+    <updated>2015-10-16T02:44:00.973Z</updated>
     <content type="html"><![CDATA[<p>Cloudera：<br>Cloudera Navigator路线图<br><a href="http://blog.cloudera.com/blog/2015/08/whats-next-for-apache-hadoop-data-management-and-governance-cloudera-navigator-roadmap/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/whats-next-for-apache-hadoop-data-management-and-governance-cloudera-navigator-roadmap/</a><br>NoSQL性能测试开放标准套件YCSB加入Cloudera实验室项目中<br><a href="http://blog.cloudera.com/blog/2015/08/ycsb-the-open-standard-for-nosql-benchmarking-joins-cloudera-labs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/ycsb-the-open-standard-for-nosql-benchmarking-joins-cloudera-labs/</a><br>Spark在TripAdvisor的机器学习应用案例<br><a href="http://blog.cloudera.com/blog/2015/08/using-apache-spark-for-massively-parallel-nlp-at-tripadvisor/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/using-apache-spark-for-massively-parallel-nlp-at-tripadvisor/</a><br>CDH支持Mesos<br><a href="http://blog.cloudera.com/blog/2015/08/how-to-run-apache-mesos-on-cdh/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/how-to-run-apache-mesos-on-cdh/</a><br>HBase开始支持HBase-Spark模块<br><a href="http://blog.cloudera.com/blog/2015/08/apache-spark-comes-to-apache-hbase-with-hbase-spark-module/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/apache-spark-comes-to-apache-hbase-with-hbase-spark-module/</a><br>Navigator Encrypt开始支持YARN Container安全<br><a href="http://blog.cloudera.com/blog/2015/08/how-to-secure-yarn-containers-with-cloudera-navigator-encrypt/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/how-to-secure-yarn-containers-with-cloudera-navigator-encrypt/</a><br>基于Kafka和HBase的近实时集成架构案例: Santanders<br><a href="http://blog.cloudera.com/blog/2015/08/inside-santanders-near-real-time-data-ingest-architecture/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/inside-santanders-near-real-time-data-ingest-architecture/</a> </p>
 <p>Hortonworks:<br>Microsoft Azure Gallery开始支持HDP 2.3<br><a href="http://hortonworks.com/blog/hortonworks-sandbox-with-hdp-2-3-is-now-available-on-microsoft-azure-gallery/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-sandbox-with-hdp-2-3-is-now-available-on-microsoft-azure-gallery/</a><br>Microsoft Azure支持Spark<br><a href="http://hortonworks.com/blog/microsoft-and-hortonworks-do-spark-in-the-cloud/" target="_blank" rel="external">http://hortonworks.com/blog/microsoft-and-hortonworks-do-spark-in-the-cloud/</a><br>Storm的容错Nimbus架构<br><a href="http://hortonworks.com/blog/fault-tolerant-nimbus-in-apache-storm/" target="_blank" rel="external">http://hortonworks.com/blog/fault-tolerant-nimbus-in-apache-storm/</a> </p>
 <p>MapR<br>Spark Streaming with HBase<br><a href="https://www.mapr.com/blog/spark-streaming-hbase" target="_blank" rel="external">https://www.mapr.com/blog/spark-streaming-hbase</a><br>Apache Drill Architecture: The Ultimate Guide<br><a href="https://www.mapr.com/blog/apache-drill-architecture-ultimate-guide" target="_blank" rel="external">https://www.mapr.com/blog/apache-drill-architecture-ultimate-guide</a><br>HBase架构深度剖析<br><a href="https://www.mapr.com/blog/in-depth-look-hbase-architecture" target="_blank" rel="external">https://www.mapr.com/blog/in-depth-look-hbase-architecture</a><br>HBase Schema设计指导<br><a href="https://www.mapr.com/blog/guidelines-hbase-schema-design" target="_blank" rel="external">https://www.mapr.com/blog/guidelines-hbase-schema-design</a><br>如何利用Spark进行机器学习的并行与交互处理<br><a href="https://www.mapr.com/blog/parallel-and-iterative-processing-machine-learning-recommendations-spark" target="_blank" rel="external">https://www.mapr.com/blog/parallel-and-iterative-processing-machine-learning-recommendations-spark</a></p>
@@ -259,9 +293,9 @@
     
       <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
     
-      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+      <category term="MongoDB" scheme="http://navigating.github.io/tags/MongoDB/"/>
     
-      <category term="mongoDB" scheme="http://navigating.github.io/tags/mongoDB/"/>
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -644,7 +678,7 @@
     <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201507/"/>
     <id>http://navigating.github.io/2015/大数据动态之201507/</id>
     <published>2015-07-31T08:22:01.000Z</published>
-    <updated>2015-08-01T02:27:01.570Z</updated>
+    <updated>2015-10-16T02:45:14.668Z</updated>
     <content type="html"><![CDATA[<p>Hortonworks<br>HDP 2.3发布：<br>HDP 2.3新增加组件Apache Atlas、Apache Calcite<br><a href="http://hortonworks.com/blog/available-now-hdp-2-3/" target="_blank" rel="external">http://hortonworks.com/blog/available-now-hdp-2-3/</a><br><a href="http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/" target="_blank" rel="external">http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/</a><br><a href="http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/" target="_blank" rel="external">http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/</a><br>Spark 1.2开始支持ORC(Columnar Formats)<br><a href="http://hortonworks.com/blog/bringing-orc-support-into-apache-spark/" target="_blank" rel="external">http://hortonworks.com/blog/bringing-orc-support-into-apache-spark/</a><br>Spark in HDInsight新特性一览<br><a href="http://hortonworks.com/blog/spark-in-hdinsight/" target="_blank" rel="external">http://hortonworks.com/blog/spark-in-hdinsight/</a> </p>
 <p>Cloudera<br>HBase 1.0 开始支持Thrift客户端鉴权<br><a href="http://blog.cloudera.com/blog/2015/07/thrift-client-authentication-support-in-apache-hbase-1-0/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/thrift-client-authentication-support-in-apache-hbase-1-0/</a><br>Pig on MR优化<br><a href="http://blog.cloudera.com/blog/2015/07/how-to-tune-mapreduce-parallelism-in-apache-pig-jobs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/how-to-tune-mapreduce-parallelism-in-apache-pig-jobs/</a><br>Apache Zeppelin on CDH<br><a href="http://blog.cloudera.com/blog/2015/07/how-to-install-apache-zeppelin-on-cdh/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/how-to-install-apache-zeppelin-on-cdh/</a><br>大数据欺诈检测架构<br><a href="http://blog.cloudera.com/blog/2015/07/designing-fraud-detection-architecture-that-works-like-your-brain-does/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/designing-fraud-detection-architecture-that-works-like-your-brain-does/</a> </p>
 <p>MapR<br>YARN资源管理实践<br><a href="https://www.mapr.com/blog/best-practices-yarn-resource-management" target="_blank" rel="external">https://www.mapr.com/blog/best-practices-yarn-resource-management</a><br>Hive 1.0对Transaction的支持<br><a href="https://www.mapr.com/blog/hive-transaction-feature-hive-10" target="_blank" rel="external">https://www.mapr.com/blog/hive-transaction-feature-hive-10</a> </p>
@@ -664,9 +698,9 @@
     
       <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
     
-      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+      <category term="MongoDB" scheme="http://navigating.github.io/tags/MongoDB/"/>
     
-      <category term="mongoDB" scheme="http://navigating.github.io/tags/mongoDB/"/>
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -1002,36 +1036,6 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
       <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
     
       <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[大数据动态之201502]]></title>
-    <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201502/"/>
-    <id>http://navigating.github.io/2015/大数据动态之201502/</id>
-    <published>2015-03-24T14:10:07.000Z</published>
-    <updated>2015-08-18T06:42:18.267Z</updated>
-    <content type="html"><![CDATA[<p>本月Hadoop技术动态：<br>1.经过6年的孵化，Hive 1.0 发布了。<br>2.经过7年的孵化，HBase 1.0 发布了。<br>3.Cloudera 开始提供 Hive-on-Spark Beta版的下载。</p>
-<p>HBase 1.0 需要特别关注的特性：<br>1.API的重新组织和变更；<br>2.读的高可用；<br>3.在线配置变更；</p>
-<p>HDP 2.2 发布有一段时间：<br><a href="http://hortonworks.com/blog/announcing-hive-1-0-stable-moment-time/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-hive-1-0-stable-moment-time/</a><br><a href="http://hortonworks.com/blog/start-new-era-apache-hbase-1-0/" target="_blank" rel="external">http://hortonworks.com/blog/start-new-era-apache-hbase-1-0/</a><br><a href="http://blog.cloudera.com/blog/2015/02/apache-hbase-1-0-is-released/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/02/apache-hbase-1-0-is-released/</a><br><a href="http://blog.cloudera.com/blog/2015/02/download-the-hive-on-spark-beta/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/02/download-the-hive-on-spark-beta/</a><br><a href="https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf" target="_blank" rel="external">https://issues.apache.org/jira/secure/attachment/12652517/Hive-on-Spark.pdf</a></p>
-<p>Cluster Manager Framework:<br>1.YARN<br>2.Apache Helix</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>本月Hadoop技术动态：<br>1.经过6年的孵化，Hive 1.0 发布了。<br>2.经过7年的孵化，HBase 1.0 发布了。<br>3.Cloudera 开始提供 Hive-on-Spark Beta版的下载。</p>
-<p>HBase 1.0 需要特别关注的特]]>
-    </summary>
-    
-      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
-    
-      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
-    
-      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
-    
-      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
