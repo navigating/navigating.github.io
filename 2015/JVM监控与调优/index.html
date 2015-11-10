@@ -25,7 +25,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/JVM_Arch_005.PNG">
 <meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/JVM_Arch_006.gif">
 <meta property="og:image" content="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/JVM_Arch_002.PNG">
-<meta property="og:updated_time" content="2015-11-10T06:18:28.873Z">
+<meta property="og:updated_time" content="2015-11-10T06:32:27.396Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM监控与调优">
 <meta name="twitter:description" content="题外话本文当前的范围是Java 8之前的虚拟机，因为Java 8之后虚拟机的架构有比较大的调整，存储类的元数据信息的永久代被删除了，而是放在虚拟机的元空间。JDK 7及之前的版本中永久代有如下的特点：
@@ -197,7 +197,7 @@ var _hmt = _hmt || [];
 <ul>
 <li>最前面的数字 8317.639 代表GC发生的时间，是从Java虚拟机启动以来经过的秒数；</li>
 <li>表示发生了一次Full GC，有Full说明发生了Stop-The-World，，如果是调用system.gc()方法所触发的收集，将显示(System)；</li>
-<li>整个JVM都停顿了 0.6577700 秒。</li>
+<li>整个JVM都停顿了 0.6577700 秒，输出说明同上。只是 CMS: 603725K-&gt;464743K(843776K), 0.6577700 secs 表示的是Old区。788045K-&gt;464743K(1028096K) 表示的是整个Heap区。</li>
 <li>CMS Perm表示GC发生的区域，名称是由收集器决定的。</li>
 </ul>
 <h2 id="参考：">参考：</h2><p><a href="http://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/generations.html" target="_blank" rel="external">http://docs.oracle.com/javase/8/docs/technotes/guides/vm/gctuning/generations.html</a><br><a href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html" target="_blank" rel="external">http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html</a><br><a href="http://www.oracle.com/technetwork/java/gc-tuning-5-138395.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/gc-tuning-5-138395.html</a><br><a href="http://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/gc-tuning-6-140523.html</a><br><a href="http://www.infoq.com/cn/articles/Java-PERMGEN-Removed" target="_blank" rel="external">http://www.infoq.com/cn/articles/Java-PERMGEN-Removed</a><br><a href="http://docs.oracle.com/cd/E21764_01/web.1111/e13814/jvm_tuning.htm#PERFM169" target="_blank" rel="external">http://docs.oracle.com/cd/E21764_01/web.1111/e13814/jvm_tuning.htm#PERFM169</a><br><a href="http://blog.csdn.net/ning109314/article/details/10411495" target="_blank" rel="external">http://blog.csdn.net/ning109314/article/details/10411495</a><br><a href="http://jbutton.iteye.com/blog/1569746" target="_blank" rel="external">http://jbutton.iteye.com/blog/1569746</a><br><a href="http://buddie.iteye.com/blog/1824937" target="_blank" rel="external">http://buddie.iteye.com/blog/1824937</a><br><a href="http://www.cnblogs.com/ggjucheng/p/3977384.html" target="_blank" rel="external">http://www.cnblogs.com/ggjucheng/p/3977384.html</a><br><a href="http://blog.csdn.net/historyasamirror/article/details/6233007" target="_blank" rel="external">http://blog.csdn.net/historyasamirror/article/details/6233007</a><br><a href="http://sargeraswang.com/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/" target="_blank" rel="external">http://sargeraswang.com/blog/2014/02/03/la-ji-shou-ji-qi-yu-nei-cun-fen-pei-ce-lue/</a></p>
@@ -205,7 +205,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/JVM监控与调优/" data-id="cigszouhk003iwwlmkyj5qv9n" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/JVM监控与调优/" data-id="cigt03v3u003iwslmn6eys76v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/">JVM</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
