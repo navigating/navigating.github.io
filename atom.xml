@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2015-11-10T06:32:27.396Z</updated>
+  <updated>2016-04-18T13:50:33.112Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -16,11 +16,144 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[学习《Real-Time Event Streaming What Are Your Options》]]></title>
+    <link href="http://navigating.github.io/2016/%E5%AD%A6%E4%B9%A0%E3%80%8AReal-Time%20Event%20Streaming%20What%20Are%20Your%20Options%E3%80%8B/"/>
+    <id>http://navigating.github.io/2016/学习《Real-Time Event Streaming What Are Your Options》/</id>
+    <published>2016-04-18T04:56:08.000Z</published>
+    <updated>2016-04-18T13:50:33.112Z</updated>
+    <content type="html"><![CDATA[<h2 id="一个典型的流式架构(a_typical_streaming_architecture)">一个典型的流式架构(a typical streaming architecture)</h2><p><img src="https://www.mapr.com/ebooks/streaming-architecture/images/ndsa_0202.png" alt="这是一张图片"></p>
+<h2 id="流式架构三组件">流式架构三组件</h2><ul>
+<li>A producer: 与数据源相连的软件系统。生产者从数据源采集、转换、过滤、聚合、增强之后发布事件数据到流式系统中。</li>
+<li>The streaming system: 接受生产者发布的数据，持久化这些数据，然后可靠的将数据分发给消费者。</li>
+<li>Consumers: 从流中订阅数据，并操作，或者分析这些数据。</li>
+</ul>
+<h2 id="技术选型(Options)">技术选型(Options)</h2><p>Producers:</p>
+<ul>
+<li>Apache Flume</li>
+<li>StreamSets Data Collector</li>
+</ul>
+<p>Streaming System</p>
+<ul>
+<li>Apache Kafka</li>
+<li>MapR Streams</li>
+</ul>
+<p>Comsumers(Processing)</p>
+<ul>
+<li>Spark Streaming</li>
+<li>Apache Spark</li>
+<li>Apache Flink</li>
+<li>Apache Apex</li>
+</ul>
+<h2 id="参考：">参考：</h2><p>1.<a href="https://www.mapr.com/blog/real-time-event-streaming-what-are-your-options" target="_blank" rel="external">Real-Time Event Streaming What Are Your Options?</a><br>2.<a href="https://www.mapr.com/ebooks/streaming-architecture/" target="_blank" rel="external">《Streaming Architecture》</a><br>3.<a href="https://www.mapr.com/ebooks/streaming-architecture/chapter-02-stream-based-architecture.html#ch02" target="_blank" rel="external">Stream-based Architecture</a><br>4.<a href="https://www.mapr.com/ebooks/streaming-architecture/chapter-03-streaming-platform-for-microservices.html#ch03" target="_blank" rel="external">Streaming Architecture: Ideal Platform for Microservices</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="一个典型的流式架构(a_typical_streaming_architecture)">一个典型的流式架构(a typical streaming architecture)</h2><p><img src="https://www.mapr.com/ebook]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="Hive" scheme="http://navigating.github.io/tags/Hive/"/>
+    
+      <category term="Impala" scheme="http://navigating.github.io/tags/Impala/"/>
+    
+      <category term="Tez" scheme="http://navigating.github.io/tags/Tez/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[大数据动态之2016Q2]]></title>
+    <link href="http://navigating.github.io/2016/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B2016Q2/"/>
+    <id>http://navigating.github.io/2016/大数据动态之2016Q2/</id>
+    <published>2016-04-18T02:41:31.000Z</published>
+    <updated>2016-04-18T13:47:09.613Z</updated>
+    <content type="html"><![CDATA[<h2 id="Cloudera">Cloudera</h2><h2 id="Hortonworks">Hortonworks</h2><p>Top Ten Blogs from 2015<br><a href="http://hortonworks.com/blog/top-ten-blogs-from-2015/" target="_blank" rel="external">http://hortonworks.com/blog/top-ten-blogs-from-2015/</a><br>Best practices in HDFS authorization with Apache Ranger<br><a href="http://hortonworks.com/blog/best-practices-in-hdfs-authorization-with-apache-ranger/" target="_blank" rel="external">http://hortonworks.com/blog/best-practices-in-hdfs-authorization-with-apache-ranger/</a><br>Community Choice Winner Blog: Advanced Execution Visualization of Spark jobs<br><a href="http://hortonworks.com/blog/community-choice-winner-blog-advanced-execution-visualization-spark-jobs/" target="_blank" rel="external">http://hortonworks.com/blog/community-choice-winner-blog-advanced-execution-visualization-spark-jobs/</a><br>Delivering an Advanced Analytics Platform for Media Management with Arkena<br><a href="http://hortonworks.com/blog/delivering-an-advanced-analytics-platform-for-media-management-with-arkena/" target="_blank" rel="external">http://hortonworks.com/blog/delivering-an-advanced-analytics-platform-for-media-management-with-arkena/</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/it-has-a-been-a-busy-week-on-hcc-here-is-the-hot-content-for-this-week-based-on-community-activity-and-votes/" target="_blank" rel="external">http://hortonworks.com/blog/it-has-a-been-a-busy-week-on-hcc-here-is-the-hot-content-for-this-week-based-on-community-activity-and-votes/</a><br>Ambari Metrics - Switching from Embedded to Distributed Mode Fails<br><a href="https://community.hortonworks.com/questions/17421/ambari-metrics-switching-from-embedded-to-distribu.html" target="_blank" rel="external">https://community.hortonworks.com/questions/17421/ambari-metrics-switching-from-embedded-to-distribu.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-that-ever-hadoop-developer-should-read-week-072016/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-that-ever-hadoop-developer-should-read-week-072016/</a><br>Windowing and State checkpointing in Apache Storm<br><a href="http://hortonworks.com/blog/storm-support-windowing-state/" target="_blank" rel="external">http://hortonworks.com/blog/storm-support-windowing-state/</a><br><a href="https://community.hortonworks.com/articles/14171/windowing-and-state-checkpointing-in-apache-storm.html" target="_blank" rel="external">https://community.hortonworks.com/articles/14171/windowing-and-state-checkpointing-in-apache-storm.html</a><br>Hadoop All Grown Up<br><a href="http://hortonworks.com/blog/hadoop-all-grown-up/" target="_blank" rel="external">http://hortonworks.com/blog/hadoop-all-grown-up/</a><br>Top 3 articles for every Hadoop Developer 2<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-2/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-2/</a><br>Hive on Tez Performance Tuning – Determining Reducer Counts<br><a href="https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html" target="_blank" rel="external">https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html</a><br>What is the Hortonworks recommendation on Swap usage?<br><a href="https://community.hortonworks.com/questions/22548/what-is-the-hortonworks-recommendation-on-swap-usa.html" target="_blank" rel="external">https://community.hortonworks.com/questions/22548/what-is-the-hortonworks-recommendation-on-swap-usa.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer/</a><br>Install Apache Hawq on HDP 2.3.4<br><a href="https://community.hortonworks.com/articles/20420/install-apache-hawq-on-hdp-234.html" target="_blank" rel="external">https://community.hortonworks.com/articles/20420/install-apache-hawq-on-hdp-234.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/enter-title-here/" target="_blank" rel="external">http://hortonworks.com/blog/enter-title-here/</a><br>How to remove risk disks from Hadoop cluster ?<br><a href="https://community.hortonworks.com/questions/18593/how-to-remove-risk-disks-from-hadoop-cluster.html" target="_blank" rel="external">https://community.hortonworks.com/questions/18593/how-to-remove-risk-disks-from-hadoop-cluster.html</a><br><a href="https://community.hortonworks.com/articles/3131/replacing-disk-on-datanode-hosts.html" target="_blank" rel="external">https://community.hortonworks.com/articles/3131/replacing-disk-on-datanode-hosts.html</a><br>Capacity scheduler queue mapping while doAs disabled<br><a href="https://community.hortonworks.com/questions/18639/capacity-scheduler-queue-mapping-while-doas-disabl.html" target="_blank" rel="external">https://community.hortonworks.com/questions/18639/capacity-scheduler-queue-mapping-while-doas-disabl.html</a><br>Hortonworks DataFlow 1.2 Released<br><a href="http://hortonworks.com/blog/hortonworks-dataflow-1-2-released/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-dataflow-1-2-released/</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-3/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-3/</a><br>Quickly enable SSL encryption for Hadoop components in HDP Sandbox<br><a href="https://community.hortonworks.com/articles/22756/quickly-enable-ssl-encryption-for-hadoop-component.html" target="_blank" rel="external">https://community.hortonworks.com/articles/22756/quickly-enable-ssl-encryption-for-hadoop-component.html</a><br>Hortonworks HDP and SAS Event Stream Processing together, using YARN<br><a href="http://hortonworks.com/blog/hortonworks-hdp-and-sas-event-stream-processing-together-using-yarn/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-hdp-and-sas-event-stream-processing-together-using-yarn/</a></p>
+<h1 id="Databricks">Databricks</h1><p>Announcing Spark 1.6<br><a href="https://databricks.com/blog/2016/01/04/announcing-spark-1-6.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/04/announcing-spark-1-6.html</a><br>Introducing Spark Datasets<br><a href="https://databricks.com/blog/2016/01/04/introducing-spark-datasets.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/04/introducing-spark-datasets.html</a><br>Spark 2015 Year In Review<br><a href="https://databricks.com/blog/2016/01/05/spark-2015-year-in-review.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/05/spark-2015-year-in-review.html</a><br>Deep Learning with Spark and TensorFlow<br><a href="https://databricks.com/blog/2016/01/25/deep-learning-with-spark-and-tensorflow.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/25/deep-learning-with-spark-and-tensorflow.html</a><br>Faster Stateful Stream Processing in Spark Streaming<br><a href="https://databricks.com/blog/2016/02/01/faster-stateful-stream-processing-in-spark-streaming.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/01/faster-stateful-stream-processing-in-spark-streaming.html</a><br>An Illustrated Guide to Advertising Analytics<br><a href="https://databricks.com/blog/2016/02/02/an-illustrated-guide-to-advertising-analytics.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/02/an-illustrated-guide-to-advertising-analytics.html</a><br>Introducing Databricks Community Edition: Apache Spark for All<br><a href="https://databricks.com/blog/2016/02/17/introducing-databricks-community-edition-apache-spark-for-all.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/17/introducing-databricks-community-edition-apache-spark-for-all.html</a><br>Introducing Databricks Dashboards<br><a href="https://databricks.com/blog/2016/02/17/introducing-databricks-dashboards.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/17/introducing-databricks-dashboards.html</a><br>Introducing GraphFrames<br><a href="https://databricks.com/blog/2016/03/03/introducing-graphframes.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/03/introducing-graphframes.html</a><br>On-Time Flight Performance with GraphFrames for Apache Spark<br><a href="https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html</a><br>Announcing New Databricks APIs for Faster Production Spark Application Deployment<br><a href="https://databricks.com/blog/2016/03/30/announcing-new-databricks-apis-for-faster-production-spark-application-deployment.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/30/announcing-new-databricks-apis-for-faster-production-spark-application-deployment.html</a><br>Introducing our new eBook: Apache Spark Analytics Made Simple<br><a href="https://databricks.com/blog/2016/03/31/introducing-our-new-ebook-apache-spark-analytics-made-simple.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/31/introducing-our-new-ebook-apache-spark-analytics-made-simple.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Cloudera">Cloudera</h2><h2 id="Hortonworks">Hortonworks</h2><p>Top Ten Blogs from 2015<br><a href="http://hortonworks.com/blog/top-t]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="MongoDB" scheme="http://navigating.github.io/tags/MongoDB/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[大数据动态之2016Q1]]></title>
+    <link href="http://navigating.github.io/2016/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B2016Q1/"/>
+    <id>http://navigating.github.io/2016/大数据动态之2016Q1/</id>
+    <published>2016-04-01T02:41:31.000Z</published>
+    <updated>2016-04-18T13:45:59.660Z</updated>
+    <content type="html"><![CDATA[<h2 id="Cloudera">Cloudera</h2><h2 id="Hortonworks">Hortonworks</h2><p>Top Ten Blogs from 2015<br><a href="http://hortonworks.com/blog/top-ten-blogs-from-2015/" target="_blank" rel="external">http://hortonworks.com/blog/top-ten-blogs-from-2015/</a><br>Best practices in HDFS authorization with Apache Ranger<br><a href="http://hortonworks.com/blog/best-practices-in-hdfs-authorization-with-apache-ranger/" target="_blank" rel="external">http://hortonworks.com/blog/best-practices-in-hdfs-authorization-with-apache-ranger/</a><br>Community Choice Winner Blog: Advanced Execution Visualization of Spark jobs<br><a href="http://hortonworks.com/blog/community-choice-winner-blog-advanced-execution-visualization-spark-jobs/" target="_blank" rel="external">http://hortonworks.com/blog/community-choice-winner-blog-advanced-execution-visualization-spark-jobs/</a><br>Delivering an Advanced Analytics Platform for Media Management with Arkena<br><a href="http://hortonworks.com/blog/delivering-an-advanced-analytics-platform-for-media-management-with-arkena/" target="_blank" rel="external">http://hortonworks.com/blog/delivering-an-advanced-analytics-platform-for-media-management-with-arkena/</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/it-has-a-been-a-busy-week-on-hcc-here-is-the-hot-content-for-this-week-based-on-community-activity-and-votes/" target="_blank" rel="external">http://hortonworks.com/blog/it-has-a-been-a-busy-week-on-hcc-here-is-the-hot-content-for-this-week-based-on-community-activity-and-votes/</a><br>Ambari Metrics - Switching from Embedded to Distributed Mode Fails<br><a href="https://community.hortonworks.com/questions/17421/ambari-metrics-switching-from-embedded-to-distribu.html" target="_blank" rel="external">https://community.hortonworks.com/questions/17421/ambari-metrics-switching-from-embedded-to-distribu.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-that-ever-hadoop-developer-should-read-week-072016/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-that-ever-hadoop-developer-should-read-week-072016/</a><br>Windowing and State checkpointing in Apache Storm<br><a href="http://hortonworks.com/blog/storm-support-windowing-state/" target="_blank" rel="external">http://hortonworks.com/blog/storm-support-windowing-state/</a><br><a href="https://community.hortonworks.com/articles/14171/windowing-and-state-checkpointing-in-apache-storm.html" target="_blank" rel="external">https://community.hortonworks.com/articles/14171/windowing-and-state-checkpointing-in-apache-storm.html</a><br>Hadoop All Grown Up<br><a href="http://hortonworks.com/blog/hadoop-all-grown-up/" target="_blank" rel="external">http://hortonworks.com/blog/hadoop-all-grown-up/</a><br>Top 3 articles for every Hadoop Developer 2<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-2/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-2/</a><br>Hive on Tez Performance Tuning – Determining Reducer Counts<br><a href="https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html" target="_blank" rel="external">https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html</a><br>What is the Hortonworks recommendation on Swap usage?<br><a href="https://community.hortonworks.com/questions/22548/what-is-the-hortonworks-recommendation-on-swap-usa.html" target="_blank" rel="external">https://community.hortonworks.com/questions/22548/what-is-the-hortonworks-recommendation-on-swap-usa.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer/</a><br>Install Apache Hawq on HDP 2.3.4<br><a href="https://community.hortonworks.com/articles/20420/install-apache-hawq-on-hdp-234.html" target="_blank" rel="external">https://community.hortonworks.com/articles/20420/install-apache-hawq-on-hdp-234.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/enter-title-here/" target="_blank" rel="external">http://hortonworks.com/blog/enter-title-here/</a><br>How to remove risk disks from Hadoop cluster ?<br><a href="https://community.hortonworks.com/questions/18593/how-to-remove-risk-disks-from-hadoop-cluster.html" target="_blank" rel="external">https://community.hortonworks.com/questions/18593/how-to-remove-risk-disks-from-hadoop-cluster.html</a><br><a href="https://community.hortonworks.com/articles/3131/replacing-disk-on-datanode-hosts.html" target="_blank" rel="external">https://community.hortonworks.com/articles/3131/replacing-disk-on-datanode-hosts.html</a><br>Capacity scheduler queue mapping while doAs disabled<br><a href="https://community.hortonworks.com/questions/18639/capacity-scheduler-queue-mapping-while-doas-disabl.html" target="_blank" rel="external">https://community.hortonworks.com/questions/18639/capacity-scheduler-queue-mapping-while-doas-disabl.html</a><br>Hortonworks DataFlow 1.2 Released<br><a href="http://hortonworks.com/blog/hortonworks-dataflow-1-2-released/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-dataflow-1-2-released/</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-3/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-3/</a><br>Quickly enable SSL encryption for Hadoop components in HDP Sandbox<br><a href="https://community.hortonworks.com/articles/22756/quickly-enable-ssl-encryption-for-hadoop-component.html" target="_blank" rel="external">https://community.hortonworks.com/articles/22756/quickly-enable-ssl-encryption-for-hadoop-component.html</a><br>Hortonworks HDP and SAS Event Stream Processing together, using YARN<br><a href="http://hortonworks.com/blog/hortonworks-hdp-and-sas-event-stream-processing-together-using-yarn/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-hdp-and-sas-event-stream-processing-together-using-yarn/</a></p>
+<h2 id="MapR">MapR</h2><p>Apache Spark as a Distributed SQL Engine<br><a href="https://www.mapr.com/blog/apache-spark-distributed-sql-engine" target="_blank" rel="external">https://www.mapr.com/blog/apache-spark-distributed-sql-engine</a><br>Apache Flink GA - Planning for the Future<br><a href="https://www.mapr.com/blog/apache-flink-ga-planning-future" target="_blank" rel="external">https://www.mapr.com/blog/apache-flink-ga-planning-future</a><br>How to Log in Apache Spark<br><a href="https://www.mapr.com/blog/how-log-apache-spark" target="_blank" rel="external">https://www.mapr.com/blog/how-log-apache-spark</a><br>Streaming in the Extreme<br><a href="https://www.mapr.com/blog/streaming-extreme" target="_blank" rel="external">https://www.mapr.com/blog/streaming-extreme</a><br>Secondary Indexing for MapR-DB using Elasticsearch<br><a href="https://www.mapr.com/blog/secondary-indexing-mapr-db-using-elasticsearch" target="_blank" rel="external">https://www.mapr.com/blog/secondary-indexing-mapr-db-using-elasticsearch</a><br>Top 10 Most Popular MapR Blog Posts of 2015<br><a href="https://www.mapr.com/blog/top-10-most-popular-mapr-blog-posts-2015" target="_blank" rel="external">https://www.mapr.com/blog/top-10-most-popular-mapr-blog-posts-2015</a><br>Architecture Matters for Production Success<br><a href="https://www.mapr.com/why-hadoop/why-mapr/architecture-matters" target="_blank" rel="external">https://www.mapr.com/why-hadoop/why-mapr/architecture-matters</a><br>Spark Data Source API: Extending Our Spark SQL Query Engine<br><a href="https://www.mapr.com/blog/spark-data-source-api-extending-our-spark-sql-query-engine" target="_blank" rel="external">https://www.mapr.com/blog/spark-data-source-api-extending-our-spark-sql-query-engine</a><br>What Will You Do in 2016? Apache Spark, Kafka, Drill and More<br><a href="https://www.mapr.com/blog/what-will-you-do-2016-apache-spark-kafka-drill-and-more" target="_blank" rel="external">https://www.mapr.com/blog/what-will-you-do-2016-apache-spark-kafka-drill-and-more</a><br>A Brief Overview of Performance Enhancements in Apache Drill 1.4<br><a href="https://www.mapr.com/blog/brief-overview-performance-enhancements-apache-drill-14" target="_blank" rel="external">https://www.mapr.com/blog/brief-overview-performance-enhancements-apache-drill-14</a></p>
+<h1 id="Databricks">Databricks</h1><p>Announcing Spark 1.6<br><a href="https://databricks.com/blog/2016/01/04/announcing-spark-1-6.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/04/announcing-spark-1-6.html</a><br>Introducing Spark Datasets<br><a href="https://databricks.com/blog/2016/01/04/introducing-spark-datasets.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/04/introducing-spark-datasets.html</a><br>Spark 2015 Year In Review<br><a href="https://databricks.com/blog/2016/01/05/spark-2015-year-in-review.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/05/spark-2015-year-in-review.html</a><br>Deep Learning with Spark and TensorFlow<br><a href="https://databricks.com/blog/2016/01/25/deep-learning-with-spark-and-tensorflow.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/25/deep-learning-with-spark-and-tensorflow.html</a><br>Faster Stateful Stream Processing in Spark Streaming<br><a href="https://databricks.com/blog/2016/02/01/faster-stateful-stream-processing-in-spark-streaming.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/01/faster-stateful-stream-processing-in-spark-streaming.html</a><br>An Illustrated Guide to Advertising Analytics<br><a href="https://databricks.com/blog/2016/02/02/an-illustrated-guide-to-advertising-analytics.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/02/an-illustrated-guide-to-advertising-analytics.html</a><br>Introducing Databricks Community Edition: Apache Spark for All<br><a href="https://databricks.com/blog/2016/02/17/introducing-databricks-community-edition-apache-spark-for-all.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/17/introducing-databricks-community-edition-apache-spark-for-all.html</a><br>Introducing Databricks Dashboards<br><a href="https://databricks.com/blog/2016/02/17/introducing-databricks-dashboards.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/17/introducing-databricks-dashboards.html</a><br>Introducing GraphFrames<br><a href="https://databricks.com/blog/2016/03/03/introducing-graphframes.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/03/introducing-graphframes.html</a><br>On-Time Flight Performance with GraphFrames for Apache Spark<br><a href="https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html</a><br>Announcing New Databricks APIs for Faster Production Spark Application Deployment<br><a href="https://databricks.com/blog/2016/03/30/announcing-new-databricks-apis-for-faster-production-spark-application-deployment.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/30/announcing-new-databricks-apis-for-faster-production-spark-application-deployment.html</a><br>Introducing our new eBook: Apache Spark Analytics Made Simple<br><a href="https://databricks.com/blog/2016/03/31/introducing-our-new-ebook-apache-spark-analytics-made-simple.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/31/introducing-our-new-ebook-apache-spark-analytics-made-simple.html</a></p>
+<p>参考</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Cloudera">Cloudera</h2><h2 id="Hortonworks">Hortonworks</h2><p>Top Ten Blogs from 2015<br><a href="http://hortonworks.com/blog/top-t]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="MongoDB" scheme="http://navigating.github.io/tags/MongoDB/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[大数据动态之2015Q4]]></title>
+    <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B2015Q4/"/>
+    <id>http://navigating.github.io/2015/大数据动态之2015Q4/</id>
+    <published>2016-01-01T02:41:31.000Z</published>
+    <updated>2016-04-18T13:45:46.872Z</updated>
+    <content type="html"><![CDATA[<h2 id="Cloudera">Cloudera</h2><h2 id="Hortonworks">Hortonworks</h2><p>Hortonworks DataFlow 1.1 Released<br><a href="http://hortonworks.com/blog/hortonworks-dataflow-1-1-released/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-dataflow-1-1-released/</a></p>
+<h2 id="MapR">MapR</h2><p>Top 10 Big Data Trends in 2016 for Financial Services<br><a href="https://www.mapr.com/blog/top-10-big-data-trends-2016-financial-services" target="_blank" rel="external">https://www.mapr.com/blog/top-10-big-data-trends-2016-financial-services</a><br>Apache Spark vs. Apache Drill<br><a href="https://www.mapr.com/blog/apache-spark-vs-apache-drill" target="_blank" rel="external">https://www.mapr.com/blog/apache-spark-vs-apache-drill</a><br>Turning Data Into Value with Hadoop and Spark – Infographic<br><a href="https://www.mapr.com/blog/turning-data-value-hadoop-and-spark-infographic" target="_blank" rel="external">https://www.mapr.com/blog/turning-data-value-hadoop-and-spark-infographic</a><br>Apache Apex: OSS Incubator Project for Batch and Stream Processing<br><a href="https://www.mapr.com/blog/apache-apex-oss-incubator-project-batch-and-stream-processing" target="_blank" rel="external">https://www.mapr.com/blog/apache-apex-oss-incubator-project-batch-and-stream-processing</a><br>Mesos and YARN: A tale of two clusters<br><a href="https://www.mapr.com/blog/mesos-and-yarn-tale-two-clusters" target="_blank" rel="external">https://www.mapr.com/blog/mesos-and-yarn-tale-two-clusters</a><br>Comparing SQL Functions and Performance with Apache Spark and Apache Drill<br><a href="https://www.mapr.com/blog/comparing-sql-functions-and-performance-apache-spark-and-apache-drill" target="_blank" rel="external">https://www.mapr.com/blog/comparing-sql-functions-and-performance-apache-spark-and-apache-drill</a><br>MapReduce Design Patterns Implemented in Apache Spark<br><a href="https://www.mapr.com/blog/mapreduce-design-patterns-implemented-apache-spark" target="_blank" rel="external">https://www.mapr.com/blog/mapreduce-design-patterns-implemented-apache-spark</a><br>Introduction to Apache Spark with Examples and Use Cases<br><a href="https://www.mapr.com/blog/introduction-apache-spark-examples-and-use-cases" target="_blank" rel="external">https://www.mapr.com/blog/introduction-apache-spark-examples-and-use-cases</a><br>Distributed Stream and Graph Processing with Apache Flink<br><a href="https://www.mapr.com/blog/distributed-stream-and-graph-processing-apache-flink" target="_blank" rel="external">https://www.mapr.com/blog/distributed-stream-and-graph-processing-apache-flink</a><br>A Quick Guide to Spark Streaming<br><a href="https://www.mapr.com/blog/quick-guide-spark-streaming" target="_blank" rel="external">https://www.mapr.com/blog/quick-guide-spark-streaming</a></p>
+<p>参考</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Cloudera">Cloudera</h2><h2 id="Hortonworks">Hortonworks</h2><p>Hortonworks DataFlow 1.1 Released<br><a href="http://hortonworks.com/]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="HBase" scheme="http://navigating.github.io/tags/HBase/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="MongoDB" scheme="http://navigating.github.io/tags/MongoDB/"/>
+    
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[JVM监控与调优]]></title>
     <link href="http://navigating.github.io/2015/JVM%E7%9B%91%E6%8E%A7%E4%B8%8E%E8%B0%83%E4%BC%98/"/>
     <id>http://navigating.github.io/2015/JVM监控与调优/</id>
     <published>2015-11-06T07:53:46.000Z</published>
-    <updated>2015-11-10T06:32:27.396Z</updated>
+    <updated>2015-11-10T08:18:37.678Z</updated>
     <content type="html"><![CDATA[<h2 id="题外话">题外话</h2><p>本文当前的范围是Java 8之前的虚拟机，因为Java 8之后虚拟机的架构有比较大的调整，存储类的元数据信息的永久代被删除了，而是放在虚拟机的元空间。<br>JDK 7及之前的版本中永久代有如下的特点：</p>
 <ol>
 <li>永久代和堆在内存分配上是相连的；</li>
@@ -954,125 +1087,6 @@ $ npm <span class="keyword">install</span> hexo-generator-feed
       <category term="github" scheme="http://navigating.github.io/tags/github/"/>
     
       <category term="hexo" scheme="http://navigating.github.io/tags/hexo/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://navigating.github.io/2015/hello-world/"/>
-    <id>http://navigating.github.io/2015/hello-world/</id>
-    <published>2015-07-27T09:20:22.000Z</published>
-    <updated>2015-07-28T09:21:58.301Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io]]>
-    </summary>
-    
-      <category term="hexo" scheme="http://navigating.github.io/tags/hexo/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hadoop 2.7.1 发布]]></title>
-    <link href="http://navigating.github.io/2015/Hadoop-2-7-1-%E5%8F%91%E5%B8%83/"/>
-    <id>http://navigating.github.io/2015/Hadoop-2-7-1-发布/</id>
-    <published>2015-07-09T13:49:30.000Z</published>
-    <updated>2015-07-30T13:50:50.764Z</updated>
-    <content type="html"><![CDATA[<p>2015年7月6日，Apache Hadoop的稳定版本 2.7.1 正式发布。<br><a href="http://hadoop.apache.org/releases.html#Release+Notes" target="_blank" rel="external">http://hadoop.apache.org/releases.html#Release+Notes</a> </p>
-<p>Hadoop 2.7的一个小版本发布了，本版本属于稳定版本。<br>修复了2.7.0中存在的131个bug。<br>这是2.7.x第一个稳定版本，增强的功能列表请通过2.7.0版本部分查看。<br>按着计划，下一个2.7.x的小版本是2.7.2.</p>
-<p>原文：<br>06 July, 2015: Release 2.7.1 (stable) availableA point release for the 2.7 line. This release is now considered stable.<br>Please see the Hadoop 2.7.1 Release Notes for the list of 131 bug fixes and patches since the previous release 2.7.0. Please look at the 2.7.0 section below for the list of enhancements enabled by this first stable release of 2.7.x.</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>2015年7月6日，Apache Hadoop的稳定版本 2.7.1 正式发布。<br><a href="http://hadoop.apache.org/releases.html#Release+Notes" target="_blank" rel="external"]]>
-    </summary>
-    
-      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[读《Deploying Apache Kafka: A Practical FAQ》]]></title>
-    <link href="http://navigating.github.io/2015/%E8%AF%BB%E3%80%8ADeploying-Apache-Kafka-A-Practical-FAQ%E3%80%8B/"/>
-    <id>http://navigating.github.io/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/</id>
-    <published>2015-07-02T14:57:45.000Z</published>
-    <updated>2015-07-30T15:01:55.553Z</updated>
-    <content type="html"><![CDATA[<p>Cloudera发布了Kafka的好文，《Deploying Apache Kafka: A Practical FAQ》，参见：<a href="http://blog.cloudera.com/blog/2015/07/deploying-apache-kafka-a-practical-faq" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/deploying-apache-kafka-a-practical-faq</a></p>
-<p>是否应当为Kafka Broker使用 固态硬盘 (SSD)<br>实际上使用SSD盘并不能显著地改善 Kafka 的性能，主要有两个原因：</p>
-<pre><code>* Kafka写磁盘是异步的，不是同步的。就是说，除了启动、停止之外，Kafka的任何操作都不会去等待磁盘同步（sync）完成；而磁盘同步(disk syncs)总是在后台完成的。这就是为什么Kafka消息至少复制到三个副本是至关重要的，因为一旦单个副本崩溃，这个副本就会丢失数据无法同步写到磁盘。
-* 每一个Kafka <span class="keyword">Partition</span>被存储为一个串行的WAL（<span class="keyword">Write</span> Ahead <span class="keyword">Log</span>）日志文件。因此，除了极少数的数据查询，Kafka中的磁盘读写都是串行的。现代的操作系统已经对串行读写做了大量的优化工作。
-</code></pre><p>如何对Kafka Broker上持久化的数据进行加密<br>目前，Kafka不提供任何机制对Broker上持久化的数据进行加密。用户可以自己对写入到Kafka的数据进行加密，即是，生产者(Producers)在写Kafka之前加密数据，消费者(Consumers)能解密收到的消息。这就要求生产者(Producers)把加密协议(protocols)和密钥(keys)分享给消费者(Consumers)。<br>另外一种选择，就是使用软件提供的文件系统级别的加密，例如Cloudera Navigator Encrypt。Cloudera Navigator Encrypt是Cloudera企业版(Cloudera Enterprise)的一部分，在应用程序和文件系统之间提供了一个透明的加密层。<br>Apache Zookeeper正成为Kafka集群的一个痛点(pain point)，真的吗？<br>Kafka高级消费者(high-level consumer)的早期版本(0.8.1或更早)使用Zookeeper来维护读的偏移量(offsets，主要是Topic的每个Partition的读偏移量)。如果有大量生产者(consumers)同时从Kafka中读数据，对Kafka的读写负载可能就会超出它的容量，Zookeeper就变成一个瓶颈(bottleneck)。当然，这仅仅出现在一些很极端的案例中(extreme cases)，即有成百上千个消费者(consumers)在使用同一个Zookeeper集群来管理偏移量(offset)。<br>不过，这个问题已经在Kafka当前的版本(0.8.2)中解决。从版本0.8.2开始，高级消费者(high-level consumer)能够使用Kafka自己来管理偏移量(offsets)。本质上讲，它使用一个单独的Kafka Topic来管理最近的读偏移量(read offsets)，因此偏移量管理(offset management)不再要求Zookeeper必须存在。然后，用户将不得不面临选择是用Kafka还是Zookeeper来管理偏移量(offsets)，由消费者(consumer)配置参数 offsets.storage 决定。<br>Cloudera强烈推荐使用Kafka来存储偏移量。当然，为了保证向后兼容性，你可以继续选择使用Zookeeper存储偏移量。(例如，你可能有一个监控平台需要从Zookeeper中读取偏移量信息。) 假如你不得不使用Zookeeper进行偏移量(offset)管理，我们推荐你为Kafka集群使用一个专用的Zookeeper集群。假如一个专用的Zookeeper集群仍然有性能瓶颈，你依然可以通过在Zookeeper节点上使用固态硬盘(SSD)来解决问题。<br>Kafka是否支持跨数据中心的可用性<br>Kafka跨数据中心可用性的推荐解决方案是使用MirrorMaker(<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330" target="_blank" rel="external">https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330</a> ) 。在你的每一个数据中心都搭建一个Kafka集群，在Kafka集群之间使用MirrorMaker来完成近实时的数据复制。<br>使用MirrorMaker的架构模式是为每一个”逻辑”的topic在每一个数据中心创建一个topic：例如，在逻辑上你有一个”clicks”的topic，那么你实际上有”DC1.clicks”和“DC2.clicks”两个topic(DC1和DC2指得是你的数据中心)。DC1向DC1.clicks中写数据，DC2向DC2.clicks中写数据。MirrorMaker将复制所有的DC1 topics到DC2，并且复制所有的DC2 topics到DC1。现在每个DC上的应用程序都能够访问写入到两个DC的事件。这个应用程序能够合并信息和处理相应的冲突。<br>另一种更复杂的模式是在每一个DC都搭建本地和聚合Kafka集群。这个模式已经被Linkedin使用，Linkedin Kafka运维团队已经在这篇Blog(<a href="https://engineering.linkedin.com/kafka/running-kafka-scale" target="_blank" rel="external">https://engineering.linkedin.com/kafka/running-kafka-scale</a> )中有详细的描述(参见“Tiers and Aggregation”)。<br>Kafka支持哪些类型的数据转换(data transformation)<br>数据流过的Kafka的时候，Kafka并不能进行数据转换。为了处理数据转换，我们推荐如下方法：</p>
-<pre><code>* 对于简单事件处理，使用<span class="constant">Flume Kafka </span>integration(<span class="symbol">http:</span>/<span class="regexp">/blog.cloudera.com/blog</span><span class="regexp">/2014/</span><span class="number">11</span>/flafka-apache-flume-meets-apache-kafka-<span class="keyword">for</span>-event-processing )，并且写一个简单的<span class="constant">Apache Flume Interceptor。</span>
-* 对于复杂(事件)处理，使用<span class="constant">Apache Spark Streaming从Kafka中</span>读数据和处理数据。
-</code></pre><p>在这两种情况下，被转换或者处理的数据可被写会到新的Kafka Topic中，或者直接传送到数据的最终消费者(Consumer)那里。<br>对于实时事件处理模式更全面的描述，看看这篇文章(<a href="http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/</a> )。<br>如何通过Kafka发送大消息或者超大负荷量？<br>Cloudera的性能测试表明Kafka达到最大吞吐量的消息大小为10K左右。更大的消息将导致吞吐量下降。然后，在一些情况下，用户需要发送比10K大的多的消息。<br>如果消息负荷大小是每100s处理MB级别，我们推荐探索以下选择：</p>
-<pre><code><span class="bullet">* </span>如果可以使用共享存储(HDFS、S3、NAS)，那么将超负载放在共享存储上，仅用Kafka发送负载数据位置的消息。
-<span class="bullet">* </span>对于大消息，在写入Kafka之前将消息拆分成更小的部分，使用消息Key确保所有的拆分部分都写入到同一个partition中，以便于它们能被同一个消息着(Consumer)消费的到，在消费的时候将拆分部分重新组装成一个大消息。
-</code></pre><p>在通过Kafka发送大消息时，请记住以下几点：<br>压缩配置</p>
-<pre><code><span class="keyword">*</span> Kafka生产者(Producers)能够压缩消息。通过配置参数compression.codec确保压缩已经开启。有效的选项为<span class="string">"gzip"</span>和<span class="string">"snappy"</span>。
-</code></pre><p>Broker配置</p>
-<pre><code>* message.<span class="built_in">max</span>.<span class="keyword">bytes</span> (default: <span class="number">1000000</span>): Broker能够接受的最大消息。增加这个值以便于匹配你的最大消息。
-* <span class="built_in">log</span>.<span class="keyword">segment</span>.<span class="keyword">bytes</span> (default: <span class="number">1</span>GB): Kafka数据文件的大小。确保它至少大于一条消息。默认情况下已经够用，一般最大的消息不会超过<span class="number">1</span>G大小。
-* replica.fetch.<span class="built_in">max</span>.<span class="keyword">bytes</span> (default: <span class="number">1</span>MB): Broker间复制的最大的数据大小。这个值必须大于message.<span class="built_in">max</span>.<span class="keyword">bytes</span>，否则一个Broker接受到消息但是会复制失败，从而导致潜在的数据丢失。
-</code></pre><p>Consumer配置</p>
-<pre><code>* <span class="tag">fetch</span><span class="class">.message</span><span class="class">.max</span><span class="class">.bytes</span> (<span class="rule"><span class="attribute">default</span>:<span class="value"> <span class="number">1</span>MB): Consumer所读消息的最大大小。这个值应该大于或者等于Broker配置的message.max.bytes的值。</span></span>
-</code></pre><p>其他方面的考虑：</p>
-<pre><code>* <span class="tag">Broker</span>需要针对复制为每一个<span class="tag">partition</span>分配一个<span class="tag">replica</span><span class="class">.fetch</span><span class="class">.max</span><span class="class">.bytes</span>大小的缓存区。需要计算确认( <span class="tag">partition</span>的数量 * 最大消息的大小 )不会超过可用的内存，否则就会引发<span class="tag">OOMs</span>（内存溢出异常）。
-* <span class="tag">Consumers</span>有同样的问题，因子参数为 <span class="tag">fetch</span><span class="class">.message</span><span class="class">.max</span><span class="class">.bytes</span> ：确认每一个<span class="tag">partition</span>的消费者针对最大的消息有足够可用的内存。
-* 大消息可能引发更长时间的垃圾回收停顿(<span class="tag">garbage</span> <span class="tag">collection</span> <span class="tag">pauses</span>)(<span class="tag">brokers</span>需要申请更大块的内存)。注意观察<span class="tag">GC</span>日志和服务器日志。假如发现长时间的<span class="tag">GC</span>停顿导致<span class="tag">Kafka</span>丢失了<span class="tag">Zookeeper</span> <span class="tag">session</span>，你可能需要为<span class="tag">zookeeper</span><span class="class">.session</span><span class="class">.timeout</span><span class="class">.ms</span>配置更长的<span class="tag">timeout</span>值。
-</code></pre><p>Kafka是否支持MQTT或JMS协议<br>目前，Kafka针对上述协议不提供直接支持。但是，用户可以自己编写Adaptors从MQTT或者JMS中读取数据，然后写入到Kafka中。</p>
-<p>更多关于在CDH中使用Kafka的信息，下载Deployment Guide(<a href="http://www.cloudera.com/content/cloudera/en/resources/library/datasheet/kafka-reference-architecture.html" target="_blank" rel="external">http://www.cloudera.com/content/cloudera/en/resources/library/datasheet/kafka-reference-architecture.html</a> ) 或者 观看webinar “Bringing Real-Time Data to Hadoop”(<a href="http://www.cloudera.com/content/cloudera/en/resources/library/recordedwebinar/kafka-webinar-recording.html" target="_blank" rel="external">http://www.cloudera.com/content/cloudera/en/resources/library/recordedwebinar/kafka-webinar-recording.html</a> )。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Cloudera发布了Kafka的好文，《Deploying Apache Kafka: A Practical FAQ》，参见：<a href="http://blog.cloudera.com/blog/2015/07/deploying-apache-kafka-a-]]>
-    </summary>
-    
-      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
-    
-      <category term="Kafka" scheme="http://navigating.github.io/tags/Kafka/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[大数据动态之201506]]></title>
-    <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201506/"/>
-    <id>http://navigating.github.io/2015/大数据动态之201506/</id>
-    <published>2015-06-09T13:52:23.000Z</published>
-    <updated>2015-08-10T06:25:16.483Z</updated>
-    <content type="html"><![CDATA[<p>Pinot：LinkedIn的实时数据分析系统<br><a href="http://www.infoq.com/cn/news/2014/10/linkdln" target="_blank" rel="external">http://www.infoq.com/cn/news/2014/10/linkdln</a><br><a href="https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot" target="_blank" rel="external">https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot</a></p>
-<p>Twitter Heron：Twitter发布新的大数据实时分析系统Heron<br><a href="http://geek.csdn.net/news/detail/33750" target="_blank" rel="external">http://geek.csdn.net/news/detail/33750</a><br><a href="http://www.longda.us/?p=529" target="_blank" rel="external">http://www.longda.us/?p=529</a> </p>
-<p>Cloudera<br>HBase对MOBs( Moderate Objects, 主要是大小100K到10M的对象存储 )的支持<br><a href="http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/</a><br>准实时计算架构模式<br><a href="http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/</a><br>(翻译：<a href="http://zhuanlan.zhihu.com/donglaoshi/20082628" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20082628</a> )<br>CDH 5.4 新功能：敏感数据处理(Sensitive Data Redaction)<br><a href="http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/</a> </p>
-<p>Hortonworks<br>YARN的CapacityScheduler对Resource-preemption的支持<br><a href="http://hortonworks.com/blog/better-slas-via-resource-preemption-in-yarns-capacityscheduler/" target="_blank" rel="external">http://hortonworks.com/blog/better-slas-via-resource-preemption-in-yarns-capacityscheduler/</a><br>Hadoop集群对Multihoming的支持<br><a href="http://hortonworks.com/blog/multihoming-on-hadoop-yarn-clusters/" target="_blank" rel="external">http://hortonworks.com/blog/multihoming-on-hadoop-yarn-clusters/</a><br>HDP 2.3企业级HDFS数据加密<br><a href="http://hortonworks.com/blog/new-in-hdp-2-3-enterprise-grade-hdfs-data-at-rest-encryption/" target="_blank" rel="external">http://hortonworks.com/blog/new-in-hdp-2-3-enterprise-grade-hdfs-data-at-rest-encryption/</a><br>Apache Slider 0.80.0版本发布<br><a href="http://hortonworks.com/blog/announcing-apache-slider-0-80-0/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-apache-slider-0-80-0/</a><br>Apache Spark 1.3.1 on HDP 2.2<br><a href="http://hortonworks.com/blog/apache-spark-on-hdp-learn-try-and-do/" target="_blank" rel="external">http://hortonworks.com/blog/apache-spark-on-hdp-learn-try-and-do/</a><br><a href="http://hortonworks.com/hadoop-tutorial/using-apache-spark-technical-preview-with-hdp-2-2/" target="_blank" rel="external">http://hortonworks.com/hadoop-tutorial/using-apache-spark-technical-preview-with-hdp-2-2/</a><br>Ambari 2.0.1 和 HDP 2.2.6 发布<br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.6/bk_HDP_RelNotes/content/ch_relnotes_v226.html" target="_blank" rel="external">http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.6/bk_HDP_RelNotes/content/ch_relnotes_v226.html</a><br><a href="http://docs.hortonworks.com/HDPDocuments/Ambari-2.0.1.0/bk_releasenotes_ambari_2.0.1.0/content/ch_relnotes-ambari-2.0.1.0.html" target="_blank" rel="external">http://docs.hortonworks.com/HDPDocuments/Ambari-2.0.1.0/bk_releasenotes_ambari_2.0.1.0/content/ch_relnotes-ambari-2.0.1.0.html</a></p>
-<p>其他：<br>Graphite的百万Metrics实践之路<br><a href="http://calvin1978.blogcn.com/articles/graphite.html" target="_blank" rel="external">http://calvin1978.blogcn.com/articles/graphite.html</a><br>HBaseCon 2015 大会幻灯片 &amp; 视频<br><a href="http://hbasecon.com/archive.html" target="_blank" rel="external">http://hbasecon.com/archive.html</a><br>HBase在腾讯大数据的应用实践<br><a href="http://www.d1net.com/bigdata/news/353500.html" target="_blank" rel="external">http://www.d1net.com/bigdata/news/353500.html</a><br>从Spark到Hadoop的架构实践<br><a href="http://www.csdn.net/article/2015-06-08/2824889" target="_blank" rel="external">http://www.csdn.net/article/2015-06-08/2824889</a><br>56网大数据<br><a href="http://share.csdn.net/slides/10903" target="_blank" rel="external">http://share.csdn.net/slides/10903</a><br>七牛技术总监陈超：记Spark Summit China 2015<br><a href="http://www.csdn.net/article/2015-04-30/2824594-spark-summit-china-2015" target="_blank" rel="external">http://www.csdn.net/article/2015-04-30/2824594-spark-summit-china-2015</a><br>唯品会美研中心郭安琪：2015 Hadoop Summit见闻<br><a href="http://zhuanlan.zhihu.com/donglaoshi/20072576" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20072576</a><br>华为叶琪：论Spark Streaming的数据可靠性和一致性<br><a href="http://www.csdn.net/article/2015-06-12/2824938" target="_blank" rel="external">http://www.csdn.net/article/2015-06-12/2824938</a><br>Hadoop Summit 2015<br><a href="http://2015.hadoopsummit.org/san-jose/agenda/" target="_blank" rel="external">http://2015.hadoopsummit.org/san-jose/agenda/</a><br>Spark Summit 2015<br><a href="https://spark-summit.org/2015/" target="_blank" rel="external">https://spark-summit.org/2015/</a> </p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Pinot：LinkedIn的实时数据分析系统<br><a href="http://www.infoq.com/cn/news/2014/10/linkdln" target="_blank" rel="external">http://www.infoq.com/cn/]]>
-    </summary>
-    
-      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
-    
-      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
-    
-      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
-    
-      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
