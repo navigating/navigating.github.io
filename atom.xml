@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2016-04-18T13:50:33.112Z</updated>
+  <updated>2016-05-16T08:36:17.549Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -16,11 +16,58 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[读《Thoughtworks技术雷达201604》]]></title>
+    <link href="http://navigating.github.io/2016/%E8%AF%BB%E3%80%8AThoughtworks%E6%8A%80%E6%9C%AF%E9%9B%B7%E8%BE%BE201604%E3%80%8B/"/>
+    <id>http://navigating.github.io/2016/读《Thoughtworks技术雷达201604》/</id>
+    <published>2016-05-16T02:41:31.000Z</published>
+    <updated>2016-05-16T08:36:17.549Z</updated>
+    <content type="html"><![CDATA[<p>笔记如下：</p>
+<ul>
+<li>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。<br><strong> 采用：我们强烈主张业界采用这些技术。如果适用我们的项目，我们会采用他们。
+</strong> 试验：值得追求。重要的是理解如何建立这种能力。企业应该在风险可控的项目中尝试该项技术。<br><strong> 评估：为了确认它将如何影响你所在的企业，值得做一番探究。
+</strong> 暂缓：谨慎推行。</li>
+<li>在技术理念上需要关注：Products over projects、BFF - Backend for frontends、Data Lake、Event Storming、QA in production、Reactive architectures。</li>
+<li>平台部分关注：Docker、Apache Mesos、Kubernets。</li>
+<li>工具部分关注：Consul、Apache Kafka、Zipkin。</li>
+<li>语言和框架部分关注：ES6、React.js、Spring Boot、Swift、Dagger、Dapper、Ember.js、Reactive Native。</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>笔记如下：</p>
+<ul>
+<li>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。<br><strong> 采用：我们强烈主张业界采用这些技术。如果]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[HDFS Snapshot]]></title>
+    <link href="http://navigating.github.io/2016/HDFS%20Snapshot/"/>
+    <id>http://navigating.github.io/2016/HDFS Snapshot/</id>
+    <published>2016-04-21T07:53:46.000Z</published>
+    <updated>2016-04-21T03:11:03.347Z</updated>
+    <content type="html"><![CDATA[<p>参考：<br>1.<a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html" target="_blank" rel="external">http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html</a><br>2.<a href="http://debugo.com/hdfs-snapshot/" target="_blank" rel="external">http://debugo.com/hdfs-snapshot/</a><br>3.<a href="http://blog.csdn.net/linlinv3/article/details/44622203" target="_blank" rel="external">http://blog.csdn.net/linlinv3/article/details/44622203</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>参考：<br>1.<a href="http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsSnapshots.html" target="_blank" rel="external]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[学习《Real-Time Event Streaming What Are Your Options》]]></title>
     <link href="http://navigating.github.io/2016/%E5%AD%A6%E4%B9%A0%E3%80%8AReal-Time%20Event%20Streaming%20What%20Are%20Your%20Options%E3%80%8B/"/>
     <id>http://navigating.github.io/2016/学习《Real-Time Event Streaming What Are Your Options》/</id>
     <published>2016-04-18T04:56:08.000Z</published>
-    <updated>2016-04-18T13:50:33.112Z</updated>
+    <updated>2016-04-21T03:52:50.129Z</updated>
     <content type="html"><![CDATA[<h2 id="一个典型的流式架构(a_typical_streaming_architecture)">一个典型的流式架构(a typical streaming architecture)</h2><p><img src="https://www.mapr.com/ebooks/streaming-architecture/images/ndsa_0202.png" alt="这是一张图片"></p>
 <h2 id="流式架构三组件">流式架构三组件</h2><ul>
 <li>A producer: 与数据源相连的软件系统。生产者从数据源采集、转换、过滤、聚合、增强之后发布事件数据到流式系统中。</li>
@@ -40,7 +87,7 @@
 <p>Comsumers(Processing)</p>
 <ul>
 <li>Spark Streaming</li>
-<li>Apache Spark</li>
+<li>Apache Storm</li>
 <li>Apache Flink</li>
 <li>Apache Apex</li>
 </ul>
@@ -52,13 +99,13 @@
     
       <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
     
+      <category term="Flume" scheme="http://navigating.github.io/tags/Flume/"/>
+    
       <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
     
-      <category term="Hive" scheme="http://navigating.github.io/tags/Hive/"/>
+      <category term="Kafka" scheme="http://navigating.github.io/tags/Kafka/"/>
     
-      <category term="Impala" scheme="http://navigating.github.io/tags/Impala/"/>
-    
-      <category term="Tez" scheme="http://navigating.github.io/tags/Tez/"/>
+      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -69,12 +116,28 @@
     <link href="http://navigating.github.io/2016/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B2016Q2/"/>
     <id>http://navigating.github.io/2016/大数据动态之2016Q2/</id>
     <published>2016-04-18T02:41:31.000Z</published>
-    <updated>2016-04-18T13:47:09.613Z</updated>
-    <content type="html"><![CDATA[<h2 id="Cloudera">Cloudera</h2><h2 id="Hortonworks">Hortonworks</h2><p>Top Ten Blogs from 2015<br><a href="http://hortonworks.com/blog/top-ten-blogs-from-2015/" target="_blank" rel="external">http://hortonworks.com/blog/top-ten-blogs-from-2015/</a><br>Best practices in HDFS authorization with Apache Ranger<br><a href="http://hortonworks.com/blog/best-practices-in-hdfs-authorization-with-apache-ranger/" target="_blank" rel="external">http://hortonworks.com/blog/best-practices-in-hdfs-authorization-with-apache-ranger/</a><br>Community Choice Winner Blog: Advanced Execution Visualization of Spark jobs<br><a href="http://hortonworks.com/blog/community-choice-winner-blog-advanced-execution-visualization-spark-jobs/" target="_blank" rel="external">http://hortonworks.com/blog/community-choice-winner-blog-advanced-execution-visualization-spark-jobs/</a><br>Delivering an Advanced Analytics Platform for Media Management with Arkena<br><a href="http://hortonworks.com/blog/delivering-an-advanced-analytics-platform-for-media-management-with-arkena/" target="_blank" rel="external">http://hortonworks.com/blog/delivering-an-advanced-analytics-platform-for-media-management-with-arkena/</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/it-has-a-been-a-busy-week-on-hcc-here-is-the-hot-content-for-this-week-based-on-community-activity-and-votes/" target="_blank" rel="external">http://hortonworks.com/blog/it-has-a-been-a-busy-week-on-hcc-here-is-the-hot-content-for-this-week-based-on-community-activity-and-votes/</a><br>Ambari Metrics - Switching from Embedded to Distributed Mode Fails<br><a href="https://community.hortonworks.com/questions/17421/ambari-metrics-switching-from-embedded-to-distribu.html" target="_blank" rel="external">https://community.hortonworks.com/questions/17421/ambari-metrics-switching-from-embedded-to-distribu.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-that-ever-hadoop-developer-should-read-week-072016/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-that-ever-hadoop-developer-should-read-week-072016/</a><br>Windowing and State checkpointing in Apache Storm<br><a href="http://hortonworks.com/blog/storm-support-windowing-state/" target="_blank" rel="external">http://hortonworks.com/blog/storm-support-windowing-state/</a><br><a href="https://community.hortonworks.com/articles/14171/windowing-and-state-checkpointing-in-apache-storm.html" target="_blank" rel="external">https://community.hortonworks.com/articles/14171/windowing-and-state-checkpointing-in-apache-storm.html</a><br>Hadoop All Grown Up<br><a href="http://hortonworks.com/blog/hadoop-all-grown-up/" target="_blank" rel="external">http://hortonworks.com/blog/hadoop-all-grown-up/</a><br>Top 3 articles for every Hadoop Developer 2<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-2/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-2/</a><br>Hive on Tez Performance Tuning – Determining Reducer Counts<br><a href="https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html" target="_blank" rel="external">https://community.hortonworks.com/articles/22419/hive-on-tez-performance-tuning-determining-reducer.html</a><br>What is the Hortonworks recommendation on Swap usage?<br><a href="https://community.hortonworks.com/questions/22548/what-is-the-hortonworks-recommendation-on-swap-usa.html" target="_blank" rel="external">https://community.hortonworks.com/questions/22548/what-is-the-hortonworks-recommendation-on-swap-usa.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer/</a><br>Install Apache Hawq on HDP 2.3.4<br><a href="https://community.hortonworks.com/articles/20420/install-apache-hawq-on-hdp-234.html" target="_blank" rel="external">https://community.hortonworks.com/articles/20420/install-apache-hawq-on-hdp-234.html</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/enter-title-here/" target="_blank" rel="external">http://hortonworks.com/blog/enter-title-here/</a><br>How to remove risk disks from Hadoop cluster ?<br><a href="https://community.hortonworks.com/questions/18593/how-to-remove-risk-disks-from-hadoop-cluster.html" target="_blank" rel="external">https://community.hortonworks.com/questions/18593/how-to-remove-risk-disks-from-hadoop-cluster.html</a><br><a href="https://community.hortonworks.com/articles/3131/replacing-disk-on-datanode-hosts.html" target="_blank" rel="external">https://community.hortonworks.com/articles/3131/replacing-disk-on-datanode-hosts.html</a><br>Capacity scheduler queue mapping while doAs disabled<br><a href="https://community.hortonworks.com/questions/18639/capacity-scheduler-queue-mapping-while-doas-disabl.html" target="_blank" rel="external">https://community.hortonworks.com/questions/18639/capacity-scheduler-queue-mapping-while-doas-disabl.html</a><br>Hortonworks DataFlow 1.2 Released<br><a href="http://hortonworks.com/blog/hortonworks-dataflow-1-2-released/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-dataflow-1-2-released/</a><br>Top 3 articles for every Hadoop Developer<br><a href="http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-3/" target="_blank" rel="external">http://hortonworks.com/blog/top-3-articles-every-hadoop-developer-3/</a><br>Quickly enable SSL encryption for Hadoop components in HDP Sandbox<br><a href="https://community.hortonworks.com/articles/22756/quickly-enable-ssl-encryption-for-hadoop-component.html" target="_blank" rel="external">https://community.hortonworks.com/articles/22756/quickly-enable-ssl-encryption-for-hadoop-component.html</a><br>Hortonworks HDP and SAS Event Stream Processing together, using YARN<br><a href="http://hortonworks.com/blog/hortonworks-hdp-and-sas-event-stream-processing-together-using-yarn/" target="_blank" rel="external">http://hortonworks.com/blog/hortonworks-hdp-and-sas-event-stream-processing-together-using-yarn/</a></p>
-<h1 id="Databricks">Databricks</h1><p>Announcing Spark 1.6<br><a href="https://databricks.com/blog/2016/01/04/announcing-spark-1-6.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/04/announcing-spark-1-6.html</a><br>Introducing Spark Datasets<br><a href="https://databricks.com/blog/2016/01/04/introducing-spark-datasets.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/04/introducing-spark-datasets.html</a><br>Spark 2015 Year In Review<br><a href="https://databricks.com/blog/2016/01/05/spark-2015-year-in-review.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/05/spark-2015-year-in-review.html</a><br>Deep Learning with Spark and TensorFlow<br><a href="https://databricks.com/blog/2016/01/25/deep-learning-with-spark-and-tensorflow.html" target="_blank" rel="external">https://databricks.com/blog/2016/01/25/deep-learning-with-spark-and-tensorflow.html</a><br>Faster Stateful Stream Processing in Spark Streaming<br><a href="https://databricks.com/blog/2016/02/01/faster-stateful-stream-processing-in-spark-streaming.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/01/faster-stateful-stream-processing-in-spark-streaming.html</a><br>An Illustrated Guide to Advertising Analytics<br><a href="https://databricks.com/blog/2016/02/02/an-illustrated-guide-to-advertising-analytics.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/02/an-illustrated-guide-to-advertising-analytics.html</a><br>Introducing Databricks Community Edition: Apache Spark for All<br><a href="https://databricks.com/blog/2016/02/17/introducing-databricks-community-edition-apache-spark-for-all.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/17/introducing-databricks-community-edition-apache-spark-for-all.html</a><br>Introducing Databricks Dashboards<br><a href="https://databricks.com/blog/2016/02/17/introducing-databricks-dashboards.html" target="_blank" rel="external">https://databricks.com/blog/2016/02/17/introducing-databricks-dashboards.html</a><br>Introducing GraphFrames<br><a href="https://databricks.com/blog/2016/03/03/introducing-graphframes.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/03/introducing-graphframes.html</a><br>On-Time Flight Performance with GraphFrames for Apache Spark<br><a href="https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/16/on-time-flight-performance-with-spark-graphframes.html</a><br>Announcing New Databricks APIs for Faster Production Spark Application Deployment<br><a href="https://databricks.com/blog/2016/03/30/announcing-new-databricks-apis-for-faster-production-spark-application-deployment.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/30/announcing-new-databricks-apis-for-faster-production-spark-application-deployment.html</a><br>Introducing our new eBook: Apache Spark Analytics Made Simple<br><a href="https://databricks.com/blog/2016/03/31/introducing-our-new-ebook-apache-spark-analytics-made-simple.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/31/introducing-our-new-ebook-apache-spark-analytics-made-simple.html</a></p>
+    <updated>2016-05-16T05:39:50.973Z</updated>
+    <content type="html"><![CDATA[<h2 id="Apache_Storm">Apache Storm</h2><p>Storm发布1.0.0版本，关键特性：</p>
+<ul>
+<li>Developer Productivity<br><strong> New Storm Connectors
+</strong> Storm-Kafka Spout using new client APIs<br><strong> Distributed Log Search
+</strong> Dynamic Worker Profiling</li>
+<li>Enterprise Readiness<br><strong> Improved nimbus HA
+</strong> Automatic Back pressure<br><strong> Distributed cache
+</strong> Windowing and State Management<br>** Storm Performance improvements</li>
+<li>Operational Simplicity<br><strong> Storm Topology Event inspector
+</strong> Resource Aware Scheduling<br><strong> Dynamic Log Levels
+</strong> Pacemaker Storm Daemon<br><a href="http://hortonworks.com/blog/announcing-apache-storm-1-0-0/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-apache-storm-1-0-0/</a><br><a href="https://storm.apache.org/2016/04/12/storm100-released.html" target="_blank" rel="external">https://storm.apache.org/2016/04/12/storm100-released.html</a></li>
+</ul>
+<h2 id="Cloudera">Cloudera</h2><p>How-to: Build a Prediction Engine using Spark, Kudu, and Impala<br><a href="http://blog.cloudera.com/blog/2016/05/how-to-build-a-prediction-engine-using-spark-kudu-and-impala/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/how-to-build-a-prediction-engine-using-spark-kudu-and-impala/</a><br>How-to: Improve Apache HBase Performance via Data Serialization with Apache Avro<br><a href="http://blog.cloudera.com/blog/2016/05/how-to-improve-apache-hbase-performance-via-data-serialization-with-apache-avro/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/how-to-improve-apache-hbase-performance-via-data-serialization-with-apache-avro/</a><br>Inside Santander’s Near Real-Time Data Ingest Architecture (Part 2)<br><a href="http://blog.cloudera.com/blog/2016/05/inside-santanders-near-real-time-data-ingest-architecture-part-2/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/inside-santanders-near-real-time-data-ingest-architecture-part-2/</a><br>Inside Santander’s Near Real-Time Data Ingest Architecture<br><a href="http://blog.cloudera.com/blog/2015/08/inside-santanders-near-real-time-data-ingest-architecture/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/inside-santanders-near-real-time-data-ingest-architecture/</a><br>Apache Impala (incubating) in CDH 5.7: 4x Faster for BI Workloads on Apache Hadoop<br><a href="http://blog.cloudera.com/blog/2016/04/apache-impala-incubating-in-cdh-5-7-4x-faster-for-bi-workloads-on-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/apache-impala-incubating-in-cdh-5-7-4x-faster-for-bi-workloads-on-apache-hadoop/</a><br>New in Cloudera Manager 5.7: Cluster Utilization Reporting<br><a href="http://blog.cloudera.com/blog/2016/04/new-in-cloudera-manager-5-7-cluster-utilization-reporting/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/new-in-cloudera-manager-5-7-cluster-utilization-reporting/</a><br>Cloudera Enterprise 5.7 is Released<br><a href="http://blog.cloudera.com/blog/2016/04/cloudera-enterprise-5-7-is-released/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/cloudera-enterprise-5-7-is-released/</a><br>How-to: Use Impala and Kudu Together for Analytic Workloads<br><a href="http://blog.cloudera.com/blog/2016/04/how-to-use-impala-and-kudu-together-for-analytic-workloads/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/how-to-use-impala-and-kudu-together-for-analytic-workloads/</a><br>Quality Assurance at Cloudera: Running/Upgrading to New Releases on Our Own EDH Cluster<br><a href="http://blog.cloudera.com/blog/2016/04/quality-assurance-at-cloudera-runningupgrading-to-new-releases-on-our-own-edh-cluster/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/quality-assurance-at-cloudera-runningupgrading-to-new-releases-on-our-own-edh-cluster/</a><br>Quality Assurance at Cloudera: Fault Injection and Elastic Partitioning<br><a href="http://blog.cloudera.com/blog/2016/04/quality-assurance-at-cloudera-fault-injection-and-elastic-partitioning/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/quality-assurance-at-cloudera-fault-injection-and-elastic-partitioning/</a><br>Benchmarking Apache Parquet: The Allstate Experience<br><a href="http://blog.cloudera.com/blog/2016/04/benchmarking-apache-parquet-the-allstate-experience/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/benchmarking-apache-parquet-the-allstate-experience/</a></p>
+<h2 id="Hortonworks">Hortonworks</h2><p>ANNOUNCING APACHE STORM 1.0.0<br><a href="http://hortonworks.com/blog/announcing-apache-storm-1-0-0/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-apache-storm-1-0-0/</a><br>THE NEXT GENERATION OF HADOOP-BASED SECURITY &amp; DATA GOVERNANCE<br><a href="http://hortonworks.com/blog/the-next-generation-of-hadoop-based-security-data-governance/" target="_blank" rel="external">http://hortonworks.com/blog/the-next-generation-of-hadoop-based-security-data-governance/</a><br>ADVANCED METRICS VISUALIZATION DASHBOARDING WITH APACHE AMBARI<br><a href="http://hortonworks.com/blog/advanced-metrics-visualization-dashboarding-apache-ambari/" target="_blank" rel="external">http://hortonworks.com/blog/advanced-metrics-visualization-dashboarding-apache-ambari/</a><br>STREAMLINING APACHE HADOOP OPERATIONS<br><a href="http://hortonworks.com/blog/streamlining-apache-hadoop-operations/" target="_blank" rel="external">http://hortonworks.com/blog/streamlining-apache-hadoop-operations/</a><br>THE NEXT MARKET LEADERS WILL POWER THEIR BUSINESSES FROM IOAT DATA SOURCES<br><a href="http://hortonworks.com/blog/next-market-leaders-will-power-businesses-ioat-data-sources/" target="_blank" rel="external">http://hortonworks.com/blog/next-market-leaders-will-power-businesses-ioat-data-sources/</a></p>
+<h2 id="Databricks">Databricks</h2><p>Preview of Apache Spark 2.0 now on Databricks Community Edition<br><a href="https://databricks.com/blog/2016/05/11/spark-2-0-technical-preview-easier-faster-and-smarter.html" target="_blank" rel="external">https://databricks.com/blog/2016/05/11/spark-2-0-technical-preview-easier-faster-and-smarter.html</a><br>Spark Trending in the Stack Overflow Survey<br><a href="https://databricks.com/blog/2016/03/22/spark-trending-in-the-stack-overflow-survey.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/22/spark-trending-in-the-stack-overflow-survey.html</a><br><a href="http://stackoverflow.com/research/developer-survey-2016" target="_blank" rel="external">http://stackoverflow.com/research/developer-survey-2016</a><br>Continuous Integration and Delivery of Spark Applications at Metacog<br><a href="https://databricks.com/blog/2016/04/06/continuous-integration-and-delivery-of-spark-applications-at-metacog.html" target="_blank" rel="external">https://databricks.com/blog/2016/04/06/continuous-integration-and-delivery-of-spark-applications-at-metacog.html</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="Cloudera">Cloudera</h2><h2 id="Hortonworks">Hortonworks</h2><p>Top Ten Blogs from 2015<br><a href="http://hortonworks.com/blog/top-t]]>
+    <![CDATA[<h2 id="Apache_Storm">Apache Storm</h2><p>Storm发布1.0.0版本，关键特性：</p>
+<ul>
+<li>Developer Productivity<br><strong> New Storm Connectors
+</strong]]>
     </summary>
     
       <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
@@ -895,200 +958,6 @@
     </summary>
     
       <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[大数据动态之201507]]></title>
-    <link href="http://navigating.github.io/2015/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%8A%A8%E6%80%81%E4%B9%8B201507/"/>
-    <id>http://navigating.github.io/2015/大数据动态之201507/</id>
-    <published>2015-07-31T08:22:01.000Z</published>
-    <updated>2015-10-16T02:45:14.668Z</updated>
-    <content type="html"><![CDATA[<p>Hortonworks<br>HDP 2.3发布：<br>HDP 2.3新增加组件Apache Atlas、Apache Calcite<br><a href="http://hortonworks.com/blog/available-now-hdp-2-3/" target="_blank" rel="external">http://hortonworks.com/blog/available-now-hdp-2-3/</a><br><a href="http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/" target="_blank" rel="external">http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-2/</a><br><a href="http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/" target="_blank" rel="external">http://hortonworks.com/blog/introducing-availability-of-hdp-2-3-part-3/</a><br>Spark 1.2开始支持ORC(Columnar Formats)<br><a href="http://hortonworks.com/blog/bringing-orc-support-into-apache-spark/" target="_blank" rel="external">http://hortonworks.com/blog/bringing-orc-support-into-apache-spark/</a><br>Spark in HDInsight新特性一览<br><a href="http://hortonworks.com/blog/spark-in-hdinsight/" target="_blank" rel="external">http://hortonworks.com/blog/spark-in-hdinsight/</a> </p>
-<p>Cloudera<br>HBase 1.0 开始支持Thrift客户端鉴权<br><a href="http://blog.cloudera.com/blog/2015/07/thrift-client-authentication-support-in-apache-hbase-1-0/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/thrift-client-authentication-support-in-apache-hbase-1-0/</a><br>Pig on MR优化<br><a href="http://blog.cloudera.com/blog/2015/07/how-to-tune-mapreduce-parallelism-in-apache-pig-jobs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/how-to-tune-mapreduce-parallelism-in-apache-pig-jobs/</a><br>Apache Zeppelin on CDH<br><a href="http://blog.cloudera.com/blog/2015/07/how-to-install-apache-zeppelin-on-cdh/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/how-to-install-apache-zeppelin-on-cdh/</a><br>大数据欺诈检测架构<br><a href="http://blog.cloudera.com/blog/2015/07/designing-fraud-detection-architecture-that-works-like-your-brain-does/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/designing-fraud-detection-architecture-that-works-like-your-brain-does/</a> </p>
-<p>MapR<br>YARN资源管理实践<br><a href="https://www.mapr.com/blog/best-practices-yarn-resource-management" target="_blank" rel="external">https://www.mapr.com/blog/best-practices-yarn-resource-management</a><br>Hive 1.0对Transaction的支持<br><a href="https://www.mapr.com/blog/hive-transaction-feature-hive-10" target="_blank" rel="external">https://www.mapr.com/blog/hive-transaction-feature-hive-10</a> </p>
-<p>Databricks<br>Spark Streaming执行模型<br><a href="https://databricks.com/blog/2015/07/30/diving-into-spark-streamings-execution-model.html" target="_blank" rel="external">https://databricks.com/blog/2015/07/30/diving-into-spark-streamings-execution-model.html</a><br>Spark 1.4 MLP新特性<br><a href="https://databricks.com/blog/2015/07/29/new-features-in-machine-learning-pipelines-in-spark-1-4.html" target="_blank" rel="external">https://databricks.com/blog/2015/07/29/new-features-in-machine-learning-pipelines-in-spark-1-4.html</a><br>从Spark 1.2开始支持ORC<br><a href="https://databricks.com/blog/2015/07/16/joint-blog-post-bringing-orc-support-into-apache-spark.html" target="_blank" rel="external">https://databricks.com/blog/2015/07/16/joint-blog-post-bringing-orc-support-into-apache-spark.html</a><br>从Spark 1.4开始支持窗口函数<br><a href="https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html" target="_blank" rel="external">https://databricks.com/blog/2015/07/15/introducing-window-functions-in-spark-sql.html</a><br>从Spark 1.4开始新的Web UI<br><a href="https://databricks.com/blog/2015/07/08/new-visualizations-for-understanding-spark-streaming-applications.html" target="_blank" rel="external">https://databricks.com/blog/2015/07/08/new-visualizations-for-understanding-spark-streaming-applications.html</a> </p>
-<p>Phoenix对join的支持，TPC in Apache Phoenix<br><a href="https://blogs.apache.org/phoenix/entry/tpc_in_apache_phoenix" target="_blank" rel="external">https://blogs.apache.org/phoenix/entry/tpc_in_apache_phoenix</a> </p>
-<p>Cassandra<br><a href="http://cassandra.apache.org/" target="_blank" rel="external">http://cassandra.apache.org/</a> </p>
-<p>mongoDB<br><a href="https://www.mongodb.org/" target="_blank" rel="external">https://www.mongodb.org/</a> </p>
-<p>Confluent<br>基于Kafka的实时流处理<br><a href="http://www.confluent.io/" target="_blank" rel="external">http://www.confluent.io/</a><br>大数据生态系统之Kafka价值<br><a href="http://www.confluent.io/blog/the-value-of-apache-kafka-in-big-data-ecosystem/" target="_blank" rel="external">http://www.confluent.io/blog/the-value-of-apache-kafka-in-big-data-ecosystem/</a> </p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Hortonworks<br>HDP 2.3发布：<br>HDP 2.3新增加组件Apache Atlas、Apache Calcite<br><a href="http://hortonworks.com/blog/available-now-hdp-2-3/" targ]]>
-    </summary>
-    
-      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
-    
-      <category term="Cassandra" scheme="http://navigating.github.io/tags/Cassandra/"/>
-    
-      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="MongoDB" scheme="http://navigating.github.io/tags/MongoDB/"/>
-    
-      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[使用Hexo搭建Github静态博客]]></title>
-    <link href="http://navigating.github.io/2015/%E4%BD%BF%E7%94%A8Hexo%E6%90%AD%E5%BB%BAGithub%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://navigating.github.io/2015/使用Hexo搭建Github静态博客/</id>
-    <published>2015-07-28T09:20:22.000Z</published>
-    <updated>2015-09-18T15:20:42.160Z</updated>
-    <content type="html"><![CDATA[<p>环境：</p>
-<pre><code><span class="bullet">1. </span>Windows XP
-<span class="bullet">2. </span>Git
-</code></pre><p>步骤：</p>
-<pre><code><span class="bullet">1. </span>安装Node.js
-<span class="bullet">2. </span>安装Hexo
-<span class="bullet">3. </span>创建博客(初始化Hexo)
-<span class="bullet">4. </span>创建文章本地调试
-<span class="bullet">5. </span>配置Github
-<span class="bullet">6. </span>远程发布
-<span class="bullet">7. </span>支持sitemap和feed
-<span class="bullet">8. </span>支持百度统计
-<span class="bullet">9. </span>支持图片
-<span class="bullet">10. </span>支持Swiftype站内搜索
-<span class="bullet">11. </span>参考资源
-</code></pre><h2 id="安装Node-js">安装Node.js</h2><p>下载并安装，<a href="https://nodejs.org/" target="_blank" rel="external">https://nodejs.org/</a></p>
-<h2 id="安装Hexo">安装Hexo</h2><p>通过命令 npm install -g hexo 安装</p>
-<pre><code><span class="attribute">D</span>:\git\hexo&gt;npm install -g hexo
-
-npm WARN optional dep failed, continuing fsevents<span class="variable">@0</span>.<span class="number">3.6</span>
-npm WARN optional dep failed, continuing fsevents<span class="variable">@0</span>.<span class="number">3.6</span>
--
-
-
-&gt; dtrace-provider<span class="variable">@0</span>.<span class="number">5.0</span> install <span class="attribute">C</span>:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo\node_modules\bunyan\node_modules\dtrace-provider
-&gt; node scripts/install.js
-
-<span class="attribute">C</span>:\Users\stevenxu\AppData\Roaming\npm\hexo -&gt; <span class="attribute">C</span>:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo\bin\hexo
-hexo<span class="variable">@3</span>.<span class="number">1.1</span> <span class="attribute">C</span>:\Users\stevenxu\AppData\Roaming\npm\node_modules\hexo
-├── pretty-hrtime<span class="variable">@1</span>.<span class="number">0.0</span>
-├── hexo-front-matter<span class="variable">@0</span>.<span class="number">2.2</span>
-├── abbrev<span class="variable">@1</span>.<span class="number">0.7</span>
-├── titlecase<span class="variable">@1</span>.<span class="number">0.2</span>
-├── archy<span class="variable">@1</span>.<span class="number">0.0</span>
-├── text-table<span class="variable">@0</span>.<span class="number">2.0</span>
-├── tildify<span class="variable">@1</span>.<span class="number">1.0</span> (os-homedir<span class="variable">@1</span>.<span class="number">0.1</span>)
-├── strip-indent<span class="variable">@1</span>.<span class="number">0.1</span> (get-stdin<span class="variable">@4</span>.<span class="number">0.1</span>)
-├── hexo-i18n<span class="variable">@0</span>.<span class="number">2.1</span> (sprintf-js<span class="variable">@1</span>.<span class="number">0.3</span>)
-├── chalk<span class="variable">@1</span>.<span class="number">1.0</span> (escape-string-regexp<span class="variable">@1</span>.<span class="number">0.3</span>, supports-color<span class="variable">@2</span>.<span class="number">0.0</span>, ansi-styles<span class="variable">@2</span>.<span class="number">1.0</span>, strip-ansi<span class="variable">@3</span>.<span class="number">0.0</span>, has-ansi<span class="variable">@2</span>.<span class="number">0.0</span>)
-├── bluebird<span class="variable">@2</span>.<span class="number">9.34</span>
-├── minimatch<span class="variable">@2</span>.<span class="number">0.10</span> (brace-expansion<span class="variable">@1</span>.<span class="number">1.0</span>)
-├── through2<span class="variable">@1</span>.<span class="number">1.1</span> (xtend<span class="variable">@4</span>.<span class="number">0.0</span>, readable-stream<span class="variable">@1</span>.<span class="number">1.13</span>)
-├── swig-extras<span class="variable">@0</span>.<span class="number">0.1</span> (markdown<span class="variable">@0</span>.<span class="number">5.0</span>)
-├── hexo-fs<span class="variable">@0</span>.<span class="number">1.3</span> (escape-string-regexp<span class="variable">@1</span>.<span class="number">0.3</span>, graceful-fs<span class="variable">@3</span>.<span class="number">0.8</span>, chokidar<span class="variable">@0</span>.<span class="number">12.6</span>)
-├── js-yaml<span class="variable">@3</span>.<span class="number">3.1</span> (esprima<span class="variable">@2</span>.<span class="number">2.0</span>, argparse<span class="variable">@1</span>.<span class="number">0.2</span>)
-├── nunjucks<span class="variable">@1</span>.<span class="number">3.4</span> (optimist<span class="variable">@0</span>.<span class="number">6.1</span>, chokidar<span class="variable">@0</span>.<span class="number">12.6</span>)
-├── warehouse<span class="variable">@1</span>.<span class="number">0.2</span> (graceful-fs<span class="variable">@3</span>.<span class="number">0.8</span>, cuid<span class="variable">@1</span>.<span class="number">2.5</span>, JSONStream<span class="variable">@0</span>.<span class="number">10.0</span>)
-├── cheerio<span class="variable">@0</span>.<span class="number">19.0</span> (entities<span class="variable">@1</span>.<span class="number">1.1</span>, dom-serializer<span class="variable">@0</span>.<span class="number">1.0</span>, css-select<span class="variable">@1</span>.<span class="number">0.0</span>, htmlparser2<span class="variable">@3</span>.<span class="number">8.3</span>)
-├── bunyan<span class="variable">@1</span>.<span class="number">4.0</span> (safe-json-stringify<span class="variable">@1</span>.<span class="number">0.3</span>, dtrace-provider<span class="variable">@0</span>.<span class="number">5.0</span>, mv<span class="variable">@2</span>.<span class="number">1.1</span>)
-
-├── hexo-cli<span class="variable">@0</span>.<span class="number">1.7</span> (minimist<span class="variable">@1</span>.<span class="number">1.2</span>)
-├── moment-timezone<span class="variable">@0</span>.<span class="number">3.1</span>
-├── moment<span class="variable">@2</span>.<span class="number">10.3</span>
-├── hexo-util<span class="variable">@0</span>.<span class="number">1.7</span> (ent<span class="variable">@2</span>.<span class="number">2.0</span>, highlight.js<span class="variable">@8</span>.<span class="number">6.0</span>)
-├── swig<span class="variable">@1</span>.<span class="number">4.2</span> (optimist<span class="variable">@0</span>.<span class="number">6.1</span>, uglify-js<span class="variable">@2</span>.<span class="number">4.24</span>)
-└── lodash<span class="variable">@3</span>.<span class="number">10.0</span>
-
-<span class="attribute">D</span>:\git\hexo&gt;
-</code></pre><h2 id="创建博客(初始化hexo)">创建博客(初始化hexo)</h2><p>创建博客站点的本地目录，然后在文件夹下执行命令：</p>
-<pre><code><span class="variable">$ </span>hexo init
-</code></pre><p>[info] Copying data<br>[info] You are almost done! Don’t forget to run <code>npm install</code> before you start b<br>logging with Hexo!</p>
-<p>Hexo会自动在目标文件夹下建立网站所需要的文件。然后按照提示，安装node_modules，执行如下命令：</p>
-<pre><code>$ hexo <span class="keyword">install</span>
-</code></pre><h2 id="创建文章本地调试">创建文章本地调试</h2><p>预览本地调试模式，执行如下命令：</p>
-<pre><code>$ hexo <span class="keyword">server</span>
-</code></pre><p>[info] Hexo is running at <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a>. Press Ctrl+C to stop.</p>
-<p>关键命令简介：</p>
-<pre><code><span class="title">hexo</span> n     <span class="comment">#创建新的文章</span>
-hexo g     <span class="comment">#重新生成站点</span>
-hexo s     <span class="comment">#启动本地服务</span>
-hexo d     <span class="comment">#发布到github</span>
-</code></pre><p>创建文章</p>
-<pre><code>$ hexo <span class="keyword">new</span> <span class="string">"使用Hexo搭建Github静态博客"</span> 
-</code></pre><p>在Hexo工作文件夹下source_posts发现新创建的md文件 使用Hexo搭建Github静态博客.md 。</p>
-<h2 id="配置Github">配置Github</h2><p>部署到Github需要修改配置文件_config.yml文件，在Hexo工作目录之下：</p>
-<pre><code># Deployment
-## <span class="string">Docs:</span> <span class="string">http:</span><span class="comment">//hexo.io/docs/deployment.html</span>
-<span class="label">
-deploy:</span>
-<span class="label">    type:</span> git
-<span class="label">    repository:</span> git<span class="annotation">@github</span>.<span class="string">com:</span>&lt;Your Github Username&gt;/&lt;Your github.io url&gt;
-<span class="label">    branch:</span> master
-</code></pre><p>注意，当前type为git，而不是github</p>
-<p>测试Github是否好用    </p>
-<pre><code><span class="title">ssh</span> -T git<span class="variable">@github</span>.com
-</code></pre><h2 id="远程发布">远程发布</h2><p>远程部署到Github，通过执行如下命令：    </p>
-<pre><code><span class="variable">$ </span>hexi deploy
-</code></pre><p>Troubleshooting<br>出现错误：Error: spawn git ENOENT<br>解决方案：<br><a href="http://blog.csdn.net/rainloving/article/details/46595559" target="_blank" rel="external">http://blog.csdn.net/rainloving/article/details/46595559</a> </p>
-<p>使用github出现：fatal: unable to access: Failed connect to github.com:8080: No error<br>解决方案：<br><a href="http://www.zhihu.com/question/26954892" target="_blank" rel="external">http://www.zhihu.com/question/26954892</a> </p>
-<p>使用github出现：ssh:connect to host github.com port 22: Bad file number<br>解决方案：<br><a href="http://www.xnbing.org/?p=759" target="_blank" rel="external">http://www.xnbing.org/?p=759</a><br><a href="http://blog.csdn.net/temotemo/article/details/7641883" target="_blank" rel="external">http://blog.csdn.net/temotemo/article/details/7641883</a> </p>
-<h2 id="支持sitemap和feed">支持sitemap和feed</h2><p>首先安装sitemap和feed插件</p>
-<pre><code>$ npm <span class="keyword">install</span> hexo-generator-sitemap
-$ npm <span class="keyword">install</span> hexo-generator-feed
-</code></pre><p>修改配置，在文件 _config.yml 增加以下内容</p>
-<pre><code><span class="preprocessor"># Extensions</span>
-<span class="label">Plugins:</span>
-- hexo-generator-feed
-- hexo-generator-sitemap
-
-<span class="preprocessor">#Feed Atom</span>
-<span class="label">feed:</span>
-    type: atom
-    path: atom.xml
-    limit: <span class="number">20</span>
-
-<span class="preprocessor">#sitemap</span>
-<span class="label">sitemap:</span>
-    path: sitemap.xml
-</code></pre><p>在 themes\landscape_config.yml 中添加：</p>
-<pre><code><span class="attribute">menu</span>:
-    <span class="attribute">Home</span>: /
-    <span class="attribute">Archives</span>: /archives
-    <span class="attribute">Sitemap</span>: /sitemap.xml
-<span class="attribute">rss</span>: /atom.xml
-</code></pre><h2 id="支持百度统计">支持百度统计</h2><p>在 <a href="http://tongji.baidu.com" target="_blank" rel="external">http://tongji.baidu.com</a> 注册帐号，添加网站，生成统计功能的 JS 代码。</p>
-<p>在 themes\landscape_config.yml 中新添加一行：</p>
-<pre><code><span class="keyword">baidu_t</span>ongji: <span class="keyword">true</span>
-</code></pre><p>在 themes\landscape\layout_partial\head.ejs 中head的结束标签  之前新添加一行代码</p>
-<pre><code>&lt;<span class="preprocessor">%</span>- partial<span class="comment">('baidu_tongji')</span> <span class="preprocessor">%</span>&gt;
-</code></pre><p>在 themes\landscape\layout_partial 中新创建一个文件 baidu_tongji.ejs 并添加如下内容：</p>
-<pre><code><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (theme.baidu_tongji){ </span>%&gt;<span class="xml">
-<span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="apache">
-    <span class="tag">&lt;百度统计的 JS 代码&gt;</span>
-</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
-</span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml"></span>
-</code></pre><p>添加统计，参考：<br><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">http://ibruce.info/2013/11/22/hexo-your-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a> </p>
-<h2 id="支持图片">支持图片</h2><p>在source目录下创建images目录，然后将图片放在其中。<br>在文章中引用本地图片的语法例如：</p>
-<pre><code>![<span class="link_label">这是一张图片</span>](<span class="link_url">/images/2005_TuoZhanXunLian.jpg</span>)
-</code></pre><h2 id="支持swiftype站内搜索">支持swiftype站内搜索</h2><p>在 <a href="http://siftype.com" target="_blank" rel="external">http://siftype.com</a> 注册一个帐号，按着网站引导流程就可以了。<br>安装 install code 代码到hexo，添加到 themes\landscape\layout_partial\after-footer.ejs，类似添加百度统计的代码。<br>然后回到swiftype网站对 install code 进行确认。通过会在下方弹出一条消息：</p>
-<pre><code><span class="title">Installation</span> successfully activated
-</code></pre><h2 id="添加robots-txt">添加robots.txt</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a> </p>
-<h2 id="支持多说评论">支持多说评论</h2><p>首先，在多说官网 <a href="http://www.duoshuo.com" target="_blank" rel="external">http://www.duoshuo.com</a> 激活账户，并添加网站配置；<br>其次，参考多说官网的Hexo配置指南进行配置，<a href="http://dev.duoshuo.com/threads/541d3b2b40b5abcd2e4df0e9" target="_blank" rel="external">http://dev.duoshuo.com/threads/541d3b2b40b5abcd2e4df0e9</a><br>针对landscap theme就是两步：<br>第一步在Hexo根目录下的配置文件 _config.yml 中添加多说配置项</p>
-<pre><code><span class="attribute">duoshuo_shortname</span>: <span class="string">你站点的short_name</span>
-</code></pre><p>第二步修改themes\landscape\layout_partial\article.ejs模板，用多说推荐的代码替换之前的Disqus代码。<br>将<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"></span>&lt;%<span class="ruby"> <span class="keyword">if</span> (!index &amp;&amp; post.comments &amp;&amp; config.disqus_shortname)&#123; </span>%&gt;<span class="xml"></span><br><span class="line"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"disqus_thread"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">noscript</span>&gt;</span>Please enable JavaScript to view the <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"//disqus.com/?ref_noscript"</span>&gt;</span>comments powered by Disqus.<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">noscript</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"></span>&lt;%<span class="ruby"> &#125; </span>%&gt;<span class="xml"></span></span><br></pre></td></tr></table></figure></p>
-<p>改为<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">%</span> <span class="attribute">if</span> (!<span class="attribute">index</span> &amp;&amp; <span class="attribute">post.comments</span> &amp;&amp; <span class="attribute">config.duoshuo_shortname</span>)&#123; %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">section</span> <span class="attribute">id</span>=<span class="value">"comments"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 多说评论框 start --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"ds-thread"</span> <span class="attribute">data-thread-key</span>=<span class="value">"&lt;%= post.layout %&gt;-&lt;%= post.slug %&gt;"</span> <span class="attribute">data-title</span>=<span class="value">"&lt;%= post.title %&gt;"</span> <span class="attribute">data-url</span>=<span class="value">"&lt;%= page.permalink %&gt;"</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 多说评论框 end --&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 多说公共JS代码 start (一个网页只需插入一次) --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">script</span> <span class="attribute">type</span>=<span class="value">"text/javascript"</span>&gt;</span><span class="javascript"></span><br><span class="line">  <span class="keyword">var</span> duoshuoQuery = &#123;short_name:<span class="string">'&lt;%= config.duoshuo_shortname %&gt;'</span>&#125;;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> ds = <span class="built_in">document</span>.createElement(<span class="string">'script'</span>);</span><br><span class="line">      ds.type = <span class="string">'text/javascript'</span>;ds.async = <span class="literal">true</span>;</span><br><span class="line">      ds.src = (<span class="built_in">document</span>.location.protocol == <span class="string">'https:'</span> ? <span class="string">'https:'</span> : <span class="string">'http:'</span>) + <span class="string">'//static.duoshuo.com/embed.js'</span>;</span><br><span class="line">      ds.charset = <span class="string">'UTF-8'</span>;</span><br><span class="line">      (<span class="built_in">document</span>.getElementsByTagName(<span class="string">'head'</span>)[<span class="number">0</span>] </span><br><span class="line">       || <span class="built_in">document</span>.getElementsByTagName(<span class="string">'body'</span>)[<span class="number">0</span>]).appendChild(ds);</span><br><span class="line">    &#125;)();</span><br><span class="line">    </span><span class="tag">&lt;/<span class="title">script</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 多说公共JS代码 end --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="参考资源">参考资源</h2><p><a href="http://blog.lmintlcx.com/post/blog-with-hexo.html" target="_blank" rel="external">http://blog.lmintlcx.com/post/blog-with-hexo.html</a><br><a href="https://github.com/bruce-sha" target="_blank" rel="external">https://github.com/bruce-sha</a><br><a href="http://zipperary.com/2013/05/28/hexo-guide-2/" target="_blank" rel="external">http://zipperary.com/2013/05/28/hexo-guide-2/</a><br><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">http://zipperary.com/2013/05/29/hexo-guide-3/</a><br><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">http://zipperary.com/2013/05/30/hexo-guide-4/</a><br><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/" target="_blank" rel="external">http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/</a><br><a href="http://www.cnblogs.com/zhcncn/p/4097881.html" target="_blank" rel="external">http://www.cnblogs.com/zhcncn/p/4097881.html</a><br><a href="http://blog.moyizhou.cn/web/search-engine-for-static-pages/" target="_blank" rel="external">http://blog.moyizhou.cn/web/search-engine-for-static-pages/</a><br><a href="http://www.jerryfu.net/post/search-engine-for-hexo-with-swiftype.html" target="_blank" rel="external">http://www.jerryfu.net/post/search-engine-for-hexo-with-swiftype.html</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>环境：</p>
-<pre><code><span class="bullet">1. </span>Windows XP
-<span class="bullet">2. </span>Git
-</code></pre><p>步骤：</p>
-<pre><code><span ]]>
-    </summary>
-    
-      <category term="blog" scheme="http://navigating.github.io/tags/blog/"/>
-    
-      <category term="github" scheme="http://navigating.github.io/tags/github/"/>
-    
-      <category term="hexo" scheme="http://navigating.github.io/tags/hexo/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   
