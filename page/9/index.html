@@ -87,6 +87,101 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2007/Annotation实战" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/Annotation实战/" class="article-date">
+  <time datetime="2007-07-11T12:51:44.000Z" itemprop="datePublished">2007-07-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2007/Annotation实战/">Annotation实战</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在annotation正在改变着java developer的一些开发生活，各种框架都在充分应用annotation来简化开发，我们来看看annotation到底是怎么一回事？<br>为什么引入annotation?<br>由于在Java的一些实际开发中，已经有了一些annotation出现的雏形.比方说webservice使用一些tag自动生成一些接口和实现，EJB的deployment descriptor对象,transient修饰符代表不能被serialization，@deprecated等。那么他们的共用特性是什么呢？尽管这些数据不会直接对Java的语义产生影响，但是是通过工具、库或者运行时程序的语义来散发影响力的。以这种方式出现的新功能称之为annotation机制。所以Java是在增强Java语言支持易于开发的背景下提出annotation机制的，annotation对于已有的Java机制的影响力主要在于Java source files、Java class files和运行时的reflection；主要关联java classes，interfaces,methods和fields。(,或者能够能够被javac compiler或者其他的工具读取、或者作为配置项能够被存贮在class文件中、或者在运行时用Java reflection API检测的到。)<br>虽然在第一天提出annotation这个特性，就一直在强调：annotion易于使用，但是应用开发者无须自己定义annotaion类型。但是不论是更好的使用现有的annotation类型，还是便于有朝一日自己确实需要扩展annotion类型，或者更好的理解开发模型，更好的理解程序的开发运行，都非常有必要了解一些annotation的。</p>
+<p>我们看一下Meta-annotations,看到底如何自己定义一个annnotation类型。Meta-annotations主要包括四个部分：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Target</span><br><span class="line">Retention</span><br><span class="line">Documented</span><br><span class="line"><span class="keyword">Inherited</span></span><br></pre></td></tr></table></figure></p>
+<p>Target里面的ElementType是用来指定Annotation类型可以用在哪一些元素上的.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.TYPE)</span></span>-can be applied to any element of <span class="tag">a</span> class</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.FIELD)</span></span>-can be applied to <span class="tag">a</span> field or property</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.METHOD)</span></span>-can be applied to <span class="tag">a</span> method level annotation</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.PARAMETER)</span></span>-can be applied to the parameters of <span class="tag">a</span> method</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.CONSTRUCTOR)</span></span>-can be applied to constructors</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.LOCAL_VARIABLE)</span></span>-can be applied to local variables</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.ANNOTATION_TYPE)</span></span>-indicates that the declared type itself is an annotation typ</span><br></pre></td></tr></table></figure></p>
+<p>Retention用来指定annotation类型保留在哪儿和多长时间。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RetentionPolicy.SOURCE-Annotations <span class="operator">with</span> this type will be <span class="keyword">by</span> retained only <span class="keyword">at</span> <span class="operator">the</span> source level <span class="operator">and</span> will be ignored <span class="keyword">by</span> <span class="operator">the</span> compiler</span><br><span class="line">RetentionPolicy.CLASS-Annotations <span class="operator">with</span> this type will be <span class="keyword">by</span> retained <span class="keyword">by</span> <span class="operator">the</span> compiler <span class="keyword">at</span> compile <span class="built_in">time</span>, but will be ignored <span class="keyword">by</span> <span class="operator">the</span> VM</span><br><span class="line">RetentionPolicy.RUNTIME-Annotations <span class="operator">with</span> this type will be retained <span class="keyword">by</span> <span class="operator">the</span> VM so they can be <span class="built_in">read</span> only <span class="keyword">at</span> run-<span class="built_in">time</span></span><br></pre></td></tr></table></figure></p>
+<p>Documented用来指定这个annotation类型应当被javadoc工具文档化使用。<br>Inherited用来指定使用这个类型的类是个继承来的。<br>举一个简单的例子：<br>测试用例：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationTestableTeseCase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> <span class="keyword">throws</span> SecurityException, ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> passed = <span class="number">0</span>, failed = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (Method m : Class.forName(Foo.class.getName()).getMethods()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (m.isAnnotationPresent(Testable.class)) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    m.invoke(<span class="keyword">null</span>);</span><br><span class="line">                    passed++;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line"></span><br><span class="line">                    failed++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>, passed);</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>, failed);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Annotation类型定义类：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="variable">@Target</span>(ElementType.METHOD)</span><br><span class="line">public <span class="variable">@interface</span> Testable &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用Testable类型的客户端代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Boom"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m5</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m6</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m7</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Crash"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m8</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Okey!<br>参考：<br><a href="http://java.sun.com/developer/technicalArticles/releases/j2se15/" target="_blank" rel="external">http://java.sun.com/developer/technicalArticles/releases/j2se15/</a><br><a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html" target="_blank" rel="external">http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html</a><br><a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html" target="_blank" rel="external">http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html</a><br><a href="http://www.developer.com/java/other/article.php/10936_3556176_3" target="_blank" rel="external">http://www.developer.com/java/other/article.php/10936_3556176_3</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2007/Annotation实战/" data-id="ciohafrbu00af5olmq7ia3ghe" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Annotation/">Annotation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2007/Ruby实战" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/Ruby实战/" class="article-date">
+  <time datetime="2007-07-11T00:46:07.000Z" itemprop="datePublished">2007-07-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2007/Ruby实战/">Ruby实战</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>先从一段Ruby程序开始，即欧几里德最大公约数的算法实现：<br>测试用例当然要先，<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">require 'test/unit'</span><br><span class="line">require './one/Apple'</span><br><span class="line"></span><br><span class="line">class TestApple &lt; Test::Unit::TestCase</span><br><span class="line"></span><br><span class="line">  def test_cal</span><br><span class="line">    ys = Apple.new</span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">35</span>,<span class="number">25</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">50</span>,ys.gcd<span class="params">(<span class="number">100</span>,<span class="number">50</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">9</span>,ys.gcd<span class="params">(<span class="number">27</span>,<span class="number">18</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">5</span>,<span class="number">10</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">5</span>,<span class="number">0</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(-<span class="number">5</span>,ys.gcd<span class="params">(-<span class="number">5</span>,<span class="number">0</span>)</span>)</span></span><br><span class="line">    assert_raise<span class="params">(ArgumentError)</span>&#123;ys.gcd<span class="params">(<span class="number">0</span>,<span class="number">0</span>)</span>&#125;</span><br><span class="line">    assert_equal<span class="params">(<span class="number">23</span>,ys.gcd<span class="params">(<span class="number">0</span>,<span class="number">23</span>)</span>)</span></span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>然后就是算法的实现代码了：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span></span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> </span>gcd(arg1=<span class="number">0</span>, arg2=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span>((arg1==<span class="number">0</span>)&amp;&amp;(arg2==<span class="number">0</span>))</span><br><span class="line">      raise <span class="constant">ArgumentError</span>, <span class="string">"arg1 and arg2 are 0."</span>, caller</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      gcdImpl(arg1,arg2)</span><br><span class="line">    <span class="keyword">end</span>    </span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> </span>gcdImpl(arg1=<span class="number">0</span>, arg2=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span>(arg2 == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> arg1</span><br><span class="line">    <span class="keyword">elsif</span></span><br><span class="line">      temp=arg1%arg2</span><br><span class="line">      <span class="keyword">if</span>(temp == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> arg2</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        gcdImpl(arg2,temp)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>从一个算法的描述来实现一个算法，仅仅是编写一段程序而已。而对于算法这种问题的程序化解决方案而言，需要如何一回事情呢？比方说，最大公约数到底是怎么一回事，5和0的最大公约数怎么可能是5呢？所以要学习算法到底是怎么一回事，需要探讨更多的问题？<br>对于问题的理解、性能、选择、数据结构、如何设计、算法的描述、正确性证明、分析、代码实现等等一系列单元。当程序实现仅仅是第一反应的时候，问题理解、分析、设计、验证就变得异常重要了。<br>算法所拥有的通用问题类型：排序、查找、字符串处理、图问题、组合问题、几何问题、数值问题；都是一些已经相当成熟的问题类型。很多使我们常常听说或者涉及的，也是算法设计和分析频繁的地方，算是很多的“肩膀”吧，算法都是都是在这里站立起来的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2007/Ruby实战/" data-id="ciohafraj009z5olm7tpya8gq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/">Ruby</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2007/算法学习第一季-读《算法设计与分析基础》" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2007/算法学习第一季-读《算法设计与分析基础》/" class="article-date">
@@ -118,7 +213,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/算法学习第一季-读《算法设计与分析基础》/" data-id="cioa3d4mx009hiclmq8d6yd1n" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/算法学习第一季-读《算法设计与分析基础》/" data-id="ciohafr9o009n5olmtuso710c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -422,7 +517,7 @@ overwrite <span class="keyword">app</span>/views/layouts/admin.rhtml? [Ynaqd] <s
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/RubyOnRails实战/" data-id="cioa3d4np009xiclmq8icy8ky" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/RubyOnRails实战/" data-id="ciohafraj00a35olml45dqwmb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -716,7 +811,7 @@ Provider的实现：
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Google-Guice实战/" data-id="cioa3d4od00a7iclm7b1aokmu" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Google-Guice实战/" data-id="ciohafrbe00ad5olm1ugu7sv7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -757,7 +852,7 @@ Provider的实现：
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/走向Miami-原名：重返Miami/" data-id="cioa3d4mk009diclmbow3gbxw" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/走向Miami-原名：重返Miami/" data-id="ciohafr98009j5olm9oejjewk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1008,7 +1103,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Java-5-0的Instrumentation特性/" data-id="cioa3d4o400a2iclmk2d30n3m" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Java-5-0的Instrumentation特性/" data-id="ciohafraz00a85olm8pmi1c19" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1051,7 +1146,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/2006年年终总结-原名：一篇没有写完的BLOG/" data-id="cioa3d4oq00aeiclmrvjqp1pr" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/2006年年终总结-原名：一篇没有写完的BLOG/" data-id="ciohafrbu00ak5olmgaev85nh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1092,7 +1187,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/开聊有益/" data-id="cioa3d4n2009jiclmh6iu043e" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/开聊有益/" data-id="ciohafr9o009p5olmzs16qel8" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1205,90 +1300,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/JUnit-4-实战/" data-id="cioa3d4pl00ariclmevct3371" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2006/Miami-Everglades" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2006/Miami-Everglades/" class="article-date">
-  <time datetime="2006-11-01T03:10:54.000Z" itemprop="datePublished">2006-11-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2006/Miami-Everglades/">Miami Everglades</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文第一次发表在：<a href="http://www.blogbus.com/navigating-logs/3745900.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/3745900.html</a></p>
-<p>周末闲暇，和同事们驱车去了Everglades，身临其境，自然风光和静谧之境，让人流连忘返。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/Miami-Everglades/" data-id="cioa3d4ph00apiclmi1armspk" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2006/失落与决断-原名-重拾心情" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2006/失落与决断-原名-重拾心情/" class="article-date">
-  <time datetime="2006-10-27T03:09:56.000Z" itemprop="datePublished">2006-10-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2006/失落与决断-原名-重拾心情/">失落与决断(原名: 重拾心情)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>星移斗转 世事变换，不期来到了Miami；而且已经呆了快两个月了。<br>重拾心情，决定回来写BLOG了，开始多写东西；尽管这一年没有post几篇文章，可没有停止过胡思乱想，考虑未来的去向，出差来到miami做项目，经历用户的折磨，看到了异样的文化背景,异样的开发理念,异样的管理方式；休闲时间去了Disney，去了Everglades看到了Alligator，参加了美国式的party。。。。。<br>差异<br>在过去的两个多月里，感受到了完全不一样的社会文化—享受型社会，分工精细，四五十岁仍然在coding的程序员，悠闲的工作氛围和生活氛围。<br>人性<br>美国一向是个民主自由的国度，众口铄金，简直一个天堂的地方。来到这里，才发现无论任何地方，人性都是一样，是没有国界的。<br>挑战<br>一向在我的眼中，开发就是技术，软件就是技术，突然到了新的环境，周围都是数十年的软件经验，技术已经不在任何风险控制之内；都是三十岁以上的人，不需要太多复杂的过程，不需要太多的流程，管理之中充满了太多的经验的因素。一个高级管理者甚至能够随手找到几行代码和你讨论一个具体的细节问题。也见识了什么叫着一堆经验丰富的高手在一起不能作出一个好的project。<br>学习<br>很久没有静下来思考技术，学习技术，今天去深入的学习和思考CVS，内心的喜悦再一次提醒我，我需要继续前进。。。单纯的积累性的学习已经显得那么苍白无力，我们的目标在哪里，能用我们的所学能给自己留下什么，给这个世界留下什么？遗憾吗？在这一两个月的时间，一下子从公司大学式的生活中释放出来，看到了很多或者简单，或者复杂的大小摩擦，一下子感觉到这个世界是如此的复杂，到处充满了挑战；学会了要去换位思考，学会了要尊重别人的思考，给别人机会把想法讲完的机会并试图理解他，每个人都需要一个释放的窗口，总是需要不断的学习和交流。用平静的心态思考，真心的帮助每一个人是一个永远的方向，每一个人都有自己的想法，就看怎么来表达了；每一个人都是又聪明又智慧，就看他如何来使用这些聪明和智慧了。<br>美<br>最近连续的拍了很多照片，发现拍照片是一个培养一个人发现美的很好的方式。<br>选择<br>当我平静的思考自己的时候，发现人生还是很少时候是有选择的。结果往往都是很明显的，方向决定了，大不了来个殊路同归。太多的时候是我们经历的太少，见识的太少，勇敢的走出去！<br>简介<br>前一阶段看了如何使用maven2,ssh2,cvs,cruisecontrol构建一个development environment。现在正在看如何使用CVS进行项目的多团队并行开发的source code版本控制；同时在看ruby的source code.<br>下一步<br>静心学习english，看source code，看CVS，接受挑战，在这个美丽的世界上。<br>胸怀<br>想明白了我们所能选择的，想明白了我们所能失去的，想明白了我们所能付出的，想明白了我们所能留下的，想明白了我们所想要得的，enjoy所想，所说，所做。。。<br>有趣<br>有时候我们不知道自己真正想要的，却在哪里漫无目的的期待，漫无目的的辛勤积累。<br>要看软件这个行业，还是要到硅谷去，那里或许值得一看。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/失落与决断-原名-重拾心情/" data-id="cioa3d4p600aliclm7c1m22cx" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/JUnit-4-实战/" data-id="ciohafrd500ax5olmoh1xmcbc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1300,7 +1312,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/8/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -1311,7 +1323,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">80</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">82</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -1320,7 +1332,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 11.25px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.75px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.75px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 11.25px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 16.25px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.25px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 18.75px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
+      <a href="/tags/Agile/" style="font-size: 10px;">Agile</a> <a href="/tags/Ambari/" style="font-size: 11.25px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.75px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.75px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 11.25px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 16.25px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.25px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 18.75px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
     </div>
   </div>
 
@@ -1336,7 +1348,15 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       <ul>
         
           <li>
-            <a href="/2016/读《Thoughtworks技术雷达201604》/">读《Thoughtworks技术雷达201604》</a>
+            <a href="/2016/敏捷之如何切分用户故事/">敏捷之如何切分用户故事</a>
+          </li>
+        
+          <li>
+            <a href="/2016/学习《Thoughtworks技术雷达201604》/">学习《Thoughtworks技术雷达201604》</a>
+          </li>
+        
+          <li>
+            <a href="/2016/简报：人工智能 - 2016Q2/">简报：人工智能 - 2016Q2</a>
           </li>
         
           <li>
@@ -1407,14 +1427,6 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
             <a href="/2015/学习《腾讯在Spark上的应用与实践优化》/">学习《腾讯在Spark上的应用与实践优化》</a>
           </li>
         
-          <li>
-            <a href="/2015/13-14年收集的大数据的一些技术架构图/">13~14年收集的大数据的一些技术架构图</a>
-          </li>
-        
-          <li>
-            <a href="/2015/读《微软研发制胜策略》/">读《微软研发制胜策略》</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1424,7 +1436,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

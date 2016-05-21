@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2016-05-16T08:36:17.549Z</updated>
+  <updated>2016-05-20T09:25:35.792Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -16,26 +16,118 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[读《Thoughtworks技术雷达201604》]]></title>
-    <link href="http://navigating.github.io/2016/%E8%AF%BB%E3%80%8AThoughtworks%E6%8A%80%E6%9C%AF%E9%9B%B7%E8%BE%BE201604%E3%80%8B/"/>
-    <id>http://navigating.github.io/2016/读《Thoughtworks技术雷达201604》/</id>
+    <title><![CDATA[敏捷之如何切分用户故事]]></title>
+    <link href="http://navigating.github.io/2016/%E6%95%8F%E6%8D%B7%E4%B9%8B%E5%A6%82%E4%BD%95%E5%88%87%E5%88%86%E7%94%A8%E6%88%B7%E6%95%85%E4%BA%8B/"/>
+    <id>http://navigating.github.io/2016/敏捷之如何切分用户故事/</id>
+    <published>2016-05-20T02:41:31.000Z</published>
+    <updated>2016-05-20T09:25:35.792Z</updated>
+    <content type="html"><![CDATA[<p>敏捷Scrum框架一览</p>
+<p><img src="http://agileforall.com/wp-content/uploads/2015/12/Scrum_Framework_lg-e1456358707313.jpg" alt="这是一张图片"></p>
+<p>用户故事切分</p>
+<p><img src="http://agileall.wpengine.com/wp-content/uploads/2016/01/how-to-split-a-user-story.jpg" alt="这是一张图片"></p>
+<p>用户故事切分三步法：<br>第一步 准备待切分的故事<br>通过提出问题准备故事：<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原则是待切分的大故事是否满足INVEST<span class="keyword">*</span>原则（“较小的”这一点可以除外）？</span><br><span class="line">故事大小是团队速率的 1/10 到 1/6 吗？</span><br></pre></td></tr></table></figure></p>
+<p>第二步 运用切分模式<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">按工作流程步骤切分</span><br><span class="line">延迟性能优化</span><br><span class="line">按简单/复杂切分</span><br><span class="line">按主要工作切分</span><br><span class="line">按不同界面切分</span><br><span class="line">按不同类型的数据切分</span><br><span class="line">按不同的业务规则切分</span><br><span class="line">按操作切分</span><br></pre></td></tr></table></figure></p>
+<p>第三步 评估切分<br>通过对切分提出以下问题进行评估：<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">新故事的大小大致相等吗？</span><br><span class="line">每个故事大概是团队速率的<span class="number">1/10到1/6</span>吗？</span><br><span class="line">每个故事都满足INVEST原则吗？</span><br><span class="line">有可以降低优先级或删除掉的故事吗？</span><br><span class="line">有没有明显的故事先开始，从而可以获得早期的价值、认知或风险降低等？</span><br></pre></td></tr></table></figure></p>
+<p>注：INVEST - 故事应该是：<br>独立的<br>可商谈的<br>有价值的<br>可估算的<br>较小的<br>可测试的</p>
+<p>参考：</p>
+<ol>
+<li><a href="http://agileforall.com/resources/introduction-to-agile/" target="_blank" rel="external">Introduction to Agile</a></li>
+<li><a href="http://agileforall.com/new-story-splitting-resource/" target="_blank" rel="external">New Story Splitting Resource</a></li>
+<li><a href="http://agileforall.com/resources/how-to-split-a-user-story/" target="_blank" rel="external">How to Split a User Story</a></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>敏捷Scrum框架一览</p>
+<p><img src="http://agileforall.com/wp-content/uploads/2015/12/Scrum_Framework_lg-e1456358707313.jpg" alt="这是一张图片"></p>
+<]]>
+    </summary>
+    
+      <category term="Agile" scheme="http://navigating.github.io/tags/Agile/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[学习《Thoughtworks技术雷达201604》]]></title>
+    <link href="http://navigating.github.io/2016/%E5%AD%A6%E4%B9%A0%E3%80%8AThoughtworks%E6%8A%80%E6%9C%AF%E9%9B%B7%E8%BE%BE201604%E3%80%8B/"/>
+    <id>http://navigating.github.io/2016/学习《Thoughtworks技术雷达201604》/</id>
     <published>2016-05-16T02:41:31.000Z</published>
-    <updated>2016-05-16T08:36:17.549Z</updated>
+    <updated>2016-05-20T07:22:42.208Z</updated>
     <content type="html"><![CDATA[<p>笔记如下：</p>
 <ul>
-<li>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。<br><strong> 采用：我们强烈主张业界采用这些技术。如果适用我们的项目，我们会采用他们。
-</strong> 试验：值得追求。重要的是理解如何建立这种能力。企业应该在风险可控的项目中尝试该项技术。<br><strong> 评估：为了确认它将如何影响你所在的企业，值得做一番探究。
-</strong> 暂缓：谨慎推行。</li>
-<li>在技术理念上需要关注：Products over projects、BFF - Backend for frontends、Data Lake、Event Storming、QA in production、Reactive architectures。</li>
-<li>平台部分关注：Docker、Apache Mesos、Kubernets。</li>
-<li>工具部分关注：Consul、Apache Kafka、Zipkin。</li>
-<li>语言和框架部分关注：ES6、React.js、Spring Boot、Swift、Dagger、Dapper、Ember.js、Reactive Native。</li>
+<li><p>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">采用：我们强烈主张业界采用这些技术。如果适用我们的项目，我们会采用他们。</span><br><span class="line">试验：值得追求。重要的是理解如何建立这种能力。企业应该在风险可控的项目中尝试该项技术。</span><br><span class="line">评估：为了确认它将如何影响你所在的企业，值得做一番探究。</span><br><span class="line">暂缓：谨慎推行。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在技术理念上需要关注：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Products <span class="keyword">over</span> projects</span><br><span class="line">BFF - Backend <span class="keyword">for</span> frontends</span><br><span class="line">Data Lake</span><br><span class="line">Event Storming</span><br><span class="line">QA <span class="keyword">in</span> production</span><br><span class="line">Reactive architectures</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>平台部分关注：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Docker</span></span><br><span class="line">Apache Mesos</span><br><span class="line">Kubernets</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>工具部分关注：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Consul</span></span><br><span class="line">Apache Kafka</span><br><span class="line">Zipkin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>语言和框架部分关注：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ES6</span><br><span class="line">React<span class="class">.js</span></span><br><span class="line">Spring Boot</span><br><span class="line">Swift</span><br><span class="line">Dagger</span><br><span class="line">Dapper</span><br><span class="line">Ember<span class="class">.js</span></span><br><span class="line">Reactive Native</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>暂缓部分关注：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>Application Servers</span><br><span class="line"><span class="bullet">2. </span>Jenkins as a deployment pipeline</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>&lt;完&gt;</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>笔记如下：</p>
 <ul>
-<li>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。<br><strong> 采用：我们强烈主张业界采用这些技术。如果]]>
+<li><p>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。</p>
+<figure class="highlight"]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[简报：人工智能 - 2016Q2]]></title>
+    <link href="http://navigating.github.io/2016/%E7%AE%80%E6%8A%A5%EF%BC%9A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%20-%202016Q2/"/>
+    <id>http://navigating.github.io/2016/简报：人工智能 - 2016Q2/</id>
+    <published>2016-05-16T02:41:31.000Z</published>
+    <updated>2016-05-18T07:24:38.862Z</updated>
+    <content type="html"><![CDATA[<p>从谷歌(Google)旗下DeepMind公司阿尔法围棋（AlphaGo）挑战围棋冠军李世石之后，人工智能进一步发酵，变成热门方向和热门关键词，各公司分别发布新闻，和开源相关产品。其中：</p>
+<ul>
+<li>Microsoft: DMTK</li>
+<li>Google: TensorFlow、SyntaxNet</li>
+<li>Apple:</li>
+<li>Facebook: Torch</li>
+<li>Amazon:</li>
+<li>OpenAI: OpenAI Gym</li>
+<li>Yahoo!：</li>
+<li>Baidu: </li>
+<li>IBM: SystemML</li>
+</ul>
+<p>深度学习开源实现：</p>
+<ul>
+<li>Torch</li>
+<li>Theano</li>
+<li>Caffe</li>
+<li>Petuum</li>
+<li>Deep4J</li>
+<li>H2O</li>
+</ul>
+<p>参考：</p>
+<ol>
+<li><a href="http://mt.sohu.com/20160513/n449235974.shtml" target="_blank" rel="external">http://mt.sohu.com/20160513/n449235974.shtml</a></li>
+<li><a href="http://www.infoq.com/cn/articles/h2o-ai-chief-architect-talk-deep-learning" target="_blank" rel="external">http://www.infoq.com/cn/articles/h2o-ai-chief-architect-talk-deep-learning</a></li>
+<li><a href="http://cmsoft.10086.cn/info.html?key=348" target="_blank" rel="external">http://cmsoft.10086.cn/info.html?key=348</a></li>
+</ol>
+<p>&lt;完&gt;</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>从谷歌(Google)旗下DeepMind公司阿尔法围棋（AlphaGo）挑战围棋冠军李世石之后，人工智能进一步发酵，变成热门方向和热门关键词，各公司分别发布新闻，和开源相关产品。其中：</p>
+<ul>
+<li>Microsoft: DMTK</li>
+<li>Googl]]>
     </summary>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
@@ -853,111 +945,6 @@
       <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[13~14年收集的大数据的一些技术架构图]]></title>
-    <link href="http://navigating.github.io/2015/13-14%E5%B9%B4%E6%94%B6%E9%9B%86%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E5%9B%BE/"/>
-    <id>http://navigating.github.io/2015/13-14年收集的大数据的一些技术架构图/</id>
-    <published>2015-08-05T05:16:53.000Z</published>
-    <updated>2015-08-05T05:38:56.350Z</updated>
-    <content type="html"><![CDATA[<p>1 Big Data Solution</p>
-<p>1.1 HP</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_01.png" alt=""><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_02.png" alt=""></p>
-<p>1.2 Oracle</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_03.png" alt=""><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_04.JPG" alt=""></p>
-<p>1.3 IBM</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_05.jpg" alt=""></p>
-<p>1.4 Microsoft</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_06.png" alt=""></p>
-<p>1.5 Huawei</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_07.png" alt=""><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_08.jpg" alt=""><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_09.jpg" alt=""></p>
-<p>2 Big Data on Cloud</p>
-<p>2.1 Amazon AWS</p>
-<p>2.1.1 Netflix BigData on AWS<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_10.png" alt=""></p>
-<p>2.2 Microsoft Azure</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_11.png" alt=""></p>
-<p>2.3 Facebook</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_12.png" alt=""></p>
-<p>2.4 Linkedin</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_13.png" alt=""></p>
-<p>2.5 Twitter</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_14.png" alt=""></p>
-<p>2.6 Alibaba/Taobao</p>
-<p>2.6.1 淘宝数据魔方<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_15.png" alt=""></p>
-<p>2.6.2 阿里大数据应用平台<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_16.png" alt=""><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_17.png" alt=""></p>
-<p>2.6.3 阿里搜索实时流计算<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_18.png" alt=""></p>
-<p>2.7 Tencent</p>
-<p>2.7.1 腾讯大规模Hadoop集群TDW<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_19.png" alt=""></p>
-<p>2.7.2 腾讯实时计算平台 广点通<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_20.png" alt=""></p>
-<p>2.8 JD(京东)</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_21.png" alt=""></p>
-<p>2.9 CMCC(中国移动)</p>
-<p>2.9.1 大云PaaS 2.5<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_22.png" alt=""></p>
-<p>3 Hadoop Distribution</p>
-<p>3.1 Apache Hadoop</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_23.png" alt=""></p>
-<p>3.2 Cloudera</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_24.png" alt=""></p>
-<p>3.3 Hortonworks</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_25.png" alt=""></p>
-<p>3.4 MapR</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_26.png" alt=""></p>
-<p>3.5 Intel</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_27.png" alt=""></p>
-<p>3.6 EMC Pivotal HD</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_28.jpg" alt=""></p>
-<p>3.7 IBM</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_29.jpg" alt=""></p>
-<p>3.8 Huawei</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_30.jpg" alt=""></p>
-<p>4 Landscape</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_31.jpg" alt=""><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_32.png" alt=""><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_33.png" alt=""></p>
-<p>5 参考</p>
-<ul>
-<li><a href="http://www-01.ibm.com/software/data/bigdata/platform/resources.html" target="_blank" rel="external">IBM Report</a></li>
-<li><a href="http://www.gartner.com/technology/reprints.do?id=1-1E7OTT7&amp;ct=130225&amp;st=sb" target="_blank" rel="external">Gartner - Hadoop Is Not a Data Integration Solution</a></li>
-<li><a href="http://www.gartner.com/technology/reprints.do?id=1-1DBWMQY&amp;ct=121220&amp;st=sb" target="_blank" rel="external">Gartner - Magic Quadrant for Data Masking Technology 2012</a></li>
-<li><a href="http://www.gartner.com/technology/reprints.do?id=1-1IMDMZ5&amp;ct=130819&amp;st=sb" target="_blank" rel="external"> Magic Quadrant for Cloud Infrastructure as a Service 2013</a></li>
-<li><a href="http://wenku.it168.com/d_000048434.shtml" target="_blank" rel="external">Facebook Hadoop</a></li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>1 Big Data Solution</p>
-<p>1.1 HP</p>
-<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/H13_0]]>
-    </summary>
-    
-      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
-    
-      <category term="CDH" scheme="http://navigating.github.io/tags/CDH/"/>
-    
-      <category term="HDP" scheme="http://navigating.github.io/tags/HDP/"/>
-    
-      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="MapR" scheme="http://navigating.github.io/tags/MapR/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[读《微软研发制胜策略》]]></title>
-    <link href="http://navigating.github.io/2015/%E8%AF%BB%E3%80%8A%E5%BE%AE%E8%BD%AF%E7%A0%94%E5%8F%91%E5%88%B6%E8%83%9C%E7%AD%96%E7%95%A5%E3%80%8B/"/>
-    <id>http://navigating.github.io/2015/读《微软研发制胜策略》/</id>
-    <published>2015-08-04T14:30:45.000Z</published>
-    <updated>2015-08-04T14:31:31.555Z</updated>
-    <content type="html"><![CDATA[<p>软件开发的核心就是：达成项目目标，提高生产率，提高软件的质量。除此之外，都不要重要。<br>管理上、复用上，一切的核心就是人的问题，提高人的能力是第一生产力。</p>
-<p>1.项目中一个现象就是紧紧的去控制进度，调整进度，进度的跟踪只是一种日常的事务工作。<br>2.观念的改变是第一位的，什么是观念改变的原则：规则不是法律，是可以触碰的。什么是我们要改变的规则，就是要有主动、计划、灵活。<br>3.紧密的进度计划，是一般的管理人员的通常做法，他的好处就是看到不断的工作，会有不断的压力；如果运用不当，就可能让人觉得厌烦和沮丧。<br>4.为了日程进度，牺牲质量往往是不值得的，除非你要一笑而过的做法。再不管这个项目的后续开发和维护了。对于产品或者项目的期限，要谨慎，要反思可能为了进度而牺牲质量。这叫着草率的期限。<br>5.一个好的日程表会兼顾公司和员工的利益的。<br>6.没有期限的目标不过是梦想而已。<br>7.把一个大项目，切分成n个小项目来做，每一个项目的周期大约是2个月。叫着阶段式的日程控制法。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>软件开发的核心就是：达成项目目标，提高生产率，提高软件的质量。除此之外，都不要重要。<br>管理上、复用上，一切的核心就是人的问题，提高人的能力是第一生产力。</p>
-<p>1.项目中一个现象就是紧紧的去控制进度，调整进度，进度的跟踪只是一种日常的事务工作。<br>2.观念]]>
-    </summary>
-    
-      <category term="读书" scheme="http://navigating.github.io/categories/%E8%AF%BB%E4%B9%A6/"/>
     
   </entry>
   
