@@ -87,6 +87,246 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2011/Android实战第二季" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/Android实战第二季/" class="article-date">
+  <time datetime="2011-10-23T16:12:20.000Z" itemprop="datePublished">2011-10-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/Android实战第二季/">Android实战第二季</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android 通用架构</p>
+<p>Android 有一个通用的展示软件栈的架构，即是如此图：</p>
+<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2011/Android_01.png" alt="">  </p>
+<p>简单介绍：</p>
+<p>Applications 层：主要是 Android 自带的 GMS(Google Mobile Service) 应用和应用开发者开发的应用；</p>
+<p>Application Framework ：主要是为 Application 开发者提供各种功能、服务和开发 API 。</p>
+<p>Android Runtime(Core libraries and Dalvik Virtual Mache) ：为应用运行提供运行环境的 Java 虚拟机和运行时库。</p>
+<p>Libraries ：主要是 Android 系统运行库和工具集；</p>
+<pre><code><span class="keyword">C</span>/<span class="keyword">C</span>++ 库：
+</code></pre><p>a)       标准 C/C++ 库 bionic ： BSD 许可证，可以修改而无需公开源代码。提供 C/C++ 标准库绝大部分的功能，是一个专为嵌入式系统设计的轻量级标准库实现。相对于传统的 glibc ，其体积和内存占用很小。</p>
+<p>b)      C 语言工具库 libcutils ：是 Android 系统中的基石库，基本上 Android 中所有的本地库和程序都链接了这个库。</p>
+<p>c)      init 进程：此进程是 Android 设备启动后，系统执行的第一个用户空间的可执行程序，由内核缺省直接启动，以守护进程的形式后台运行。提供以下功能：设备管理、解析并执行初始化脚本 init.rc 。</p>
+<p>d)      shell 工具： sh 和 toolbox 、 busybox 。</p>
+<p>e)       C++ 语言工具库 libutils ：属于 Android 的底层库。以 C++ 实现，提供的 API 也是 C++ 接口规范。提供基本头文件、 Binder 框架以及使用 Binder 机制的相关库。</p>
+<p>通过 Android 应用程序框架为开发者提供服务的 C/C++ 库 :</p>
+<p>a)       系统 C 库：一个从 BSD 继承来的标准 C/C++ 系统函数库， 是专门为基于嵌入式 Linux 系统的设备定制的。即 bionic libc 库。</p>
+<p>b)      媒体库：基于 PacketVideo OpenCORE 。该库支持多种常用的音频、视频格式回放和录制，同时支持静态图像文件。编码格式包括 MPEG4, H.264, MP3, AAC, AMR, JPG, PNG 。</p>
+<p>c)      Surface Manager ：对显示子系统的管理，并且为多个应用程序提 供了 2D 和 3D 图层的无缝融合。</p>
+<p>d)      LibWebCore ：一个最新的 web 浏览器引擎用，支持 Android 浏览器和一个可嵌入的 web 视图</p>
+<p>e)       SGL - 底层的 2D 图形引擎</p>
+<p>f)       3D libraries ：基于 OpenGL ES 1.0 APIs 实现；该库可以使用硬件 3D 加速（如果可用）或者使用高度优化的 3D 软加速。</p>
+<p>g)      SQLite ：一个对于所有应用程序可用，功能强劲的轻型关系型数据库引擎。</p>
+<p>系统工具集 :</p>
+<p>a)       主要以 busybox 为主，链接 bionic libc 库，为大多数嵌入式 Linux 所采用。主要包含一些系统管理工具，全为文本命令行工具。</p>
+<p>b)      另外 Android 官方也提供了专门的调试守护进程，如 adbd 等。</p>
+<p>HAL ：一个对硬件访问虚拟化的中间抽象层，接着我们详细介绍；</p>
+<p>Linux Kernel ：基于开源 Linux kernel 经过修改的支撑整个软件栈的基础操作系统内核，当前主要是依赖于 Linux kernel 2.6 。驱动主要分为两类，一类是 Android 专用驱动，其并不是硬件驱动，而主要是一些为上层提供服务的辅助功能层，比如 ashmem 、 logger 、 binder 、 power manager ；另一类则是设备驱动则，其多是硬件驱动，属于 Linux 内核标准的驱动，比如 fb 显示驱动 (LCD) 、输入设备驱动 ( 游戏杆、鼠标、键盘、触摸屏 ) 、视频驱动 (Camera) 、音频驱动、 MTD 存储设备驱动、网络驱动 ( 蓝牙、 WiFi 、 Ethernet) 等。驱动在内存映射的时候也分为 kernel space 和 user space ，放在 kernel space 都是需要遵循 GPL 开源的；放在 user space 中的驱动，是遵循 Apache/MIT 许可证的，可以不开源，其运行在 kernel space 之上。</p>
+<p>Hardware Abstraction Layer:</p>
+<p>HAL 是 Google 为了解决 Linux 开源许可证 GPL 和 Android 本身的 Apache 许可证冲突的一个硬件抽象层，主要原则是把控制硬件的动作都放到了 Android HAL 中，而 linux driver 仅仅完成一些简单的数据交互作用，甚至把硬件寄存器空间直接映射到 user space 。</p>
+<p>HAL 存在的原因：</p>
+<ol>
+<li><p>快速适配硬件设备中非 linux kernel 标准的接口；</p>
+</li>
+<li><p>解决 Linux 开源许可证 GPL 与硬件设备厂商驱动的专利不兼容；通过 Android 的 Apache 许可证和 HAL 技术实现来解决这一难题；</p>
+</li>
+<li><p>开放的满足设备厂商开发开与之驱动对应的特定需求的要求；</p>
+</li>
+</ol>
+<p>HAL 层具备如下特点：</p>
+<ol>
+<li><p>在用户空间 (user space) 而不是内核空间 (kernel space) ，可以是 c/c++ 库；</p>
+</li>
+<li><p>将 Android platform 部分和系统硬件完全的进行了隔离开；</p>
+</li>
+<li><p>向上层提供 Android platform 操作硬件的接口，向下要求硬件驱动对其功能进行实现； ( 比方说上层应用对于 Graphics, Audio, Camera, Bluetooth, GPS, Radio(RIL), Wifi 等的操作。 )</p>
+</li>
+</ol>
+<p>在编程方式上，上层应用通过 HAL 对硬件的操作有两种方式：</p>
+<ol>
+<li>通过 Java-&gt;JNI-&gt;*.so 库 (c/c++) ；</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2011/Android_02.png" alt="">  </p>
+<ol>
+<li>通过 Java app-&gt;ApplicationManager-&gt;Service(java)-&gt;service(jni)-&gt;HAL-&gt;HAL stub-&gt;System Call 方式进行调用；</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2011/Android_03.png" alt="">  </p>
+<p>注：一般 HAL 动态库放在位置 /system/lib/hw 目录。</p>
+<p>一般开发类型</p>
+<ol>
+<li>Android 手机产品：构建硬件系统，移植 Android 软件平台系统；主要涉及设备驱动程序，以及在硬件抽象层实现标准接口等。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2011/Android_04.png" alt="">  </p>
+<ol>
+<li><p>Android 应用程序：基于 Application Framework 和其他应用，开发应用程序；</p>
+</li>
+<li><p>Android 系统开发：主要是增强或者完善 Android 平台系统的功能，开发中主要包含如下部分：</p>
+</li>
+</ol>
+<p>a)         开发 c 或者 c++ 库；</p>
+<p>b)        定义将要通过 JNI 提供的上层 Java 的系统 API 接口；</p>
+<p>c)        封装 JNI ；</p>
+<p>d)        通过 JNI 封装 Java 类和接口 API ，提供给 Android 应用使用；</p>
+<p>Android 开发社区</p>
+<p>Cyanogenmod 社区： <a href="http://www.cyanogenmod.com/" target="_blank" rel="external">http://www.cyanogenmod.com/</a></p>
+<p>涉及开发语言： C/C++/Java 等。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2011/Android实战第二季/" data-id="ciopj1yg6006rm4lm0bioaoxm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2011/Android实战第一季" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2011/Android实战第一季/" class="article-date">
+  <time datetime="2011-10-22T16:11:46.000Z" itemprop="datePublished">2011-10-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2011/Android实战第一季/">Android实战第一季</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Android</p>
+<p>Android 是 Google 公司为移动设备而开发的遵循 Apache/MIT 开源许可证、完全开发的、全软件栈操作系统。为 Android 应用开发者提供工具和框架；为用户提供一个不依赖硬件的通用平台；为设备商提供完整的解决方案。</p>
+<p>Android is a comprehensive platform, which means it is a complete software stack for a mobile device.</p>
+<p>For developers, Android provides all the tools and frameworks for developing mobile apps quickly and easily.</p>
+<p>For users, Android just works right out of the box. Additionally, users can customize their phone experience substantially.</p>
+<p>For manufactures, it is the complete solution for running their devices. Other than some hardware-specific drivers, Android provides everything else to make their devices work.</p>
+<p>Android 生态系统</p>
+<p>Google Android 开发系统由三个部分组成：</p>
+<ol>
+<li><p>Android 源代码工程 (Open Source Project) 包括 Android 全部源代码 : <a href="https://source.android.com" target="_blank" rel="external">https://source.android.com</a></p>
+</li>
+<li><p>Android 开发者 (Developer) 包括 SDK API 和文档 : <a href="https://developer.android.com" target="_blank" rel="external">https://developer.android.com</a></p>
+</li>
+<li><p>Android 应用市场 (Market) 是一个开发者发布应用程序的平台 : <a href="https://market.android.com/" target="_blank" rel="external">https://market.android.com/</a></p>
+</li>
+</ol>
+<p>Android 系统</p>
+<p>Android 一词最早出现于法国作家利尔亚当（ Auguste Villiers de l’Isle-Adam ）在 1886 年发表的科幻小说《未来夏娃》（ L’ è ve future ）中外表像人的机器起名为 Android ；</p>
+<p>2003 年 10 月由 Andy Rubin 和 Rich Miner 创办一家公司 Android 专门研发 Android ；</p>
+<p>2005 年 Google 收购了 Android 公司；</p>
+<p>2007 年 11 月 5 日 Google 正式展示、发布了开源手机手机操作系统平台 Android 。 Google 宣布组建的一个全球性的联盟组织 - 开放手持设备联盟（ Open Handset Alliance ），联盟将支持 Google 发布的手机操作系统或者应用软件，共同开发 Android 系统的开放源代码。开放手持设备联盟包括手机制造商、手机芯片厂商和移动运营商</p>
+<p>2007 年 11 月 12 号发布 Google SDK 。</p>
+<p>2008 年 8 月 18 日， Android 获得了美国联邦通信委员会（ FCC ）的批准；</p>
+<p>2008 年 9 月 23 日，第一款 Android 手机发布， HTC Dream(G1) ；</p>
+<p>2008 年， Patrick Brady 于 Google I/O 演讲“ Anatomy &amp; Physiology of an Android ”，并提出的 Android HAL 架构图；</p>
+<p>2009 年 2 月， Android 1.1 发布；</p>
+<p>2009 年 2 月， Google 推出 Android Market 线上应用程序商店，用户可在该平台网页寻找、购买、下载及评级使用手机应用程序及其他内容；</p>
+<p>2009 年 4 月 30 日， Android 1.5 Cupcake 版本发布；</p>
+<p>2009 年 9 月 15 日， Android 1.6 Donut 版本发布；</p>
+<p>2009 年 10 月 26 日， Android 2.0 Eclair 版本发布；</p>
+<p>2010 年 2 月 3 日， Linux 内核开发者 Greg Kroah-Hartman 将 Android 的驱动程序从 Linux 内核“状态树”（“ staging tree ”）上除去，从此， Android 与 Linux 核心开发分道扬镳；</p>
+<p>2010 年 5 月 20 日， 2.2 Froyo 版本发布；</p>
+<p>2010 年 12 月 7 日， 2.3 Gingerbread 版本发布；</p>
+<p>2011 年 2 月 2 日， 3.0 Honeycomb 版本发布；</p>
+<p>2011 年 5 月 11 日， 3.1 Honeycomb 版本在 Google I/O 开发者大会宣布发布；</p>
+<p>2011 年 7 月 13 日， 3.2 Honeycomb 版本发布；</p>
+<p>2011 年 10 月 19 日， 4.0 Ice Cream Sandwich 版本发布；</p>
+<p>Android 版本代号命名规则，从 Android 1.5 开始，按着 26 个英文字母的顺序作为首字母，选择一种甜点单词作为版本的代号；因此， Android 下一个版本发布的代号即是： Jelly Bean 。</p>
+<p>Andy Rubin</p>
+<pre><code>纽约州 Chappaqua 长大，父亲拥有自己的消费电子直销公司，从小就接触各种最新的电子设备；
+
+在纽约州由提卡学院读计算机科学。
+
+毕业后在蔡司公司任机器人工程师。
+
+<span class="number">1989</span> 年加入苹果公司。
+
+<span class="number">1990</span> 年，苹果分拆他所在的手持计算和通信设备部门，成立 General Magic 公司，在这里他开发了手持设备操作系统 Magic Cap 。
+
+公司倒闭后加入 Artemis Research ，开发了交互式互联网电视 WebTV 。
+
+后与人创办 Danger 公司，担任 CEO ，但不久被免职。 Danger 公司开发了后来被称为 T-Mobile Sidekick 的手机，公司于 <span class="number">2008</span> 年被微软收购。
+
+<span class="number">2003</span> 年与 Rich Miner 一起创办了 <span class="keyword">Android </span>公司。
+
+<span class="number">2005</span> 年 <span class="keyword">Android </span>公司被 Google 收购，任 Google 工程副总裁，领导开发了 <span class="keyword">Android </span>操作系统。
+
+并拥有多项无线通信专利。
+</code></pre><p>市场上手机操作系统</p>
+<ol>
+<li><p>Apple iOS</p>
+</li>
+<li><p>Google Android</p>
+</li>
+<li><p>Microsoft Window Phone</p>
+</li>
+<li><p>Blackberry OS</p>
+</li>
+<li><p>HP WebOS</p>
+</li>
+<li><p>Nokia Symbian</p>
+</li>
+<li><p>Meego</p>
+</li>
+<li><p>Palm OS</p>
+</li>
+<li><p>Samsung Bada</p>
+</li>
+<li><p>Tizen</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2011/Android实战第一季/" data-id="ciopj1ygh006ym4lmqjkf5aio" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2011/Java时间简史" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2011/Java时间简史/" class="article-date">
@@ -335,7 +575,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/Java时间简史/" data-id="ciohafr2b006g5olmtkf4tifp" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2011/Java时间简史/" data-id="ciopj1yg1006om4lme9f7z7rs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -397,7 +637,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/一些关塞-关口-关卡/" data-id="ciohafr2b006e5olm6khxnrh0" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2011/一些关塞-关口-关卡/" data-id="ciopj1yfx006mm4lm0paynktc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -441,7 +681,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/秦末汉初乱之阶段划分/" data-id="ciohafr1g00625olmy4weqo6m" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2011/秦末汉初乱之阶段划分/" data-id="ciopj1yf0006am4lm5v95jm4m" class="article-share-link">Share</a>
       
       
     </footer>
@@ -525,7 +765,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/学习之-Stack-Exchange网站架构/" data-id="ciohafr1v00685olm1cdy66tp" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2011/学习之-Stack-Exchange网站架构/" data-id="ciopj1yff006gm4lmbn9rdd71" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li></ul>
@@ -568,7 +808,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2010/川西旅游/" data-id="ciohafr3m00725olmndlz7822" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2010/川西旅游/" data-id="ciopj1yh6007am4lmu13u6obp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -612,7 +852,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2010/JDK-7-in-JavaOne-2010/" data-id="ciohafr4w007k5olmr6nxyrk8" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2010/JDK-7-in-JavaOne-2010/" data-id="ciopj1yi1007sm4lmuqkwbz42" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -658,7 +898,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2010/摘要-40-Android-Business-Models/" data-id="ciohafr3m006x5olmg6zpxhss" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2010/摘要-40-Android-Business-Models/" data-id="ciopj1ygx0075m4lmo3p0yrwg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
@@ -719,103 +959,10 @@ Sun 的第 <span class="number">21</span> 名雇员。
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2010/Java服务器开发基础知识-1/" data-id="ciohafr4h007g5olm3sbp5du3" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2010/Java服务器开发基础知识-1/" data-id="ciopj1yhr007om4lmkzy4kx7a" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2010/关于处理器架构的一点儿知识" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/关于处理器架构的一点儿知识/" class="article-date">
-  <time datetime="2010-06-30T15:53:31.000Z" itemprop="datePublished">2010-06-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/关于处理器架构的一点儿知识/">关于处理器架构的一点儿知识</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在关注Android的时候，有一些CPU架构方面的术语知识需要给自己补充的。主要有ARM、X86/Atom、MIPS、PowerPC，其中ARM在智能手机上面一枝独秀:)<br>其中ARM/MIPS/PowerPC均是基于精简指令集机器处理器的架构；<br>X86则是基于复杂指令集的架构，Atom是x86或者是x86指令集的精简版。<br>根据各种新闻，Android在支持各种处理器的现状：<br>ARM+Android 最早发展、完善的支持，主要在手机市场、上网本、智能等市场；<br>X86+Android 有比较完善的发展。有atom+Android的上网本，且支持Atom+Android 和 Atom+Window7双系统；<br>MIPS+Android 目前在移植、完善过程中；<br>Powpc+Android 目前在移植、完善过程中。</p>
-<p>ARM系列<br>ARM架构，过去称作进阶精简指令集机器（Advanced RISC Machine，更早称作：Acorn RISC Machine），是一个32位精简指令集（RISC）处理器架构，其广泛地使用在许多嵌入式系统设计。由于节能的特点，ARM处理器非常适用于行动通讯领域，符合其主要设计目标为低耗电的特性。<br>在今日，ARM家族占了所有32位嵌入式处理器75%的比例，使它成为占全世界最多数的32位架构之一。ARM处理器可以在很多消费性电子产品上看到，从可携式装置（PDA、移动电话、多媒体播放器、掌上型电子游戏，和计算机）到电脑外设（硬盘、桌上型路由器）甚至在导弹的弹载计算机等军用设施中都有他的存在。在此还有一些基于ARM设计的派生产品，重要产品还包括Marvell的XScale架构和德州仪器的OMAP系列。<br>优势：价格低；能耗低；<br>ARM 授权方式：ARM 公司本身并不靠自有的设计来制造或出售 CPU ，而是将处理器架构授权给有兴趣的厂家。ARM 提供了多样的授权条款，包括售价与散播性等项目。对于授权方来说，ARM 提供了 ARM 内核的整合硬件叙述，包含完整的软件开发工具（编译器、debugger、SDK），以及针对内含 ARM CPU 硅芯片的销售权。对于无晶圆厂的授权方来说，其希望能将 ARM 内核整合到他们自行研发的芯片设计中，通常就仅针对取得一份生产就绪的智财核心技术（IP Core）认证。对这些客户来说，ARM 会释出所选的 ARM 核心的闸极电路图，连同抽象模拟模型和测试程式，以协助设计整合和验证。需求更多的客户，包括整合元件制造商（IDM）和晶圆厂家，就选择可合成的RTL（暂存器转移层级，如 Verilog）形式来取得处理器的智财权（IP）。借着可整合的 RTL，客户就有能力能进行架构上的最佳化与加强。这个方式能让设计者完成额外的设计目标（如高震荡频率、低能量耗损、指令集延伸等）而不会受限于无法更动的电路图。虽然 ARM 并不授予授权方再次出售 ARM 架构本身，但授权方可以任意地出售制品（如芯片元件、评估板、完整系统等）。商用晶圆厂是特殊例子，因为他们不仅授予能出售包含 ARM 内核的硅晶成品，对其它客户来讲，他们通常也保留重制 ARM 内核的权利。<br>生产厂商：TI （德州仪器）/Samsung（三星）/Freescale（飞思卡尔）/Marvell（马维尔）/Nvidia（英伟达）<br>下面是四核ARM芯片架构图，可以参看：<br>&lt;图已遗失&gt;</p>
-<p>x86系列/Atom处理器<br>xx86或80x86是英代尔Intel首先开发制造的一种微处理器体系结构的泛称。<br>x86架构是重要地可变指令长度的CISC（复杂指令集电脑，Complex Instruction Set Computer）。<br>Intel Atom（中文：凌动，开发代号：Silverthorne）是Intel的一个超低电压处理器系列。处理器采用45纳米工艺制造，集成4700万个晶体管。L2缓存为512KB，支持SSE3指令集，和VT虚拟化技术（部份型号）。<br>现时，Atom处理器系列有6个型号，全部都是属于Z500系列。它们分别是Z500、Z510、Z520、Z530、Z540和Z550。最低端的Z500内核频率是800MHz，FSB则是400MHz。而最高速的Z550，内核频率则有2.0GHz，FSB则是533MHz。从Z520开始，所有的处理器都支持超线程技术，但只增加了不到10%的耗电。双内核版本为N系列，依然采用945GC芯片组。双内核版本仍会支持超线程技术，所以系统会显示出有4个逻辑处理器。这个版本的两个内核并非采用本地设计，只是简单的将两个单内核封装起来。</p>
-<p>MIPS系列<br>MIPS是世界上很流行的一种RISC处理器。MIPS的意思是“无内部互锁流水级的微处理器”(Microprocessor without interlocked piped stages)，其机制是尽量利用软件办法避免流水线中的数据相关问题。它最早是在80年代初期由斯坦福(Stanford)大学Hennessy教授领导的研究小组研制出来的。MIPS公司的R系列就是在此基础上开发的RISC工业产品的微处理器。这些系列产品为很多计算机公司采用构成各种工作站和计算机系统。<br>MIPS技术公司是美国著名的芯片设计公司，它采用精简指令系统计算结构(RISC)来设计芯片。和英特尔采用的复杂指令系统计算结构(CISC)相比，RISC具有设计更简单、设计周期更短等优点，并可以应用更多先进的技术，开发更快的下一代处理器。MIPS是出现最早的商业RISC架构芯片之一，新的架构集成了所有原来MIPS指令集，并增加了许多更强大的功能。MIPS自己只进行CPU的设计，之后把设计方案授权给客户，使得客户能够制造出高性能的CPU。<br>1984年，MIPS计算机公司成立，开始设计RISC处理器；<br>1986年推出R2000处理器。<br>1992年，SGI收购了MIPS计算机公司。<br>1988年推R3000处理器。<br>1991年推出第一款64位商用微处器R4000；之后又陆续推出R8000（于1994年）、R10000（于1996年）和R12000（于1997年）等型号。<br>1998年，MIPS脱离SGI，成为MIPS技术公司；随后，MIPS公司的战略发生变化，把重点放在嵌入式系统；1998年－MIPS科技股票在美国纳斯达克股票交易所公开上市。<br>1999年，MIPS公司发布MIPS32和MIPS64架构标准，为未来MIPS处理器的开发奠定了基础。新的架构集成了所有原来NIPS指令集，并且增加了许多更强大的功能。MIPS公司陆续开发了高性能、低功耗的32位处理器内核（core）MIPS324Kc与高性能64位处理器内核MIPS64 5Kc。<br>2000年，MIPS公司发布了针对MIPS32 4Kc的版本以及64位MIPS 64 20Kc处理器内核。<br>2007年8月16日－MIPS科技宣布，中科院计算机研究所的龙芯中央处理器获得其处理器IP的全部专利和总线、指令集授权。<br>2007年12月20日－MIPS科技宣布，扬智科技已取得其针对先进多媒体所设计的可定制化系统单芯片（SoC）核心“MIPS32 24KEc Pro”授权。</p>
-<p>PowerPC系列<br>PowerPC 是一种精简指令集（RISC）架构的中央处理器（CPU），其基本的设计源自IBM（国际商用机器公司）的IBM PowerPC 601 微处理器POWER（Performance Optimized With Enhanced RISC；《IBM Connect 电子报》2007年8月号译为“增强RISC性能优化”）架构。二十世纪九十年代，IBM(国际商用机器公司)、Apple（苹果公司）和Motorola（摩托罗拉）公司开发PowerPC芯片成功，并制造出基于PowerPC的多处理器计算机。PowerPC架构的特点是可伸缩性好、方便灵活。<br>PowerPC 处理器有广泛的实现范围，包括从诸如 Power4 那样的高端服务器 CPU 到嵌入式 CPU 市场（任天堂 Gamecube 使用了 PowerPC）。PowerPC 处理器有非常强的嵌入式表现，因为它具有优异的性能、较低的能量损耗以及较低的散热量。除了象串行和以太网控制器那样的集成 I/O，该嵌入式处理器与“台式机”CPU 存在非常显著的区别。</p>
-<p>互补型的实时性(Real Time)较好的DSP架构<br>DSP是微处理器的一种,这种微处理器具有极高的处理速度.因为应用这类处理器的场合要求具有很高的实时性(Real Time)。比如通过移动电话进行通话,如果处理速度不快就只能等待对方停止说话，这一方才能通话。如果双方同时通话，因为数字信号处理速度不够,就只能关闭信号连接.在DSP出现之前数字信号处理只能依靠MPU(微处理器)来完成。但MPU较低的处理速度无法满足高速实时的要求。因此，直到70年代，有人才提出了DSP的理论和算法基础。那时的DSP仅仅停留在教科书上，即便是研制出来的DSP系统也是由分立元件组成的，其应用领域仅局限於军事、航空航天部门。90年代DSP发展最快，相继出现了第四代和第五代DSP器件。现在的DSP属於第五代产品，它与第四代相比，系统集成度更高，将DSP芯核及外围元件综合集成在单一芯片上。这种集成度极高的DSP芯片不仅在通信、计算机领域大显身手，而且逐渐渗透到人们日常消费领域。</p>
-<p>百科：<br>ARM架构 <a href="http://zh.wikipedia.org/zh-cn/ARM%E6%9E%B6%E6%A7%8B#.E5.85.A7.E6.A0.B8.E7.A8.AE.E9.A1.9E" target="_blank" rel="external">http://zh.wikipedia.org/zh-cn/ARM%E6%9E%B6%E6%A7%8B#.E5.85.A7.E6.A0.B8.E7.A8.AE.E9.A1.9E</a><br>ARM架构 <a href="http://www.txrjy.com/baike/view.asp?ARM%BC%DC%B9%B9" target="_blank" rel="external">http://www.txrjy.com/baike/view.asp?ARM%BC%DC%B9%B9</a><br>dsp架构 <a href="http://baike.c114.net/view.asp?id=17155-2E64F9EF" target="_blank" rel="external">http://baike.c114.net/view.asp?id=17155-2E64F9EF</a><br>x86 <a href="http://zh.wikipedia.org/zh-cn/x86" target="_blank" rel="external">http://zh.wikipedia.org/zh-cn/x86</a><br>AMD <a href="http://zh.wikipedia.org/zh-cn/%E8%B6%85%E5%A8%81%E5%8D%8A%E5%AF%BC%E4%BD%93" target="_blank" rel="external">http://zh.wikipedia.org/zh-cn/%E8%B6%85%E5%A8%81%E5%8D%8A%E5%AF%BC%E4%BD%93</a><br>ARM:<br>云计算中心的基石，ARM架构？<a href="http://goo.gl/OMwl" target="_blank" rel="external">http://goo.gl/OMwl</a><br>ARM问鼎服务器 能否成为挑战x86的黑马 <a href="http://goo.gl/zsB3" target="_blank" rel="external">http://goo.gl/zsB3</a><br>Android:<br>Android助力mips移动战略 <a href="http://goo.gl/EgM4" target="_blank" rel="external">http://goo.gl/EgM4</a><br>分析ARM与ANDROID市场及技术结合点 <a href="http://goo.gl/854L" target="_blank" rel="external">http://goo.gl/854L</a><br>论山寨手机与Android <a href="http://goo.gl/nd9C" target="_blank" rel="external">http://goo.gl/nd9C</a><br>Android资源 <a href="http://goo.gl/m62y" target="_blank" rel="external">http://goo.gl/m62y</a><br>国内Android 市场调查 <a href="http://goo.gl/pOHQ" target="_blank" rel="external">http://goo.gl/pOHQ</a><br>PC World：Android与iPhone手机的五大战场 <a href="http://goo.gl/QEpZ" target="_blank" rel="external">http://goo.gl/QEpZ</a><br>Android 2.2 for Intel 夏天公布 <a href="http://goo.gl/AveA" target="_blank" rel="external">http://goo.gl/AveA</a><br>华硕将推”ARM架构+Android OS”上网本 <a href="http://goo.gl/DOFp" target="_blank" rel="external">http://goo.gl/DOFp</a><br>Intel:<br>MeeGo:开放源代码 Linux开发者蠢蠢欲动 <a href="http://goo.gl/wGXr" target="_blank" rel="external">http://goo.gl/wGXr</a><br>英特尔在智能手机处理器市场挑战ARM显劣势 <a href="http://goo.gl/cT4n" target="_blank" rel="external">http://goo.gl/cT4n</a><br>Android支持x86 Intel全力开发今夏亮相 <a href="http://goo.gl/8sw0" target="_blank" rel="external">http://goo.gl/8sw0</a><br>完成统一霸业! 凌动处理器性能全解析 <a href="http://goo.gl/BYKr" target="_blank" rel="external">http://goo.gl/BYKr</a><br>Apple:<br>第一篇详尽的 iPhone 4 评测 <a href="http://goo.gl/pzoE" target="_blank" rel="external">http://goo.gl/pzoE</a><br>传苹果欲再购一家处理器厂商 看好ARM架构 <a href="http://goo.gl/Os5G" target="_blank" rel="external">http://goo.gl/Os5G</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2010/关于处理器架构的一点儿知识/" data-id="ciohafr4100745olmqv8abjly" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2010/Apple-iPhone信息-更新" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2010/Apple-iPhone信息-更新/" class="article-date">
-  <time datetime="2010-06-26T15:52:46.000Z" itemprop="datePublished">2010-06-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/Apple-iPhone信息-更新/">Apple iPhone信息(更新)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>官网(Offical):<br>iPhone Introduction:<a href="http://www.apple.com/iphone" target="_blank" rel="external">http://www.apple.com/iphone</a><br>iTunes iPhone App Store:<a href="http://itunes.apple.com/us/app/apple-store/id375380948?mt=8&amp;ign-mpt=uo%3D4" target="_blank" rel="external">http://itunes.apple.com/us/app/apple-store/id375380948?mt=8&amp;ign-mpt=uo%3D4</a><br>iPhone Dev Center:<a href="http://developer.apple.com/iphone/index.action" target="_blank" rel="external">http://developer.apple.com/iphone/index.action</a><br>解锁越狱(unlock/jailbroken):<br><a href="http://cydia.saurik.com" target="_blank" rel="external">http://cydia.saurik.com</a><br>山寨：<br><a href="http://www.apptrackr.org" target="_blank" rel="external">http://www.apptrackr.org</a><br>中文社区：<br>威锋网：<a href="http://www.weiphone.com" target="_blank" rel="external">http://www.weiphone.com</a></p>
-<p>注：此处仅仅是信息收集，无其他用途(包括商业等)。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2010/Apple-iPhone信息-更新/" data-id="ciohafr5c007q5olm5tepqabz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apple/">Apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
 
     </footer>
   </div>
@@ -837,7 +984,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">82</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">84</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -862,7 +1009,15 @@ Sun 的第 <span class="number">21</span> 名雇员。
       <ul>
         
           <li>
+            <a href="/2016/开源流计算框架 - 201605/">开源流计算框架 - 201605</a>
+          </li>
+        
+          <li>
             <a href="/2016/敏捷之如何切分用户故事/">敏捷之如何切分用户故事</a>
+          </li>
+        
+          <li>
+            <a href="/2016/简报：人工智能 - 2016Q2/">简报：人工智能 - 2016Q2</a>
           </li>
         
           <li>
@@ -870,7 +1025,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
           </li>
         
           <li>
-            <a href="/2016/简报：人工智能 - 2016Q2/">简报：人工智能 - 2016Q2</a>
+            <a href="/2016/大数据之电信运营商案例/">大数据之电信运营商案例</a>
           </li>
         
           <li>
@@ -933,14 +1088,6 @@ Sun 的第 <span class="number">21</span> 名雇员。
             <a href="/2015/Hadoop发行版(2015第二季)/">Hadoop发行版(2015第二季)</a>
           </li>
         
-          <li>
-            <a href="/2015/学习《七牛是如何搞定每天500亿条日志的》/">学习《七牛是如何搞定每天500亿条日志的》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《腾讯在Spark上的应用与实践优化》/">学习《腾讯在Spark上的应用与实践优化》</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -950,7 +1097,7 @@ Sun 的第 <span class="number">21</span> 名雇员。
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2016-05-20T09:25:35.792Z</updated>
+  <updated>2016-05-27T09:13:28.620Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[开源流计算框架 - 201605]]></title>
+    <link href="http://navigating.github.io/2016/%E5%BC%80%E6%BA%90%E6%B5%81%E8%AE%A1%E7%AE%97%E6%A1%86%E6%9E%B6%20-%20201605/"/>
+    <id>http://navigating.github.io/2016/开源流计算框架 - 201605/</id>
+    <published>2016-05-27T07:53:46.000Z</published>
+    <updated>2016-05-27T09:13:28.620Z</updated>
+    <content type="html"><![CDATA[<p>商业流计算框架：</p>
+<ol>
+<li>IBM StreamBase</li>
+</ol>
+<p>开源流计算框架：</p>
+<ol>
+<li>Spark Streaming</li>
+<li>Apache Flink</li>
+<li>Apache Storm (Twitter)</li>
+<li>Apache Heron</li>
+<li>Apache Apex</li>
+<li>Yahoo! S4</li>
+<li>Apache Samza (Linkedin)</li>
+<li>Borealis(Brandeis University、Brown University、MIT)</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>商业流计算框架：</p>
+<ol>
+<li>IBM StreamBase</li>
+</ol>
+<p>开源流计算框架：</p>
+<ol>
+<li>Spark Streaming</li>
+<li>Apache Flink</li>
+<li>Apache Storm (Twi]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[敏捷之如何切分用户故事]]></title>
@@ -43,46 +85,6 @@
     </summary>
     
       <category term="Agile" scheme="http://navigating.github.io/tags/Agile/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[学习《Thoughtworks技术雷达201604》]]></title>
-    <link href="http://navigating.github.io/2016/%E5%AD%A6%E4%B9%A0%E3%80%8AThoughtworks%E6%8A%80%E6%9C%AF%E9%9B%B7%E8%BE%BE201604%E3%80%8B/"/>
-    <id>http://navigating.github.io/2016/学习《Thoughtworks技术雷达201604》/</id>
-    <published>2016-05-16T02:41:31.000Z</published>
-    <updated>2016-05-20T07:22:42.208Z</updated>
-    <content type="html"><![CDATA[<p>笔记如下：</p>
-<ul>
-<li><p>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">采用：我们强烈主张业界采用这些技术。如果适用我们的项目，我们会采用他们。</span><br><span class="line">试验：值得追求。重要的是理解如何建立这种能力。企业应该在风险可控的项目中尝试该项技术。</span><br><span class="line">评估：为了确认它将如何影响你所在的企业，值得做一番探究。</span><br><span class="line">暂缓：谨慎推行。</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在技术理念上需要关注：</p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Products <span class="keyword">over</span> projects</span><br><span class="line">BFF - Backend <span class="keyword">for</span> frontends</span><br><span class="line">Data Lake</span><br><span class="line">Event Storming</span><br><span class="line">QA <span class="keyword">in</span> production</span><br><span class="line">Reactive architectures</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>平台部分关注：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Docker</span></span><br><span class="line">Apache Mesos</span><br><span class="line">Kubernets</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>工具部分关注：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Consul</span></span><br><span class="line">Apache Kafka</span><br><span class="line">Zipkin</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>语言和框架部分关注：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ES6</span><br><span class="line">React<span class="class">.js</span></span><br><span class="line">Spring Boot</span><br><span class="line">Swift</span><br><span class="line">Dagger</span><br><span class="line">Dapper</span><br><span class="line">Ember<span class="class">.js</span></span><br><span class="line">Reactive Native</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>暂缓部分关注：</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>Application Servers</span><br><span class="line"><span class="bullet">2. </span>Jenkins as a deployment pipeline</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>&lt;完&gt;</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>笔记如下：</p>
-<ul>
-<li><p>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。</p>
-<figure class="highlight"]]>
-    </summary>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -129,6 +131,69 @@
 <li>Microsoft: DMTK</li>
 <li>Googl]]>
     </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[学习《Thoughtworks技术雷达201604》]]></title>
+    <link href="http://navigating.github.io/2016/%E5%AD%A6%E4%B9%A0%E3%80%8AThoughtworks%E6%8A%80%E6%9C%AF%E9%9B%B7%E8%BE%BE201604%E3%80%8B/"/>
+    <id>http://navigating.github.io/2016/学习《Thoughtworks技术雷达201604》/</id>
+    <published>2016-05-16T02:41:31.000Z</published>
+    <updated>2016-05-20T07:22:42.208Z</updated>
+    <content type="html"><![CDATA[<p>笔记如下：</p>
+<ul>
+<li><p>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">采用：我们强烈主张业界采用这些技术。如果适用我们的项目，我们会采用他们。</span><br><span class="line">试验：值得追求。重要的是理解如何建立这种能力。企业应该在风险可控的项目中尝试该项技术。</span><br><span class="line">评估：为了确认它将如何影响你所在的企业，值得做一番探究。</span><br><span class="line">暂缓：谨慎推行。</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在技术理念上需要关注：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Products <span class="keyword">over</span> projects</span><br><span class="line">BFF - Backend <span class="keyword">for</span> frontends</span><br><span class="line">Data Lake</span><br><span class="line">Event Storming</span><br><span class="line">QA <span class="keyword">in</span> production</span><br><span class="line">Reactive architectures</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>平台部分关注：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Docker</span></span><br><span class="line">Apache Mesos</span><br><span class="line">Kubernets</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>工具部分关注：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">Consul</span></span><br><span class="line">Apache Kafka</span><br><span class="line">Zipkin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>语言和框架部分关注：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ES6</span><br><span class="line">React<span class="class">.js</span></span><br><span class="line">Spring Boot</span><br><span class="line">Swift</span><br><span class="line">Dagger</span><br><span class="line">Dapper</span><br><span class="line">Ember<span class="class">.js</span></span><br><span class="line">Reactive Native</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>暂缓部分关注：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">1. </span>Application Servers</span><br><span class="line"><span class="bullet">2. </span>Jenkins as a deployment pipeline</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>&lt;完&gt;</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>笔记如下：</p>
+<ul>
+<li><p>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。</p>
+<figure class="highlight"]]>
+    </summary>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[大数据之电信运营商案例]]></title>
+    <link href="http://navigating.github.io/2016/%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%B9%8B%E7%94%B5%E4%BF%A1%E8%BF%90%E8%90%A5%E5%95%86%E6%A1%88%E4%BE%8B/"/>
+    <id>http://navigating.github.io/2016/大数据之电信运营商案例/</id>
+    <published>2016-04-21T07:53:46.000Z</published>
+    <updated>2016-05-23T07:35:17.057Z</updated>
+    <content type="html"><![CDATA[<h1 id="美国AT&amp;T">美国AT&amp;T</h1><p><a href="http://www.processexcellencenetwork.com/business-transformation/articles/the-goldmine-in-our-pockets-how-telecommunications" target="_blank" rel="external">http://www.processexcellencenetwork.com/business-transformation/articles/the-goldmine-in-our-pockets-how-telecommunications</a><br><a href="https://en.wikipedia.org/wiki/Data_monetization" target="_blank" rel="external">https://en.wikipedia.org/wiki/Data_monetization</a><br><a href="http://www.footfallchina.cn/index.php/insights/" target="_blank" rel="external">http://www.footfallchina.cn/index.php/insights/</a></p>
+<h1 id="西班牙电信_智慧足迹(smart_steps)">西班牙电信 智慧足迹(smart steps)</h1><p><a href="http://dynamicinsights.telefonica.com/blog/488/smart-steps-2" target="_blank" rel="external">http://dynamicinsights.telefonica.com/blog/488/smart-steps-2</a><br><a href="http://dynamicinsights.telefonica.com/wp-content/uploads/2015/04/O2-Retail-Smart-Steps-Case-Study.pdf" target="_blank" rel="external">http://dynamicinsights.telefonica.com/wp-content/uploads/2015/04/O2-Retail-Smart-Steps-Case-Study.pdf</a><br><a href="http://dynamicinsights.telefonica.com/blog/1634/smart-steps-saved-newark-from-commuter-lock-down" target="_blank" rel="external">http://dynamicinsights.telefonica.com/blog/1634/smart-steps-saved-newark-from-commuter-lock-down</a></p>
+<h1 id="美国威瑞森(Verizon)_Precision_Market_Insights">美国威瑞森(Verizon) Precision Market Insights</h1><p><a href="http://www.verizonwireless.com/featured/precision/" target="_blank" rel="external">http://www.verizonwireless.com/featured/precision/</a></p>
+<p>参考：</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="美国AT&amp;T">美国AT&amp;T</h1><p><a href="http://www.processexcellencenetwork.com/business-transformation/articles/the-goldmine-in-our-]]>
+    </summary>
+    
+      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
+    
+      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -846,103 +911,6 @@
       <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
     
       <category term="SQL on Hadoop" scheme="http://navigating.github.io/tags/SQL-on-Hadoop/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[学习《七牛是如何搞定每天500亿条日志的》]]></title>
-    <link href="http://navigating.github.io/2015/%E5%AD%A6%E4%B9%A0%E3%80%8A%E4%B8%83%E7%89%9B%E6%98%AF%E5%A6%82%E4%BD%95%E6%90%9E%E5%AE%9A%E6%AF%8F%E5%A4%A9500%E4%BA%BF%E6%9D%A1%E6%97%A5%E5%BF%97%E7%9A%84%E3%80%8B/"/>
-    <id>http://navigating.github.io/2015/学习《七牛是如何搞定每天500亿条日志的》/</id>
-    <published>2015-08-10T06:48:00.000Z</published>
-    <updated>2015-08-10T14:12:54.949Z</updated>
-    <content type="html"><![CDATA[<p>七牛是如何搞定每天500亿条日志的 <a href="http://www.csdn.net/article/2015-07-30/2825342" target="_blank" rel="external">http://www.csdn.net/article/2015-07-30/2825342</a><br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/qiniu_01.jpg" alt=""><br>日志处理的大致分为三步：</p>
-<pre><code><span class="bullet">1. </span>日志采集，主要是通过Agent和Flume；
-<span class="bullet">2. </span>日志流转，主要是通过Kafka；
-<span class="bullet">3. </span>日志计算，主要是通过Spark Streaming作为计算引擎；
-</code></pre><p>大致的处理流程：</p>
-<pre><code><span class="number">1.</span> Agent/<span class="built_in">Local</span> Kafka <span class="subst">-&gt; </span>Flume <span class="subst">-&gt; </span>Kafka <span class="subst">-&gt; </span>HDFS <span class="subst">-&gt; </span>mongoDB
-<span class="number">2.</span> Agent/<span class="built_in">Local</span> Kafka <span class="subst">-&gt; </span>Flume <span class="subst">-&gt; </span>Kafka <span class="subst">-&gt; </span>Spark <span class="subst">-&gt; </span>mongoDB
-<span class="number">3.</span> Agent/<span class="built_in">Local</span> Kafka <span class="subst">-&gt; </span>Flume <span class="subst">-&gt; </span>Kafka <span class="subst">-&gt; </span>Spark <span class="subst">-&gt; </span>opentsdb 
-</code></pre><p>流程3只是见于图上，文字上没有任何提到。<br>在日志采集中，通过Agent将业务应用和日志采集进行了分离，采取了Agent主动来拉的模式。专门强调了Agent 的设计需求：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">每台机器上会有一个Agent去同步这些日志，这是个典型的队列模型，业务进程在不断的push，Agent在不停的pop。Agent需要有记忆功能，用来保存同步的位置(<span class="command">offset</span>)，这样才尽可能保证数据准确性，但不可能做到完全准确。由于发送数据和保存<span class="command">offset</span>是两个动作，不具有事务性，不可避免的会出现数据不一致性情况，通常是发送成功后保存<span class="command">offset</span>，那么在Agent异常退出或机器断电时可能会造成多余的数据。</span><br><span class="line">在这里，Agent需要足够轻，这主要体现在运维和逻辑两个方面。Agent在每台机器上都会部署，运维成本、接入成本是需要考虑的。Agent不应该有解析日志、过滤、统计等动作，这些逻辑应该给数据消费者。倘若Agent有较多的逻辑，那它是不可完成的，不可避免的经常会有升级变更动作。</span><br></pre></td></tr></table></figure></p>
-<p>为什么Agent没有直接将日志发送给Kafka，而是通过Flume来做：<br><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">具体架构上，Agent并没把数据直接发送到Kafka，在Kafka前面有层由Flume构成的<span class="keyword">forward</span>。这样做有两个原因：</span><br><span class="line"><span class="number">1</span>. Kafka的API对非JVM系的语言支持很不友好，<span class="keyword">forward</span>对外提供更加通用的http接口。</span><br><span class="line"><span class="number">2</span>. <span class="keyword">forward</span>层可以做路由、Kafka topic和Kafka partition key等逻辑，进一步减少Agent端的逻辑。</span><br></pre></td></tr></table></figure></p>
-<p>Kafka使用建议<br>1.Topic划分。尽量通过划分Topic分离不同类型的数据；<br>2.Kafka partition数目直接关系整体的吞吐量。3个Partition能够跑满一块磁盘的IO。<br>3.Partition key设计。partition key选择不当，可能会造成数据倾斜。在对数据有顺序性要求才需使用partition key。Kafka的producer sdk在没指定partition key时，在一定时间内只会往一个partition写数据，这种情况下当producer数少于partition数也会造成数据倾斜，可以提高producer数目来解决这个问题。<br>实时计算Spark Streaming<br>1.当前Spark只用作统计，没有进行迭代计算(DAG)。场景比较简单。<br>2.Spark Streaming从Kafka中读数据，统计完结果如mongoDB。可以理解是Spark Streaming + mongoDB的应用。<br>3.Spark Streaming对存储计算结果的数据库tps要求较高。比如有10万个域名需要统计流量，batch interval为10s，每个域名有4个相关统计项，算下来平均是4万 tps，考虑到峰值可能更高，固态硬盘上的mongo也只能抗1万tps，后续我们会考虑用redis来抗这么高的tps。难道Redis能够支持很高的TPS？<br>4.有状态的Task的挑战：有外部状态的task逻辑上不可重入的，当开启speculation参数时候，可能会造成计算的结果不准确。说个简单的例子。这个任务，如果被重做了，会造成落入mongo的结果比实际多。有状态的对象生命周期不好管理，这种对象不可能做到每个task都去new一个。我们的策略是一个JVM内一个对象，同时在代码层面做好并发控制。<br>七牛数据平台规模<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">线上的规模：Flume ＋ Kafka ＋ Spark8台高配机器，日均500亿条数据，峰值80万tps。</span><br></pre></td></tr></table></figure></p>
-<p>因此，<br>1.如果是Flume/Kafka/Spark共享同一个物理集群，硬件压力如何？<br>2.如果每条日志 0.1K，那么每天总数据量 50G <em> 0.1K = 5T，每个节点每秒 5T/24</em>3600/8 = 7.23M。 </p>
-<p>参考：<br>【微信分享】王团结：七牛是如何搞定每天500亿条日志的<br><a href="http://www.csdn.net/article/2015-07-30/2825342" target="_blank" rel="external">http://www.csdn.net/article/2015-07-30/2825342</a><br>对七牛云存储日志处理的思考<br><a href="http://hadoop1989.com/2015/08/02/Think-QiNiu-Cloud/" target="_blank" rel="external">http://hadoop1989.com/2015/08/02/Think-QiNiu-Cloud/</a> </p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>七牛是如何搞定每天500亿条日志的 <a href="http://www.csdn.net/article/2015-07-30/2825342" target="_blank" rel="external">http://www.csdn.net/article/201]]>
-    </summary>
-    
-      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
-    
-      <category term="Flume" scheme="http://navigating.github.io/tags/Flume/"/>
-    
-      <category term="Kafka" scheme="http://navigating.github.io/tags/Kafka/"/>
-    
-      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[学习《腾讯在Spark上的应用与实践优化》]]></title>
-    <link href="http://navigating.github.io/2015/%E5%AD%A6%E4%B9%A0%E3%80%8A%E8%85%BE%E8%AE%AF%E5%9C%A8Spark%E4%B8%8A%E7%9A%84%E5%BA%94%E7%94%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5%E4%BC%98%E5%8C%96%E3%80%8B/"/>
-    <id>http://navigating.github.io/2015/学习《腾讯在Spark上的应用与实践优化》/</id>
-    <published>2015-08-07T08:28:42.000Z</published>
-    <updated>2015-08-07T08:37:53.504Z</updated>
-    <content type="html"><![CDATA[<p>《腾讯在Spark上的应用与实践优化》原文参见：<a href="http://download.csdn.net/detail/happytofly/8637461" target="_blank" rel="external">http://download.csdn.net/detail/happytofly/8637461</a></p>
-<p>TDW: Tencent Distributed Data Warehouse，腾讯分布式数据仓库；<br>GAIA：腾讯自研的基于YARN定制化和优化的资源管理系统；<br>Lhoste：腾讯自研的作业的工作流调度系统，类似于Oozie；<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_1.JPG" alt=""></p>
-<p>TDW集群规模：</p>
-<pre><code><span class="bullet">1. </span>Gaia集群节点数：8000+；
-<span class="bullet">2. </span>HDFS的存储空间：150PB+；
-<span class="bullet">3. </span>每天新增数据：1PB+；
-<span class="bullet">4. </span>每天任务数：1M+；
-<span class="bullet">5. </span>每天计算量：10PB+；
-</code></pre><p>Spark集群：</p>
-<pre><code><span class="bullet">1. </span>Spark部署在Gaia之上，即是Spark on YARN模式，每个节点是 24 cores 和 60G 内存；
-<span class="bullet">2. </span>底层存储包括：HDFS、HBase、Hive、MySQL；
-<span class="bullet">3. </span>作业类型，包括：ETL、SparkSQL、Machine Learning、Graph Compute、Streaming；
-<span class="bullet">4. </span>每天任务数，10K+；
-<span class="bullet">5. </span>腾讯从2013年开始引入Spark 0.6，已经使用2年了；
-</code></pre><p>Spark的典型应用：</p>
-<pre><code><span class="bullet">1. </span>预测用户的广告点击概率；
-<span class="bullet">2. </span>计算两个好友间的共同好友数；
-<span class="bullet">3. </span>用于ETL的SparkSQL和DAG任务；
-</code></pre><p>Case 1: 预测用户的广告点击概率<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_4.JPG" alt=""></p>
-<pre><code><span class="number">1</span>. 数据是通过<span class="function"><span class="title">DCT</span><span class="params">(Data Collect Tool)</span></span>推送到HDFS上，然后Spark直接将HDFS数据导入到 RDD&amp;Cache；
-<span class="number">2</span>. <span class="number">60</span>次迭代计算的时间为<span class="number">10</span>～<span class="number">15</span>分钟，即每次迭代<span class="number">10</span>～<span class="number">15</span>秒；
-</code></pre><p>Case 2: 计算两个好友间的共同好友数</p>
-<pre><code>1. 根据shuffle数量来确定partition数量；
-2. 尽量使用sort-based shuffle，减少reduce的内存使用；
-3. 当连接超时后选择重试来减少executor丢失的概率；
-4. 避免executor被YARN给<span class="operator"><span class="keyword">kill</span>掉，设置 spark.yarn.executor.memoryoverhead
-<span class="number">5.</span> 执行语句 <span class="keyword">INSERT</span> <span class="keyword">TABLE</span> test_result <span class="keyword">SELECT</span> t3.d, <span class="keyword">COUNT</span>(*) FROＭ( <span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> a, b <span class="keyword">FROM</span> join_1 ) t1 <span class="keyword">JOIN</span> （<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> b, c <span class="keyword">FROM</span> join_2 ) t2 <span class="keyword">ON</span> (t1.a = t2.c) <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> c, d <span class="keyword">FROM</span> c, d <span class="keyword">FROM</span> join_3 ) t3 <span class="keyword">ON</span> (t2.b = t3.d) <span class="keyword">GROUP</span> <span class="keyword">BY</span> t3.d 使用Hive需要<span class="number">30</span>分钟，使用SparkSQL需要<span class="number">5</span>分钟；
-<span class="number">6.</span> 当有小表时使用broadcase <span class="keyword">join</span>代替Common <span class="keyword">join</span>；
-<span class="number">7.</span> 尽量使用ReduceByKey代替GroupByKey；
-<span class="number">8.</span> 设置spark.serializer = org.apache.spark.serializer.KryoSerializer；
-<span class="number">9.</span> 使用YARN时，设置spark.shuffle.service.enabled = <span class="literal">true</span>；
-<span class="number">10.</span> 在早期版本中Spark通过启动参数固定executor的数量，当前支持动态资源扩缩容特性
-
-    * spark.dynamicAllocation.enabled = <span class="literal">true</span>
-    * spark.dynamicAllocation.executorIdleTimeout = <span class="number">120</span>
-    * spark.dynamicAllocation.schedulerBacklogTimeout = <span class="number">10</span>
-    * spark.dynamicAllocation.minExecutors/maxExecutors
-
-<span class="number">11.</span> 当申请固定的executors时且task数大于executor数时，存在着资源的空闲状态。</span>
-</code></pre><p><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2015/TDW_SPARK_5.JPG" alt=""><br>&lt;完&gt;</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>《腾讯在Spark上的应用与实践优化》原文参见：<a href="http://download.csdn.net/detail/happytofly/8637461" target="_blank" rel="external">http://download.csdn.]]>
-    </summary>
-    
-      <category term="BigData" scheme="http://navigating.github.io/tags/BigData/"/>
-    
-      <category term="Hadoop" scheme="http://navigating.github.io/tags/Hadoop/"/>
-    
-      <category term="Spark" scheme="http://navigating.github.io/tags/Spark/"/>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     

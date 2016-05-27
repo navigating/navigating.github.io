@@ -87,6 +87,92 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2009/鲶鱼效应" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/鲶鱼效应/" class="article-date">
+  <time datetime="2009-12-23T15:29:51.000Z" itemprop="datePublished">2009-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/鲶鱼效应/">鲶鱼效应</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>鲶鱼效应(Catfish Effect) ，也称鲇鱼效应(Weever Effect)<br>什么是鲶鱼效应<br>挪威人爱吃沙丁鱼，挪威人在海上捕得沙丁鱼后，如果能让他活着抵港，卖价就会比死鱼高好几倍。但是，由于沙丁鱼生性懒惰，不爱运动，返航的路途又很长，因此捕捞到的沙丁鱼往往一回到码头就死了，即使有些活的，也是奄奄一息。只有一位渔民的沙丁鱼总是活的，而且很生猛，所以他赚的钱也比别人的多。该渔民严守成功秘密，直到他死后，人们才打开他的鱼槽，发现只不过是多了一条鲶鱼。原来当鲶鱼装入鱼槽后，由于环境陌生，就会四处游动，而沙丁鱼发现这一异已分子后，也会紧张起来，加速游动，如此一来，沙丁鱼便活着回到港口。这就是所谓的“鲶鱼效应”。这一效应，即是通过个体的“中途介入”，对群体起到竞争作用。</p>
+<p>Catfish Effect<br>The catfish effect is the effect that a strong competitor has in causing the weak to better themselves.<br>In Norway, live sardines are a few times more expensive than frozen ones. It was said that only one ship could bring live Sardine home, and the ship master kept his method a secret. When he later died, people found that there was one catfish in the container. The catfish keeps swimming and the sardine becomes very active to avoid direct contact with this Catfish.<br>In human resource management, this is a method used to motivate a team so that each member feels a strong competition, thus keeping up the competitiveness of the whole team.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/鲶鱼效应/" data-id="ciopj1yiw008am4lmlockn9vb" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/Jboss-Netty架构图" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/Jboss-Netty架构图/" class="article-date">
+  <time datetime="2009-12-23T00:29:35.000Z" itemprop="datePublished">2009-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/Jboss-Netty架构图/">Jboss Netty架构图</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.jboss.org/file-access/default/members/netty/freezone/guide/3.1/html/architecture.html#d0e2134" target="_blank" rel="external">http://www.jboss.org/file-access/default/members/netty/freezone/guide/3.1/html/architecture.html#d0e2134</a><br>JBoss Netty的架构图如下：<br>&lt;图已遗失&gt;</p>
+<p>1.图中划分个人认为是比较好的NIO网络应用框架功能细分，主要是五个部分：<br>Core：中主要是NIO框架侦听事件、收发消息、消息调度、资源管理等功能，是框架的核型功能；<br>Transport Service：主要是传输/通讯方式的部分；<br>Protocol Support：主要是针对具体的消息如何收发，解析的部分，在非阻塞模式下，一个byte一个byte的解析都关联到整个消息的完整性，因此这部分是主要是外部接口之一；<br>Security Support:这个针对通用的通信问题和一些具体的协议有关；<br>Integration:主要是和第三方容器或者框架的集成部分；<br>2.比较有名的NIO应用框架如下：<br>Apache Mina <a href="http://mina.apache.org" target="_blank" rel="external">http://mina.apache.org</a><br>Jboss Netty <a href="http://jboss.org/netty" target="_blank" rel="external">http://jboss.org/netty</a><br>Sun Glassfish Grizzly <a href="https://grizzly.dev.java.net/" target="_blank" rel="external">https://grizzly.dev.java.net/</a><br>Soureforge NIO Framework <a href="http://nioframework.sourceforge.org" target="_blank" rel="external">http://nioframework.sourceforge.org</a><br>Soureforge xSocket <a href="http://xsocket.sourceforge.org" target="_blank" rel="external">http://xsocket.sourceforge.org</a><br>Quick Server <a href="http://www.quickserver.org/" target="_blank" rel="external">http://www.quickserver.org/</a><br>这些NIO的客户端服务器Socket网络通讯框架在功能上和提供给用户的编程扩展点几乎都很相似/一致。<br>3.网络应用开发中比较重要的两个部分，一个是通讯部分，链路维持以及消息收发部分；另外一个是消息的解析/打包过程(Serializable/Externalizable)。一个延伸的想法就是：NIO网络应用框架 + Google Protocol Buffers.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/Jboss-Netty架构图/" data-id="ciopj1yl60093m4lmobizn9yh" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Architecture/">Architecture</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Netty/">Netty</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2009/Google如何使用Linux《How-Google-uses-Linux》" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2009/Google如何使用Linux《How-Google-uses-Linux》/" class="article-date">
@@ -118,7 +204,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/Google如何使用Linux《How-Google-uses-Linux》/" data-id="ciohafr8d00945olmxhwdma88" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/Google如何使用Linux《How-Google-uses-Linux》/" data-id="ciopj1yli009cm4lmczb3ovo7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
@@ -161,7 +247,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/Jboss-Netty的Performance报告阅读/" data-id="ciohafr7i008m5olm8umc5bht" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/Jboss-Netty的Performance报告阅读/" data-id="ciopj1ykv008um4lmbfwop6xt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/NIO/">NIO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Netty/">Netty</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Performance/">Performance</a></li></ul>
@@ -215,7 +301,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/JDK-7-Platform/" data-id="ciohafr8d00915olmzo99lu23" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/JDK-7-Platform/" data-id="ciopj1yld0099m4lmi9hyiy98" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
@@ -259,7 +345,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/加密算法概述/" data-id="ciohafr7i008i5olm6gpwdw1e" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/加密算法概述/" data-id="ciopj1ykj008qm4lmq87z5qbg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -300,7 +386,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/熊/" data-id="ciohafr72008e5olmuwooenv5" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/熊/" data-id="ciopj1yk3008mm4lmhcqfdocj" class="article-share-link">Share</a>
       
       
     </footer>
@@ -341,7 +427,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/猴/" data-id="ciohafr6n00885olm8jaitynl" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/猴/" data-id="ciopj1yjj008gm4lmwlxkyia7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -382,7 +468,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/豹/" data-id="ciohafr6700845olmc7rsq810" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/豹/" data-id="ciopj1yj1008cm4lmhzmrci5f" class="article-share-link">Share</a>
       
       
     </footer>
@@ -423,89 +509,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/狮/" data-id="ciohafr6n008c5olm1nxy8zg3" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2009/虎" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/虎/" class="article-date">
-  <time datetime="2009-10-12T02:20:08.000Z" itemprop="datePublished">2009-10-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/虎/">虎</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>概要<br>     在亚洲许多国家的文化中，虎是美丽、勇敢、力量的象征，人们畏惧虎的凶猛，又希望具有虎的强壮，以征服它来证明力量。虎与人类的关系密切，人类的活动使虎的栖息地缩小、分隔，人虎冲突和对虎的利用造成了对虎的大肆捕杀，目前这个物种已经十分濒危。<br>进化<br>     虎由古食肉动物进化来。大型食肉类在距今700万年的新生代第三纪上新世出现并逐渐发展。古食肉类中的猫形类进化出多个分支，其中一只是古猫类，古猫类又分化为恐猫、真剑齿虎类和真猫，经过第四纪冰川期，只有真猫类存活下来，分化为猫族和豹族两个分支。现在的虎就是从真猫类中的豹族演化而来。 在虎的各个亚种中，华南虎是各亚种的祖先，它们的头骨结构最接近于原始的虎。<br>外形特征<br>     虎为大型猫科动物，斑纹独特，身体被满浅黄到红色毛，有黑色至棕色条纹。不同亚种的虎的体形大小有差异，北方虎的体形大，颜色较浅；南方的体形较小，颜色较深。虎的虹膜呈黄色，圆形瞳孔。耳背为黑色，上有明显的白斑，有科学家认为这有助于幼崽在野外跟随母亲活动。虎的前后肢十分有力。掌垫的大小与虎的年龄有关，在种群调查中，研究人员以此鉴别个体。虎的尾较长，具环形斑纹，尾尖没有长毛，为黑色。<br>习性<br>     虎是一种孤独的森林食肉动物，一般每只老虎有自己的领地，除了交配时期，从不和其他虎交往，雌虎独自生产和喂养幼虎，平均每胎产子2.46个，在野外，出生幼子的死亡率为30—40%。当幼虎成年后，雌虎将领地遗留给它，独自去寻找新领地。每个虎占领一块领地后，就会将本地所有大型食肉动物如狼、豹等赶走，所谓“占山为王”。老虎以鹿、獐、羊等食草动物为食，必须有足够的猎食领地以维持生命。虎一般采取潜伏袭击的猎食方式，从猎物后方攻击，在食物严重短缺时，也会攻击人。印度农民用头后戴假面具的方式避免遭受老虎攻击，因为虎以为假面具是人以正面对它，它决不会从正面攻击猎物。<br>虎与文化<br>     虎的象征意义在亚洲文化中得到最大的体现，被看作是美丽、严肃、勇猛的象征。在中国，虎的形象随处可见，许多神明信仰以虎为象征，如西王母、保生大帝、玄坛真君等。在台湾民间信仰，则奉城隍、山神、土地公所乘之虎为神，谓曰虎爷，有驱邪之能。虎字起源极早，殷墟甲骨文中就有虎字，现在汉字中的虎就很像一只虎。民间传说，汉字中的“王”就来自于老虎前额上的斑纹，还有许多成语、民间俗语中都有虎出现。虎在十二生肖中排名第三位。<br>     早在5000年前的印度河古文化中（今巴基斯坦一带）就发现有雕刻在图章上的虎的形象。印度教种有一个骑虎的女神杜伽（Durga），这个女神的形象在印度随处可见，多出现在火车两侧。韩国的野生虎虽已经灭绝，但韩国人仍称自己的国度为“青龙白虎之邦”，在1988年汉城奥运会2002年韩日世界杯上，虎都被定为吉祥物。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/虎/" data-id="ciohafr6700865olmws38s1ll" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2009/狼" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2009/狼/" class="article-date">
-  <time datetime="2009-10-12T01:19:51.000Z" itemprop="datePublished">2009-10-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2009/狼/">狼</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>外形特征<br>　　外形有小（郊狼）、中（森林狼）、大（草原狼），吻尖长，眼角微上挑。因为产地和基因不同，所以毛色也不同。常见灰黄两色，还有黑红白等色，个别还有紫蓝等色，胸腹毛色较浅。腿细长强壮，善跑。灰狼的体重和体型大小各地区不一样,一般有随纬度的增加而成正比增加的趋势这一说法. 一般来说,肩高在( 26-36英寸) ,体重32-62公斤( 70-135磅) 野生狼体重记录————其中1939年在阿拉斯加被打死的一只,,当时80公斤( 175磅) . 最小的狼是阿拉伯狼,雌性的狼有的体重可低至10公斤( 22磅) 狼群适合长途迁行捕猎.其强大的背部和腿部,能有效地舒展奔跑.<br>生活习性<br>    狼是群居性极高的物种。一群狼的数量大约在5到12只之间，在冬天寒冷的时候最多可到四十只左右，通常以家庭为单位的家庭狼由一对优势对偶领导，而以兄弟姐妹为一群的则以最强一头狼领导。狼群有领域性，且通常也都是其活动范围，群内个体数量若增加，领域范围会缩小。群之间的领域范围不重叠，会以嚎声向其他群宣告范围。幼狼成长后，会留在群内照顾弟妹，也可能继承群内优势地位，有的则会迁移出去（大都为雄狼）而还有一些情况下会出现迁徙狼，以百来头为一群，有来自不同家庭等级的各类狼，各个小团体原狼首领会成为头狼，头狼中最出众的则会成为狼王。野生的狼一般可以活12——16年，人工饲养的狼有的可以活到二十年左右。 奔跑速度极快，可达五十五公里左右，持久性也很好。它们有能力以速度10公里/小时(六英里)长时间奔跑 , 并能以高达近65公里/小时速度( 40英里) 追猎冲刺。 如果是长跑，它的速度会超过猎豹。智能颇高，可以气味、叫声沟通。狼是以肉食为主的杂食性动物,是生物链中极关键的一节。<br>生长繁殖<br>　　狼的怀孕期为61天左右。低海拔的狼一月交配，高海拔则在四月交配。<br>　　小狼两周后睁眼，五周后断奶，八周后被带到狼群聚集处。<br>　　狼成群生活，雌雄性分为不同等级，占统治地位的雄狼和雌狼随心所欲进行繁殖，处于低下地位的个体则不能自由选择。雌狼产子于地下洞穴中，雌狼经过六十叁天的怀孕期，生下叁只到九只小狼，也有生十几只的。没有自卫能力的小狼，要在洞穴里过一段日子，公狼负责猎取食物。小狼吃奶时期大约有五、六个月之久，但是一个半月也可以吃些碎肉。叁、四个月大的小狼就可以跟随父母一道去猎食。半年后，小狼就学会自己找食物吃了。狼的寿命大约是十二到十四年。在群体中成长的小狼，非但父母呵护备至，而且，族群的其他份子也会爱护有加。狼和非洲土狼会将杀死的猎物，撕咬成碎片，吃下腹内，待回到小狼身边时，再吐出食物反哺。赤狼有时也会在族群中造一育儿所，将小狼集中养育，由母赤狼轮流抚育小狼，毫无怨尤。因此，我们可以说狼的家庭观念极强。<br>狼的行为模式和身体语言<br>    一般占优势主导地位的狼会身挺高腿直，神态坚定，耳朵是直立向前。<br>　　往往尾部纵向卷曲朝背部。这种显示的是级别高主导地位的狼可能一直盯着一个唯唯诺诺的地位低下的狼。<br>　　活跃—玩耍时，狼会全身伏低，嘴唇和耳朵向两边拉开，有时会主动舔或快速伸出舌头。<br>　　愤怒—愤怒的狼的耳朵会竖立，背毛也会竖立，唇可卷起或后翻，门牙露出，有时也会弓背或咆哮。.<br>　　恐惧—害怕时狼会试图把它的身子显得较小，从而不那么显眼，或拱背防守，尾收回。<br>文化<br>    狼本身并无所谓狡猾或贪婪之本性，但狼在狩猎时的习性以及智慧，往往被引申为凶残恶毒，并用来形容贪婪，凶邪或忘恩负义的人，如“狼心狗肺”，“狼狈为奸”，“狼子野心”等。另外欧亚中部游牧民族因其生存环境，可能会崇拜合群，勇猛的狼，突厥、乌孙都以狼为图腾。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2009/狼/" data-id="ciohafr6n008a5olmg1vaqg5c" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/狮/" data-id="ciopj1yjy008km4lm0bhdq5at" class="article-share-link">Share</a>
       
       
     </footer>
@@ -528,7 +532,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">82</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">84</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -553,7 +557,15 @@ var _hmt = _hmt || [];
       <ul>
         
           <li>
+            <a href="/2016/开源流计算框架 - 201605/">开源流计算框架 - 201605</a>
+          </li>
+        
+          <li>
             <a href="/2016/敏捷之如何切分用户故事/">敏捷之如何切分用户故事</a>
+          </li>
+        
+          <li>
+            <a href="/2016/简报：人工智能 - 2016Q2/">简报：人工智能 - 2016Q2</a>
           </li>
         
           <li>
@@ -561,7 +573,7 @@ var _hmt = _hmt || [];
           </li>
         
           <li>
-            <a href="/2016/简报：人工智能 - 2016Q2/">简报：人工智能 - 2016Q2</a>
+            <a href="/2016/大数据之电信运营商案例/">大数据之电信运营商案例</a>
           </li>
         
           <li>
@@ -624,14 +636,6 @@ var _hmt = _hmt || [];
             <a href="/2015/Hadoop发行版(2015第二季)/">Hadoop发行版(2015第二季)</a>
           </li>
         
-          <li>
-            <a href="/2015/学习《七牛是如何搞定每天500亿条日志的》/">学习《七牛是如何搞定每天500亿条日志的》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《腾讯在Spark上的应用与实践优化》/">学习《腾讯在Spark上的应用与实践优化》</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -641,7 +645,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
