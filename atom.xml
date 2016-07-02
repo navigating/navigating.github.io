@@ -5,7 +5,7 @@
   <subtitle><![CDATA[自信人生二百年，会当水击三千里！]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://navigating.github.io//"/>
-  <updated>2016-06-24T04:53:26.812Z</updated>
+  <updated>2016-07-02T18:16:00.894Z</updated>
   <id>http://navigating.github.io//</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://navigating.github.io/2016/JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA%EF%BC%9AG1/"/>
     <id>http://navigating.github.io/2016/JAVA虚拟机：G1/</id>
     <published>2016-06-24T07:53:46.000Z</published>
-    <updated>2016-06-24T04:53:26.812Z</updated>
+    <updated>2016-07-02T18:16:00.894Z</updated>
     <content type="html"><![CDATA[<p>参考：</p>
 <ol>
 <li><a href="http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/G1GettingStarted/index.html" target="_blank" rel="external">Getting Started with the G1 Garbage Collector</a></li>
@@ -30,8 +30,6 @@
 <li><a href="http://www.oracle.com/technetwork/articles/java/g1gc-1984535.html" target="_blank" rel="external">Garbage First Garbage Collector Tuning</a></li>
 <li><a href="http://www.oracle.com/technetwork/java/javase/tech/g1-intro-jsp-135488.html" target="_blank" rel="external">The Garbage-First Garbage Collector</a></li>
 <li><a href="http://ju.outofmemory.cn/entry/65368" target="_blank" rel="external">java7中G1垃圾收集器使用和流程总结</a></li>
-<li><a href=""></a></li>
-<li><a href=""></a><br>10.<a href=""></a></li>
 </ol>
 ]]></content>
     <summary type="html">
@@ -45,6 +43,40 @@
       <category term="JAVA" scheme="http://navigating.github.io/tags/JAVA/"/>
     
       <category term="JVM" scheme="http://navigating.github.io/tags/JVM/"/>
+    
+      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[简报：大数据产品分析 - 2016Q2]]></title>
+    <link href="http://navigating.github.io/2016/%E7%AE%80%E6%8A%A5%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BA%A7%E5%93%81%E5%88%86%E6%9E%90%20-%202016Q2/"/>
+    <id>http://navigating.github.io/2016/简报：大数据产品分析 - 2016Q2/</id>
+    <published>2016-06-16T02:41:31.000Z</published>
+    <updated>2016-07-02T18:16:37.405Z</updated>
+    <content type="html"><![CDATA[<p>TalkingData产品 之 移动观象台：<br>1.终端指数<br>    品牌<br>    设备<br>    分辨率<br>    操作系统<br>    运营商<br>    网络<br>2.数据报告<br>3.用户趋势<br>    用户趋势：智能终端累积量发展趋势<br>    区域热度<br>    用户喜好<br>4.人迹地图</p>
+<p>数据报告 之 2016清明时节下江南热点分析<br>说明：本报告主要分为三个部分：数据说明、用户人群画像、用户线下行为<br>其中：<br>用户人群画像<br>    用户来源人群分布（常居地-&gt;目的地）<br>    用户旅游热点城市<br>    节前/节日/节后用户活跃度<br>    男女比例<br>    年龄比例<br>    用户喜好(70后、80后、90后)<br>用户线下行为<br>    生活轨迹：休闲消费/夜生活<br>    景区热力图：节中期间/节日前后</p>
+<p>TalkingData的同类产品：</p>
+<ol>
+<li>Flurry</li>
+<li>友盟</li>
+<li>Google Analytics</li>
+</ol>
+<p>参考：</p>
+<ol>
+<li><a href="http://www.talkingdata.com/" target="_blank" rel="external">http://www.talkingdata.com/</a></li>
+<li><a href="http://www.talkingdata.com/index/#/device/mob/zh_CN" target="_blank" rel="external">http://www.talkingdata.com/index/#/device/mob/zh_CN</a></li>
+<li><a href="http://www.talkingdata.com/index/#/datareport/-1/zh_CN" target="_blank" rel="external">http://www.talkingdata.com/index/#/datareport/-1/zh_CN</a></li>
+<li><a href="http://www.talkingdata.com/index/#/profile/usertrend/zh_CN" target="_blank" rel="external">http://www.talkingdata.com/index/#/profile/usertrend/zh_CN</a></li>
+<li><a href="http://www.talkingdata.com/index/behaviormap/heatMapOverlay.jsp" target="_blank" rel="external">http://www.talkingdata.com/index/behaviormap/heatMapOverlay.jsp</a></li>
+<li><a href="http://www.talkingdata.com/index/files/2016-04/1461050046352.pdf" target="_blank" rel="external">http://www.talkingdata.com/index/files/2016-04/1461050046352.pdf</a></li>
+<li><a href="http://www.domarketing.org/html/2012/yd_0508/4311.html" target="_blank" rel="external">http://www.domarketing.org/html/2012/yd_0508/4311.html</a></li>
+</ol>
+<p>&lt;完&gt;</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>TalkingData产品 之 移动观象台：<br>1.终端指数<br>    品牌<br>    设备<br>    分辨率<br>    操作系统<br>    运营商<br>    网络<br>2.数据报告<br>3.用户趋势<br>    用户趋势：智能终端累积量发]]>
+    </summary>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
     
@@ -288,40 +320,6 @@
 <ul>
 <li><p>技术雷达从两个维度对技术进行评估，一个维度是技术归类的四个象限，包括：技术、平台、工具、语言及框架，另一个维度是反映所持有的态度的四个环，依次为：采用、试验、评估、暂缓。</p>
 <figure class="highlight"]]>
-    </summary>
-    
-      <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[简报：大数据产品分析 - 2016Q2]]></title>
-    <link href="http://navigating.github.io/2016/%E7%AE%80%E6%8A%A5%EF%BC%9A%E5%A4%A7%E6%95%B0%E6%8D%AE%E4%BA%A7%E5%93%81%E5%88%86%E6%9E%90%20-%202016Q2/"/>
-    <id>http://navigating.github.io/2016/简报：大数据产品分析 - 2016Q2/</id>
-    <published>2016-05-16T02:41:31.000Z</published>
-    <updated>2016-06-16T06:59:35.165Z</updated>
-    <content type="html"><![CDATA[<p>TalkingData产品 之 移动观象台：<br>1.终端指数<br>    品牌<br>    设备<br>    分辨率<br>    操作系统<br>    运营商<br>    网络<br>2.数据报告<br>3.用户趋势<br>    用户趋势：智能终端累积量发展趋势<br>    区域热度<br>    用户喜好<br>4.人迹地图</p>
-<p>数据报告 之 2016清明时节下江南热点分析<br>说明：本报告主要分为三个部分：数据说明、用户人群画像、用户线下行为<br>其中：<br>用户人群画像<br>    用户来源人群分布（常居地-&gt;目的地）<br>    用户旅游热点城市<br>    节前/节日/节后用户活跃度<br>    男女比例<br>    年龄比例<br>    用户喜好(70后、80后、90后)<br>用户线下行为<br>    生活轨迹：休闲消费/夜生活<br>    景区热力图：节中期间/节日前后</p>
-<p>TalkingData的同类产品：</p>
-<ol>
-<li>Flurry</li>
-<li>友盟</li>
-<li>Google Analytics</li>
-</ol>
-<p>参考：</p>
-<ol>
-<li><a href="http://www.talkingdata.com/" target="_blank" rel="external">http://www.talkingdata.com/</a></li>
-<li><a href="http://www.talkingdata.com/index/#/device/mob/zh_CN" target="_blank" rel="external">http://www.talkingdata.com/index/#/device/mob/zh_CN</a></li>
-<li><a href="http://www.talkingdata.com/index/#/datareport/-1/zh_CN" target="_blank" rel="external">http://www.talkingdata.com/index/#/datareport/-1/zh_CN</a></li>
-<li><a href="http://www.talkingdata.com/index/#/profile/usertrend/zh_CN" target="_blank" rel="external">http://www.talkingdata.com/index/#/profile/usertrend/zh_CN</a></li>
-<li><a href="http://www.talkingdata.com/index/behaviormap/heatMapOverlay.jsp" target="_blank" rel="external">http://www.talkingdata.com/index/behaviormap/heatMapOverlay.jsp</a></li>
-<li><a href="http://www.talkingdata.com/index/files/2016-04/1461050046352.pdf" target="_blank" rel="external">http://www.talkingdata.com/index/files/2016-04/1461050046352.pdf</a></li>
-<li><a href="http://www.domarketing.org/html/2012/yd_0508/4311.html" target="_blank" rel="external">http://www.domarketing.org/html/2012/yd_0508/4311.html</a></li>
-</ol>
-<p>&lt;完&gt;</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>TalkingData产品 之 移动观象台：<br>1.终端指数<br>    品牌<br>    设备<br>    分辨率<br>    操作系统<br>    运营商<br>    网络<br>2.数据报告<br>3.用户趋势<br>    用户趋势：智能终端累积量发]]>
     </summary>
     
       <category term="技术" scheme="http://navigating.github.io/categories/%E6%8A%80%E6%9C%AF/"/>
