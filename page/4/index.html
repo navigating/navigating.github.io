@@ -87,6 +87,164 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2015/Hadoop-2-7-1-发布" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/Hadoop-2-7-1-发布/" class="article-date">
+  <time datetime="2015-07-09T13:49:30.000Z" itemprop="datePublished">2015-07-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/Hadoop-2-7-1-发布/">Hadoop 2.7.1 发布</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>2015年7月6日，Apache Hadoop的稳定版本 2.7.1 正式发布。<br><a href="http://hadoop.apache.org/releases.html#Release+Notes" target="_blank" rel="external">http://hadoop.apache.org/releases.html#Release+Notes</a> </p>
+<p>Hadoop 2.7的一个小版本发布了，本版本属于稳定版本。<br>修复了2.7.0中存在的131个bug。<br>这是2.7.x第一个稳定版本，增强的功能列表请通过2.7.0版本部分查看。<br>按着计划，下一个2.7.x的小版本是2.7.2.</p>
+<p>原文：<br>06 July, 2015: Release 2.7.1 (stable) availableA point release for the 2.7 line. This release is now considered stable.<br>Please see the Hadoop 2.7.1 Release Notes for the list of 131 bug fixes and patches since the previous release 2.7.0. Please look at the 2.7.0 section below for the list of enhancements enabled by this first stable release of 2.7.x.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2015/Hadoop-2-7-1-发布/" data-id="ciq5hk2nl005yt8lmf57gxgh7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/" class="article-date">
+  <time datetime="2015-07-02T14:57:45.000Z" itemprop="datePublished">2015-07-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/">读《Deploying Apache Kafka: A Practical FAQ》</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Cloudera发布了Kafka的好文，《Deploying Apache Kafka: A Practical FAQ》，参见：<a href="http://blog.cloudera.com/blog/2015/07/deploying-apache-kafka-a-practical-faq" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/07/deploying-apache-kafka-a-practical-faq</a></p>
+<p>是否应当为Kafka Broker使用 固态硬盘 (SSD)<br>实际上使用SSD盘并不能显著地改善 Kafka 的性能，主要有两个原因：</p>
+<pre><code>* Kafka写磁盘是异步的，不是同步的。就是说，除了启动、停止之外，Kafka的任何操作都不会去等待磁盘同步（sync）完成；而磁盘同步(disk syncs)总是在后台完成的。这就是为什么Kafka消息至少复制到三个副本是至关重要的，因为一旦单个副本崩溃，这个副本就会丢失数据无法同步写到磁盘。
+* 每一个Kafka <span class="keyword">Partition</span>被存储为一个串行的WAL（<span class="keyword">Write</span> Ahead <span class="keyword">Log</span>）日志文件。因此，除了极少数的数据查询，Kafka中的磁盘读写都是串行的。现代的操作系统已经对串行读写做了大量的优化工作。
+</code></pre><p>如何对Kafka Broker上持久化的数据进行加密<br>目前，Kafka不提供任何机制对Broker上持久化的数据进行加密。用户可以自己对写入到Kafka的数据进行加密，即是，生产者(Producers)在写Kafka之前加密数据，消费者(Consumers)能解密收到的消息。这就要求生产者(Producers)把加密协议(protocols)和密钥(keys)分享给消费者(Consumers)。<br>另外一种选择，就是使用软件提供的文件系统级别的加密，例如Cloudera Navigator Encrypt。Cloudera Navigator Encrypt是Cloudera企业版(Cloudera Enterprise)的一部分，在应用程序和文件系统之间提供了一个透明的加密层。<br>Apache Zookeeper正成为Kafka集群的一个痛点(pain point)，真的吗？<br>Kafka高级消费者(high-level consumer)的早期版本(0.8.1或更早)使用Zookeeper来维护读的偏移量(offsets，主要是Topic的每个Partition的读偏移量)。如果有大量生产者(consumers)同时从Kafka中读数据，对Kafka的读写负载可能就会超出它的容量，Zookeeper就变成一个瓶颈(bottleneck)。当然，这仅仅出现在一些很极端的案例中(extreme cases)，即有成百上千个消费者(consumers)在使用同一个Zookeeper集群来管理偏移量(offset)。<br>不过，这个问题已经在Kafka当前的版本(0.8.2)中解决。从版本0.8.2开始，高级消费者(high-level consumer)能够使用Kafka自己来管理偏移量(offsets)。本质上讲，它使用一个单独的Kafka Topic来管理最近的读偏移量(read offsets)，因此偏移量管理(offset management)不再要求Zookeeper必须存在。然后，用户将不得不面临选择是用Kafka还是Zookeeper来管理偏移量(offsets)，由消费者(consumer)配置参数 offsets.storage 决定。<br>Cloudera强烈推荐使用Kafka来存储偏移量。当然，为了保证向后兼容性，你可以继续选择使用Zookeeper存储偏移量。(例如，你可能有一个监控平台需要从Zookeeper中读取偏移量信息。) 假如你不得不使用Zookeeper进行偏移量(offset)管理，我们推荐你为Kafka集群使用一个专用的Zookeeper集群。假如一个专用的Zookeeper集群仍然有性能瓶颈，你依然可以通过在Zookeeper节点上使用固态硬盘(SSD)来解决问题。<br>Kafka是否支持跨数据中心的可用性<br>Kafka跨数据中心可用性的推荐解决方案是使用MirrorMaker(<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330" target="_blank" rel="external">https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330</a> ) 。在你的每一个数据中心都搭建一个Kafka集群，在Kafka集群之间使用MirrorMaker来完成近实时的数据复制。<br>使用MirrorMaker的架构模式是为每一个”逻辑”的topic在每一个数据中心创建一个topic：例如，在逻辑上你有一个”clicks”的topic，那么你实际上有”DC1.clicks”和“DC2.clicks”两个topic(DC1和DC2指得是你的数据中心)。DC1向DC1.clicks中写数据，DC2向DC2.clicks中写数据。MirrorMaker将复制所有的DC1 topics到DC2，并且复制所有的DC2 topics到DC1。现在每个DC上的应用程序都能够访问写入到两个DC的事件。这个应用程序能够合并信息和处理相应的冲突。<br>另一种更复杂的模式是在每一个DC都搭建本地和聚合Kafka集群。这个模式已经被Linkedin使用，Linkedin Kafka运维团队已经在这篇Blog(<a href="https://engineering.linkedin.com/kafka/running-kafka-scale" target="_blank" rel="external">https://engineering.linkedin.com/kafka/running-kafka-scale</a> )中有详细的描述(参见“Tiers and Aggregation”)。<br>Kafka支持哪些类型的数据转换(data transformation)<br>数据流过的Kafka的时候，Kafka并不能进行数据转换。为了处理数据转换，我们推荐如下方法：</p>
+<pre><code>* 对于简单事件处理，使用<span class="constant">Flume Kafka </span>integration(<span class="symbol">http:</span>/<span class="regexp">/blog.cloudera.com/blog</span><span class="regexp">/2014/</span><span class="number">11</span>/flafka-apache-flume-meets-apache-kafka-<span class="keyword">for</span>-event-processing )，并且写一个简单的<span class="constant">Apache Flume Interceptor。</span>
+* 对于复杂(事件)处理，使用<span class="constant">Apache Spark Streaming从Kafka中</span>读数据和处理数据。
+</code></pre><p>在这两种情况下，被转换或者处理的数据可被写会到新的Kafka Topic中，或者直接传送到数据的最终消费者(Consumer)那里。<br>对于实时事件处理模式更全面的描述，看看这篇文章(<a href="http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/</a> )。<br>如何通过Kafka发送大消息或者超大负荷量？<br>Cloudera的性能测试表明Kafka达到最大吞吐量的消息大小为10K左右。更大的消息将导致吞吐量下降。然后，在一些情况下，用户需要发送比10K大的多的消息。<br>如果消息负荷大小是每100s处理MB级别，我们推荐探索以下选择：</p>
+<pre><code><span class="bullet">* </span>如果可以使用共享存储(HDFS、S3、NAS)，那么将超负载放在共享存储上，仅用Kafka发送负载数据位置的消息。
+<span class="bullet">* </span>对于大消息，在写入Kafka之前将消息拆分成更小的部分，使用消息Key确保所有的拆分部分都写入到同一个partition中，以便于它们能被同一个消息着(Consumer)消费的到，在消费的时候将拆分部分重新组装成一个大消息。
+</code></pre><p>在通过Kafka发送大消息时，请记住以下几点：<br>压缩配置</p>
+<pre><code><span class="keyword">*</span> Kafka生产者(Producers)能够压缩消息。通过配置参数compression.codec确保压缩已经开启。有效的选项为<span class="string">"gzip"</span>和<span class="string">"snappy"</span>。
+</code></pre><p>Broker配置</p>
+<pre><code>* message.<span class="built_in">max</span>.<span class="keyword">bytes</span> (default: <span class="number">1000000</span>): Broker能够接受的最大消息。增加这个值以便于匹配你的最大消息。
+* <span class="built_in">log</span>.<span class="keyword">segment</span>.<span class="keyword">bytes</span> (default: <span class="number">1</span>GB): Kafka数据文件的大小。确保它至少大于一条消息。默认情况下已经够用，一般最大的消息不会超过<span class="number">1</span>G大小。
+* replica.fetch.<span class="built_in">max</span>.<span class="keyword">bytes</span> (default: <span class="number">1</span>MB): Broker间复制的最大的数据大小。这个值必须大于message.<span class="built_in">max</span>.<span class="keyword">bytes</span>，否则一个Broker接受到消息但是会复制失败，从而导致潜在的数据丢失。
+</code></pre><p>Consumer配置</p>
+<pre><code>* <span class="tag">fetch</span><span class="class">.message</span><span class="class">.max</span><span class="class">.bytes</span> (<span class="rule"><span class="attribute">default</span>:<span class="value"> <span class="number">1</span>MB): Consumer所读消息的最大大小。这个值应该大于或者等于Broker配置的message.max.bytes的值。</span></span>
+</code></pre><p>其他方面的考虑：</p>
+<pre><code>* <span class="tag">Broker</span>需要针对复制为每一个<span class="tag">partition</span>分配一个<span class="tag">replica</span><span class="class">.fetch</span><span class="class">.max</span><span class="class">.bytes</span>大小的缓存区。需要计算确认( <span class="tag">partition</span>的数量 * 最大消息的大小 )不会超过可用的内存，否则就会引发<span class="tag">OOMs</span>（内存溢出异常）。
+* <span class="tag">Consumers</span>有同样的问题，因子参数为 <span class="tag">fetch</span><span class="class">.message</span><span class="class">.max</span><span class="class">.bytes</span> ：确认每一个<span class="tag">partition</span>的消费者针对最大的消息有足够可用的内存。
+* 大消息可能引发更长时间的垃圾回收停顿(<span class="tag">garbage</span> <span class="tag">collection</span> <span class="tag">pauses</span>)(<span class="tag">brokers</span>需要申请更大块的内存)。注意观察<span class="tag">GC</span>日志和服务器日志。假如发现长时间的<span class="tag">GC</span>停顿导致<span class="tag">Kafka</span>丢失了<span class="tag">Zookeeper</span> <span class="tag">session</span>，你可能需要为<span class="tag">zookeeper</span><span class="class">.session</span><span class="class">.timeout</span><span class="class">.ms</span>配置更长的<span class="tag">timeout</span>值。
+</code></pre><p>Kafka是否支持MQTT或JMS协议<br>目前，Kafka针对上述协议不提供直接支持。但是，用户可以自己编写Adaptors从MQTT或者JMS中读取数据，然后写入到Kafka中。</p>
+<p>更多关于在CDH中使用Kafka的信息，下载Deployment Guide(<a href="http://www.cloudera.com/content/cloudera/en/resources/library/datasheet/kafka-reference-architecture.html" target="_blank" rel="external">http://www.cloudera.com/content/cloudera/en/resources/library/datasheet/kafka-reference-architecture.html</a> ) 或者 观看webinar “Bringing Real-Time Data to Hadoop”(<a href="http://www.cloudera.com/content/cloudera/en/resources/library/recordedwebinar/kafka-webinar-recording.html" target="_blank" rel="external">http://www.cloudera.com/content/cloudera/en/resources/library/recordedwebinar/kafka-webinar-recording.html</a> )。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/" data-id="ciq5hk2ie001wt8lmy36yybr7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kafka/">Kafka</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2015/大数据动态之201506" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/大数据动态之201506/" class="article-date">
+  <time datetime="2015-06-09T13:52:23.000Z" itemprop="datePublished">2015-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/大数据动态之201506/">大数据动态之201506</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Pinot：LinkedIn的实时数据分析系统<br><a href="http://www.infoq.com/cn/news/2014/10/linkdln" target="_blank" rel="external">http://www.infoq.com/cn/news/2014/10/linkdln</a><br><a href="https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot" target="_blank" rel="external">https://engineering.linkedin.com/analytics/real-time-analytics-massive-scale-pinot</a></p>
+<p>Twitter Heron：Twitter发布新的大数据实时分析系统Heron<br><a href="http://geek.csdn.net/news/detail/33750" target="_blank" rel="external">http://geek.csdn.net/news/detail/33750</a><br><a href="http://www.longda.us/?p=529" target="_blank" rel="external">http://www.longda.us/?p=529</a> </p>
+<p>Cloudera<br>HBase对MOBs( Moderate Objects, 主要是大小100K到10M的对象存储 )的支持<br><a href="http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/inside-apache-hbases-new-support-for-mobs/</a><br>准实时计算架构模式<br><a href="http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/architectural-patterns-for-near-real-time-data-processing-with-apache-hadoop/</a><br>(翻译：<a href="http://zhuanlan.zhihu.com/donglaoshi/20082628" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20082628</a> )<br>CDH 5.4 新功能：敏感数据处理(Sensitive Data Redaction)<br><a href="http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/06/new-in-cdh-5-4-sensitive-data-redaction/</a> </p>
+<p>Hortonworks<br>YARN的CapacityScheduler对Resource-preemption的支持<br><a href="http://hortonworks.com/blog/better-slas-via-resource-preemption-in-yarns-capacityscheduler/" target="_blank" rel="external">http://hortonworks.com/blog/better-slas-via-resource-preemption-in-yarns-capacityscheduler/</a><br>Hadoop集群对Multihoming的支持<br><a href="http://hortonworks.com/blog/multihoming-on-hadoop-yarn-clusters/" target="_blank" rel="external">http://hortonworks.com/blog/multihoming-on-hadoop-yarn-clusters/</a><br>HDP 2.3企业级HDFS数据加密<br><a href="http://hortonworks.com/blog/new-in-hdp-2-3-enterprise-grade-hdfs-data-at-rest-encryption/" target="_blank" rel="external">http://hortonworks.com/blog/new-in-hdp-2-3-enterprise-grade-hdfs-data-at-rest-encryption/</a><br>Apache Slider 0.80.0版本发布<br><a href="http://hortonworks.com/blog/announcing-apache-slider-0-80-0/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-apache-slider-0-80-0/</a><br>Apache Spark 1.3.1 on HDP 2.2<br><a href="http://hortonworks.com/blog/apache-spark-on-hdp-learn-try-and-do/" target="_blank" rel="external">http://hortonworks.com/blog/apache-spark-on-hdp-learn-try-and-do/</a><br><a href="http://hortonworks.com/hadoop-tutorial/using-apache-spark-technical-preview-with-hdp-2-2/" target="_blank" rel="external">http://hortonworks.com/hadoop-tutorial/using-apache-spark-technical-preview-with-hdp-2-2/</a><br>Ambari 2.0.1 和 HDP 2.2.6 发布<br><a href="http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.6/bk_HDP_RelNotes/content/ch_relnotes_v226.html" target="_blank" rel="external">http://docs.hortonworks.com/HDPDocuments/HDP2/HDP-2.2.6/bk_HDP_RelNotes/content/ch_relnotes_v226.html</a><br><a href="http://docs.hortonworks.com/HDPDocuments/Ambari-2.0.1.0/bk_releasenotes_ambari_2.0.1.0/content/ch_relnotes-ambari-2.0.1.0.html" target="_blank" rel="external">http://docs.hortonworks.com/HDPDocuments/Ambari-2.0.1.0/bk_releasenotes_ambari_2.0.1.0/content/ch_relnotes-ambari-2.0.1.0.html</a></p>
+<p>其他：<br>Graphite的百万Metrics实践之路<br><a href="http://calvin1978.blogcn.com/articles/graphite.html" target="_blank" rel="external">http://calvin1978.blogcn.com/articles/graphite.html</a><br>HBaseCon 2015 大会幻灯片 &amp; 视频<br><a href="http://hbasecon.com/archive.html" target="_blank" rel="external">http://hbasecon.com/archive.html</a><br>HBase在腾讯大数据的应用实践<br><a href="http://www.d1net.com/bigdata/news/353500.html" target="_blank" rel="external">http://www.d1net.com/bigdata/news/353500.html</a><br>从Spark到Hadoop的架构实践<br><a href="http://www.csdn.net/article/2015-06-08/2824889" target="_blank" rel="external">http://www.csdn.net/article/2015-06-08/2824889</a><br>56网大数据<br><a href="http://share.csdn.net/slides/10903" target="_blank" rel="external">http://share.csdn.net/slides/10903</a><br>七牛技术总监陈超：记Spark Summit China 2015<br><a href="http://www.csdn.net/article/2015-04-30/2824594-spark-summit-china-2015" target="_blank" rel="external">http://www.csdn.net/article/2015-04-30/2824594-spark-summit-china-2015</a><br>唯品会美研中心郭安琪：2015 Hadoop Summit见闻<br><a href="http://zhuanlan.zhihu.com/donglaoshi/20072576" target="_blank" rel="external">http://zhuanlan.zhihu.com/donglaoshi/20072576</a><br>华为叶琪：论Spark Streaming的数据可靠性和一致性<br><a href="http://www.csdn.net/article/2015-06-12/2824938" target="_blank" rel="external">http://www.csdn.net/article/2015-06-12/2824938</a><br>Hadoop Summit 2015<br><a href="http://2015.hadoopsummit.org/san-jose/agenda/" target="_blank" rel="external">http://2015.hadoopsummit.org/san-jose/agenda/</a><br>Spark Summit 2015<br><a href="https://spark-summit.org/2015/" target="_blank" rel="external">https://spark-summit.org/2015/</a> </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2015/大数据动态之201506/" data-id="ciq5hk2kk003xt8lm15zj62x3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2015/大数据动态之201505" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/大数据动态之201505/" class="article-date">
@@ -147,7 +305,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/大数据动态之201505/" data-id="ciopj1yb2003rm4lmvlhb21bq" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/大数据动态之201505/" data-id="ciq5hk2kz0045t8lmqevhrdzo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ambari/">Ambari</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li></ul>
@@ -193,7 +351,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/大数据动态之201502/" data-id="ciopj1ybb003zm4lmg7i1zpf7" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/大数据动态之201502/" data-id="ciq5hk2kz004dt8lm0kprysxo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
@@ -240,7 +398,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2015/Hadoop发行版(2015第一季)/" data-id="ciopj1ydb005em4lm8uq6ukeu" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2015/Hadoop发行版(2015第一季)/" data-id="ciq5hk2n5005rt8lmfbgjc3iq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CDH/">CDH</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQL-on-Hadoop/">SQL on Hadoop</a></li></ul>
@@ -298,7 +456,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2013/2013年年终总结/" data-id="ciopj1ye7005ym4lma0imzolb" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2013/2013年年终总结/" data-id="ciq5hk2o1006bt8lm9ksaid96" class="article-share-link">Share</a>
       
       
     </footer>
@@ -341,7 +499,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2013/响应式网页设计-Responsive-Web-Design/" data-id="ciopj1ye3005wm4lmrgsfqth3" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2013/响应式网页设计-Responsive-Web-Design/" data-id="ciq5hk2nl0069t8lmeweuatut" class="article-share-link">Share</a>
       
       
     </footer>
@@ -382,7 +540,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2012/HBTC-2012-见闻/" data-id="ciopj1yeb0061m4lmksu5gshi" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2012/HBTC-2012-见闻/" data-id="ciq5hk2o1006et8lmdry6mrzp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HBase/">HBase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HDP/">HDP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hive/">Hive</a></li></ul>
@@ -458,256 +616,9 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/佛教禅宗-六祖慧能/" data-id="ciopj1yfn006km4lmf8be6man" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2011/佛教禅宗-六祖慧能/" data-id="ciq5hk2ow006xt8lmv5fdncmh" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2011/集合-红色趣味丛书" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/集合-红色趣味丛书/" class="article-date">
-  <time datetime="2011-11-03T16:20:42.000Z" itemprop="datePublished">2011-11-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/读书/">读书</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/集合-红色趣味丛书/">&lt;集合&gt;红色趣味丛书</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>《老总小传》作者：马甲同志 <a href="http://blog.sina.com.cn/s/blog_5091b1dd0100c3nq.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_5091b1dd0100c3nq.html</a></p>
-<pre><code>以非常不传统的视角书写总司令的光辉历程。
-</code></pre><p>《非常轨迹——记中央红军长征中的四渡赤水抢渡金沙江之战》 作者：双石 <a href="http://zhoujun.blshe.com/category/349/9197" target="_blank" rel="external">http://zhoujun.blshe.com/category/349/9197</a></p>
-<pre><code>以电报文和分析为基础，重现“四渡赤水”；
-
-时间，从<span class="number">1934</span>年<span class="number">12</span>月至<span class="number">1935</span>年<span class="number">5</span>月；
-
-地点，湘<span class="comment">(湖南)</span>、桂<span class="comment">(广西)</span>、黔<span class="comment">(贵州)</span>、川<span class="comment">(四川)</span>、滇<span class="comment">(云南)</span>；
-
-中共参战部队：
-
-    军委纵队，叶剑英、陈云；
-
-    红一军团，林彪、聂荣臻；
-
-    红三军团，彭德怀、杨尚昆；
-
-    红五军团，董振堂、李卓然；
-
-    红九军团，罗炳辉、何长工；
-
-    游击队若干；
-
-KMT参战：
-
-    中央军，薛岳；
-
-    湘军，何健；
-
-    黔军，王家烈；
-
-    川军，刘湘；
-
-    川军，刘文辉；
-
-    桂军，李宗仁，白崇禧；
-
-    滇军，龙云；
-
-    地方民团若干；            
-</code></pre><p>《朱毛之争》 作者：双石 <a href="http://zhoujun.blshe.com/category/349/9689" target="_blank" rel="external">http://zhoujun.blshe.com/category/349/9689</a></p>
-<pre><code>主要是叙述，分析发生在1929年6月的朱毛之争的前前后后，左左右右的一些事儿。
-</code></pre><p>《Ifuleu红色八卦系列：【井冈山】》作者： 双石 <a href="http://zhoujun.blshe.com/category/349/34826" target="_blank" rel="external">http://zhoujun.blshe.com/category/349/34826</a></p>
-<pre><code>主要是叙述开始于1927年秋朱毛红军在井冈山的成长、战斗的事儿。
-</code></pre><p>《十大元帅的情缘》 作者：孔庆东 <a href="http://blog.sina.com.cn/s/blog_476da36101000axq.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_476da36101000axq.html</a></p>
-<p>《红军林彪》 作者：子金山 <a href="http://blog.sina.com.cn/s/articlelist_1256636234_10_1.html" target="_blank" rel="external">http://blog.sina.com.cn/s/articlelist_1256636234_10_1.html</a></p>
-<pre><code>主要是叙述了林彪元帅从1927年南昌起义到1935年红军长征结束这一段时间内的战斗历程。
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/集合-红色趣味丛书/" data-id="ciopj1yet0068m4lmuyoefynm" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2011/Android实战第三季-调试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/Android实战第三季-调试/" class="article-date">
-  <time datetime="2011-10-31T00:20:32.000Z" itemprop="datePublished">2011-10-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/Android实战第三季-调试/">Android实战第三季-调试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Android 初调试</p>
-<p>在 Android 平台开发，需要在一个模式或者真实的环境之下进行一下调试、验证，至少有三种方式：</p>
-<ol>
-<li><p>Eclipse + AVD ，通过 Eclipse 或者 Android SDK 自带的命令行创建 Android Virtual Device ;</p>
-</li>
-<li><p>Eclipse + Android Device ，通过一个真实 Android 设备通过 USB 和电脑相连进行调试；</p>
-</li>
-<li><p>Eclipse + Android System over Virtual Machine ，在系统安装一个虚拟机软件，比方说： VirtualBox ， VmWare ， VirtualPC 等，然后下载一个 Android ROM 安装到虚拟机之中，配置虚拟机的网络和 Host 主机相连，然后在 Host 主机中通过 adb 命令 adb connect android-ip 连接虚拟机中的 Android 系统，然后就可以进行调试了。</p>
-</li>
-</ol>
-<p>对于一些和 ROM 相关的开发、调试，最后现在虚拟机环境下进行调试，以免于把真实 Android Phone 给“砖头”了。</p>
-<p>Android 源代码下载和编译：</p>
-<ol>
-<li><p>拥有 Ubuntu 系统，进入到 Ubuntu 系统；</p>
-</li>
-<li><p>安装 cURL 。什么是 cURL ，官方解释：支持很多协议： FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET, DICT, FILE 以及 LDAP 。 curl 同样支持 HTTPS 认证， HTTP POST 方法 , HTTP PUT 方法 , FTP 上传 , kerberos 认证 , HTTP 上传 , 代理服务器 , cookies, 用户名 / 密码认证 , 下载文件断点续传 , 上载文件断点续传 , http 代理服务器管道（ proxy tunneling ） , 甚至它还支持 IPv6, socks5 代理服务器 , 通过 http 代理服务器上传文件到 FTP 服务器等等，功能十分强大。下载地址： <a href="http://curl.haxx.se/download.html" target="_blank" rel="external">http://curl.haxx.se/download.html</a></p>
-</li>
-<li><p>安装 Git ；</p>
-</li>
-<li><p>建立 ~/bin 目录，将这个目录配置到环境变量 ~/.bashrc 里面： export PATH=~/bin:$PATH</p>
-</li>
-<li><p>安装 Repo ，通过命令： curl <a href="http://android.git.kernel.org/repo" target="_blank" rel="external">http://android.git.kernel.org/repo</a> &gt;~/bin/repo</p>
-</li>
-<li><p>改变 ~/bin/repo的权限： chmod a+x ~/bin/repo</p>
-</li>
-<li><p>初始化版本库： repo init -u git://android.git.kernel.org/platform/manifest.git -b froyo</p>
-</li>
-<li><p>同步 repo sync</p>
-</li>
-<li><p>make(make 的时候出错了,注意查看，极有可能是缺少系统库，根据错误提示安装 系统库即可 )</p>
-</li>
-<li><p>最后编译完的库文件，主要集中在 out\target 路径下面。例如编译后的 framework. jar 位置在 out\target\common\obj\JAVA_LIBRARIES\framework_intermediates\classes.jar 。</p>
-</li>
-</ol>
-<p>并且可以参考：<br><a href="http://mintelong.iteye.com/blog/466893" target="_blank" rel="external">http://mintelong.iteye.com/blog/466893</a><br><a href="http://www.williamhua.com/2009/04/29/" target="_blank" rel="external">http://www.williamhua.com/2009/04/29/</a><br><a href="http://source.android.com/source/build-numbers.html" target="_blank" rel="external">http://source.android.com/source/build-numbers.html</a></p>
-<p>在 ubuntu 下使用 Eclipse+VirtualBox 进行 Android 开发： </p>
-<ol>
-<li>安装 Sun JDK;</li>
-<li>安装 Eclipse + Android plugin;</li>
-<li>安装 Android SDK for linux, 配置 adb 的所在目录到 path 中； </li>
-<li>下载 Android 源代码并且编译； </li>
-<li>安装 virtualbox;</li>
-<li>下载到开发版本的 android rom 的 iso 文件 ;</li>
-<li>在 virtualbox 中创建一个虚拟机，将 iso 加载到虚拟机的光盘中，将 android rom 安装到硬盘中，在安装过程中选择 /system 目录为 read-write ，并且创建 sdk 虚拟卡。 android 自动将其挂在到安装后的 /sdcard 路径 ;<br>选择虚拟机的网络方式是 :bridged adapter ，虚拟机的操作系统会自动从 ubuntu 一样，从外部路由器中获取一个独立的 ip ，可以和 ubuntu 互通，也可以通过路由器上网。 </li>
-<li>登录到虚拟机中的 android 系统，通过 devtools 应用的子项 Terminal simulator 进入到命令行界面，通过 ip addr 看到本机的 ip(android-ip).</li>
-<li>在 ubuntu 的命令行中： adb connect android-ip</li>
-<li>进入到 Eclipse 中，模拟器可以选择 AVD 调试 app 开发，也可以选择 manual 方式到虚拟机中的 android 环境进行开发。 Eclipse 调试环境自动将 apk 发布到虚拟机 Android 的目录 /system/app 下。 .</li>
-<li>在 ubuntu 下，鼠标在 ubuntu 和虚拟机之间切换的快捷键：键盘中的 右 ctrl + i 就可以了。</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/Android实战第三季-调试/" data-id="ciopj1ygc006vm4lm50m2nebi" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2011/安装windows-xp和ubuntu双操作系统的方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2011/安装windows-xp和ubuntu双操作系统的方法/" class="article-date">
-  <time datetime="2011-10-30T16:19:14.000Z" itemprop="datePublished">2011-10-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2011/安装windows-xp和ubuntu双操作系统的方法/">安装windows xp和ubuntu双操作系统的方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>先装xp，再装ubuntu：</p>
-<p>1.分别按着XP和ubuntu的方法一次安装即可，安装之后系统grub默认就会有ubuntu/xp的启动选项；每次启动系统的时候会有选项可以选择。<br>先装ubuntu，再装xp：</p>
-<ol>
-<li><p>按着ubuntu的方法安装ubuntu；</p>
-</li>
-<li><p>启动系统，安装xp后，自动清除系统grub，如果系统命令行引导或者grub引导界面，找到win pe光盘从光盘启动进入win pe，下载clear mbr软件clsmbr进行清除；</p>
-</li>
-<li><p>重启系统，使用xp安装盘安装xp；</p>
-</li>
-<li><p>安装XP之后系统启动ubuntu的grub选项丢失；</p>
-</li>
-<li><p>通过ubuntu live cd或者启动盘进入ubuntu。</p>
-</li>
-<li><p>查看ubuntu所在分区的盘符的uuid，比方说我的现在是：xxxxxxxxxxxxxxxxxx(可以直接在ubuntu所在分区盘符上面的图标查看属性得到，也可以通过命令ls -l /dev/disk/by-uuid获得)</p>
-</li>
-<li><p>在ubuntu中使用命令:sudo grub-install —root-directory=/media/{uuid} /dev/sda，命令执行成功之后，会有提示：”Installation finished. No error reported.”</p>
-</li>
-<li><p>重启机器，进入grub界面，这时候恢复了ubuntu下面的grub启动界面。这时候你发现xp的启动选项可能不工作，别着急。</p>
-</li>
-<li><p>按键c进入grub的命令行界面，键入root (hd0,之后按键tab键。这时候注意查看，在xp的分区信息中有一个uuid，记下来uuid，然后quit到ubuntu的grub启动界面。选择 xp的grub项，然后按键e,进入编辑模式，把记下来的uuid替换原来的uuid.这只后F10就可启动xp了。</p>
-</li>
-<li><p>其实也可以不操作第9步，直接从ubuntu grub登录进入ubuntu系统，然后编辑：/boot/grub/grub.cfg文件，将xp启动项中的uuid替换成新的xp系统的uuid即可。我的修改之后的内容为：<br>insmod part_msdos<br>insmod ntfs<br>set root=’(/dev/sda,msdos1)’<br>search —no-floppy —fs-uuid —set=root 0E48A65048A6367D<br>drivemap -s (hd0) ${root}<br>chainloader +1</p>
-</li>
-<li><p>OK一切搞定。</p>
-</li>
-</ol>
-<p>另可参考：<a href="http://www.blags.org/windows-xp-disk-to-install-ubuntu-10-04/" target="_blank" rel="external">http://www.blags.org/windows-xp-disk-to-install-ubuntu-10-04/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2011/安装windows-xp和ubuntu双操作系统的方法/" data-id="ciopj1yf9006cm4lmbo6vpdwg" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ubuntu/">Ubuntu</a></li></ul>
-
     </footer>
   </div>
   
@@ -728,7 +639,7 @@ KMT参战：
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">84</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">87</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -737,7 +648,7 @@ KMT参战：
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Agile/" style="font-size: 10px;">Agile</a> <a href="/tags/Ambari/" style="font-size: 11.25px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.75px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.75px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 11.25px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 16.25px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.25px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 18.75px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
+      <a href="/tags/Agile/" style="font-size: 10px;">Agile</a> <a href="/tags/Ambari/" style="font-size: 11.25px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.75px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.75px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 11.25px;">Flume</a> <a href="/tags/G1/" style="font-size: 10px;">G1</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 16.25px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.25px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 11.25px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 18.75px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
     </div>
   </div>
 
@@ -753,7 +664,19 @@ KMT参战：
       <ul>
         
           <li>
+            <a href="/2016/JAVA虚拟机：G1/">JAVA虚拟机：G1</a>
+          </li>
+        
+          <li>
+            <a href="/2016/简报：BI&数据挖掘&机器学习 - 2016Q2/">简报：BI&amp;数据挖掘&amp;机器学习 - 2016Q2</a>
+          </li>
+        
+          <li>
             <a href="/2016/开源流计算框架 - 201605/">开源流计算框架 - 201605</a>
+          </li>
+        
+          <li>
+            <a href="/2016/大数据之电信运营商案例/">大数据之电信运营商案例</a>
           </li>
         
           <li>
@@ -769,7 +692,7 @@ KMT参战：
           </li>
         
           <li>
-            <a href="/2016/大数据之电信运营商案例/">大数据之电信运营商案例</a>
+            <a href="/2016/简报：大数据产品分析 - 2016Q2/">简报：大数据产品分析 - 2016Q2</a>
           </li>
         
           <li>
@@ -793,7 +716,7 @@ KMT参战：
           </li>
         
           <li>
-            <a href="/2015/JVM监控与调优/">JVM监控与调优</a>
+            <a href="/2015/JAVA虚拟机：JVM监控与调优/">JVM监控与调优</a>
           </li>
         
           <li>
@@ -820,18 +743,6 @@ KMT参战：
             <a href="/2015/大数据动态之201508/">大数据动态之201508</a>
           </li>
         
-          <li>
-            <a href="/2015/SparkOnHBase-Cloudera/">SparkOnHBase(Cloudera)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《Hadoop生态技术在阿里全网商品搜索实战》/">学习《Hadoop生态技术在阿里全网商品搜索实战》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/Hadoop发行版(2015第二季)/">Hadoop发行版(2015第二季)</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -841,7 +752,7 @@ KMT参战：
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
