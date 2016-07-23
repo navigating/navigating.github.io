@@ -87,6 +87,300 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
+    <article id="post-2007/Google-Guice实战" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2007/Google-Guice实战/" class="article-date">
+  <time datetime="2007-05-31T03:54:49.000Z" itemprop="datePublished">2007-05-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2007/Google-Guice实战/">Google Guice实战</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Guice(pronounced “juice”)发布了1.0版本.<br>首先看看Guice的定位：an ultra-lightweight, next-generation dependency injection container for Java 5 and later.<br>这是一个基于Java 5及后续版本的轻量级依赖注入容器。Martin Fowler关于依赖注入的精彩讨论参见：<a href="http://www.martinfowler.com/articles/injection.html#InversionOfControl" target="_blank" rel="external">http://www.martinfowler.com/articles/injection.html#InversionOfControl</a><br>在这篇讨论中涉及到几种注入方式：Constructor Injection、Setter Injection、Interface Injection;<br>实际应用开发中依赖的注入问题自始至终都伴随着我们，当我们走过了最简单直接的手动注入、运用模式进行注入，到依赖于框架，当前成熟的框架众多，例如：Spring IOC、PicoContainer、Hivemind等；那么Guice作为一个依赖注入的framework，又是怎么定位自己的呢？其special的地方又在哪儿呢？我们首先看一个非常简单的例子：<br>对于注入描述的类如下：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+    <span class="keyword">public</span> <span class="keyword">void</span> configure(Binder binder) {
+        binder.bind(Service.<span class="keyword">class</span>).to(ServiceImpl.<span class="keyword">class</span>).<span class="keyword">in</span>(Scopes.SINGLETON);
+    }
+}
+</code></pre><p>依赖注入发生的地方：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>{
+
+    <span class="keyword">private</span> <span class="keyword">final</span> Service service;
+
+    <span class="annotation">@Inject</span>
+    <span class="function"><span class="keyword">public</span> <span class="title">Client</span><span class="params">(Service service)</span> </span>{
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{
+        service.go();
+    }
+}
+</code></pre><p>从这个例子我们可以清晰看出，Guice的依赖注入已经不同于以往的三种注入模式了，Okey，你已经看到了Guice充分使用了Java的新特性annotation来进行依赖注入的，已经完全跨越了Constructor Injection、Setter Injection、Interface Injection的概念了。这样，依赖注入只是需要一个或者多个annotation而已，一切搞定。<br>下一步我看看Guice这个Framework是要如何进行依赖注入的？<br>我们首先看看Guice的Architecture.</p>
+<pre><code>public class MyModule implements Module {
+   <span class="keyword"> public</span> void<span class="function"> configure(</span>Binder binder<span class="function">)</span> {
+        // Bind Foo to FooImpl. Guice will create a<span class="instruction"> new
+</span>        //<span class="instruction"> instance </span>of FooImpl for every injection.
+       <span class="function"> binder.bind(</span>Foo.class<span class="function">)</span>.to(FooImpl.class<span class="function">)</span>;
+
+        // Bind Bar to an<span class="instruction"> instance </span>of Bar.
+        Bar bar =<span class="instruction"> new </span>Bar(<span class="function">)</span>;
+       <span class="function"> binder.bind(</span>Bar.class<span class="function">)</span>.toInstance(bar<span class="function">)</span>;
+    }
+}
+</code></pre><p>该部分代码的sequence diagram如下：</p>
+<p>运行时Guice的依赖注入的绑定器structure如下：</p>
+<p>很明显的看到，一个注入的绑定关联主键Key、Scope、Provider；其中Key包含了依赖的Type和Annotation.<br>看到了Guice的简单绑定，一定会有一个疑问：就是一个类型的多个绑定怎么实现？Guice是运行Annotation binding来解决这个问题的。<br>例如绑定代码如下：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingModule</span> <span class="keyword">implements</span> <span class="title">Module</span> {</span>
+
+    <span class="keyword">public</span> <span class="typename">void</span> configure(Binder binder) {
+        binder.bind(IService.<span class="keyword">class</span>).annotatedWith(Blue.<span class="keyword">class</span>).to(BlueService.<span class="keyword">class</span>);
+
+    }
+
+}
+注入代码如下：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingClient</span> {</span>
+    <span class="comment">// @Inject</span>
+    <span class="comment">// @Blue</span>
+    <span class="comment">// private IService service;</span>
+
+    <span class="keyword">private</span> IService service;
+
+    <span class="annotation">@Inject</span>
+    <span class="keyword">public</span> <span class="typename">void</span> injectService(<span class="annotation">@Blue</span> IService service) {
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> <span class="typename">void</span> go() {
+        <span class="keyword">this</span>.service.go();
+    }
+}
+annotation部分代码：
+
+<span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="annotation">@Target</span>({ElementType.FIELD, ElementType.PARAMETER})
+<span class="annotation">@BindingAnnotation</span>
+<span class="keyword">public</span> <span class="annotation">@interface</span> Blue {
+
+}
+</code></pre><p>如果再复杂一些，Guice还支持有属性的annotation:<br>绑定代码</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+
+<span class="comment">/*
+* (non-Javadoc)
+* 
+* @see com.google.inject.Module#configure(com.google.inject.Binder)
+*/</span>
+<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(Binder binder)</span> </span>{
+    binder.bind(IPerson.class).annotatedWith(<span class="keyword">new</span> NamedAnnotation(<span class="string">"Bob"</span>)).to(Bob.class);
+}
+
+}
+注入代码：
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedClient</span> </span>{
+
+    <span class="annotation">@Inject</span>
+    <span class="annotation">@Named</span>(<span class="string">"Bob"</span>)
+    <span class="keyword">private</span> IPerson person;
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>{
+        <span class="keyword">this</span>.person.say();
+    }
+}
+annotation代码：
+
+<span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)
+<span class="annotation">@Target</span>({ElementType.FIELD, ElementType.PARAMETER})
+<span class="annotation">@BindingAnnotation</span>
+<span class="keyword">public</span> <span class="annotation">@interface</span> Named {
+    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;
+}
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedAnnotation</span> <span class="keyword">implements</span> <span class="title">Named</span> </span>{
+
+    <span class="keyword">private</span> String value;
+
+    <span class="function"><span class="keyword">public</span> <span class="title">NamedAnnotation</span><span class="params">(String value)</span></span>{
+        <span class="keyword">this</span>.value = value;
+    }
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.neusoft.anno.Named#value()
+    */</span>
+    <span class="function"><span class="keyword">public</span> String <span class="title">value</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> value;
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> <span class="number">127</span> * <span class="string">"value"</span>.hashCode() ^ value.hashCode();
+    }
+
+    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>{
+    <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Named))
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+        Named other = (Named) o;
+        <span class="keyword">return</span> value.equals(other.value());
+    }
+
+    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> <span class="string">"@"</span> + Named.class.getName() + <span class="string">"(value="</span> + value + <span class="string">")"</span>;
+    }
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see java.lang.annotation.Annotation#annotationType()
+    */</span>
+    <span class="function"><span class="keyword">public</span> Class <span class="title">annotationType</span><span class="params">()</span> </span>{
+        <span class="keyword">return</span> Named.class;
+    }
+
+}
+</code></pre><p>通过这几个例子，可以清晰看到，Guice应用annotation进行注入的关联的，用module将依赖关系组装起来，提供给客户端代码进行使用；而且annotation是可以自由定制的，支持灵活扩展的。</p>
+<p>Guice本身也支持实现类的直接绑定：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MixerModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.google.inject.Module#configure(com.google.inject.Binder)
+    */</span>
+    <span class="keyword">public</span> <span class="keyword">void</span> configure(Binder binder) {
+        binder.bind(Concrete.<span class="keyword">class</span>);
+
+    }
+
+}
+</code></pre><p>Guice有一种隐式绑定，其方法是这样，针对一个接口，如果缺少显式绑定，Guice 会寻找一个指向具体实现的@ImplementedBy标注。</p>
+<pre><code><span class="annotation">@ImplementedBy</span>(GoodNightImpl.class)
+    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IGoodNight</span> </span>{
+
+    <span class="function"><span class="keyword">void</span> <span class="title">goodNight</span><span class="params">()</span></span>;
+    }
+
+    <span class="annotation">@Singleton</span>
+    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodNightImpl</span> <span class="keyword">implements</span> <span class="title">IGoodNight</span> </span>{
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.neusoft.nobinding.IGoodNight#goodNight()
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goodNight</span><span class="params">()</span> </span>{
+        System.out.println(<span class="string">"Good night!"</span>);
+    }
+
+}
+</code></pre><p>那么，Provider是怎么回事呢？“有时对于每次注入，客户代码需要某个依赖的多个实例。其它时候，客户可能不想在一开始就真地获取对象，而是等到注入后的某个时候再获取。对于任意绑定类型 T，你可以不直接注入 T 的实例，而是注入一个 Provider，然后在需要的时候调用 Provider.get()”因此，可以使用Provider去真正的来创建依赖的对象实例，直到需要的时候才创建客户代码需要的实例。</p>
+<p>Provider等绑定代码：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetModule</span> <span class="keyword">implements</span> <span class="title">Module</span> {</span>
+
+    <span class="comment">/*
+    * (non-Javadoc)
+    * 
+    * @see com.google.inject.Module#configure(com.google.inject.Binder)
+    */</span>
+    <span class="keyword">public</span> <span class="typename">void</span> configure(Binder binder) {
+        binder.bind(IService.<span class="keyword">class</span>).to(WidgetService.<span class="keyword">class</span>).<span class="keyword">in</span>(Scopes.SINGLETON);
+        binder.bind(Widget.<span class="keyword">class</span>).toProvider(WidgetProvider.<span class="keyword">class</span>);
+    }
+
+}
+Provider的注入：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
+    <span class="keyword">private</span> IService service;
+
+    <span class="annotation">@Inject</span> Provider provider;
+
+    <span class="keyword">public</span> Widget(IService service){
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> <span class="typename">void</span> go(){
+        <span class="keyword">this</span>.service.go();
+    }
+}
+Provider的实现：
+
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetProvider</span> <span class="keyword">implements</span> <span class="title">Provider</span> {</span>
+
+    <span class="keyword">final</span> IService service;
+
+    <span class="annotation">@Inject</span>
+    WidgetProvider(IService service) {
+        <span class="keyword">this</span>.service = service;
+    }
+
+    <span class="keyword">public</span> Widget get() {
+        <span class="keyword">return</span> <span class="keyword">new</span> Widget(service);
+    }
+
+}
+</code></pre><p>Service的接口和实现：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IService</span> </span>{
+
+    <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>;
+
+}
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetService</span> <span class="keyword">implements</span> <span class="title">IService</span> </span>{
+
+    <span class="comment">/* (non-Javadoc)
+    * @see com.neusoft.service.IService#go()
+    */</span>
+    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{
+        System.out.println(<span class="string">"Widget Service Hello."</span>);
+    }
+
+}
+</code></pre><p>客户代码：</p>
+<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetApplication</span> </span>{
+
+    <span class="comment">/**
+    * @param args
+    */</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+        Injector injector = Guice.createInjector(<span class="keyword">new</span> WidgetModule());
+        Widget widget = injector.getInstance(Widget.<span class="keyword">class</span>);
+        widget.go();
+    }
+
+}
+</code></pre><p>这个例子完全表达出了Provider的价值所在。<br>另外，Guice也提供了Constant Values以及Converting Stings的支持：<br>Guice会针对Primitive types、primitive wrapper types、Strings、Enums、Classes类型进行类型的自动判断绑定机制。对于Primitive types、primitive wrapper types,如果 Guice 仍然无法找到一个的显式绑定，它会去找一个拥有相同绑定标注的常量 String 绑定，并试图将字符串转换到相应的值。<br>这就是一个Guice如何进行依赖注入的一个基本的思路，可以看到Guice的代码量十分少，是一个不错的依赖注入的方案，也将会推动依赖注入的进步。<br>参考：<br>Guice项目：<a href="http://code.google.com/p/google-guice/" target="_blank" rel="external">http://code.google.com/p/google-guice/</a><br>Guice中文文档：<a href="http://docs.google.com/View?docid=dqp53rg_3hjf3ch" target="_blank" rel="external">http://docs.google.com/View?docid=dqp53rg_3hjf3ch</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2007/Google-Guice实战/" data-id="ciqrc324800b0wklmvf6xiiyp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2007/走向Miami-原名：重返Miami" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2007/走向Miami-原名：重返Miami/" class="article-date">
@@ -118,7 +412,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/走向Miami-原名：重返Miami/" data-id="ciq5hun1j00a4n4lm8y4truwc" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/走向Miami-原名：重返Miami/" data-id="ciqrc320x00a6wklmvhrdaghk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -369,7 +663,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Java-5-0的Instrumentation特性/" data-id="ciq5hun2t00atn4lmvu7d2kvv" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/Java-5-0的Instrumentation特性/" data-id="ciqrc323y00avwklmnt0tnn4z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -412,7 +706,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/2006年年终总结-原名：一篇没有写完的BLOG/" data-id="ciq5hun3p00b5n4lm3t417y0a" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/2006年年终总结-原名：一篇没有写完的BLOG/" data-id="ciqrc324l00b7wklmca4mxl0z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -453,7 +747,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/开聊有益/" data-id="ciq5hun1y00aan4lmzdgd2ymf" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2007/开聊有益/" data-id="ciqrc321c00acwklmzcy543o3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -566,7 +860,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/JUnit-4-实战/" data-id="ciq5hun4k00bin4lmkts3lpez" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/JUnit-4-实战/" data-id="ciqrc325j00bkwklm6c176fe7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -608,7 +902,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/Miami-Everglades/" data-id="ciq5hun4k00bgn4lm8owqv2cu" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/Miami-Everglades/" data-id="ciqrc325f00biwklmmfqx1vrt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -649,7 +943,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/失落与决断-原名-重拾心情/" data-id="ciq5hun4400bcn4lmq7t3b7wm" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/失落与决断-原名-重拾心情/" data-id="ciqrc325600bewklmds0apzl7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -690,7 +984,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/2006年中期反思/" data-id="ciq5hun4k00bkn4lmln1r04k4" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/2006年中期反思/" data-id="ciqrc325o00bmwklm4v6btvcb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -733,44 +1027,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/走向设计-To-Consider-Design/" data-id="ciq5hun3p00b8n4lmpd9uqqmh" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2006/转-How-To-Become-A-Hacker" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2006/转-How-To-Become-A-Hacker/" class="article-date">
-  <time datetime="2006-04-13T02:04:23.000Z" itemprop="datePublished">2006-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2006/转-How-To-Become-A-Hacker/">转: How To Become A Hacker</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>look to the master,<br>follow the master,<br>walk with the master,<br>see through the master,<br>become the master.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2006/转-How-To-Become-A-Hacker/" data-id="ciq5hun3p00b7n4lmkl8wcuyu" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/走向设计-To-Consider-Design/" data-id="ciqrc324u00bawklmhztm2l81" class="article-share-link">Share</a>
       
       
     </footer>
@@ -793,7 +1050,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">87</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">88</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -816,6 +1073,10 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/简报：大数据产品分析 - 基于位置的用户行为/">简报：大数据产品分析 - 基于位置的用户行为</a>
+          </li>
         
           <li>
             <a href="/2016/JAVA虚拟机：G1/">JAVA虚拟机：G1</a>
@@ -842,11 +1103,11 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
           </li>
         
           <li>
-            <a href="/2016/简报：人工智能 - 2016Q2/">简报：人工智能 - 2016Q2</a>
+            <a href="/2016/学习《Thoughtworks技术雷达201604》/">学习《Thoughtworks技术雷达201604》</a>
           </li>
         
           <li>
-            <a href="/2016/学习《Thoughtworks技术雷达201604》/">学习《Thoughtworks技术雷达201604》</a>
+            <a href="/2016/简报：人工智能 - 2016Q2/">简报：人工智能 - 2016Q2</a>
           </li>
         
           <li>
@@ -893,10 +1154,6 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
             <a href="/2015/大数据技术百度指数201508/">大数据技术百度指数201508</a>
           </li>
         
-          <li>
-            <a href="/2015/大数据动态之201508/">大数据动态之201508</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -906,7 +1163,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
