@@ -87,10 +87,10 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-2004/单元测试实践" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2006/走向设计-To-Consider-Design" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/单元测试实践/" class="article-date">
-  <time datetime="2004-12-12T02:11:55.000Z" itemprop="datePublished">2004-12-12</time>
+    <a href="/2006/走向设计-To-Consider-Design/" class="article-date">
+  <time datetime="2006-04-13T03:05:07.000Z" itemprop="datePublished">2006-04-13</time>
 </a>
     
   <div class="article-category">
@@ -105,7 +105,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/单元测试实践/">单元测试实践</a>
+      <a class="article-title" href="/2006/走向设计-To-Consider-Design/">走向设计(To Consider Design)</a>
     </h1>
   
 
@@ -113,16 +113,16 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>接受测试驱动开发也已经有些时光了，仍然只能依靠ide来创建一些测试对象，即使偶尔自己写几个测试用例，也是环境相关、依赖多多的实例，为什么我们的代码就需要单元测试呢，部分是自己的想法，部分是与几个朋友讨论收获的，浏览了&lt;&gt;之后不免想记录下自己的想法了。<br>  自从有了代码就有了单元测试，就是最简单的debug调试也算作单元测试的一部分吧；测试驱动开发是在单元测试滞后产生的一种软件开发的方法学。只要有单元测试，它本身就含有驱动软件设计和代码重构的思想在里面。我们为了代码能够被单元测试，在设计阶段我们就会考虑怎么测试代码，同时测试用例也是代码的第一个用户；我们也需要为了测试了对代码进行重构。<br>1.单元测试的验证性：任何代码都是有一定缺陷的，单元测试能够尽量的发现代码中的问题和缺陷，验证了设计、业务逻辑、一些相关的特殊领域对象（一些Javabean等），保证了代码的完整性。从功能上对代码进行了验证，至少证明代码不存在功能上的问题。<br>2.单元测试的探索性：对于单元测试同样我们首先有一个测试列表，这个测试列表精心设计和长期习惯的积累，可能它就存在你的脑子里面。对于列表中的测试点，我们只测试可能出错的点；象那些不依赖于环境能够被间接的测试的点我们没有必要一定去测试。对于那些必要的测试点中，同样有业务逻辑的测试、模拟异常条件测试、对于预期的测试，需要我们良好的设计来实现它。在这个测试列表之外的是为测试区域，我记得哲学上有一个道理，一个圆越大，那么它与未知世界接触的区域就大。我们是不是也在做这种用例呢？单元测试就是尽可能保证我们所知道的每一个区域是“安全”的。<br>3.单元测试促使设计:<br>代码==è单元测试==è重构==è单元测试回归<br>首先我们对于代码进行单元测试，无论代码如何，设计如何，要保证现在代码是能够被单元测试的，这时候代码遇到了它的第一个用户：单元测试。代码如何被测试，考验代码的适应性和对变化的承受力。只有不断的重构才能使得测试更简洁。这里需要我们对于代码的重构设计成竹在胸，23个设计模式是不可或缺的方法。<br>4.测试用力是代码的使用手册：代码如何使用，可能客户不能很快知晓，测试用例就是一个demo,只要客户按着测试用例一样使用我们的代码，保证我们的代码一定能够被正确的使用。<br>4.单元测试的回归性：测试过的代码、功能等，不能证明随着时间的推移，在频繁构建之下，永远是好的。回归测试保证了在当前的测试用例之下当前的代码的良好性，是一张代码质量的协约书。谁都能“误”以为代码满足了编写者的设计意图。如果代码不能通过单元测试了，可能就是被损坏了。保证了重构中系统的完整性和一致性，随着代码的不断递增，通过机器自动保证代码测试无需人来参加。<br>5.防止衰退，减少调试：利用测试的回归性来进行代码的衰退，使得自动测试必须存在，他是我们代码的“守护神”（如果你也想为你的代码增加一个神，就从单元测试开始吧）。在代码、测试、重构的过程中，也是不断调试程序的过程，良好的单元测试能帮助我们发现错误和定位错误，逻辑单元测试本身就是一个细粒度的测试。<br>6.团队协作的可能：在一个团队，成员之间是互相信任的。我们通过什么来保证代码的可信任，单元测试让我们的代码是可以依赖的。有了单元测试的习惯，你不会在代码没有测试之前就提交它。模块之上的功能测试也是很粗糙的，对于代码的逻辑和集成性还是心有余而力不足。<br>突然想到，单元测试存在一块充满地雷的区域上的排雷器一样。我们验证什么地方有雷，什么地方没有；我们探索那些未知的区域；通过不断的排雷来评估这个区域的安全性；利用回归的探测来证明有没有新地雷扔到已测地区。</p>
+        <p>recently i always consider design:<br>1.keeping it simple,keeping it clean<br>2.coding for modularity<br>3.when working Bottom-Up,then working Top-Down.<br>4.abstract and high-cohesion,low-coupling<br>5.open one’s eyes for contract<br>today,when i’m reading the art of unix programming and get it:<br>Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove.</p>
+<p>The followings from 《the art of unix programming 》-Modularity</p>
+<p>There are two ways of constructing a software design. One is to make it so simple that there are obviously no deficiencies; the other is to make it so complicated that there are no obvious deficiencies. The first method is far more difficult.<br>1.Modularity:Keeping It Clean,Keeping It Simple.<br>2.Hatton himself suggests as a rule of thumb a 2x conversion between logical and physical lines, suggesting an optimal range of 400–800 physical lines.<br>3.Perfection in design is attained not when there is nothing more to add, but when there is nothing more to remove<br>4.Modularity is expressed in good code, but it primarily comes from good design.<br>5.A good API makes sense and is understandable without looking at the implementation behind it.The classic test is this: Try to describe it to another programmer over the phone. If you fail, it is very probably too complex, and poorly designed.<br>6.Coding for Modularity</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/单元测试实践/" data-id="cis67bjdw00avkclm5al58nr1" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2006/走向设计-To-Consider-Design/" data-id="cishktfvj009tmolm4w3sxv9g" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JUnit/">JUnit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/XP/">XP</a></li></ul>
-
     </footer>
   </div>
   
@@ -130,10 +130,175 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/写好代码" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2006/转-How-To-Become-A-Hacker" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/写好代码/" class="article-date">
-  <time datetime="2004-12-02T01:59:56.000Z" itemprop="datePublished">2004-12-02</time>
+    <a href="/2006/转-How-To-Become-A-Hacker/" class="article-date">
+  <time datetime="2006-04-13T02:04:23.000Z" itemprop="datePublished">2006-04-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2006/转-How-To-Become-A-Hacker/">转: How To Become A Hacker</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>look to the master,<br>follow the master,<br>walk with the master,<br>see through the master,<br>become the master.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2006/转-How-To-Become-A-Hacker/" data-id="cishktfvj009smolmypvz1ute" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2006/读《Managing-Open-Source-Projects》" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2006/读《Managing-Open-Source-Projects》/" class="article-date">
+  <time datetime="2006-04-05T03:01:50.000Z" itemprop="datePublished">2006-04-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2006/读《Managing-Open-Source-Projects》/">读《Managing Open Source Projects》</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>The following are two general principles of organization:<br>People must understand the organizational structure in which they are supposed to work.<br>There has to be someone who can make final decisions. This is especially important if the project or company is in a crisis. If the ship goes down, the captain does not call for a meeting. Everyone must obey orders, know exactly where to go and what to do, and do it without argument.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2006/读《Managing-Open-Source-Projects》/" data-id="cishktfvj009vmolm1ffaz2ro" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2006/入手《Code-Complete-Second-Edition》" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2006/入手《Code-Complete-Second-Edition》/" class="article-date">
+  <time datetime="2006-04-02T03:00:36.000Z" itemprop="datePublished">2006-04-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2006/入手《Code-Complete-Second-Edition》/">入手《Code Complete Second Edition》</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天冒着大雨和redwood跑去华储买回了cc2e。买的时候还是有些犹豫—这本书真是太重了。我们刚买完书出来，dreamhead打电话过来他在华储正在买这本书。:)感谢redwood帮我把这本书背回了家。<br>拿到这本书我最大的期望是：我早在一年前能拿到这本书该是多么美妙的事情啊。<br>“这个世界从来就不缺少十几岁的少年天才,而三十几岁的优秀软件设计师凤毛麟角”。<br>我们重来都不缺少工程师，总是缺少尽可能多的优秀的工程师。任何想成为优秀工程师的人都不能容忍忽略这本书—cc2e的价值。(“最好是好的敌人”)<br>我们深信，这本书就是献给那些愿意成为优秀软件构造者长期以来进行不断的努力、奉献、执著追求的人。只有这样的人，才能把这么一本“砖头”饶有兴趣的读下去、读完。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2006/入手《Code-Complete-Second-Edition》/" data-id="cishktfvy009zmolmnw70h1qp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/" class="article-date">
+  <time datetime="2005-09-06T02:59:07.000Z" itemprop="datePublished">2005-09-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/">读《Expert One on One J2EE Development Without EJB》C2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.j2ee提出了规范，给出了一个标准。On the other hand, I feel it has come up short on a number of measures.j2ee也确实降低了企业应用级项目的失败。<br>2.任何规范和特定的实现都没有一个技术思想重要。如同重构的时机一样：OO原则，针对接口编程；将任何特定的规范已经实现尽量隐藏一般特性之后，比如ejb的接口隐藏在pojo之后。<br>3.在我自己的技术选择中，几乎都是选择OpenSource社区的，很少受到规范驱动或者vendor驱动的影响。正好相反，也vendor driven才造就今天的我们。:)<br>4.项目成功，检验架构的标准：<br>simplicity<br>productivity<br>the fundamental importance of object orientation<br>the primacy of business requirements<br>the importance of empirical process<br>the importance of testability<br>5.一切皆来源于经验过程。spring比Expert One-on-One J2EE还要早。(没有working code就无法写出这本书。)springframework是Rod Johnson几个商业项目的经验而产生的。开发这个framework也应该是在模式大量复用中找到了突破点,如果一些模式大量的被复用，那么把这些模式的职责转嫁给framework来做，dry原则。当然，必须优先考虑模块化的原则，比方说对于log4j的如何集成到framework的方式。<br>6.Architecture and implementation should always be undertaken with clear goals in mind.</p>
+<p>Productivity<br>1.framework不断抽象，不断重构产生的,framework与代码生成的转换：If we see a requirement for boring repetitive code, we should apply an OO solution and abstract it into a framework,rather than generate it and live with the resulting duplication.<br>2.代码生成技术在解决生产率中扮着十分重要的角色。在j2ee开发中涉及到代码生成的层次很多。从dll,database schema到jsp.<br>3.There shouldn’t be vast amounts of repetitive plumbing code in J2EE applications.Better architectural choices and better frameworks can virtually eliminate such code,meaning that nearly all application code can be hand-authored.(注：framework形成的时机之一。)I’m not saying that code generation is a bad technology in general—merely that,when properly designed and built on appropriate frameworks, most J2EE applications should not contain enough boilerplate code to justify it and outweigh its negatives.<br>4.关于代码生成以及MDA作者的观点：The natural path of our industry is toward higher levels of abstraction. Perhaps one day MDA-powered code generation will prove to be an appropriate abstraction. However, I feel that this is 10–15 years away, if it ever happens.<br>5.Better Solutions for Higher Productivity：<br>Architecture<br>    Avoid unnecessary architectural complexity.<br>    Avoid unnecessary use of EJB.<br>    Use abstraction layers to hide the complexity of core J2EE and J2SE APIs.<br>    If possible, use an O/R mapping product to simplify the persistence layer.<br>    Use a good application framework.  </p>
+<p>Focus and methodology<br>    Focus! Know what problems you should be solving, and concentrate on them.<br>    Use a reference architecture and start from a template application.<br>    Use an agile development process.</p>
+<p>Use appropriate tools.<br>6.Different developers do the same thing in different ways, wasting<br>valuable development time and complicating maintenance.程序设计始终要做的就是不发生这样的事情。<br>7.Know What Problems to Solve 生产率即是知道要解决得是什么问题，将主要是domain problems而不是generic problems.<br>8.Use Reference Architectures and Templates一旦选择了技术，将着手reference architecture.begin work using a skeleton application that establishes the overall plumbing.<br>9.And remember that the more upfront effort before arriving at a working prototype, the greater the risk of inadequate performance or an unworkable architecture. 项目组也应该精化，微型化。<br>10.J2EE developers are fortunate in that all these requirements can be met by free, open source tools, such as Eclipse, JUnit, Ant, a good Eclipse XML plugin, CVS, and the standard Eclipse JUnit and CVS integration.</p>
+<p>OO<br>1.本身OO是一种范式，是一个模型，在SICP中对于讲到代换模型的理论：In general, when modeling phenomena in science and engineering, we begin with simplified, incomplete models. As we examine things in greater detail, these simple models become inadequate and must be replaced by more refined models.关于OO的讨论算是一个检查考虑问题的讨论。<br>2.作者提出的实践中运用oo的四个方面：封装domains concepts;运用polymorphism将共性和差异分离;代码复用；extensibility.<br>3.j2ee应用的对象常常都是一些fake objects，即是不具备objects的某些特征:identity,state,behavior.<br>4.oo针对接口编程的优点和误区。</p>
+<p>The importance of business requirements<br>1.这个问题因不同的角色而已。就我而言，如同我一样的普通程序员，对于generic technical problems常常都是难题，故而在这方面的需要长足的学习和提高的;对于我们而言，我们domain problems就是如何具备了generic technical方面的强大能力只是第一步。<br>The Importance of an Empirical Process<br>1.Always develop a vertical slice to validate your application’s architecture early in the project. Don’t trust our advice or anyone else’s without establishing that it’s appropriate to your needs.验证自己的想法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2005/读《Expert-One-on-One-J2EE-Development-Without-EJB》C2/" data-id="cishktfx900admolmaam7lsds" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2005/Java对象之JavaBean" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2005/Java对象之JavaBean/" class="article-date">
+  <time datetime="2005-08-28T02:56:21.000Z" itemprop="datePublished">2005-08-28</time>
 </a>
     
   <div class="article-category">
@@ -148,7 +313,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/写好代码/">写好代码</a>
+      <a class="article-title" href="/2005/Java对象之JavaBean/">Java对象之JavaBean</a>
     </h1>
   
 
@@ -156,12 +321,14 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>有一段时间一直在想，什么样子的代码是一个好的代码、高质量的代码，这些是在福建的时候写的，已经过去有一些日子了。想到那些日子里，承担者项目上的一些压力，工作之间<br>依然在思考代码，依然在读 软件敏捷开发 这本书。<br>软件设计的最终体现为源代码，满足设计标准的唯一软件文档就是源代码清单。源代码就是设计。具有灵活性、可维护性和可重用性的良好架构设计会带来高质量的代码，高质量的代码必然有良好的架构设计。<br>如何衡量软件的好坏呢？<br>僵化性(Rigidity):关联的地方太多，难以改动；实际发生改动之后，许多因改动带来的影响自己难以预测到，往往需要在庞大的代码中搜寻变动。<br>脆弱性(Fragility):关联了概念无关的地方，出现新问题的地方与改动的地方没有概念上的关联。<br>牢固性(Immobility):系统重能够被重用的地方难以抽取出来，需要巨大的努力和风险。<br>粘滞性(Viscosity):包括软件的粘滞性和环境的粘滞性。软件的粘滞性发生在保持系统设计的改动方法比那些破坏设计的生硬改动手法更难应用时；环境的粘滞性发生在环境迟钝、低效时，比如导致大规模重编译的改动或者需要几个小时check in几个文件中的改动。<br>不必要的复杂性(Needless Complexity):代码中预置的那些处理潜在变化的代码，致使设计中含有绝不会用到的结构。<br>不必要的重复性(Needless Repetition):开发人员忽视了抽象，对于系统的改动开始变得困难起来。<br>晦涩性(Opacity):模块难以理解。用清晰、富有表现力的方式编写代码。<br>                                     ――――读&lt;&gt;<br>这些都是软件在腐化的臭味道，软件的腐化是由代码来表现出来的。现在我对于代码的理解：<br>可读性：代码不仅是给用户写的，也是给team成员读，（对我们而言，还要给维护人员读）。只有代码具有可读性，才能具有好的可维护性、才能被复用。读好的代码能提高，读不好的代码也能发现问题。通过代码评审来提高团队的代码质量是一种非常有效的方式，能够直接影响了设计。<br>可测试性：测试用例是代码的第一个用户，如果代码难以测试，可以说是很难用，就更难复用。<br>复用性：保持代码的抽象性，代码能写到没有一点能让自己copy的地方只是第一步。如果我们自己设计的代码自己都不能进行复用，还谈什么系统复用，还谈什么提高复用性。我们不能等有一个万能的复用框架别人做好给我们使用，我们应该从建立自己的复用库开始，可以建立自己的CVS（CVSNT）来管理自己的源代码库。（在不断抽象之下，就是分析的结果，一般一个包的抽象类有50%左右的时候这个包是最稳定的。）<br>可维护性：代码要有好的复用性，必须有良好的架构，易读，易于测试，对于改动灵活。程序在运行中不可能不遇到各种各样的问题，对于我们的项目可能是对于现场运行环境的细小的变更，可能会是运行中的性能的问题？会不会导致系统的崩溃呢？能够提供观察系统运行状态的良好的接口，能够提供分析系统异常信息的合理的结构。当系统出现异常的时候，我们不希望系统立刻就会崩溃，我们不希望只是看到异常。</p>
+        <p>使用javabean已经很久了，但是很少去研究和使用jdk中的java.beans包和java.beans.beancontext包。<br>时间和空间这个计算机的永恒话题，也一直是设计的折衷话题。记得刚开始写javabean的时候，对象的set get都是一行一行代码的手写。一次几十个方法下来，而且复制粘贴，复杂，维护修改都很费力。<br>现在apache jakarta commons的子项目已经有一些解决方案了，主要在包org.apache.commons.beanutils中,使用可以参见Test Case和《Jakarta Commons Cookbook》。当然，有时候也需要我们自己根据自己的应用编写自己的处理javabean的代码。今天正好看到了一些java.beans的代码，罗列如下：<br>java.beans.Introspector<br> public static String decapitalize(String name) {<br>  if (name == null || name.length() == 0) {<br>   return name;<br>  }<br>  if (name.length() &gt; 1 &amp;&amp; Character.isUpperCase(name.charAt(1)) &amp;&amp; Character.isUpperCase(name.charAt(0))) {<br>   return name;<br>  }<br>  char chars[] = name.toCharArray();<br>  chars[0] = Character.toLowerCase(chars[0]);<br>  return new String(chars);<br> }<br>java.beans.PropertyDescriptor<br> public PropertyDescriptor(String propertyName, Class beanClass) throws IntrospectionException {<br>  if (propertyName == null || propertyName.length() == 0) {<br>   throw new IntrospectionException(“bad property name”);<br>  }<br>  setName(propertyName);<br>  String base = capitalize(propertyName);</p>
+<p>  // Since there can be multiple setter methods but only one getter<br>  // method, find the getter method first so that you know what the<br>  // property type is. For booleans, there can be “is” and “get”<br>  // methods. If an “is” method exists, this is the official<br>  // reader method so look for this one first.<br>  try {<br>   readMethod = Introspector.findMethod(beanClass, “is” + base, 0);<br>  } catch (Exception getterExc) {<br>   // no “is” method, so look for a “get” method.<br>   readMethod = Introspector.findMethod(beanClass, “get” + base, 0);<br>  }<br>  Class params[] = { readMethod.getReturnType() };<br>  writeMethod = Introspector.findMethod(beanClass, “set” + base, 1, params);<br>  propertyType = findPropertyType(readMethod, writeMethod);<br> }<br>(注：代码格式为eclipse默认设置)<br>   我没有读过javabean的规范，今天针对javabean的使用和操作随处可见，也算是Rod Johnson所说的fake object了。如果javabean的property命名不符合规范，就有可能出错，一旦这种错误被framework捕获了还没有throw给应用，那么发现这种命名错误就更困难了。</p>
+<p>如今我会优先选择commons-beanutils和jdk的java.beans对java bean进行操作。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/写好代码/" data-id="cis67bjdw00b1kclm5g4nbbqc" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/Java对象之JavaBean/" data-id="cishktfxp00ajmolmzwi1qnao" class="article-share-link">Share</a>
       
       
     </footer>
@@ -171,14 +338,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/String-In-Java" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2005/拓展训练" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/String-In-Java/" class="article-date">
-  <time datetime="2004-11-09T01:59:12.000Z" itemprop="datePublished">2004-11-09</time>
+    <a href="/2005/拓展训练/" class="article-date">
+  <time datetime="2005-08-28T02:44:12.000Z" itemprop="datePublished">2005-08-28</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
+    <a class="article-category-link" href="/categories/生活/">生活</a>
   </div>
 
   </div>
@@ -189,7 +356,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/String-In-Java/">String In Java</a>
+      <a class="article-title" href="/2005/拓展训练/">拓展训练</a>
     </h1>
   
 
@@ -197,51 +364,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>JDK1.4中关于String的几个实现方法：</p>
-<pre><code><span class="function"><span class="keyword">public</span> <span class="title">String</span>(<span class="params">String original</span>) </span>{
-    <span class="keyword">this</span>.count = original.count;
-    <span class="keyword">if</span> (original.<span class="keyword">value</span>.length &gt; <span class="keyword">this</span>.count) {
-        <span class="comment">// The array representing the String is bigger than the new</span>
-        <span class="comment">// String itself.  Perhaps this constructor is being called</span>
-        <span class="comment">// in order to trim the baggage, so make a copy of the array.</span>
-        <span class="keyword">this</span>.<span class="keyword">value</span> = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="keyword">this</span>.count];
-        System.arraycopy(original.<span class="keyword">value</span>, original.offset,
-        <span class="keyword">this</span>.<span class="keyword">value</span>, <span class="number">0</span>, <span class="keyword">this</span>.count);
-    } <span class="keyword">else</span> {
-        <span class="comment">// The array representing the String is the same</span>
-        <span class="comment">// size as the String, so no point in making a copy.</span>
-        <span class="keyword">this</span>.<span class="keyword">value</span> = original.<span class="keyword">value</span>;
-    }
-}
+        <p>周末参加了一个公司的导师拓展训练。<br>地点：沈阳棋盘上附近一个基地。<br>感受几点：<br>1.个人能力是有限的，团队和自己的能力的发挥。<br>2.在我们面对或者挑战平日里看来可怕的或者根本不可能去做的事情，在环境被逼的去做，做完了反而觉得十分有刺激和具有挑战性。人是应该富于挑战的，包括不断的自我挑战。<br>3.一旦目标确定,一个team同心协力的去做一件非常是有挑战性的事情的时候，所有的人都愿意同心协力的去创造一个个奇迹。<br>4.人人都有很强的荣誉感，在面对荣誉的时候，如何抉择取舍。team与team之间的良性对比是十分必要的,也总是伴随着恶性事件的到来。:)<br><img src="https://raw.githubusercontent.com/stevenxu/tuku/master/navigating.github.io/2005/2005_TuoZhanXunLian.jpg" alt="这是一张图片"></p>
 
-<span class="function"><span class="keyword">public</span> boolean <span class="title">equals</span>(<span class="params">Object anObject</span>) </span>{
-    <span class="keyword">if</span> (<span class="keyword">this</span> == anObject) {
-        <span class="keyword">return</span> <span class="keyword">true</span>;
-    }
-
-    <span class="keyword">if</span> (anObject instanceof String) {
-        String anotherString = (String)anObject;
-        <span class="keyword">int</span> n = count;
-
-        <span class="keyword">if</span> (n == anotherString.count) {
-            <span class="keyword">char</span> v1[] = <span class="keyword">value</span>;
-            <span class="keyword">char</span> v2[] = anotherString.<span class="keyword">value</span>;
-            <span class="keyword">int</span> i = offset;
-            <span class="keyword">int</span> j = anotherString.offset;
-            <span class="keyword">while</span> (n-- != <span class="number">0</span>) {
-                <span class="keyword">if</span> (v1[i++] != v2[j++])
-                <span class="keyword">return</span> <span class="keyword">false</span>;
-            }
-            <span class="keyword">return</span> <span class="keyword">true</span>;
-        }
-    }
-    <span class="keyword">return</span> <span class="keyword">false</span>;
-}
-</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/String-In-Java/" data-id="cis67bjeb00b7kclm910bb0us" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/拓展训练/" data-id="cishktfx900ahmolml32fi8wi" class="article-share-link">Share</a>
       
       
     </footer>
@@ -251,51 +379,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/如何开始编码" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2005/读设计模式精解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/如何开始编码/" class="article-date">
-  <time datetime="2004-10-28T01:58:15.000Z" itemprop="datePublished">2004-10-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/如何开始编码/">如何开始编码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>1.程序run起来。<br>2.程序能够被单元测试。<br>3.考虑引起变化的因素。<br>4.面对引起变化的因素，重构。<br>5.如何对变化进行单元测试，即面对了变化，如何进行单元测试。<br>6.如何做准确性的单元测试，如何做边界的单元测试。<br>7.如何保证代码在引起变化的时候仍然具有很好的可维护性（维护中需要好的单元测试做为支持的）。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/如何开始编码/" data-id="cis67bjdg00aukclm5myerrp8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/Go-Well-NOT-Fast" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/Go-Well-NOT-Fast/" class="article-date">
-  <time datetime="2004-10-25T01:52:30.000Z" itemprop="datePublished">2004-10-25</time>
+    <a href="/2005/读设计模式精解/" class="article-date">
+  <time datetime="2005-08-10T02:42:23.000Z" itemprop="datePublished">2005-08-10</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
+    <a class="article-category-link" href="/categories/读书/">读书</a>
   </div>
 
   </div>
@@ -306,7 +397,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/Go-Well-NOT-Fast/">Go Well, NOT Fast</a>
+      <a class="article-title" href="/2005/读设计模式精解/">读设计模式精解</a>
     </h1>
   
 
@@ -314,14 +405,13 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>“We often blame managers for schedule pressure. We often complain that our companies set unreasonable deadlines and have unrealistic expectations. This might be true, but it’s only half the problem. The other half, the most important half, is within us. We consider our worth as programmers to be more associated with speed than with quality. And that’s a tragedy; because it leads us to create messes. It leads us down the slower path. By rushing we ruin our chance to truly go fast.”</p>
-<p>Today’s Links:</p>
-<p><a href="http://www.artima.com/weblogs/viewpost.jsp?thread=51769" target="_blank" rel="external">http://www.artima.com/weblogs/viewpost.jsp?thread=51769</a></p>
+        <p>读&lt;&lt;设计模式精解&gt;&gt;第一章笔记。</p>
+<p>功能分解：<br>分析即是分解，分析的过程既是分解的过程。最常用的方式就是功能分解，功能分解仅是分析的一种方法。针对需求，功能分解难以为我们提供面向未来应对变化的策略。而需求中不变的就是变化(需求变化的来源大抵有三种：1。新的功能需求；2。开发者对于问题领域的理解发生了变化，通过开发来提高问题领域的自动化程度；3。开发环境的变迁。),需求中的变化总是对于已经分解好的功能结构产生致命的冲击。仅仅将注意力集中在功能上是不够的，必须对数据结构和过程进行抽象、封装等，促使已有的实现能灵活应对需求的变化。<br>模块化：<br>通常我们还会选择模块化来进一步进行设计，其精髓就是高内聚低耦合。模块化能让我们写出更容易理解、更容易维护的代码。但是模块没有完全提出代码实现的抽象和封装，没有进一步提供粒度较小的抽象、封装和复用，可能一个过程或者数据结构的变动，确对一些地方的代码造成了意料之外的影响。<br>结论：<br>仅仅能实现当前需求的代码远远是不够的，而且仅仅使用功能分解然后实现之的分析设计思路也是糟糕的，因为需求总是在变化。我们必须从这里走得更远，作者就引入乐面对对象范式。<br>OOP在由抽象、封装、模块化、分层组成的对象模型之概念框架下，在语言级粒度上提供了封装、继承、多态的支持；这是人类复用技术的进步，但是使用了oop并不代表就能完全运用了对象模型的核心思想。(TDD是当前应对代码变化的最好的开发方式。需求变化的最大承受者就是代码，富于变化和善于应对变化的代码才能存活下来。)</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Go-Well-NOT-Fast/" data-id="cis67bjf600bdkclmnpau74t6" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/读设计模式精解/" data-id="cishktfwu00abmolm8bnwaob5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -331,14 +421,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/XP极限编程" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2005/读《Berkeley-Unix二十年》" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/XP极限编程/" class="article-date">
-  <time datetime="2004-10-22T15:32:55.000Z" itemprop="datePublished">2004-10-22</time>
+    <a href="/2005/读《Berkeley-Unix二十年》/" class="article-date">
+  <time datetime="2005-05-31T02:41:23.000Z" itemprop="datePublished">2005-05-31</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
+    <a class="article-category-link" href="/categories/读书/">读书</a>
   </div>
 
   </div>
@@ -349,7 +439,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/XP极限编程/">XP极限编程</a>
+      <a class="article-title" href="/2005/读《Berkeley-Unix二十年》/">读《Berkeley Unix二十年》</a>
     </h1>
   
 
@@ -357,18 +447,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <ol>
-<li>模式</li>
-<li>重构</li>
-<li>测试</li>
-<li>增量交付</li>
-<li>频繁构建</li>
-</ol>
+        <p>16 May 2005<br>    在unix的早期历史里面，没有策划，没有估计，没有进度表；在这个年代，硬件的代价是昂贵的，在硬件资源固定的情况下，所有的人都希望通过自己的努力进行优化，进行维护，进行调试，进行移植，进行集成。。。这时构建系统、发布系统还处于萌芽状态，大量的工作都是针对与操作系统的。(同也是编程语言狂热的年代。)这完全是个人表现，人类对于计算机一个个基本的需求解决的年代。理想也是满足自己的开发所需和硬件的平滑更换。经过暴风骤雨的成长发展，系统进入了分支期，这样路就越来越窄了，可以选择的空间似乎总是在缩小。NetBSD专注于支持多平台，FreeBSD专注于支持PC体系，OpenBSD专注于系统的安全性。<br>   人才的流动，人才的流失对于一个team来说是一个损失，同时team有引进了新的人才。对于整个行业来说开始平衡的，人才的流动带给一个行业的是经验的互补，每一个人都各有所长。关键人才的流动带给系统的是新的特性切入点，同类型的系统也越来越有竞争力，火拼最激烈的时候正是新的力量可能诞生的时候。BSD的发展就是DARPA(Defense Advanced Research Projects Agency)给了它这个绝佳的机会。Bill Joy、Bob Fabry、Leffler…的离开，Leffler、Pauline Schwartz、Domenico Ferrari、Susan Graham、<br>Mike Karels…的介入。<br>   早期的Unix开发者都是小范围的孤军奋战，而且也总是在增大交流的范畴，交流越广泛，对于系统的提高所起到的隐含动力越大。在系统的开发前行中，越来越多的贡献者希望代码的共享，常常会触及到版权的问题，这种共享缩短了个人和行业的发展历程。今天OpenSource已经深入到我们这些开发者的心灵之中，感谢这些先行者和贡献者。同样感受到，官事没有什么可怕的，足以证明这个系统、这个行业非常成熟了，有了越来越多的共利益者了，分蛋糕的人拼的热火朝天呢，大家在同一个级别上一较高下了。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/XP极限编程/" data-id="cis67bjeb00b3kclmaxefp891" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/读《Berkeley-Unix二十年》/" data-id="cishktfx900afmolm3pbgqy8n" class="article-share-link">Share</a>
       
       
     </footer>
@@ -378,14 +462,14 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2004/设计模式之分层实现(Layering Implements)" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2005/转载：你注意过你的父母吗" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2004/设计模式之分层实现(Layering Implements)/" class="article-date">
-  <time datetime="2004-10-22T14:10:50.000Z" itemprop="datePublished">2004-10-22</time>
+    <a href="/2005/转载：你注意过你的父母吗/" class="article-date">
+  <time datetime="2005-02-24T02:39:41.000Z" itemprop="datePublished">2005-02-24</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
+    <a class="article-category-link" href="/categories/生活/">生活</a>
   </div>
 
   </div>
@@ -396,7 +480,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2004/设计模式之分层实现(Layering Implements)/">设计模式之分层实现(Layering Implements)</a>
+      <a class="article-title" href="/2005/转载：你注意过你的父母吗/">转载：你注意过你的父母吗....</a>
     </h1>
   
 
@@ -404,173 +488,18 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>原文第一次发布：<a href="http://www.blogbus.com/navigating-logs/455608.html" target="_blank" rel="external">http://www.blogbus.com/navigating-logs/455608.html</a><br>今天去听课，老师讲到persistence layer的时候，提到dao的出现主要应付数据库的移植，可能他出现的最初的原型确实如此，仔细想一下，真实的enterprise application的数据源有多少在移植呢，就我们一般而言，一般相对都是很固定，在软件的最初设计阶段就已经选型了。（在OO中讲，如果一个变化可能要等三五年，那么你就得去考虑现在考虑这个变化是不是有意义？）</p>
-<p>现在在设计模式的基础上，提出了企业架构应用的诸多模式，这么多模式都是在依赖于设计模式来实现的。那么企业架构应用的诸多模式的价值何在？就persistence layer而言，抽象出数据持久化的一般问题解决方案，看下面的图：</p>
-<p>在与数据源(一般都是大型数据库)交互的时候，对于网络的依赖是必不可少的。基本的原则：minimize distributed communication(今天老师刚讲的)。在持久层，既是DAO还需要做一定的数据缓冲，减少网络访问，对于本地persistence object的管理才是比较重要的。对于我们的工作中，不一定要做数据缓冲，但是应该考虑对于网络访问是否最小化了。</p>
-<p>为什么要分层?</p>
-<ol>
-<li>can understand a single layer as a coherent whole without knowing much about the other layers。就如现在我们在设计dao的时候，很少去考虑什么business logic，单纯的去研究数据的访问。</li>
-</ol>
-<ol>
-<li>can substitute layers with alternative implementations of the same basic services.这个问题就跟接口有关了，还要讨论的。很好的满足了DIP(依赖倒置原则);</li>
-</ol>
-<ol>
-<li>minimize dependencies between the layers.对象之间的应用不再是杂乱五章的，大家都依赖于抽象。</li>
-</ol>
-<ol>
-<li>Layers make good places for standardization.现在datasource layer(persistence layer),domain layer,presentation lay.经过大家的群策群力，每一个层次都有了模式，加快了解决问题的速度，使得开发人员集中于一些必要的挑战。最近有提出了service layer.(今天老师讲了The Business Delegate Design Pattern,但是老师却讲到了field和object的对比，这个方式我们早已讲过了，这次SUN单独提出来，它的意义远不再这里，我理解和service layer有一定的关系。)</li>
-</ol>
-<ol>
-<li>Once you have a layer built you can use it for many higher level services.这也是分离出层的原型吧。</li>
-</ol>
-<p>我觉得Pattern of Enterprise Application Architecture讲分层的第一句话特别好：</p>
-<p>Layering is one of the most common techniques that software designers use to break apart a complicated software system.</p>
-<p>依然有了分层，就产生了层，有了层，就有了层与层之间的关系，那么就面对这些 层关系的设计和实现问题。</p>
-<p>在企业应用架构有三层（也有四层的分法），这些层之间必然会有一些依赖，我们都知道依赖有一个原则：依赖倒置原则（DIP）</p>
-<ol>
-<li>高层模块不应该依赖于底层模块。二者都应该依赖于抽象。</li>
-</ol>
-<ol>
-<li>抽象不应该依赖于细节。细节应该以来于抽象。</li>
-</ol>
-<p>对应于分层，较“高”层包含了什么，包含了策略选择和业务模型，而这些真是应用程序的价值所在，如果“高”层以来于“低”层，那么“低”层的变化就会影响到“高”层。</p>
-<p>更不可能去让“低”层依赖于“高”层。</p>
-<p>现在只有一种可能，“高”层和“低”层是独立的。这不也正是我们使用framework的价值所在吗？</p>
-<p>这样层与层之间的依赖就必须是抽象，而不是实现和细节。</p>
-<p>Service layer的出现，是为了面对客户层接入集成了一系列高效的操作集。主要目的提高数据存取和业务逻辑的利用率，减少重复调用。</p>
-<p>Serverice layer是一个边缘层（boundary）。</p>
+        <p>你注意过你的父母吗？(写给 30岁以上的人，让30岁以下的人思考) </p>
+<p>如果有一天，你发现妈妈的厨房不再像以前那么干净<br>如果有一天，你发现家中的碗筷好像没洗干净<br>如果有一天，你发现母亲的锅子不再雪亮<br>如果有一天，你发现父亲的花草树木已渐荒废<br>如果有一天，你发现家中的地板衣柜经常沾满灰尘<br>如果有一天，你发现母亲煮的菜太咸太难吃<br>如果有一天，你发现父母经常忘记关瓦斯 </p>
+<p>如果有一天，你发现老父老母的一些习惯不再是习惯时， 就像他们不再想要天天洗澡时<br>如果有一天，你发现父母不再爱吃青脆的蔬果<br>如果有一天，你发现父母爱吃煮得烂烂的菜<br>如果有一天，你发现父母喜欢吃稀饭<br>如果有一天，你发现他们过马路行动反应都慢了<br>如果有一天，你发现在吃饭时间他们老是咳个不停 千万别误以为他们感冒或着凉，<br>(那是吞咽神经老化的现象)<br>如果有一天，你发觉他们不再爱出门… </p>
+<p>如果有这么一天 我要告诉你，你要警觉父母真的已经老了<br>器官已经退化到需要别人照料了<br>如果你不能照料，<br>请你替他们找人照料<br>并请你请你千万千万要常常探望<br>不要让他们觉得被遗弃了 </p>
+<p>每个人都会老<br>父母比我们先老<br>我们要用角色互换的心情去照料他<br>才会有耐心、才不会有怨言<br>当父母不能料理自己的时候，<br>为人子女要警觉，<br>他们可能会大小便失禁、可能会很多事都做不好，<br>如果房间有异味，可能他们自己也闻不到，请不要嫌他脏或嫌他臭，<br>为人子女的只能帮他清理，并请维持他们的’自尊心’。</p>
+<p>当他们不再爱洗澡时，<br>请抽空定期帮他们洗身体，<br>因为纵使他们自己洗也可能洗不干净。<br>当我们在享受食物的时候，<br>请替他们准备一份大小适当、容易咀嚼的一小碗，<br>因为他们不爱吃可能是牙齿咬不动了。<br>从我们出生开始，喂奶换尿布、生病的不眠不休照料、<br>教我们生活基本能力、供给读书、吃喝玩乐和补习，<br>关心和行动永远都不停歇。</p>
+<p>如果有一天，<br>他们真的动不了了，角色互换不也是应该的吗？<br>为人子女者要切记，看父母就是看自己的未来，孝顺要及时。<br>如果有一天，<br>你像他们一样老时，你希望怎么过？<br>现在的你，<br>是在当单身寄生虫、还是已婚双料或多料寄生虫？<br>你留意过自己的父母吗 ?</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/设计模式之分层实现(Layering Implements)/" data-id="cis67bjdg00askclmyuv8686b" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/转：《敏捷软件开发：原则、模式与实践》中文版序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/" class="article-date">
-  <time datetime="2004-10-14T14:10:50.000Z" itemprop="datePublished">2004-10-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/">转：《敏捷软件开发：原则、模式与实践》中文版序</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>“最好的软件开发人员都知道一个秘密：美的东西比丑的东西创建起来更廉价，也更快捷。构建、维护一个美的软件系统所花费的时间、金钱都要少于丑的系统。软件开发新手往往不理解这一点。他们认为做每件事情都必须要快，他们认为美是不实用的。错！由于事情做得过快，他们造成的混乱致使软件僵化，难以理解。美的系统是灵活、易于理解的，构建、维护它们就是一种快乐。丑陋的系统才是不实用的。丑陋会降低你的开发速度，使你的软件昂贵而又脆弱。构建、维护美的系统所花费的代价最少，交付起来也最快。”</p>
-<p>——摘自“Robert C. Martin《敏捷软件开发：原则、模式与实践》中文版序”</p>
-<p>Robert C. Martin《敏捷软件开发：原则、模式与实践》中文版序</p>
-<p>　　除了我的家庭，软件是我的挚爱。通过它，我可以创造出美的东西。软件之美在于它的功能，在于它的内部结构，还在于团队创建它的过程。对用户来说，通过直观、简单的界面呈现出恰当特性的程序就是美的。对软件设计者来说，被简单、直观地分割，并具有最小内部耦合的内部结构就是美的。对开发人员和管理者来说，每周都会取得重大进展，并且生产出无缺陷代码的具有活力的团队就是美的。美存在于所有这些层次之中，它们都是本书内容的一部分。<br>　　软件开发人员如何学到创造美的知识呢？在本书中，我讲授了一些原则、模式以及实践，它们可以帮助软件开发人员在追求美的程序、设计以及团队的道路上迈出第一步。其中，我们探索了基本的设计原则，软件设计结构的通用模式以及有助于团队融为一个有机整体的一系列实践。由于本书是关于软件开发的，所以包含了许多代码。仔细研究这些代码是学习本书所教授的原则、模式以及实践的最有效方法。<br>　　人们需要软件—需要许多的软件。50年前，软件还只是运行在少量大型、昂贵的机器之上。30年前，软件可以运行在大多数公司和工业环境之中。现在，移动电话、手表、电器、汽车、玩具以及工具中都运行有软件，并且对更新、更好软件的需求永远不会停止。随着人类文明的发展和壮大，随着发展中国家不断构建它们的基础设施，随着发达国家努力追求更高的效率，就需要越来越多的软件。如果在所有这些软件之中，都没有美存在，这将会是一个很大的遗憾。<br>　　我们知道软件可能会是丑陋的。我们知道软件可能会难以使用、不可靠并且是粗制滥造的；我们知道有一些软件系统，其混乱、粗糙的内部结构使得对它们的更改既昂贵又困难；我们还见过那些通过笨拙、难以使用的界面展现其特性的软件系统；我们同样也见过那些易崩溃且行为不当的软件系统。这些都是丑陋的系统。糟糕的是，作为一种职业，软件开发人员所创建出来的美的东西却往往少于丑的东西。如果你正在阅读这本书，那么你也许就是那个想去创造美而不是丑的人。<br>　　最好的软件开发人员都知道一个秘密：美的东西比丑的东西创建起来更廉价，也更快捷。构建、维护一个美的软件系统所花费的时间、金钱都要少于丑的系统。软件开发新手往往不理解这一点。他们认为做每件事情都必须要快，他们认为美是不实用的。错！由于事情做得过快，他们造成的混乱致使软件僵化，难以理解。美的系统是灵活、易于理解的，构建、维护它们就是一种快乐。丑陋的系统才是不实用的。丑陋会降低你的开发速度，使你的软件昂贵而又脆弱。构建、维护美的系统所花费的代价最少，交付起来也最快。<br>　　我希望你能喜爱这本书。我希望你能像我一样学着以创建美的软件而骄傲，并享受其中的快乐。如果你从本书中略微看到了这种快乐，如果本书使你开始感受到了这种骄傲，如果本书点燃了你内心欣赏这种美的火花，那么就远超过我的目标了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/转：《敏捷软件开发：原则、模式与实践》中文版序/" data-id="cis67bjdg00aqkclmub3w4xq8" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/创建对象的两种方式" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/创建对象的两种方式/" class="article-date">
-  <time datetime="2004-10-11T14:10:50.000Z" itemprop="datePublished">2004-10-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/创建对象的两种方式/">创建对象的两种方式</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>One is to create a object with a rich constructor so that its at least created with all<br>least created with all its mandatory data.<br>The other is to create o object an empty object and then populate it with the mandatory<br>data.<br>The former could have a well-formed object from the start.This aslo meants that, if you<br>have an immutable field, you can enforce it by not providing any method to change its<br>value.<br>The problem with a rich constructor is that you have to be aware of cyclic references.<br>Avoiding this requires special case code, often usingg lazy load.<br>You can do this creating an empty object.Use a non-arg constructor to create a blank object<br>and insert that empty object immediately into other object.The way,if you have a cycle,<br>other object will return an object to stop the recursive loading that two objects reference<br>each other.<br>Using an empty object like this means you may need some setters for values that are truely<br>immutalbe when the object is loaded.A combination of a naming convention and perhaps some<br>status-checking guards can fix this.You can alse use reflection for loading data.</p>
-<p>(Spring supports Setter Injection very nice.Sometimes using rich constructor to create a object<br> is preferable after you evaluating.)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/创建对象的两种方式/" data-id="cis67bjdw00azkclmpjn2mo7r" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2004/Eclipse之Workspace路径修改" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2004/Eclipse之Workspace路径修改/" class="article-date">
-  <time datetime="2004-10-11T12:23:15.000Z" itemprop="datePublished">2004-10-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2004/Eclipse之Workspace路径修改/">Eclipse之Workspace路径修改</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>eclipse的worspace的路径放置在根目录：<br>\configuration\org.eclipse.ui.ide\recentWorkspaces.xml</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2004/Eclipse之Workspace路径修改/" data-id="cis67bjf600bhkclmopgs48yr" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2005/转载：你注意过你的父母吗/" data-id="cishktfwu00a9molmld2in6vq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -582,7 +511,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/10/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/12/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -593,7 +522,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">75</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">88</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -602,7 +531,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 11.11px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.33px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15.56px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.11px;">Google</a> <a href="/tags/HBase/" style="font-size: 14.44px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.67px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.11px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.11px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Kafka/" style="font-size: 11.11px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 13.33px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.22px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.11px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.11px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 17.78px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.11px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.11px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
+      <a href="/tags/Agile/" style="font-size: 10px;">Agile</a> <a href="/tags/Ambari/" style="font-size: 11.25px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.75px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.75px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 11.25px;">Flume</a> <a href="/tags/G1/" style="font-size: 10px;">G1</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 16.25px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.25px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 11.25px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 18.75px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
     </div>
   </div>
 
@@ -616,6 +545,62 @@ var _hmt = _hmt || [];
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/[128]简报：大数据Hadoop动态-2016Q3/">[128]简报：大数据Hadoop动态 - 2016Q3</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[127]简报：大数据产品分析 - 基于位置的用户行为/">[127]简报：大数据产品分析 - 基于位置的用户行为</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[126]JAVA虚拟机：G1/">[126]JAVA虚拟机：G1</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[125]简报：TalkingData产品分析 - 2016Q2/">[125]简报：TalkingData产品分析 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[124]简报：机器学习 & 深度学习 & 人工智能 & BI & 数据挖掘 - 2016Q2/">[124]简报：机器学习 &amp; 深度学习 &amp; 人工智能 &amp; BI &amp; 数据挖掘 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[123]简报：开源流计算框架 - 201605/">[123]简报：开源流计算框架 - 201605</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[122]大数据之电信运营商案例/">[122]大数据之电信运营商案例</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[121]敏捷之如何切分用户故事/">[121]敏捷之如何切分用户故事</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[119]简报：大数据OLAP - 2016Q2/">[119]简报：大数据OLAP - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[120]学习《Thoughtworks技术雷达201604》/">[120]学习《Thoughtworks技术雷达201604》</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[118]HDFS Snapshot/">[118]HDFS Snapshot</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[117]学习《Real-Time Event Streaming What Are Your Options》/">[117]学习《Real-Time Event Streaming What Are Your Options》</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[116]简报：大数据Hadoop动态 - 2016Q2/">[116]简报：大数据Hadoop动态 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[115]简报：大数据Hadoop动态 - 2016Q1/">[115]简报：大数据Hadoop动态 - 2016Q1</a>
+          </li>
         
           <li>
             <a href="/2015/大数据动态之2015Q4/">大数据动态之2015Q4</a>
@@ -641,62 +626,6 @@ var _hmt = _hmt || [];
             <a href="/2015/Oozie：入门概述/">Oozie：入门概述</a>
           </li>
         
-          <li>
-            <a href="/2015/大数据技术百度指数201508/">大数据技术百度指数201508</a>
-          </li>
-        
-          <li>
-            <a href="/2015/大数据动态之201508/">大数据动态之201508</a>
-          </li>
-        
-          <li>
-            <a href="/2015/SparkOnHBase-Cloudera/">SparkOnHBase(Cloudera)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《Hadoop生态技术在阿里全网商品搜索实战》/">学习《Hadoop生态技术在阿里全网商品搜索实战》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/Hadoop发行版(2015第二季)/">Hadoop发行版(2015第二季)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《七牛是如何搞定每天500亿条日志的》/">学习《七牛是如何搞定每天500亿条日志的》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《腾讯在Spark上的应用与实践优化》/">学习《腾讯在Spark上的应用与实践优化》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/13-14年收集的大数据的一些技术架构图/">13~14年收集的大数据的一些技术架构图</a>
-          </li>
-        
-          <li>
-            <a href="/2015/读《微软研发制胜策略》/">读《微软研发制胜策略》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/大数据动态之201507/">大数据动态之201507</a>
-          </li>
-        
-          <li>
-            <a href="/2015/使用Hexo搭建Github静态博客/">使用Hexo搭建Github静态博客</a>
-          </li>
-        
-          <li>
-            <a href="/2015/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2015/Hadoop-2-7-1-发布/">Hadoop 2.7.1 发布</a>
-          </li>
-        
-          <li>
-            <a href="/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/">读《Deploying Apache Kafka: A Practical FAQ》</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -706,7 +635,7 @@ var _hmt = _hmt || [];
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 

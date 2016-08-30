@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>[116]简报：大数据Hadoop动态 - 2016Q2 | On The Open Way</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Apache StormStorm发布1.0.0版本，关键特性：
+
+Developer Productivity New Storm Connectors
+ Storm-Kafka Spout using new client APIs Distributed Log Search
+ Dynamic Worker Profiling
+Enterprise Readiness Improved ni">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[116]简报：大数据Hadoop动态 - 2016Q2">
+<meta property="og:url" content="http://navigating.github.io/2016/[116]简报：大数据Hadoop动态 - 2016Q2/index.html">
+<meta property="og:site_name" content="On The Open Way">
+<meta property="og:description" content="Apache StormStorm发布1.0.0版本，关键特性：
+
+Developer Productivity New Storm Connectors
+ Storm-Kafka Spout using new client APIs Distributed Log Search
+ Dynamic Worker Profiling
+Enterprise Readiness Improved ni">
+<meta property="og:updated_time" content="2016-08-30T14:38:39.260Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[116]简报：大数据Hadoop动态 - 2016Q2">
+<meta name="twitter:description" content="Apache StormStorm发布1.0.0版本，关键特性：
+
+Developer Productivity New Storm Connectors
+ Storm-Kafka Spout using new client APIs Distributed Log Search
+ Dynamic Worker Profiling
+Enterprise Readiness Improved ni">
+<meta name="twitter:creator" content="@xujinghui">
+  
+    <link rel="alternative" href="/atom.xml" title="On The Open Way" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?5554b1765137f9e84f6b5d1958c4bdfd";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  
+
+  <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install','W7_-_9WqoJq6hWaJJ8zZ','2.0.0');
+</script>
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">On The Open Way</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">自信人生二百年，会当水击三千里！</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/sitemap.xml">Sitemap</a>
+        
+      </nav>
+      <nav id="sub-nav">	    
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>		
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://navigating.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2016/[116]简报：大数据Hadoop动态 - 2016Q2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/[116]简报：大数据Hadoop动态 - 2016Q2/" class="article-date">
+  <time datetime="2016-04-18T02:41:31.000Z" itemprop="datePublished">2016-04-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      [116]简报：大数据Hadoop动态 - 2016Q2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Apache_Storm">Apache Storm</h2><p>Storm发布1.0.0版本，关键特性：</p>
+<ul>
+<li>Developer Productivity<br><strong> New Storm Connectors
+</strong> Storm-Kafka Spout using new client APIs<br><strong> Distributed Log Search
+</strong> Dynamic Worker Profiling</li>
+<li>Enterprise Readiness<br><strong> Improved nimbus HA
+</strong> Automatic Back pressure<br><strong> Distributed cache
+</strong> Windowing and State Management<br>** Storm Performance improvements</li>
+<li>Operational Simplicity<br><strong> Storm Topology Event inspector
+</strong> Resource Aware Scheduling<br><strong> Dynamic Log Levels
+</strong> Pacemaker Storm Daemon<br><a href="http://hortonworks.com/blog/announcing-apache-storm-1-0-0/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-apache-storm-1-0-0/</a><br><a href="https://storm.apache.org/2016/04/12/storm100-released.html" target="_blank" rel="external">https://storm.apache.org/2016/04/12/storm100-released.html</a></li>
+</ul>
+<h2 id="HDP_2-4-2版本中APACHE_SPARK_&amp;_APACHE_ZEPPELIN的增强">HDP 2.4.2版本中APACHE SPARK &amp; APACHE ZEPPELIN的增强</h2><ul>
+<li>Certified SparkSQL with ODBC (ODBC driver available from Hortonworks).</li>
+<li>Bug fixes in Spark Oozie action for a Kerberos enabled cluster.</li>
+<li>Spark Streaming with Apache Kafka support in a Kerberos enabled cluster.</li>
+<li>SparkSQL &amp; ORC performance improvements.</li>
+<li>Final technical preview of Apache Zeppelin that includes Kerberos support, LDAP Authentication, and identity propagation.<br><a href="http://hortonworks.com/blog/apache-spark-apache-zeppelin-whats-coming-in-hdp-2-4-2/" target="_blank" rel="external">http://hortonworks.com/blog/apache-spark-apache-zeppelin-whats-coming-in-hdp-2-4-2/</a></li>
+</ul>
+<h2 id="Cloudera_Engineering">Cloudera Engineering</h2><p>How-to: Detect and Report Web-Traffic Anomalies in Near Real-Time<br><a href="http://blog.cloudera.com/blog/2016/06/how-to-detect-and-report-web-traffic-anomalies-in-near-real-time/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/06/how-to-detect-and-report-web-traffic-anomalies-in-near-real-time/</a><br>Best Practices for Enterprise Data Hub Encryption<br><a href="http://blog.cloudera.com/blog/2016/06/best-practices-for-enterprise-data-hub-encryption/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/06/best-practices-for-enterprise-data-hub-encryption/</a><br>How-to: Analyze Fantasy Sports with Apache Spark and SQL (Part 2: Data Exploration)<br><a href="http://blog.cloudera.com/blog/2016/06/how-to-analyze-fantasy-sports-with-apache-spark-and-sql-part-2-data-exploration/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/06/how-to-analyze-fantasy-sports-with-apache-spark-and-sql-part-2-data-exploration/</a><br>How-to: Analyze Fantasy Sports using Apache Spark and SQL<br><a href="http://blog.cloudera.com/blog/2016/06/how-to-analyze-fantasy-sports-using-apache-spark-and-sql/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/06/how-to-analyze-fantasy-sports-using-apache-spark-and-sql/</a><br><a href="https://spark-summit.org/2016/schedule/" target="_blank" rel="external">https://spark-summit.org/2016/schedule/</a><br>Guide to Configuring Apache Impala (incubating) for HA with F5 BIG-IP<br><a href="http://blog.cloudera.com/blog/2016/05/guide-to-configuring-apache-impala-incubating-for-ha-with-f5-big-ip/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/guide-to-configuring-apache-impala-incubating-for-ha-with-f5-big-ip/</a><br><a href="http://www.cloudera.com/documentation/other/reference-architecture/PDF/Impala-HA-with-F5-BIG-IP.pdf" target="_blank" rel="external">http://www.cloudera.com/documentation/other/reference-architecture/PDF/Impala-HA-with-F5-BIG-IP.pdf</a><br>Multi-node Clusters with Cloudera QuickStart for Docker<br><a href="http://blog.cloudera.com/blog/2016/08/multi-node-clusters-with-cloudera-quickstart-for-docker/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/08/multi-node-clusters-with-cloudera-quickstart-for-docker/</a><br>Livy, the Open Source REST Service for Apache Spark, Joins Cloudera Labs<br><a href="http://blog.cloudera.com/blog/2016/07/livy-the-open-source-rest-service-for-apache-spark-joins-cloudera-labs/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/07/livy-the-open-source-rest-service-for-apache-spark-joins-cloudera-labs/</a><br>Untangling Apache Hadoop YARN, Part 4: Fair Scheduler Queue Basics<br><a href="http://blog.cloudera.com/blog/2016/06/untangling-apache-hadoop-yarn-part-4-fair-scheduler-queue-basics/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/06/untangling-apache-hadoop-yarn-part-4-fair-scheduler-queue-basics/</a><br>New Study: Evaluating Apache HBase Performance on Modern Storage Media<br><a href="http://blog.cloudera.com/blog/2016/06/new-study-evaluating-apache-hbase-performance-on-modern-storage-media/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/06/new-study-evaluating-apache-hbase-performance-on-modern-storage-media/</a><br><a href="https://software.intel.com/sites/default/files/managed/95/0d/Optimize%20Hadoop%20Cluster%20Performance%20with%20Various%20Storage%20Media%20334463-001US.pdf" target="_blank" rel="external">https://software.intel.com/sites/default/files/managed/95/0d/Optimize%20Hadoop%20Cluster%20Performance%20with%20Various%20Storage%20Media%20334463-001US.pdf</a><br>How-to: Process and Index Medical Images with Apache Hadoop and Apache Solr<br><a href="http://blog.cloudera.com/blog/2016/05/how-to-process-and-index-medical-images-with-apache-hadoop-and-apache-solr/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/how-to-process-and-index-medical-images-with-apache-hadoop-and-apache-solr/</a><br>How-to: Configure SAP HANA with Apache Impala (incubating)<br><a href="http://blog.cloudera.com/blog/2016/05/how-to-configure-sap-hana-with-apache-impala-incubating/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/how-to-configure-sap-hana-with-apache-impala-incubating/</a><br>How-to: Build a Prediction Engine using Spark, Kudu, and Impala<br><a href="http://blog.cloudera.com/blog/2016/05/how-to-build-a-prediction-engine-using-spark-kudu-and-impala/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/how-to-build-a-prediction-engine-using-spark-kudu-and-impala/</a><br>How-to: Improve Apache HBase Performance via Data Serialization with Apache Avro<br><a href="http://blog.cloudera.com/blog/2016/05/how-to-improve-apache-hbase-performance-via-data-serialization-with-apache-avro/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/how-to-improve-apache-hbase-performance-via-data-serialization-with-apache-avro/</a><br>Inside Santander’s Near Real-Time Data Ingest Architecture (Part 2)<br><a href="http://blog.cloudera.com/blog/2016/05/inside-santanders-near-real-time-data-ingest-architecture-part-2/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/05/inside-santanders-near-real-time-data-ingest-architecture-part-2/</a><br>Inside Santander’s Near Real-Time Data Ingest Architecture<br><a href="http://blog.cloudera.com/blog/2015/08/inside-santanders-near-real-time-data-ingest-architecture/" target="_blank" rel="external">http://blog.cloudera.com/blog/2015/08/inside-santanders-near-real-time-data-ingest-architecture/</a><br>Apache Impala (incubating) in CDH 5.7: 4x Faster for BI Workloads on Apache Hadoop<br><a href="http://blog.cloudera.com/blog/2016/04/apache-impala-incubating-in-cdh-5-7-4x-faster-for-bi-workloads-on-apache-hadoop/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/apache-impala-incubating-in-cdh-5-7-4x-faster-for-bi-workloads-on-apache-hadoop/</a><br>New in Cloudera Manager 5.7: Cluster Utilization Reporting<br><a href="http://blog.cloudera.com/blog/2016/04/new-in-cloudera-manager-5-7-cluster-utilization-reporting/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/new-in-cloudera-manager-5-7-cluster-utilization-reporting/</a><br>Cloudera Enterprise 5.7 is Released<br><a href="http://blog.cloudera.com/blog/2016/04/cloudera-enterprise-5-7-is-released/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/cloudera-enterprise-5-7-is-released/</a><br>How-to: Use Impala and Kudu Together for Analytic Workloads<br><a href="http://blog.cloudera.com/blog/2016/04/how-to-use-impala-and-kudu-together-for-analytic-workloads/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/how-to-use-impala-and-kudu-together-for-analytic-workloads/</a><br>Quality Assurance at Cloudera: Running/Upgrading to New Releases on Our Own EDH Cluster<br><a href="http://blog.cloudera.com/blog/2016/04/quality-assurance-at-cloudera-runningupgrading-to-new-releases-on-our-own-edh-cluster/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/quality-assurance-at-cloudera-runningupgrading-to-new-releases-on-our-own-edh-cluster/</a><br>Quality Assurance at Cloudera: Fault Injection and Elastic Partitioning<br><a href="http://blog.cloudera.com/blog/2016/04/quality-assurance-at-cloudera-fault-injection-and-elastic-partitioning/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/quality-assurance-at-cloudera-fault-injection-and-elastic-partitioning/</a><br>Benchmarking Apache Parquet: The Allstate Experience<br><a href="http://blog.cloudera.com/blog/2016/04/benchmarking-apache-parquet-the-allstate-experience/" target="_blank" rel="external">http://blog.cloudera.com/blog/2016/04/benchmarking-apache-parquet-the-allstate-experience/</a></p>
+<h2 id="Cloudera_Vision">Cloudera Vision</h2><p>How GoPro uses Apache Hadoop in the Cloud<br><a href="https://vision.cloudera.com/gopro-hadoop-cloud/" target="_blank" rel="external">https://vision.cloudera.com/gopro-hadoop-cloud/</a><br>SQL-on-Apache Hadoop – Choosing the right tool for the right job<br><a href="https://vision.cloudera.com/sql-on-apache-hadoop-choosing-the-right-tool-for-the-right-job/" target="_blank" rel="external">https://vision.cloudera.com/sql-on-apache-hadoop-choosing-the-right-tool-for-the-right-job/</a><br>New Open-Source Service Enables Apache Spark Development<br><a href="https://vision.cloudera.com/new-open-source-service-enables-apache-spark-development/" target="_blank" rel="external">https://vision.cloudera.com/new-open-source-service-enables-apache-spark-development/</a><br>Tuning Hive on Spark<br><a href="http://www.cloudera.com/documentation/enterprise/latest/topics/admin_hos_tuning.html" target="_blank" rel="external">http://www.cloudera.com/documentation/enterprise/latest/topics/admin_hos_tuning.html</a><br><a href="http://www.cloudera.com/documentation/enterprise/latest/topics/admin_performance.html" target="_blank" rel="external">http://www.cloudera.com/documentation/enterprise/latest/topics/admin_performance.html</a><br>Faster Batch Processing with Hive-on-Spark<br><a href="https://vision.cloudera.com/faster-batch-processing-with-hive-on-spark/" target="_blank" rel="external">https://vision.cloudera.com/faster-batch-processing-with-hive-on-spark/</a><br>Beyond ETL: Real-time, Streaming Architectures<br><a href="https://vision.cloudera.com/beyond-etl-real-time-streaming-architectures/" target="_blank" rel="external">https://vision.cloudera.com/beyond-etl-real-time-streaming-architectures/</a><br>The One Platform Initiative Delivers<br><a href="https://vision.cloudera.com/the-one-platform-initiative-delivers/" target="_blank" rel="external">https://vision.cloudera.com/the-one-platform-initiative-delivers/</a></p>
+<h2 id="Hortonworks">Hortonworks</h2><p>Rack Awareness<br><a href="https://community.hortonworks.com/articles/43057/rack-awareness-1.html" target="_blank" rel="external">https://community.hortonworks.com/articles/43057/rack-awareness-1.html</a><br>Rack Awareness Series 2<br><a href="https://community.hortonworks.com/articles/43164/rack-awareness-series-2.html" target="_blank" rel="external">https://community.hortonworks.com/articles/43164/rack-awareness-series-2.html</a><br>Disaster recovery and Backup best practices in a typical Hadoop Cluster :Series 1 Introduction<br><a href="https://community.hortonworks.com/articles/43525/disaster-recovery-and-backup-best-practices-in-a-t.html" target="_blank" rel="external">https://community.hortonworks.com/articles/43525/disaster-recovery-and-backup-best-practices-in-a-t.html</a><br>MICROBENCHMARKING APACHE STORM 1.0 PERFORMANCE<br><a href="http://hortonworks.com/blog/microbenchmarking-storm-1-0-performance/" target="_blank" rel="external">http://hortonworks.com/blog/microbenchmarking-storm-1-0-performance/</a><br>TOP 5 ARTICLES ON HADOOP<br><a href="http://hortonworks.com/blog/top-5-articles-hadoop/" target="_blank" rel="external">http://hortonworks.com/blog/top-5-articles-hadoop/</a><br>TOP ARTICLES AND QUESTIONS FROM HCC LAST WEEK<br><a href="http://hortonworks.com/blog/top-articles-questions-hcc-last-week/" target="_blank" rel="external">http://hortonworks.com/blog/top-articles-questions-hcc-last-week/</a><br>HIVE LLAP TECHNICAL PREVIEW ENABLES SUB-SECOND SQL ON HADOOP AND MORE<br><a href="http://hortonworks.com/blog/llap-enables-sub-second-sql-hadoop/" target="_blank" rel="external">http://hortonworks.com/blog/llap-enables-sub-second-sql-hadoop/</a><br>APACHE METRON TECH PREVIEW 2 AVAILABLE NOW!<br><a href="http://hortonworks.com/blog/apache-metron-technical-preview-2/" target="_blank" rel="external">http://hortonworks.com/blog/apache-metron-technical-preview-2/</a><br>LATEST INNOVATION WITHIN HORTONWORKS DATA PLATFORM (HDP) 2.5 UNVEILED<br><a href="http://hortonworks.com/blog/latest-innovation-within-hortonworks-data-platform-hdp-2-5-unveiled/" target="_blank" rel="external">http://hortonworks.com/blog/latest-innovation-within-hortonworks-data-platform-hdp-2-5-unveiled/</a><br>SPARK-ON-HBASE: DATAFRAME BASED HBASE CONNECTOR<br><a href="http://hortonworks.com/blog/spark-hbase-dataframe-based-hbase-connector/" target="_blank" rel="external">http://hortonworks.com/blog/spark-hbase-dataframe-based-hbase-connector/</a><br>UNDER-THE-HOOD WITH AMBARI METRICS AND GRAFANA<br><a href="http://hortonworks.com/blog/hood-ambari-metrics-grafana/" target="_blank" rel="external">http://hortonworks.com/blog/hood-ambari-metrics-grafana/</a><br>A BRIEF HISTORY OF APACHE STORM<br><a href="http://hortonworks.com/blog/brief-history-apache-storm/" target="_blank" rel="external">http://hortonworks.com/blog/brief-history-apache-storm/</a><br>HORTONWORKS HDP AND SAS EVENT STREAM PROCESSING TOGETHER, USING YARN<br><a href="https://hortonworks.com/blog/hortonworks-hdp-and-sas-event-stream-processing-together-using-yarn/" target="_blank" rel="external">https://hortonworks.com/blog/hortonworks-hdp-and-sas-event-stream-processing-together-using-yarn/</a><br>APACHE SPARK &amp; APACHE ZEPPELIN: WHAT’S COMING IN HDP 2.4.2<br><a href="http://hortonworks.com/blog/apache-spark-apache-zeppelin-whats-coming-in-hdp-2-4-2/" target="_blank" rel="external">http://hortonworks.com/blog/apache-spark-apache-zeppelin-whats-coming-in-hdp-2-4-2/</a><br>ANNOUNCING CLOUDBREAK 1.2<br><a href="http://hortonworks.com/blog/announcing-cloudbreak-1-2/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-cloudbreak-1-2/</a><br>ANNOUNCING APACHE STORM 1.0.0<br><a href="http://hortonworks.com/blog/announcing-apache-storm-1-0-0/" target="_blank" rel="external">http://hortonworks.com/blog/announcing-apache-storm-1-0-0/</a><br>THE NEXT GENERATION OF HADOOP-BASED SECURITY &amp; DATA GOVERNANCE<br><a href="http://hortonworks.com/blog/the-next-generation-of-hadoop-based-security-data-governance/" target="_blank" rel="external">http://hortonworks.com/blog/the-next-generation-of-hadoop-based-security-data-governance/</a><br>ADVANCED METRICS VISUALIZATION DASHBOARDING WITH APACHE AMBARI<br><a href="http://hortonworks.com/blog/advanced-metrics-visualization-dashboarding-apache-ambari/" target="_blank" rel="external">http://hortonworks.com/blog/advanced-metrics-visualization-dashboarding-apache-ambari/</a><br>STREAMLINING APACHE HADOOP OPERATIONS<br><a href="http://hortonworks.com/blog/streamlining-apache-hadoop-operations/" target="_blank" rel="external">http://hortonworks.com/blog/streamlining-apache-hadoop-operations/</a><br>THE NEXT MARKET LEADERS WILL POWER THEIR BUSINESSES FROM IOAT DATA SOURCES<br><a href="http://hortonworks.com/blog/next-market-leaders-will-power-businesses-ioat-data-sources/" target="_blank" rel="external">http://hortonworks.com/blog/next-market-leaders-will-power-businesses-ioat-data-sources/</a></p>
+<h2 id="Databricks">Databricks</h2><p>Preview of Apache Spark 2.0 now on Databricks Community Edition<br><a href="https://databricks.com/blog/2016/05/11/spark-2-0-technical-preview-easier-faster-and-smarter.html" target="_blank" rel="external">https://databricks.com/blog/2016/05/11/spark-2-0-technical-preview-easier-faster-and-smarter.html</a><br>Spark Trending in the Stack Overflow Survey<br><a href="https://databricks.com/blog/2016/03/22/spark-trending-in-the-stack-overflow-survey.html" target="_blank" rel="external">https://databricks.com/blog/2016/03/22/spark-trending-in-the-stack-overflow-survey.html</a><br><a href="http://stackoverflow.com/research/developer-survey-2016" target="_blank" rel="external">http://stackoverflow.com/research/developer-survey-2016</a><br>Continuous Integration and Delivery of Spark Applications at Metacog<br><a href="https://databricks.com/blog/2016/04/06/continuous-integration-and-delivery-of-spark-applications-at-metacog.html" target="_blank" rel="external">https://databricks.com/blog/2016/04/06/continuous-integration-and-delivery-of-spark-applications-at-metacog.html</a></p>
+<h2 id="MapR">MapR</h2><p>IoT Spotlight: Sensor to Dashboard – Real-Time Stream Processing for Oil and Gas<br><a href="https://www.mapr.com/blog/iot-spotlight-sensor-dashboard-real-time-stream-processing-oil-and-gas" target="_blank" rel="external">https://www.mapr.com/blog/iot-spotlight-sensor-dashboard-real-time-stream-processing-oil-and-gas</a><br>Using MapR, Mesos, Marathon, Docker, and Apache Spark to Deploy and Run Your First Jobs and Containers<br><a href="https://www.mapr.com/blog/using-mapr-mesos-marathon-docker-and-apache-spark-deploy-and-run-your-first-jobs-and-containers" target="_blank" rel="external">https://www.mapr.com/blog/using-mapr-mesos-marathon-docker-and-apache-spark-deploy-and-run-your-first-jobs-and-containers</a><br>Apache Apex on MapR Converged Platform<br><a href="https://www.mapr.com/blog/apache-apex-mapr-converged-platform" target="_blank" rel="external">https://www.mapr.com/blog/apache-apex-mapr-converged-platform</a><br>Monitoring a MapR Cluster with Elasticsearch + Kibana<br><a href="https://www.mapr.com/blog/monitoring-mapr-cluster-elasticsearch-kibana" target="_blank" rel="external">https://www.mapr.com/blog/monitoring-mapr-cluster-elasticsearch-kibana</a><br>Real Time Credit Card Fraud Detection with Apache Spark and Event Streaming<br><a href="https://www.mapr.com/blog/real-time-credit-card-fraud-detection-apache-spark-and-event-streaming" target="_blank" rel="external">https://www.mapr.com/blog/real-time-credit-card-fraud-detection-apache-spark-and-event-streaming</a><br>Fast, Scalable, Streaming Applications with the Kafka API (MapR Streams), Spark Streaming, and the HBase API (MapR-DB)<br><a href="https://www.mapr.com/blog/fast-scalable-streaming-applications-kafka-api-mapr-streams-spark-streaming-and-hbase-api-mapr" target="_blank" rel="external">https://www.mapr.com/blog/fast-scalable-streaming-applications-kafka-api-mapr-streams-spark-streaming-and-hbase-api-mapr</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2016/[116]简报：大数据Hadoop动态 - 2016Q2/" data-id="cishkxgdp0014nklmnc2dn85r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/BigData/">BigData</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HBase/">HBase</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hadoop/">Hadoop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spark/">Spark</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/[117]学习《Real-Time Event Streaming What Are Your Options》/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          [117]学习《Real-Time Event Streaming What Are Your Options》
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/[115]简报：大数据Hadoop动态 - 2016Q1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">[115]简报：大数据Hadoop动态 - 2016Q1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-2016/[116]简报：大数据Hadoop动态 - 2016Q2" data-title="[116]简报：大数据Hadoop动态 - 2016Q2" data-url="http://navigating.github.io/2016/[116]简报：大数据Hadoop动态 - 2016Q2/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:'navigating'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0] 
+       || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">88</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Agile/" style="font-size: 10px;">Agile</a> <a href="/tags/Ambari/" style="font-size: 11.25px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.75px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.75px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 11.25px;">Flume</a> <a href="/tags/G1/" style="font-size: 10px;">G1</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 16.25px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.25px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 11.25px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 18.75px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
+    </div>
+  </div>
+
+  
+    <div class="widget-wrap">
+  <input type="text" class="st-default-search-input">
+</div>
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/[128]简报：大数据Hadoop动态-2016Q3/">[128]简报：大数据Hadoop动态 - 2016Q3</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[127]简报：大数据产品分析 - 基于位置的用户行为/">[127]简报：大数据产品分析 - 基于位置的用户行为</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[126]JAVA虚拟机：G1/">[126]JAVA虚拟机：G1</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[125]简报：TalkingData产品分析 - 2016Q2/">[125]简报：TalkingData产品分析 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[124]简报：机器学习 & 深度学习 & 人工智能 & BI & 数据挖掘 - 2016Q2/">[124]简报：机器学习 &amp; 深度学习 &amp; 人工智能 &amp; BI &amp; 数据挖掘 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[123]简报：开源流计算框架 - 201605/">[123]简报：开源流计算框架 - 201605</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[122]大数据之电信运营商案例/">[122]大数据之电信运营商案例</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[121]敏捷之如何切分用户故事/">[121]敏捷之如何切分用户故事</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[119]简报：大数据OLAP - 2016Q2/">[119]简报：大数据OLAP - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[120]学习《Thoughtworks技术雷达201604》/">[120]学习《Thoughtworks技术雷达201604》</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[118]HDFS Snapshot/">[118]HDFS Snapshot</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[117]学习《Real-Time Event Streaming What Are Your Options》/">[117]学习《Real-Time Event Streaming What Are Your Options》</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[116]简报：大数据Hadoop动态 - 2016Q2/">[116]简报：大数据Hadoop动态 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[115]简报：大数据Hadoop动态 - 2016Q1/">[115]简报：大数据Hadoop动态 - 2016Q1</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之2015Q4/">大数据动态之2015Q4</a>
+          </li>
+        
+          <li>
+            <a href="/2015/JAVA虚拟机：JVM监控与调优/">JVM监控与调优</a>
+          </li>
+        
+          <li>
+            <a href="/2015/大数据动态之201509/">大数据动态之201509</a>
+          </li>
+        
+          <li>
+            <a href="/2015/学习《Impala-vs-Hive-Performance-Benchmark》/">学习《Impala vs. Hive Performance Benchmark》</a>
+          </li>
+        
+          <li>
+            <a href="/2015/Hortonworks-HDP-2-3-0/">Hortonworks HDP 2.3.0</a>
+          </li>
+        
+          <li>
+            <a href="/2015/Oozie：入门概述/">Oozie：入门概述</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 Steven Xu<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/sitemap.xml" class="mobile-nav-link">Sitemap</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

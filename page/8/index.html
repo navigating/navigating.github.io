@@ -87,10 +87,52 @@ var _hmt = _hmt || [];
       <div class="outer">
         <section id="main">
   
-    <article id="post-2007/What-is-the-crazy" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2009/加密算法概述" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2007/What-is-the-crazy/" class="article-date">
-  <time datetime="2007-07-31T15:01:45.000Z" itemprop="datePublished">2007-07-31</time>
+    <a href="/2009/加密算法概述/" class="article-date">
+  <time datetime="2009-12-10T15:21:27.000Z" itemprop="datePublished">2009-12-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/技术/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/加密算法概述/">加密算法概述</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>加密算法<br>　　数据加密的基本过程就是对原来为明文的文件或数据按某种算法进行处理，使其成为不可读的一段代码，通常称为“密文”，使其只能在输入相应的密钥之后才能显示出本来内容，通过这样的途径来达到保护数据不被非法人窃取、阅读的目的。<br>　　该过程的逆过程为解密，即将该编码信息转化为其原来数据的过程.<br>      加密技术通常分为两大类：“对称式”和“非/不对称式”。<br>对称算法　<br>概述　<br>对称密码算法有时又叫传统密码算法，就是加密密钥能够从解密密钥中推算出来，反过来也成立。在大多数对称算法中，加密解密密钥是相同的。这些算法也叫秘密密钥算法或单密钥算法，它要求发送者和接收者在安全通信之前，商定一个密钥。对称算法的安全性依赖于密钥，泄漏密钥就意味着任何人都能对消息进行加密解密。只要通信需要保密，密钥就必须保密。对称算法的加密和解密表示为：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Ek</span><span class="params">(M)</span></span>=C</span><br><span class="line"><span class="function"><span class="title">Dk</span><span class="params">(C)</span></span>=M</span><br></pre></td></tr></table></figure></p>
+<p>其具备：Dk(Ek(M))=M<br>对称算法-对称算法可分为两类<br>一次只对明文中的单个位（有时对字节）运算的算法称为序列算法或序列密码。另一类算法是对明文的一组位进行运算，这些位组称为分组，相应的算法称为分组算法或分组密码。现代计算机密码算法的典型分组长度为64位――这个长度大到足以防止分析破译，但又小到足以方便作用。<br>对称算法-常用的采用对称密码术的加密方案有5个组成部分<br>l）明文：原始信息。<br>2) 加密算法：以密钥为参数，对明文进行多种置换和转换的规则和步骤，变换结果为密文。<br>3) 密钥：加密与解密算法的参数，直接影响对明文进行变换的结果。<br>4) 密文：对明文进行变换的结果。<br>5) 解密算法：加密算法的逆变换，以密文为输入、密钥为参数，变换结果为明文。<br>不对称加密算法<br>概述<br>　　非/不对称式加密使用两把完全不同但又是完全匹配的一对钥匙—公钥和私钥。在使用不对称加密算法加密文件时，只有使用匹配的一对公钥和私钥，才能完成对明文的加密和解密过程。加密明文时采用公钥加密，解密密文时使用私钥才能完成，而且发信方（加密者）知道收信方的公钥，只有收信方（解密者）才是唯一知道自己私钥的人。不对称加密算法的基本原理是，如果发信方想发送只有收信方才能解读的加密信息，发信方必须首先知道收信方的公钥，然后利用收信方的公钥来加密原文；收信方收到加密密文后，使用自己的私钥才能解密密文。显然，采用不对称加密算法，收发信双方在通信之前，收信方必须将自己早已随机生成的公钥送给发信方，而自己保留私钥。由于不对称算法拥有两个密钥，因而特别适用于分布式系统中的数据加密。广泛应用的不对称加密算法有RSA算法和美国国家标准局提出的DSA。以不对称加密算法为基础的加密技术应用非常广泛。<br>常见加密算法<br>　　DES（Data Encryption Standard）：对称算法，数据加密标准，速度较快，适用于加密大量数据的场合；<br>　　3DES（Triple DES）：是基于DES的对称算法，对一块数据用三个不同的密钥进行三次加密，强度更高；<br>　　RC2和 RC4：对称算法，用变长密钥对大量数据进行加密，比 DES 快；<br>　　IDEA（International Data Encryption Algorithm）国际数据加密算法，使用 128 位密钥提供非常强的安全性；<br>　　RSA：由 RSA 公司发明，是一个支持变长密钥的公共密钥算法，需要加密的文件块的长度也是可变的，非对称算法；<br>　　DSA（Digital Signature Algorithm）：数字签名算法，是一种标准的 DSS（数字签名标准），严格来说不算加密算法；<br>　　AES（Advanced Encryption Standard）：高级加密标准，对称算法，是下一代的加密算法标准，速度快，安全级别高，目前 AES 标准的一个实现是 Rijndael 算法；<br>　　BLOWFISH，它使用变长的密钥，长度可达448位，运行速度很快；<br>　　MD5：严格来说不算加密算法，只能说是摘要算法</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/加密算法概述/" data-id="cishktfr7007omolmd2e96lbk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/熊" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/熊/" class="article-date">
+  <time datetime="2009-10-13T15:20:59.000Z" itemprop="datePublished">2009-10-13</time>
 </a>
     
   <div class="article-category">
@@ -105,7 +147,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2007/What-is-the-crazy/">What is the crazy</a>
+      <a class="article-title" href="/2009/熊/">熊</a>
     </h1>
   
 
@@ -113,19 +155,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>James Gosling在他May 08,2004的Blog的帖子：《The world needs more crazy people》谈到了一些做事的原则，可以作为思考的引子；更要警醒、反省、鼓励自己。</p>
-<p>“Most real innovation is done by crazy people doing crazy things. The keys are:</p>
-<pre><code>* Learn all you can before you go adventuring.
-* Don<span class="comment">'t be afraid to make mistakes.</span>
-* Only make <span class="keyword">new</span> mistakes.
-* Keep your eyes open.
-* Don<span class="comment">'t just look straight ahead: develop your peripheral vision.</span>
-* It<span class="comment">'s the things that go in unexpected directions are the most important."</span>
-</code></pre>
+        <p>简介<br>　　熊，食肉目，是属于熊科的杂食性大型哺乳类，以肉食为主。从寒带到热带都有分布。躯体粗壮，四肢强健有力，头圆颈短，眼小吻长。前后肢均具有5指、趾，弯爪强硬，不能伸缩。跖行性。短尾隐于体毛内。毛色一致，厚而密。齿大，但不尖锐，裂齿不如其他食肉目动物发达。杂食性。行动缓慢，营地栖生活，善于爬树，也能游泳。嗅觉、听觉较为灵敏。毛皮、肉、脂、胆、掌均有较大经济价值，有时对养蜂业、农、牧、果树等造成危害。种类较少，全世界仅有7种，我国有4种：马来熊、棕熊、亚洲黑熊、大熊猫。除澳洲、非洲南部外，多有分布。<br>动物学分类<br>　　熊,哺乳纲,熊科动物的总称.<br>　　熊是陆上肉食类中体形最大的动物.它们是由一种类似犬一样的祖先进化而成的,是犬科动物进化道路上的一个分支.熊科动物基本上都已偏离了食肉的习性,而成为杂食性动物了.有棕熊.黑熊,北极熊,印度熊,马来熊,美洲熊等等之分.其中棕熊体积最大, 北极熊次之,一般越靠近南方的体形越小.<br>外形特征<br>　　熊躯体粗壮肥大，体毛又长又密，脸形像狗，头大嘴长，眼睛与耳朵都较小，臼齿大而发达，咀嚼力强。四肢粗壮有力，脚上长有5只锋利的爪子，用来撕开食物和爬树。尾巴短小。熊平时用脚掌慢吞吞地行走，但是当追赶猎物时，它会跑得很快，而且后腿可以直立起来。<br>　　常见的特征有短尾、极佳的嗅觉、五个无法收缩的爪，以及长、密、粗的毛。刚出生时，它的大小与天竺鼠差不多，至少要与母亲生活一年。<br>　　熊的嗅觉十分灵敏，视力以及听觉比较差。它们的牙齿是用来防御和当作工具。它们的爪子可以用来撕扯、挖掘和抓取猎物。<br>　　熊氏家庭成员体型差别较大，块头有大有小。最大的是棕熊（约780千克），北极熊次之（约700千克），然后是美洲黑熊（约220千克）、亚洲黑熊（约150千克）、懒熊（约140千克）、眼镜熊（约140千克）、马来熊（约60千克）。<br>　　速度 最快的灰熊 ，时速可以达到48KM/H，棕熊在崎岖山路速度可以达到30KM/H 速度很快。可不能认为熊的速度很慢噢，比人类快多了。<br>生活习性<br>　　大多数熊食性很杂，既食青草、嫩枝芽、苔藓、浆果和坚果，也到溪边捕捉蛙、蟹和鱼，掘食鼠类，掏取鸟卵，更喜欢舔食蚂蚁，盗取蜂蜜，甚至袭击小型鹿、羊或觅食腐尸。但是北极熊比较特殊，主要吃鱼和海豹。熊的视觉和听觉都不十分灵敏，但嗅觉非常发达。<br>　　生活于北方寒冷地区的熊有冬眠现象，而位于亚热带和热带地区的黑熊往往不冬眠。熊冬眠时间可持续4～5个月，在冬眠过程中如果被惊动它会立即苏醒，偶然也会出洞活动。熊冬眠的洞穴一般选在向阳的避风山坡或枯树洞内。除冬眠期外，熊没有固定的栖息场所。除了发情交配期外，其余时间熊都单独活动。母熊一般1年产1～4崽。<br>　　熊一般是温和的、不主动攻击人的动物，也愿意避免冲突，但当它们认为必须保卫自己或自己的幼崽、食物或地盘时，也会变成非常危险而可怕的野兽。<br>　　爱吃植物的眼镜熊：眼镜熊又叫南美熊、安第斯熊，产于南美，是现在唯一分布于南半球的熊，也是最爱吃植物性食物的一种熊，吃各种果、叶、根、茎，很少吃昆虫，因眼睛四周有白圈而得名。眼镜熊善于登高爬树，通常独自活动，偶以小家庭为单位，共住在一棵大树上。<br>　　高度近视的亚洲黑熊：亚洲黑熊又叫狗熊、月熊，还有个俗称叫黑瞎子。为什么叫它”瞎子”呢?因为它天生近视，百米之外看不清东西，不过它的耳、鼻灵敏，顺风可闻到半公里以外的气味，能听到300步以外的脚步声。别看它外表愚拙，实际上机警过人。平时黑熊以植物为主食(你一定听过黑瞎子掰苞米的故事)，在秋季却大吃昆虫等动物性食品，在体内贮存大量脂肪准备在树洞里冬眠。特长是爬树、游泳。因为眼神不济，所以练就了一身昼夜都行动自如的本领。亚洲黑熊分布于中国、印度、俄罗斯、日本、蒙古等国。<br>　　胃口极好的棕熊：棕熊遍布亚、欧、北美三大洲，其中阿拉斯加棕熊最大，最重近800公斤，站立时有两人高，是现存世界上最大的食肉目动物。而叙利亚棕熊却很小，体重不足90公斤。我国的棕熊一般在200-500公斤。棕熊的胃口可以说是好极了，荤的、素的都爱吃。植物、昆虫、蜂蜜、鱼类，甚至鹿、羊、牛、都能一概吃下，所以比较凶猛，枪法不好的猎手往往反会成为棕熊的猎物。<br>　　靠”吸尘器” 过日子的懒熊：”吸尘器”是对懒熊的嘴部功能的形象比喻。生活于印度和斯里兰卡热带森林中的懒熊形象奇特，下唇长而善动，形状像舌头，没有上门牙，嘴可以伸进昆虫藏匿的缝隙中，像吸尘器一下把猎物席卷入口。懒熊的视觉极差，靠嗅觉和听觉活动，所以它选择了夜间出击、白天酣睡的生活作风，于是人称：懒熊。小懒熊常骑在母熊背上来来去去，寸步不离，这种母子感情大大强于其他熊类的母子关系。<br>　　喜欢”假离婚”的美洲黑熊：美洲黑熊分布在加拿大及美国中部和东部的森林，别看它叫”黑熊”，其实它的身体颜色有很多种，黑色、棕色、灰色……连白色都有。美洲黑熊常在6-7月份”娶妻生子”，不过等小熊过完一周岁生日后，一家子便各奔东西，熊爸爸、熊妈妈也各自生活，看上去像”离婚”一样，可到了下一年的6-7月份，它们就复婚，重新考虑生育下一代的事。<br>　　冰山巨无霸—白熊：”冰山巨无霸”就是指北极熊，也就是白熊。它们生活在北极的莽莽冰原上，体大凶猛，以猎取海豹、幼海象、幼鲸、海鸟、鱼类为生，在北极地区是”土皇帝”，几乎打遍北极无敌手!貌似笨重的北极熊，行动十分敏捷，短跑时甚至能撵上驯鹿或北极兔。同时，它也是冰泳高手，游泳时速达10公里，潜水时间可达2 分钟，在冰水中游上百公里不在话下，堪称”半水栖兽类”。北极熊是生活在最北部、食肉性最强的一种熊。<br>　　攀爬高手—马来熊：马来熊又叫太阳熊或日熊，分布于印尼、缅甸、泰国、马来半岛及中国南部边陲的热带、亚热带山林中，是熊家族中体型最小的一种，体重只有60公斤。马来熊的看家本领是攀爬，于是它把大部分时间都花在了树上，把家也安在枝叶之间。马来熊主要吃植物果、叶以及昆虫和白蚁。夜间是马来熊的天下，而白天它却会悠闲地躺在树上晒太阳。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/What-is-the-crazy/" data-id="cis67bj940090kclmsrgwjewp" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/熊/" data-id="cishktfqr007kmolmdv21k4cp" class="article-share-link">Share</a>
       
       
     </footer>
@@ -135,191 +170,10 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2007/如何评审(Review)" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2009/猴" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2007/如何评审(Review)/" class="article-date">
-  <time datetime="2007-07-12T14:58:50.000Z" itemprop="datePublished">2007-07-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/如何评审(Review)/">如何评审(Review)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在搞一个培训的文档的评审，步骤大约是：<br>1.有一个Session Topic；<br>2.讲师先要围绕这个Topic写一个大纲，主要是大约是将Topic拆分若干细节分支；<br>3.评审PPT等文档；<br>如何对这样的文档进行评审，因为文档只是第一步，也是讲师能否讲这个Topic讲好的关键，所以就开始想如何保证讲师的培训质量，如何保证评审的质量，如何尽量能够促使讲师讲某一个Topic的广度和深度展现给audient呢。<br>我的思路大约是：<br>从行业角度看，大家一般讨论这个Topic的角度；<br>从audient看，我们希望他们能接收到什么信息，他们自身提高中需要什么信息；<br>从讲师来看，能够给Topic带了什么special的东西；<br>在我读一个讲稿的时候，我希望我的第一感觉，感觉到一个明显的主线，知道这个讲稿在究竟要讲些什么；能够有一个完整的概念模型，简单易懂，这样便于大家理解；然后能够看到细节性的分析和讲解，就是深入的内容。觉得既要有葡萄蜜饯，也要有果酱颗粒，葡萄蜜饯不至于太突兀，通用的信息让大家理解起来容易，有一种背靠着行业的味道；对于我而言，我更加希望能够看到更多的个人理解的东西，更多的果酱颗粒，会带来思考的地方，带来讨论的地方，往往也是启迪人的地方。希望看多一些specail的地方，希望看到许多兴奋点。<br>附：果酱和葡萄蜜饯来源于《The Secrets of Consulting》<br>“只要还有果酱，草莓酱就永远都不会被涂抹得过薄。”<br>“永远不会有人抱怨葡萄蜜饯。”</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/如何评审(Review)/" data-id="cis67bj8o008ukclmyfulexut" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Review/">Review</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/Google技术栈" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/Google技术栈/" class="article-date">
-  <time datetime="2007-07-11T13:56:26.000Z" itemprop="datePublished">2007-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/Google技术栈/">Google技术栈</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>和一个朋友讨论技术的学习，都有什么技术需要一个技术人员储备的，无意间朋友告诉我，Google关心的技术都有：<br>• algorithms<br>• artificial intelligence<br>• compiler optimization<br>• computer architecture<br>• computer graphics<br>• data compression<br>• data mining<br>• file system design<br>• genetic algorithms<br>• information retrieval<br>• machine learning<br>• natural language processing<br>• operating systems<br>• profiling<br>• robotics<br>• text processing<br>• user interface design<br>• web information retrieval<br>• and more!<br>参见 <a href="http://labs.google.com/" target="_blank" rel="external">http://labs.google.com/</a><br>细节 <a href="http://labs.google.com/papers.html" target="_blank" rel="external">http://labs.google.com/papers.html</a><br>中文 <a href="http://labs.google.cn/" target="_blank" rel="external">http://labs.google.cn/</a> 并没有这个。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Google技术栈/" data-id="cis67bj9z009dkclmb39ymdz0" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Google/">Google</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/Annotation实战" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/Annotation实战/" class="article-date">
-  <time datetime="2007-07-11T12:51:44.000Z" itemprop="datePublished">2007-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/Annotation实战/">Annotation实战</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>现在annotation正在改变着java developer的一些开发生活，各种框架都在充分应用annotation来简化开发，我们来看看annotation到底是怎么一回事？<br>为什么引入annotation?<br>由于在Java的一些实际开发中，已经有了一些annotation出现的雏形.比方说webservice使用一些tag自动生成一些接口和实现，EJB的deployment descriptor对象,transient修饰符代表不能被serialization，@deprecated等。那么他们的共用特性是什么呢？尽管这些数据不会直接对Java的语义产生影响，但是是通过工具、库或者运行时程序的语义来散发影响力的。以这种方式出现的新功能称之为annotation机制。所以Java是在增强Java语言支持易于开发的背景下提出annotation机制的，annotation对于已有的Java机制的影响力主要在于Java source files、Java class files和运行时的reflection；主要关联java classes，interfaces,methods和fields。(,或者能够能够被javac compiler或者其他的工具读取、或者作为配置项能够被存贮在class文件中、或者在运行时用Java reflection API检测的到。)<br>虽然在第一天提出annotation这个特性，就一直在强调：annotion易于使用，但是应用开发者无须自己定义annotaion类型。但是不论是更好的使用现有的annotation类型，还是便于有朝一日自己确实需要扩展annotion类型，或者更好的理解开发模型，更好的理解程序的开发运行，都非常有必要了解一些annotation的。</p>
-<p>我们看一下Meta-annotations,看到底如何自己定义一个annnotation类型。Meta-annotations主要包括四个部分：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Target</span><br><span class="line">Retention</span><br><span class="line">Documented</span><br><span class="line"><span class="keyword">Inherited</span></span><br></pre></td></tr></table></figure></p>
-<p>Target里面的ElementType是用来指定Annotation类型可以用在哪一些元素上的.<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.TYPE)</span></span>-can be applied to any element of <span class="tag">a</span> class</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.FIELD)</span></span>-can be applied to <span class="tag">a</span> field or property</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.METHOD)</span></span>-can be applied to <span class="tag">a</span> method level annotation</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.PARAMETER)</span></span>-can be applied to the parameters of <span class="tag">a</span> method</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.CONSTRUCTOR)</span></span>-can be applied to constructors</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.LOCAL_VARIABLE)</span></span>-can be applied to local variables</span><br><span class="line"><span class="function"><span class="title">Target</span><span class="params">(ElementType.ANNOTATION_TYPE)</span></span>-indicates that the declared type itself is an annotation typ</span><br></pre></td></tr></table></figure></p>
-<p>Retention用来指定annotation类型保留在哪儿和多长时间。<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RetentionPolicy.SOURCE-Annotations <span class="operator">with</span> this type will be <span class="keyword">by</span> retained only <span class="keyword">at</span> <span class="operator">the</span> source level <span class="operator">and</span> will be ignored <span class="keyword">by</span> <span class="operator">the</span> compiler</span><br><span class="line">RetentionPolicy.CLASS-Annotations <span class="operator">with</span> this type will be <span class="keyword">by</span> retained <span class="keyword">by</span> <span class="operator">the</span> compiler <span class="keyword">at</span> compile <span class="built_in">time</span>, but will be ignored <span class="keyword">by</span> <span class="operator">the</span> VM</span><br><span class="line">RetentionPolicy.RUNTIME-Annotations <span class="operator">with</span> this type will be retained <span class="keyword">by</span> <span class="operator">the</span> VM so they can be <span class="built_in">read</span> only <span class="keyword">at</span> run-<span class="built_in">time</span></span><br></pre></td></tr></table></figure></p>
-<p>Documented用来指定这个annotation类型应当被javadoc工具文档化使用。<br>Inherited用来指定使用这个类型的类是个继承来的。<br>举一个简单的例子：<br>测试用例：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnnotationTestableTeseCase</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Test</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> <span class="keyword">throws</span> SecurityException, ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> passed = <span class="number">0</span>, failed = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (Method m : Class.forName(Foo.class.getName()).getMethods()) &#123;</span><br><span class="line">            <span class="keyword">if</span> (m.isAnnotationPresent(Testable.class)) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    m.invoke(<span class="keyword">null</span>);</span><br><span class="line">                    passed++;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line"></span><br><span class="line">                    failed++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>, passed);</span><br><span class="line">        Assert.assertEquals(<span class="number">2</span>, failed);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Annotation类型定义类：<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="variable">@Target</span>(ElementType.METHOD)</span><br><span class="line">public <span class="variable">@interface</span> Testable &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>使用Testable类型的客户端代码：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Boom"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m4</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m5</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m6</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Testable</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m7</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"Crash"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">m8</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Okey!<br>参考：<br><a href="http://java.sun.com/developer/technicalArticles/releases/j2se15/" target="_blank" rel="external">http://java.sun.com/developer/technicalArticles/releases/j2se15/</a><br><a href="http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html" target="_blank" rel="external">http://java.sun.com/j2se/1.5.0/docs/guide/language/annotations.html</a><br><a href="http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html" target="_blank" rel="external">http://java.sun.com/j2se/1.5.0/docs/guide/apt/GettingStarted.html</a><br><a href="http://www.developer.com/java/other/article.php/10936_3556176_3" target="_blank" rel="external">http://www.developer.com/java/other/article.php/10936_3556176_3</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Annotation实战/" data-id="cis67bjaf009ikclml6nxb3wh" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Annotation/">Annotation</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/Ruby实战" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/Ruby实战/" class="article-date">
-  <time datetime="2007-07-11T00:46:07.000Z" itemprop="datePublished">2007-07-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/Ruby实战/">Ruby实战</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>先从一段Ruby程序开始，即欧几里德最大公约数的算法实现：<br>测试用例当然要先，<br><figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">require 'test/unit'</span><br><span class="line">require './one/Apple'</span><br><span class="line"></span><br><span class="line">class TestApple &lt; Test::Unit::TestCase</span><br><span class="line"></span><br><span class="line">  def test_cal</span><br><span class="line">    ys = Apple.new</span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">35</span>,<span class="number">25</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">50</span>,ys.gcd<span class="params">(<span class="number">100</span>,<span class="number">50</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">9</span>,ys.gcd<span class="params">(<span class="number">27</span>,<span class="number">18</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">5</span>,<span class="number">10</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(<span class="number">5</span>,ys.gcd<span class="params">(<span class="number">5</span>,<span class="number">0</span>)</span>)</span></span><br><span class="line">    assert_equal<span class="params">(-<span class="number">5</span>,ys.gcd<span class="params">(-<span class="number">5</span>,<span class="number">0</span>)</span>)</span></span><br><span class="line">    assert_raise<span class="params">(ArgumentError)</span>&#123;ys.gcd<span class="params">(<span class="number">0</span>,<span class="number">0</span>)</span>&#125;</span><br><span class="line">    assert_equal<span class="params">(<span class="number">23</span>,ys.gcd<span class="params">(<span class="number">0</span>,<span class="number">23</span>)</span>)</span></span><br><span class="line">  end</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
-<p>然后就是算法的实现代码了：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Apple</span></span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> </span>gcd(arg1=<span class="number">0</span>, arg2=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span>((arg1==<span class="number">0</span>)&amp;&amp;(arg2==<span class="number">0</span>))</span><br><span class="line">      raise <span class="constant">ArgumentError</span>, <span class="string">"arg1 and arg2 are 0."</span>, caller</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      gcdImpl(arg1,arg2)</span><br><span class="line">    <span class="keyword">end</span>    </span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">def</span> </span>gcdImpl(arg1=<span class="number">0</span>, arg2=<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span>(arg2 == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> arg1</span><br><span class="line">    <span class="keyword">elsif</span></span><br><span class="line">      temp=arg1%arg2</span><br><span class="line">      <span class="keyword">if</span>(temp == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> arg2</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">        gcdImpl(arg2,temp)</span><br><span class="line">      <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
-<p>从一个算法的描述来实现一个算法，仅仅是编写一段程序而已。而对于算法这种问题的程序化解决方案而言，需要如何一回事情呢？比方说，最大公约数到底是怎么一回事，5和0的最大公约数怎么可能是5呢？所以要学习算法到底是怎么一回事，需要探讨更多的问题？<br>对于问题的理解、性能、选择、数据结构、如何设计、算法的描述、正确性证明、分析、代码实现等等一系列单元。当程序实现仅仅是第一反应的时候，问题理解、分析、设计、验证就变得异常重要了。<br>算法所拥有的通用问题类型：排序、查找、字符串处理、图问题、组合问题、几何问题、数值问题；都是一些已经相当成熟的问题类型。很多使我们常常听说或者涉及的，也是算法设计和分析频繁的地方，算是很多的“肩膀”吧，算法都是都是在这里站立起来的。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Ruby实战/" data-id="cis67bj940092kclm5tyt9yu8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Ruby/">Ruby</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/算法学习第一季-读《算法设计与分析基础》" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/算法学习第一季-读《算法设计与分析基础》/" class="article-date">
-  <time datetime="2007-06-28T14:42:51.000Z" itemprop="datePublished">2007-06-28</time>
+    <a href="/2009/猴/" class="article-date">
+  <time datetime="2009-10-12T05:20:46.000Z" itemprop="datePublished">2009-10-12</time>
 </a>
     
   <div class="article-category">
@@ -334,7 +188,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2007/算法学习第一季-读《算法设计与分析基础》/">算法学习第一季-读《算法设计与分析基础》</a>
+      <a class="article-title" href="/2009/猴/">猴</a>
     </h1>
   
 
@@ -342,12 +196,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>大学修的计算机专业，毕业之时，《数据结构》《计算方法》《操作系统》《编译原理》等如同课本一样，永远的被打包起来。工作以来，一直在做Java的开发，Web开发和服务端应用，总是零星的涉及到些许数组、链表、树等数据结构，也主要以线性数据结构为主；算法基本上就是“经典”的数据结构书上所讨论的几种算法，JDK都有实现，在应用中早已无需我们思考太多。重要的是我们要把应用按着需求实现了，重要的是我们一步一步把应用带向我们认为简单务实美的方向前进。闲暇思索，对于虚拟机的看法不过是面试的话语；对于开发的认识同样如此，多是面试的谈资；对于一个更有经验的Java应用开发者，能够在开发提供一套解决方案，组合解决问题的模式积攒起来一段可预期时间内解决一系列问题，也许有人将这归之为架构师，谁又能说这不是一条Java应用架构师之路呢？有一天，恍然大悟，其实Java应用开发者比拼的是各自的开发经验、领域知识、开阔的思路、强悍的执著；事情总没有唯一的，以前和dreamhead讨论过业务，当然也有无数的把应用开发者的需求作为业务的Java开发“仁人志士”。而对于一个从事了几年Java应用开发的人来说，那么我们的激情下一个积攒点在哪儿呢？虽然刚开始接触计算机，就知道一句名言“程序=算法+数据结构”，现实中这几年算法对于我，如同鲁迅先生笔中的故乡，“愈远了”，“渐渐远离了我”，“模糊了”。<br>人生有多少个十年，人生有几多青春，对于一个个体，又有几多沉淀？<br>一如我刚毕业的青春年少无知，对于技术这个词汇激情澎湃，几乎认为是自己生命的全部。对于人来说，最重要的不是你能否学技术，学了多少技术，掌握了多少技术功底；而是一个人前进的方向是什么，你的人生想要的是什么，你的人生在计算机这个舞台你如何定位思考、如何的目标的？想好了再前行，前行了就不再犹豫。<br>算法是否总给人一种严肃的科学的概念，我相信，算法并不严肃，可以嬉笑怒骂，可以轻轻松松的和我们很多一线开发人员在一起。<br>非常感谢作者Anay Levitin著书《Introduction to the Design and Analysis of Algorithms》，感谢译者潘彦翻译这么好的书籍《算法设计与分析基础》，特别感谢dreamhead五一来沈阳一聚并送这本书给我。<br>虽然序言前言部分往往都有精髓的思想语句，然后对于算法无知的我决定直切正题，从绪论开始阅读。<br>为什么要学习算法？<br>由于“微积分”“算法”被并成为科学殿堂两大宝石的论断，很为大家熟知，至于算法是如何的英明神武，在现实中也许需要细细体会，我并未有多少深深体会悍然汗然。<br>作者直接扔出了为什么学习算法这个话题，一个是计算机专业人士必备，另外一个是能开发人们的分析能力。如果能有选择，我宁愿选择第二个，我想必备意味着用这个东西现在或者未来要解决切实的问题，我现在并不是先有棘手的问题—没有棘手的问题而去学习本身未必不是一个棘手的问题；如果籍此能够在具备计算机人士必须具备的基础之外，成就一下自己分析能力的增强，真是不错。<br>什么是算法？<br>该书中，对于算法的定义是“一系列解决问题的清晰指令，即对于符合一定规范的输入，能够在有限时间内获得所要求的输出。”可以看到算法，有输入，有输出，有指令，当然有执行这些指令的环境，也许第一个想到是计算机，对，计算机，但是也许是从事数学计算的人。定义等同于算法是解决问题的办法。<br>所以既然是解决问题，当然有问题域/值域；算法本身如何表达描述，算法自己的优劣之分；等等。<br>第一个例子是关于“计算两个整数的最大公约数”问题，记得在SICP一书中也阐述了这个例子。解决这个问题首先寻找的是“最大公约数的定义”，并仔细描述了欧几里得算法、连续整数检测算法、“艾拉托色尼筛”算法；并采用了结构化描述和伪码两种方式描述算法细节。<br>该书以如此简洁的言语和例子为我们打开了算法的道路。在接下来的一章节，会首先看到“算法是问题的程序化解决方案”，是的，我们就是要去寻找问题的程序化解决方案的。</p>
+        <p>简介一<br>    猴是一个俗称。灵长目中很多动物我们都称之为猴。灵长目是哺乳纲的1目。动物界最高等的类群,大脑发达；眼眶朝向前方，眶间距窄；手和脚的趾（指）分开，大拇指灵活，多数能与其他趾（指）对握。包括原猴亚目和猿猴亚目。原猴亚目颜面似狐；无颊囊和臀胼胝；前肢短于后肢,拇指与大趾发达，能与其他指（趾）相对；尾巴能卷曲或缺如。猿猴亚目颜面似人；大都具颊囊和臀胼胝；前肢大都长于后肢，大趾有的退化；尾长、有的能卷曲，有的无尾。按区域分布或鼻孔构造，猿猴亚目又分为阔鼻猴组，又称新大陆猴类；狭鼻猴组，又称旧大陆猴类。本目包括11科约51属180种,主要分布于亚洲、非洲和美洲温暖地带。大多栖息林区。灵长类中体型最大的是大猩猩，体重可达275千克，最小的是倭猴,体重只有70克。<br>　　灵长类的大多数头骨具大的颅腔，呈球状，这是由于颌部变短，脸部变扁所致；眶后突发育形成骨质眼环，或全封闭形成眼窝；多数种类鼻子短，其嗅觉次于视觉、触觉和听觉，某些低等种类在脑中具有高度发达的嗅觉中枢，并在很大程度上靠嗅觉行动。某些狐猴有较长的鼻部。金丝猴属和豚尾叶猴属的鼻骨退化，形成上仰的鼻孔。长鼻猴属的鼻子大又长。这些特殊的类型是因肌肉或软骨发育而形成的。脚的拇趾和它趾能对握，使得手和脚成为抓握器官。原猴类的5指只能同时屈伸,不能个别运用。掌面与□面裸出,有指、趾纹,纹路形态不一。具有非常软或宽的足垫,除黑猿外,皆为□行性。多数种类的指和趾端均具扁甲。一般前后肢长相差不大，唯长臂猿科和猩猩科的前肢比后肢长得多。猿类和人无尾，在有尾的种类中,其尾长差异很大, 从只有一个突起到超过身体长。卷尾猴科大部分种类的尾巴具抓握功能，有“第五只手”之称。一些旧大陆猴(如狒狒)的脸部、臀部或胸部皮肤具鲜艳色彩，在繁殖期尤其显著。臀部有粗硬皮肤组成的硬块，称为臀胼胝。<br>    多数种类在胸部或腋下有1对乳头，而指猴的 1对乳头在腹部。雄性的阴茎是悬垂形，多数具阴茎骨，而眼镜猴、绒毛猴、人和某些种类不具。精巢包于囊中。雌体具双角子宫或单子宫。体被毛，有的柔软细密，有的粗硬，或在局部很长，或在毛上具异色环节。有的头顶毛很长，形成丛状毛冠，或甚短，呈平顶，或秃顶无毛。有的在两颊或颌下具长毛，形如胡须。有的两肩、后背、臀部被以长毛。有的体毛非常艳丽。<br>　　绝大多数灵长类动物营不同形式的树栖或半树栖生活，只有环尾狐猴、狒狒和叟猴地栖或在多岩石地区生活。通常以小家族群活动，也结大群活动。多数能直立行走，但时间不长。多在白天活动，夜间活动的有指猴、一些大狐猴、夜猴等。大倭狐猴和倭狐猴在干热季节夏眠数日至数周。<br>　　猴子大多为杂食性、吃植物性或动物性食物。选择食物和取食方法各异，如指猴善于抠食树洞或石隙中的昆虫。猩猩的食量很大，几乎把绝大部分的活动时间用以觅食。疣猴科胃的构造特殊，大部分种类吃粗纤维多的植物性食物。<br>　　猴子每年繁殖1～2次，每胎1仔，少数可多到3仔。幼体生长比较缓慢。哺乳期多抓爬在母体胸、腹部或骑在母背上，由母带着活动。性成熟的雌性有月经，雄性能在任何时间交配。只有低等猴类，如狐猴、懒猴、指猴具有一定的交配、繁殖季节。<br>　　树科的头骨特征与某些十分原始的原猴类颇相似，许多解剖学家和古生物学家曾把它包括在灵长类内，但其外部形态和生态习性却与灵长类有很大差异，因此，现代分类学家已把它独立成树目。<br>　　灵长类化石发现于北美和欧洲、亚洲的古新世至渐新世地层中，在非洲和欧洲发现于中新世，而在南美、非洲和马达加斯加则发现于更新世。灵长类的进化已有 6000万年历史，从世界各地发现的早期灵长类化石属原猴类,其中60多属现已绝灭。现在美洲已没有原猴类，只是在亚非大陆、马达加斯加岛和印度洋一些岛屿上，还生存着少数与5000万年前的原猴类极为相似的种类。猿猴类的历史可追溯到 3000～5000万年以前，大约在1500～2000万年以前，猿类的祖先就已遍布欧、亚、非三大洲，但现今却仅残存于亚洲和非洲的热带。<br>　　在我国古籍中，猴子的别称有禺，果然，独，狨等。据《白虎通》记述：“猴，侯也，见人设食伏机，则凭高四望，善于侯者也。”侯，是等待、观望的意思。<br>　　印度尼西亚加里曼丹岛的北部山区，每年5月7日是“敬猴节”。而泰国的北部山区，每年的11月1日是“猴子运动节”。<br>简介二<br>      猴是一种群居动物，据动物学家长期观察，猴也有它的社会秩序，有位高、位低之分，其中统治群猴的是一只资格较老的霸主——猴王。猴王年龄太老或过于残暴，也会激起群猴的愤怒，予以罢免或被咬得奄奄一息。据载，前不久，北京八大岭野生动物园的群猴就把一只老猴王不仅罢免，而且咬成重伤，后居然又有一新猴王继位，看来也体现了它们的社会秩序。<br>     不过在猴的社会从无谦让的美德，就和人类当中极端的个人主义者一样。有的猴王也相当残暴，它可以把地上的食物集拢成一大堆，自己把屁股坐上去，也不准其它猴子吃。每只猴子都有颊囊（即所谓脖子下面的口袋），吃不完的食物就藏在颊囊中，但绝不给其它猴子吃。有时为了抢夺食物，彼此吱吱乱叫，甚至互相追打，毫不谦让。人类常把吝啬人说成“猴奸、猴奸！”猴看来就是奸。<br>     猴子好动，自古被视为聪明伶俐的形象。在动物园观看猴子时，很少能看到它不动的样子，要么在爬山，要么在爬树，要么在吃游客喂的食物，要么在挠蚤子，更甚者在模仿人的动作。神医华佗首创五禽戏，即仿效动物姿态的一种体育治疗法，《后汉书·华佗传》记他的话：“吾有一术，名五禽之戏：一曰虎，二曰鹿，三曰熊，四曰猨，五曰鸟。亦以除疾，并利蹄足，以当导引。”猨即猿，这里是说运动时模仿猴子的姿态动作。三国时代，曹植写诗《白马篇》，吟咏马上习武的豪爽，其中“仰手接飞猱，俯身散马蹄。狡捷过猴猿”之句，颇富动态感，是因为借助了猴的形象。猱，猿一类动物，攀授树木敏捷若飞。<br>     猴子也有它的特殊习性，猴捉虱子是人们常见的，其实猴身上并没有那么多虱子，据动物学家分析，原来猴子的长毛下面，在皮肤上附有一种分泌物的结晶体，略带咸味，猴子把它找出来放入口中咀嚼得津津有味，犹如人类嗑瓜子一样，也是一种闲趣。不过，这种捉虱子的动作，往往是“位分低”的给“位分高”的捉，尤其给猴王捉，显然有巴结的意思。有时母猴也给小猴捉，这一点可能还体现了一点母爱。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/算法学习第一季-读《算法设计与分析基础》/" data-id="cis67bj8o008qkclm5bvk7uro" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2009/猴/" data-id="cishktfqc007emolm0cn9fr7d" class="article-share-link">Share</a>
       
       
     </footer>
@@ -357,10 +211,258 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-2007/RubyOnRails实战" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-2009/豹" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2007/RubyOnRails实战/" class="article-date">
-  <time datetime="2007-06-28T04:08:43.000Z" itemprop="datePublished">2007-06-28</time>
+    <a href="/2009/豹/" class="article-date">
+  <time datetime="2009-10-12T04:20:30.000Z" itemprop="datePublished">2009-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/豹/">豹</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>分布情况<br>    豹广泛产于中国，也广泛产于亚洲，因此有中国豹，有亚洲豹；它也广泛产于非洲，所以也有非洲豹。但是，欧洲就不产豹，澳洲(有袋类动物的老家)也不产豹。中国有3亚种：华南豹(P.pardus fusea)、华北豹(P.p.fontanieri)和东北豹(P.p.orientalis)。<br>　 中国豹最早从渐新世中期即已出现，这表明这种动物至少已生存过50万年了。<br>外形特征<br>    体型与虎相似，但较小，为大中型食肉兽类。体重50千克左右，，最重可达100千克；体长1～1.5米，尾长超过体长之半。头圆、耳短、四肢强健有力，爪锐利伸缩性强。豹全身颜色鲜亮，毛色棕黄，遍布黑色斑点和环纹，形成古钱状斑纹，故俗称之为“金钱豹”。雌雄毛色一致。其背部颜色较深，腹部为乳白色。还有一种黑化型个体，通体暗黑褐，细观仍见圆形斑，常被称为墨豹。<br>生活环境<br>    栖息于山地、丘陵、荒漠和草原，尤喜茂密的树林或大森林。无固定巢穴。单独活动。白日伏在树上，或卧在草丛中，或在悬崖的石洞中休息，夜晚出来游荡。<br>生活习性<br>      豹可以说是完美的猎手，矫健身材，灵活，奔跑时速可达65公里。即会游泳，又会爬树。性情机敏，嗅觉听觉视觉都很好，智力超常，隐蔽性强，这些是老虎狮子都办不到的。<br>　　豹的体能极强，视觉和嗅觉灵敏异常，性情机警，既会游泳，又善于爬树，成为食性广泛、胆大凶猛的食肉类。善于跳跃和攀爬，营独居夜行生活。常在林中往返游荡，捕食猿猴、野兔、野鹿和鸟类等，时而还猎食家畜。生性凶猛，伤人！<br>　　豹的猎物主要有鹿﹑羚羊及野猪，但亦会捕猎灵猫，猴子，雀鸟，啮齿动物等，甚至腐肉，视乎猎物产地而定。豹也有捕食黑猩猩的的纪录。在猎物缺乏时，它也会捕猎家畜，因而发生人豹之间的冲突。和一般猫科动物一样，豹会在密林的掩护下，潜近猎物，并来一个突袭，攻击猎物的颈部或口鼻部，令其窒息。非洲品种通常把猎物拖上树慢慢吃，以防狮子或鬣狗等食肉动物前来抢夺。在食物链上，豹处於次等捕猎者的位置，这亦意味着豹同时是老虎及狮子的猎物。<br>　　豹捕捉到的猎物如果被狮子，鬣狗狗等发现，多半会被抢走，因为豹不会同食肉动物搏击原因是一但有伤，就行动不便，上树，游泳等活动妨碍伤口愈合，加之免疫力低，所以豹宁愿再捉一个猎物也不愿同食肉动物搏击。<br>生长繁殖<br>　　繁殖期为冬末春初，3～4月份发情交配，孕期约三个月，6～7月份产仔，每胎2～3仔，初生幼体500克左右，幼豹于当年秋季就离开母豹，独立生活。约三年性成熟。寿命10～20年。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/豹/" data-id="cishktfqc007amolm5rdj0k4a" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/狮" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/狮/" class="article-date">
+  <time datetime="2009-10-12T03:20:19.000Z" itemprop="datePublished">2009-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/狮/">狮</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>特征<br>    雄狮重达220公斤，包括尾巴的全长达2.8米，母狮体型较公狮小，但体重仍重达160公斤，相当于两个成年男人的重量，是非洲最顶级的掠食者，公狮颈部周围包著一层的鬃毛名为”狮鬃”，狮鬃颜色不等，包括金褐、咖啡、黑色，有些狮的狮鬃浓密而杂乱，有的稀疏且平顺，科学家研究发现，狮鬃又黑又浓又乱的公狮因为长相较吓人因此很少受攻击，狮鬃太少颜色太淡看起来不吓人的公狮反而常受到攻击，狮鬃在打猎埋伏上并没有任何的帮助。有些狮体色为纯白，并不是因为白化病，而是色素细胞的突变，白狮会被认为身体虚弱，且会影响到猎食，但白狮十分的稀少。<br>生活环境<br>    过去从欧洲南部、西亚、印度和非洲都有狮。冰川期间一个亚种还在中欧和北美洲生存过，但冰川期后它们就消失了。按当时学者的报道，到古希腊时期在巴尔干半岛还有狮生存。一般认为欧洲的狮在公元1世纪由于人类的活动灭绝。<br>    今天绝大多数狮生活在非洲撒哈拉沙漠以南，撒哈拉沙漠以北的狮于1940年代灭绝。20世纪时在亚洲的狮几乎全部被消灭，只有在印度的一个自然公园还有少数幸存。<br>    过去除森林外，狮在所有的生态环境中都有，今天它们的生存环境大大地缩小了。它们比较喜欢草原，也在旱林和半沙漠中出现，但不生存在沙漠和雨林中。<br>社会结构<br>    与其它大型猫不同，狮是群体生活。一个狮群主要由互相之间有亲缘关系的雌兽组成。地形和猎物的多少决定一个群的大小，一个群可以由3至30只狮组成。雄兽在一个群内只待一段时间，此后它往往去找另一个群。虽然如此在一个狮群中雄狮的地位比雌狮的高。一般在一个狮群中只有一只成年的雄狮，幼狮在狮群中一般待三年，此后雄性的青年被驱逐出群，而雌兽则留在群内。<br>    年轻的雄狮组成不稳定的小群过着游荡的生活，直到它们自己成为一个狮群的首领。一般它们要到六岁或更老才能达到这个地位。<br>    往往一个狮群的领导地位会被另一个雄狮占据，一般当老的雄狮老了或虚弱了时，就会有年轻的雄狮向它挑战，战败的雄狮不是死亡就是逃亡。假如新来的雄狮战胜，它一般将它前任的幼兽杀死，这样雌兽就比较容易和它交配了。<br>    一个狮群的领地面积从20到400平方千米不等。一个领地的大小与狮群的大小和领地内猎物的多少有关。狮群一般用粪便、尿和从远方就听得见的呼叫声来标志它们的领地。<br>    也有的狮群没有领地而过着游荡的生活。<br>繁殖<br>    虽然雄狮在一个狮群中占最高的地位，但只有在一只雌狮同意的情况下它才能与它交配。假如雌狮愿意，它就趴到地上，让雄狮跨上。从雌狮对雄狮的态度上一般可以看得出雄狮在群中的地位有多高，以及它是否在下一次角斗中会被驱逐。<br>    雌狮的怀孕期一般是四个月，此后它生二至四只幼崽。幼崽的体重一般是1.5千克。幼崽不但可以在它的母亲身上吸奶，而且可以在群中的每只雌狮吸奶。对幼崽的抚养是整个狮群的任务。幼崽的吸奶期是四个月，此后它们还跟着母亲约两年。雌狮一般在三年后，雄狮在五年后性成熟。亦曾有研究指，雄狮跟雌狮成功交配出来超过一岁的小狮子在三只里只有一只。<br>    狮可以活20年。一般只有雌狮会活这么长。雄狮一般在此之前就会被一只年轻的雄狮杀死或驱逐，它们一般不会再找到一个群，往往饿死。一般雄狮的寿命不超过12年（与一个小学生的平均年龄持平），相反一般雌狮的寿命约15-18岁（与一个中学生的平均年龄持平）。在动物园中有些狮子活到34岁。<br>食物<br>    一般雌狮猎取食物，雄狮只在它们年轻时，鬃毛还没有完全成熟时狩猎。它们深色的鬃毛使它们比较容易被看见，因此不太容易获得成功。一般它们潜伏靠近猎物，然后跳起将猎物扑倒。小的猎物一般被咬断头颈，大的猎物的头颈被撕破或被压抑窒息。<br>    一般出猎的时间是夜晚或清晨凉爽的时候。<br>    猎物中包括羚羊、小羚羊、牛羚和斑马，也包括狒狒、兔、鸟，有时甚至鱼。猎物被捕获后按群内地位的高低捺食：首先是雄狮，然后是地位最高的雌狮，幼狮最后。往往会因此产生群内的地位争端，这样的争斗往往会导致受伤。<br>    狮子往往也食腐食。被从群内驱逐的雄狮一般只食尸体。它们抢夺其它食肉动物如豹或猎豹的猎物。狮子也从鬣狗口中抢夺食物。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/狮/" data-id="cishktfqr007imolma293ldxw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/虎" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/虎/" class="article-date">
+  <time datetime="2009-10-12T02:20:08.000Z" itemprop="datePublished">2009-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/虎/">虎</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>概要<br>     在亚洲许多国家的文化中，虎是美丽、勇敢、力量的象征，人们畏惧虎的凶猛，又希望具有虎的强壮，以征服它来证明力量。虎与人类的关系密切，人类的活动使虎的栖息地缩小、分隔，人虎冲突和对虎的利用造成了对虎的大肆捕杀，目前这个物种已经十分濒危。<br>进化<br>     虎由古食肉动物进化来。大型食肉类在距今700万年的新生代第三纪上新世出现并逐渐发展。古食肉类中的猫形类进化出多个分支，其中一只是古猫类，古猫类又分化为恐猫、真剑齿虎类和真猫，经过第四纪冰川期，只有真猫类存活下来，分化为猫族和豹族两个分支。现在的虎就是从真猫类中的豹族演化而来。 在虎的各个亚种中，华南虎是各亚种的祖先，它们的头骨结构最接近于原始的虎。<br>外形特征<br>     虎为大型猫科动物，斑纹独特，身体被满浅黄到红色毛，有黑色至棕色条纹。不同亚种的虎的体形大小有差异，北方虎的体形大，颜色较浅；南方的体形较小，颜色较深。虎的虹膜呈黄色，圆形瞳孔。耳背为黑色，上有明显的白斑，有科学家认为这有助于幼崽在野外跟随母亲活动。虎的前后肢十分有力。掌垫的大小与虎的年龄有关，在种群调查中，研究人员以此鉴别个体。虎的尾较长，具环形斑纹，尾尖没有长毛，为黑色。<br>习性<br>     虎是一种孤独的森林食肉动物，一般每只老虎有自己的领地，除了交配时期，从不和其他虎交往，雌虎独自生产和喂养幼虎，平均每胎产子2.46个，在野外，出生幼子的死亡率为30—40%。当幼虎成年后，雌虎将领地遗留给它，独自去寻找新领地。每个虎占领一块领地后，就会将本地所有大型食肉动物如狼、豹等赶走，所谓“占山为王”。老虎以鹿、獐、羊等食草动物为食，必须有足够的猎食领地以维持生命。虎一般采取潜伏袭击的猎食方式，从猎物后方攻击，在食物严重短缺时，也会攻击人。印度农民用头后戴假面具的方式避免遭受老虎攻击，因为虎以为假面具是人以正面对它，它决不会从正面攻击猎物。<br>虎与文化<br>     虎的象征意义在亚洲文化中得到最大的体现，被看作是美丽、严肃、勇猛的象征。在中国，虎的形象随处可见，许多神明信仰以虎为象征，如西王母、保生大帝、玄坛真君等。在台湾民间信仰，则奉城隍、山神、土地公所乘之虎为神，谓曰虎爷，有驱邪之能。虎字起源极早，殷墟甲骨文中就有虎字，现在汉字中的虎就很像一只虎。民间传说，汉字中的“王”就来自于老虎前额上的斑纹，还有许多成语、民间俗语中都有虎出现。虎在十二生肖中排名第三位。<br>     早在5000年前的印度河古文化中（今巴基斯坦一带）就发现有雕刻在图章上的虎的形象。印度教种有一个骑虎的女神杜伽（Durga），这个女神的形象在印度随处可见，多出现在火车两侧。韩国的野生虎虽已经灭绝，但韩国人仍称自己的国度为“青龙白虎之邦”，在1988年汉城奥运会2002年韩日世界杯上，虎都被定为吉祥物。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/虎/" data-id="cishktfqc007cmolmqlq6mgs5" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/狼" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/狼/" class="article-date">
+  <time datetime="2009-10-12T01:19:51.000Z" itemprop="datePublished">2009-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/狼/">狼</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>外形特征<br>　　外形有小（郊狼）、中（森林狼）、大（草原狼），吻尖长，眼角微上挑。因为产地和基因不同，所以毛色也不同。常见灰黄两色，还有黑红白等色，个别还有紫蓝等色，胸腹毛色较浅。腿细长强壮，善跑。灰狼的体重和体型大小各地区不一样,一般有随纬度的增加而成正比增加的趋势这一说法. 一般来说,肩高在( 26-36英寸) ,体重32-62公斤( 70-135磅) 野生狼体重记录————其中1939年在阿拉斯加被打死的一只,,当时80公斤( 175磅) . 最小的狼是阿拉伯狼,雌性的狼有的体重可低至10公斤( 22磅) 狼群适合长途迁行捕猎.其强大的背部和腿部,能有效地舒展奔跑.<br>生活习性<br>    狼是群居性极高的物种。一群狼的数量大约在5到12只之间，在冬天寒冷的时候最多可到四十只左右，通常以家庭为单位的家庭狼由一对优势对偶领导，而以兄弟姐妹为一群的则以最强一头狼领导。狼群有领域性，且通常也都是其活动范围，群内个体数量若增加，领域范围会缩小。群之间的领域范围不重叠，会以嚎声向其他群宣告范围。幼狼成长后，会留在群内照顾弟妹，也可能继承群内优势地位，有的则会迁移出去（大都为雄狼）而还有一些情况下会出现迁徙狼，以百来头为一群，有来自不同家庭等级的各类狼，各个小团体原狼首领会成为头狼，头狼中最出众的则会成为狼王。野生的狼一般可以活12——16年，人工饲养的狼有的可以活到二十年左右。 奔跑速度极快，可达五十五公里左右，持久性也很好。它们有能力以速度10公里/小时(六英里)长时间奔跑 , 并能以高达近65公里/小时速度( 40英里) 追猎冲刺。 如果是长跑，它的速度会超过猎豹。智能颇高，可以气味、叫声沟通。狼是以肉食为主的杂食性动物,是生物链中极关键的一节。<br>生长繁殖<br>　　狼的怀孕期为61天左右。低海拔的狼一月交配，高海拔则在四月交配。<br>　　小狼两周后睁眼，五周后断奶，八周后被带到狼群聚集处。<br>　　狼成群生活，雌雄性分为不同等级，占统治地位的雄狼和雌狼随心所欲进行繁殖，处于低下地位的个体则不能自由选择。雌狼产子于地下洞穴中，雌狼经过六十叁天的怀孕期，生下叁只到九只小狼，也有生十几只的。没有自卫能力的小狼，要在洞穴里过一段日子，公狼负责猎取食物。小狼吃奶时期大约有五、六个月之久，但是一个半月也可以吃些碎肉。叁、四个月大的小狼就可以跟随父母一道去猎食。半年后，小狼就学会自己找食物吃了。狼的寿命大约是十二到十四年。在群体中成长的小狼，非但父母呵护备至，而且，族群的其他份子也会爱护有加。狼和非洲土狼会将杀死的猎物，撕咬成碎片，吃下腹内，待回到小狼身边时，再吐出食物反哺。赤狼有时也会在族群中造一育儿所，将小狼集中养育，由母赤狼轮流抚育小狼，毫无怨尤。因此，我们可以说狼的家庭观念极强。<br>狼的行为模式和身体语言<br>    一般占优势主导地位的狼会身挺高腿直，神态坚定，耳朵是直立向前。<br>　　往往尾部纵向卷曲朝背部。这种显示的是级别高主导地位的狼可能一直盯着一个唯唯诺诺的地位低下的狼。<br>　　活跃—玩耍时，狼会全身伏低，嘴唇和耳朵向两边拉开，有时会主动舔或快速伸出舌头。<br>　　愤怒—愤怒的狼的耳朵会竖立，背毛也会竖立，唇可卷起或后翻，门牙露出，有时也会弓背或咆哮。.<br>　　恐惧—害怕时狼会试图把它的身子显得较小，从而不那么显眼，或拱背防守，尾收回。<br>文化<br>    狼本身并无所谓狡猾或贪婪之本性，但狼在狩猎时的习性以及智慧，往往被引申为凶残恶毒，并用来形容贪婪，凶邪或忘恩负义的人，如“狼心狗肺”，“狼狈为奸”，“狼子野心”等。另外欧亚中部游牧民族因其生存环境，可能会崇拜合群，勇猛的狼，突厥、乌孙都以狼为图腾。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/狼/" data-id="cishktfqr007gmolm4mktpya0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/教条示龙场诸生-明-王守仁" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/教条示龙场诸生-明-王守仁/" class="article-date">
+  <time datetime="2009-10-12T00:18:28.000Z" itemprop="datePublished">2009-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/教条示龙场诸生-明-王守仁/">教条示龙场诸生(明.王守仁)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>　　诸生相从于此，甚盛。恐无能为助也，以四事相规，聊以答诸生之意。一曰立志，二曰勤学，三曰改过，四曰责善。其慎听，毋忽！<br>立志<br>　　志不立，天下无可成之事。虽百工技艺，未有不本于志者。今学者旷废隳惰，玩岁愒时，而百无所成，皆由于志之未立耳。故立志而圣，则圣矣；立志而贤，则贤矣；志不立，如无舵之舟，无衔之马，漂荡奔逸，终亦何所底乎？昔人所言：“使为善而父母怒之，兄弟怨之，宗族乡党贱恶之，如此而不为善，可也。为善则父母爱之，兄弟悦之，宗族乡党敬信之，何苦而不为善、为君子？使为恶而父母爱之，兄弟悦之，宗族乡党敬信之，如此而为恶，可也。为恶则父母怒之，兄弟怨之，宗族乡党贱恶之，何苦必为恶、为小人？”诸生念此，亦可以知所立志矣。<br>勤学<br>　　已立志为君子，自当从事于学。凡学之不勤，必其志之尚未笃也。从吾游者，不以聪慧警捷为高，而以勤确谦抑为上。诸生试观侪辈之中，苟有“虚而为盈，无而为有”讳己之不能，忌人之有善，自矜自是，大言欺人者，使其人资禀虽甚超迈，侪辈之中，有弗疾恶之者乎？有弗鄙贱之者乎？彼固将以欺人，人果遂为所欺，有弗窃笑之者乎？苟有谦默自持，无能自处，笃志力行，勤学好问；称人之善，而咎己之失；从人之长，而明己之短；忠信乐易，表里一致者；使其人资禀虽甚鲁钝，侪辈之中，有弗称慕之者乎？彼固以无能自处，而不求上人，人果遂以彼为无能，有弗敬尚之者乎？诸生观此，亦可以知所从事于学矣！<br>改过<br>　　夫过者，自大贤所不免；然不害其卒为大贤者，为其能改也。故不贵于无过，而贵于能改过。诸生自思，平日亦有缺于廉耻忠信之行者乎？亦有薄于孝友之道，陷于狡诈、偷刻之习者乎？诸生殆不至于此。不幸或有之，皆其不知而误蹈，素无师友之讲习规饬也。诸生试内省，万一有近于是者，固亦不可以不痛自悔咎；然亦不当以此自歉，遂馁于改过从善之心。但能一旦脱然洗涤旧染，虽昔为盗寇，今日不害为君子矣！若曰吾昔已如此，今虽改过而从善，人将不信我，且无赎于前过，反怀羞涩疑沮，而甘心于污浊终焉，则吾亦绝望尔矣！<br>责善<br>　　“责善，朋友之道；”然须“忠告而善道之”，悉其忠爱，致其婉曲，使彼闻之而可从，绎之而可改，有所感而无所怒，乃为善耳！若先暴白其过恶，痛毁极诋，使无所容，彼将发其愧耻愤恨之心；虽欲降以相从，而势有所不能。是激之而使为恶矣！故凡讦人之短，攻发人之阴私，以沽直者，皆不可以言责善。虽然，我以是而施于人，不可也；人以是而加诸我，凡攻我之失者，皆我师也，安可以不乐受而心感之乎？某于道未有所得，其学卤莽耳。谬为诸生相从于此．每终夜以思，恶且未免，况于过乎？人谓“事师无犯无隐”，而遂谓师无可谏，非也。谏师之道，直不至于犯，而婉不至于隐耳。使吾而是也，因得以明其是；吾而非也，因得以去其非。盖教学相长也。诸生责善，当自吾始。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/教条示龙场诸生-明-王守仁/" data-id="cishktfr7007mmolmpsgsyxc4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2009/三戒-唐-柳宗元" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2009/三戒-唐-柳宗元/" class="article-date">
+  <time datetime="2009-10-10T15:17:26.000Z" itemprop="datePublished">2009-10-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/读书/">读书</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2009/三戒-唐-柳宗元/">三戒(唐.柳宗元)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>临江之麋<br>      临江之人，畋得麋麑，畜之。入门，群犬垂涎，扬尾皆来。其人怒，怛之。自是日抱就犬，习示之，使勿动，稍使与之戏。积久，犬皆如人意。麋麑稍大，忘己之麋也，以为犬良我友，抵触偃仆，益狎。犬畏主人，与之俯仰甚善。然时啖其舌。<br>      三年，麋出门，见外犬在道甚众，走欲与为戏。外犬见而喜且怒，共杀食之，狼藉道上。麋至死不悟。</p>
+<p>黔之驴<br>      黔无驴，有好事者船载以入。至则无可用，放之山下。虎见之，庞然大物也，以为神。蔽林间窥之，稍出近之，慭慭然，莫相知。<br>      他日，驴一鸣，虎大骇，远遁，以为且噬己也，甚恐。然往来视之，觉无异能者，益习其声，又近出前后，终不敢搏。稍近益狎，荡倚冲冒，驴不胜怒，蹄之。虎因喜，计之曰：“技止此耳！”因跳踉大㘎，断其喉，尽其肉，乃去。<br>      噫，形之庞也类有德，声之宏也类有能，向不出其技，虎虽猛，疑畏卒不敢取；今若是焉，悲夫！</p>
+<p>永某氏之鼠<br>      永有某氏者，畏日，拘忌异甚。以为己生岁直子，鼠，子神也，因爱鼠，不畜猫犬，禁僮勿击鼠。仓廪庖厨，悉以恣鼠不问。<br>      由是鼠相告，皆来某氏，饱食而无祸。某氏室无完器，椸无完衣，饮食大率鼠之余也。昼累累与人兼行，夜则窃啮斗暴，其声万状，不可以寝，终不厌。<br>      数岁，某氏徙居他州。后人来居，鼠为态如故。其人曰：“是阴类恶物也，盗暴尤甚，且何以至是乎哉？”假五六猫，阖门，撤瓦灌穴，购僮罗捕之。杀鼠如丘，弃之隐处，臭（上自下死）数月乃已。<br>      呜呼！彼以其饱食无祸为可恒也哉！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://navigating.github.io/2009/三戒-唐-柳宗元/" data-id="cishktfr7007qmolmkrrgyyp6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2008/JNI实战" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2008/JNI实战/" class="article-date">
+  <time datetime="2008-04-01T15:15:01.000Z" itemprop="datePublished">2008-04-01</time>
 </a>
     
   <div class="article-category">
@@ -375,7 +477,7 @@ var _hmt = _hmt || [];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2007/RubyOnRails实战/">RubyOnRails实战</a>
+      <a class="article-title" href="/2008/JNI实战/">JNI实战</a>
     </h1>
   
 
@@ -383,863 +485,25 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>简单开始<br>下载并且安装</p>
-<pre><code><span class="tag">Ruby</span> 1<span class="class">.8</span><span class="class">.4</span>;
-<span class="tag">RubyGems</span>;
-</code></pre><p>通过命令行安装所有的Rails和其依赖：</p>
-<pre><code>gem <span class="keyword">install</span> rails --<span class="keyword">include</span>-dependencies
-</code></pre><p>在用户工作目录运行命令行，即创建第一个rails的模板：</p>
-<pre><code>rails depot
-<span class="keyword">cd</span> depot
-<span class="keyword">ruby</span> script/server
-</code></pre><p>在浏览器打开 <a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a> 即可发现第一个rails的web应用已经开始run起来了。</p>
-<p>然后我参考书籍《Agile Web Development with Rails》2nd Edition的第一个例子一步一步的动手写了第一个ROR程序。(具体的过程不详细记录了.)<br>从数据库准备、数据库的配置、创建表、migrate、创建controller和maintenance、add missing column、添加validation功能、使用scaffold、定制html、装填unit test数据。整个例子的思路比较清晰，从数据库、数据访问、业务、controller、展示；给我留下深刻的影响的是：自动生成功能、内嵌web server、支持数据库配置，支持应用的模板、支持mvc模板等，所以让人似乎感觉到一些DSL的色彩。</p>
-<p>做一个复杂一些的例子<br>数据库准备<br>支持数据库Mysql，从 <a href="http://dev.mysql.com/downloads/mysql/5.0.html#downloads" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/5.0.html#downloads</a> 下载数据库Mysql安装，并且下载Mysql Administrator作为数据库管理工具。<br>创建Schema为：</p>
-<pre><code>depot_dev
-</code></pre><p>在文件./config/database.yml中对数据库进行配置：</p>
-<pre><code><span class="attribute">development</span>:
-  <span class="attribute">adapter</span>: mysql
-  <span class="attribute">database</span>: depot_dev
-  <span class="attribute">username</span>: depot
-  <span class="attribute">password</span>: depot
-  <span class="attribute">host</span>: localhost
-</code></pre><p>测试配置：</p>
-<pre><code><span class="tag">rake</span> <span class="rule"><span class="attribute">db</span>:<span class="value">migrate</span></span>
-</code></pre><p>如果配置不正确在控制台会出现错误的日志。<br>创建Products的Model和Table如下：</p>
-<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;ruby script/generate model product
-</code></pre><p>输出：</p>
-<pre><code>exists  <span class="keyword">app</span>/models/
-exists  <span class="keyword">test</span>/unit/
-exists  <span class="keyword">test</span>/fixtures/
-create  <span class="keyword">app</span>/models/product.rb
-create  <span class="keyword">test</span>/unit/product_test.rb
-create  <span class="keyword">test</span>/fixtures/products.yml
-create  <span class="keyword">db</span>/migrate
-create  <span class="keyword">db</span>/migrate/001_create_products.rb
-</code></pre><p>在./db/migrate/001_create_products.rb用类似DDL的形式表达表的结构:</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">CreateProducts</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Migration</span></span></span>
-  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.up
-    create_table <span class="symbol">:products</span> <span class="keyword">do</span> |t|
-      t.column <span class="symbol">:title</span>,       <span class="symbol">:string</span>
-      t.column <span class="symbol">:description</span>, <span class="symbol">:text</span>
-      t.column <span class="symbol">:image_url</span>,   <span class="symbol">:string</span>
-    <span class="keyword">end</span>
-  <span class="keyword">end</span>
-
-  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.down
-    drop_table <span class="symbol">:products</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-</code></pre><p>Okey，那就Migrate吧：</p>
-<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;rake db:migrate
-</code></pre><p>输出：</p>
-<pre><code><span class="constant">D</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:Warning</span><span class="symbol">:</span> require_gem is obsolete.  <span class="constant">Use</span> gem instead.
-(<span class="keyword">in</span> <span class="constant">D</span><span class="symbol">:/IDE/rails-exampe/depot</span>)
-== <span class="constant">CreateProducts</span><span class="symbol">:</span> migrating ==================================================
--- create_table(<span class="symbol">:products</span>)
-   -&gt; <span class="number">0</span>.<span class="number">07</span>80s
-== <span class="constant">CreateProducts</span><span class="symbol">:</span> migrated (<span class="number">0</span>.<span class="number">07</span>80s) =========================================
-</code></pre><p>数据库一切搞定，下一步开始应用层了，首先创建Controller: </p>
-<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;ruby script/generate controller admin
-</code></pre><p>输出：</p>
-<pre><code>exists  app<span class="regexp">/controllers/</span>
-exists  app<span class="regexp">/helpers/</span>
-create  app<span class="regexp">/views/</span>admin
-exists  test<span class="regexp">/functional/</span>
-create  app<span class="regexp">/controllers/</span>admin_controller.rb
-create  test<span class="regexp">/functional/</span>admin_controller_test.rb
-create  app<span class="regexp">/helpers/</span>admin_helper.rb
-</code></pre><p>创建Maintenance应用：<br>编辑app/controller/admin_controller.rb  </p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">AdminController</span> <span class="inheritance">&lt; <span class="parent">ApplicationController</span></span></span>
-  scaffold <span class="symbol">:product</span>
-<span class="keyword">end</span>
-</code></pre><p>启动ruby script/server,通过浏览器就可以浏览这个Rail scaffolds的应用了。<br>迭代2:Add a missing column</p>
-<pre><code><span class="keyword">D</span>:\IDE\rails-exampe\depot&gt;ruby script/<span class="keyword">generate</span> migration add_price
-      exists  <span class="keyword">db</span>/migrate
-      create  <span class="keyword">db</span>/migrate/002_add_price.rb
-</code></pre><p>编辑db/migrate/002_add_price.rb</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">AddPrice</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Migration</span></span></span>
-  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.up
-    add_column <span class="symbol">:products</span>, <span class="symbol">:price</span>, <span class="symbol">:decimal</span>, <span class="symbol">:precision</span> =&gt; <span class="number">8</span>, <span class="symbol">:scale</span> =&gt; <span class="number">2</span>, <span class="symbol">:default</span> =&gt; <span class="number">0</span>
-  <span class="keyword">end</span>
-
-  <span class="function"><span class="keyword">def</span> </span><span class="keyword">self</span>.down
-    remove_column <span class="symbol">:products</span>, <span class="symbol">:price</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-</code></pre><p>执行命令：</p>
-<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;rake db:migrate
-</code></pre><p>输出：</p>
-<pre><code><span class="constant">D</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:Warning</span><span class="symbol">:</span> require_gem is obsolete.  <span class="constant">Use</span> gem instead.
-(<span class="keyword">in</span> <span class="constant">D</span><span class="symbol">:/IDE/rails-exampe/depot</span>)
-== <span class="constant">AddPrice</span><span class="symbol">:</span> migrating ========================================================
--- add_column(<span class="symbol">:products</span>, <span class="symbol">:price</span>, <span class="symbol">:decimal</span>, {<span class="symbol">:default=&gt;</span><span class="number">0</span>, <span class="symbol">:precision=&gt;</span><span class="number">8</span>, <span class="symbol">:scale=&gt;</span><span class="number">2</span>})
--&gt; <span class="number">0</span>.<span class="number">2650</span>s
-== <span class="constant">AddPrice</span><span class="symbol">:</span> migrated (<span class="number">0</span>.<span class="number">2650</span>s) ===============================================
-</code></pre><p>一切Okey,第二个迭代也已经结束:)<br>第三个迭代：Validate!<br>编辑app/model/product.rb文件：</p>
-<pre><code><span class="class"><span class="keyword">class</span> <span class="title">Product</span> <span class="inheritance">&lt; <span class="parent">ActiveRecord::Base</span></span></span>
-  validates_presence_of <span class="symbol">:title</span>, <span class="symbol">:description</span>, <span class="symbol">:image_url</span>
-  validates_numericality_of <span class="symbol">:price</span>
-  validates_uniqueness_of <span class="symbol">:title</span>
-  validates_format_of <span class="symbol">:image_url</span>, 
-                      <span class="symbol">:with</span>    =&gt; <span class="regexp">%r{\.(gif|jpg|png)$}i</span>,
-                      <span class="symbol">:message</span> =&gt; <span class="string">"must be a URL for a GIF, JPG, or PNG image"</span>
-
-  protected
-  <span class="function"><span class="keyword">def</span> </span>validate
-    errors.add(<span class="symbol">:price</span>, <span class="string">"should be at least 0.01"</span>) <span class="keyword">if</span> price.<span class="keyword">nil</span>? ||  price &lt; <span class="number">0</span>.<span class="number">01</span>
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-</code></pre><p>第四个迭代：Prettier Listings<br>创建静态的scaffold如下：   </p>
-<pre><code><span class="keyword">D</span>:\IDE\rails-exampe\depot&gt;ruby script/<span class="keyword">generate</span> scaffold product admin
-      exists  <span class="keyword">app</span>/controllers/
-      exists  <span class="keyword">app</span>/helpers/
-      exists  <span class="keyword">app</span>/views/admin
-      exists  <span class="keyword">app</span>/views/layouts/
-      exists  <span class="keyword">test</span>/functional/
-  dependency  model
-      exists    <span class="keyword">app</span>/models/
-      exists    <span class="keyword">test</span>/unit/
-      exists    <span class="keyword">test</span>/fixtures/
-        skip    <span class="keyword">app</span>/models/product.rb
-   identical    <span class="keyword">test</span>/unit/product_test.rb
-   identical    <span class="keyword">test</span>/fixtures/products.yml
-      create  <span class="keyword">app</span>/views/admin/_form.rhtml
-      create  <span class="keyword">app</span>/views/admin/<span class="keyword">list</span>.rhtml
-      create  <span class="keyword">app</span>/views/admin/show.rhtml
-      create  <span class="keyword">app</span>/views/admin/new.rhtml
-      create  <span class="keyword">app</span>/views/admin/<span class="keyword">edit</span>.rhtml
-overwrite <span class="keyword">app</span>/controllers/admin_controller.rb? [Ynaqd] <span class="literal">y</span>
-       force  <span class="keyword">app</span>/controllers/admin_controller.rb
-overwrite <span class="keyword">test</span>/functional/admin_controller_test.rb? [Ynaqd] <span class="literal">y</span>
-       force  <span class="keyword">test</span>/functional/admin_controller_test.rb
-   identical  <span class="keyword">app</span>/helpers/admin_helper.rb
-overwrite <span class="keyword">app</span>/views/layouts/admin.rhtml? [Ynaqd] <span class="literal">y</span>
-       force  <span class="keyword">app</span>/views/layouts/admin.rhtml
-      create  public/stylesheets/scaffold.css
-</code></pre><p>定制list.rhtml:  </p>
-<pre><code><span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"product-list"</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Product Listing<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-
-  <span class="tag">&lt;<span class="title">table</span> <span class="attribute">cellpadding</span>=<span class="value">"5"</span> <span class="attribute">cellspacing</span>=<span class="value">"0"</span>&gt;</span>
-  </span>&lt;%<span class="ruby"> <span class="keyword">for</span> product <span class="keyword">in</span> <span class="variable">@products</span> </span>%&gt;<span class="xml">
-    <span class="tag">&lt;<span class="title">tr</span> <span class="attribute">valign</span>=<span class="value">"top"</span> <span class="attribute">class</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> cycle(<span class="string">'list-line-odd'</span>, <span class="string">'list-line-even'</span>) </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
-
-      <span class="tag">&lt;<span class="title">td</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">"list-image"</span> <span class="attribute">src</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> product.image_url </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>/&gt;</span>
-      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-
-      <span class="tag">&lt;<span class="title">td</span> <span class="attribute">width</span>=<span class="value">"60%"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"list-title"</span>&gt;</span></span>&lt;%=<span class="ruby"> h(product.title) </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">br</span> /&gt;</span>
-        </span>&lt;%=<span class="ruby"> h(truncate(product.description, <span class="number">80</span>)) </span>%&gt;<span class="xml">
-      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-
-      <span class="tag">&lt;<span class="title">td</span> <span class="attribute">class</span>=<span class="value">"list-actions"</span>&gt;</span>
-        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Show'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'show'</span>, <span class="symbol">:id</span> =&gt; product </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">br</span>/&gt;</span>
-        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Edit'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'edit'</span>, <span class="symbol">:id</span> =&gt; product </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">br</span>/&gt;</span>
-        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Destroy'</span>, { <span class="symbol">:action</span>  =&gt; <span class="string">'destroy'</span>, <span class="symbol">:id</span> =&gt; product },
-                                 <span class="symbol">:confirm</span> =&gt; <span class="string">"Are you sure?"</span>,
-                                 <span class="symbol">:method</span>  =&gt; <span class="symbol">:post</span> </span>%&gt;<span class="xml">
-      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
-  </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml">
-  <span class="tag">&lt;/<span class="title">table</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-
-</span>&lt;%=<span class="ruby">  <span class="keyword">if</span> <span class="variable">@product_pages</span>.current.previous 
-       link_to(<span class="string">"Previous page"</span>, { <span class="symbol">:page</span> =&gt; <span class="variable">@product_pages</span>.current.previous })
-     <span class="keyword">end</span>
-</span>%&gt;<span class="xml">
-</span>&lt;%=<span class="ruby"> <span class="keyword">if</span> <span class="variable">@product_pages</span>.current.<span class="keyword">next</span> 
-      link_to(<span class="string">"Next page"</span>, { <span class="symbol">:page</span> =&gt; <span class="variable">@product_pages</span>.current.<span class="keyword">next</span> })
-    <span class="keyword">end</span>
-</span>%&gt;<span class="xml">
-
-<span class="tag">&lt;<span class="title">br</span> /&gt;</span>
-
-</span>&lt;%=<span class="ruby"> link_to <span class="string">'New product'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'new'</span> </span>%&gt;<span class="xml"></span>
-</code></pre><p>增加测试数据： </p>
-<pre><code><span class="keyword">D</span>:\IDE\rails-exampe\depot&gt;ruby script/<span class="keyword">generate</span> migration add_test_data
-      exists  <span class="keyword">db</span>/migrate
-      create  <span class="keyword">db</span>/migrate/003_add_test_data.rb
-</code></pre><p>编辑db/migrate/003_add_test_data.rb:  </p>
-<pre><code><span class="keyword">class</span> <span class="type">AddTestData</span> &lt; <span class="type">ActiveRecord</span>::<span class="type">Migration</span>
-  def self.up
-    <span class="type">Product</span>.delete_all
-    <span class="type">Product</span>.create(:title =&gt; <span class="symbol">'Pragmatic</span> <span class="type">Version</span> <span class="type">Control'</span>,
-      :description =&gt;
-      %{&lt;p&gt;
-        <span class="type">This</span> book is a recipe-based approach <span class="keyword">to</span> using <span class="type">Subversion</span> that will
-        get you up <span class="keyword">and</span> running quickly--<span class="keyword">and</span> correctly. <span class="type">All</span> projects need
-    version control: it's a foundational piece <span class="keyword">of</span> any project's
-    infrastructure. <span class="type">Yet</span> half <span class="keyword">of</span> all project teams <span class="keyword">in</span> the <span class="type">U</span>.<span class="type">S</span>. don't use
-    any version control at all. <span class="type">Many</span> others don't use it well, <span class="keyword">and</span> <span class="keyword">end</span>
-    up experiencing time-consuming problems.
-      &lt;/p&gt;},
-    :image_url =&gt; <span class="char">'/images/svn.jpg'</span>,
-    :price =&gt; <span class="number">28.50</span>)
-  <span class="keyword">end</span>
-
-  def self.down
-    <span class="type">Product</span>.delete_all
-  <span class="keyword">end</span>
-<span class="keyword">end</span>
-</code></pre><p>安装测试数据：</p>
-<pre><code>D:<span class="command">\IDE</span><span class="command">\rails</span>-exampe<span class="command">\depot</span>&gt;rake db:migrate
-</code></pre><p>输出：</p>
-<pre><code><span class="constant">D</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:Warning</span><span class="symbol">:</span> require_gem is obsolete.  <span class="constant">Use</span> gem instead.
-(<span class="keyword">in</span> <span class="constant">D</span><span class="symbol">:/IDE/rails-exampe/depot</span>)
-== <span class="constant">AddTestData</span><span class="symbol">:</span> migrating =====================================================
-== <span class="constant">AddTestData</span><span class="symbol">:</span> migrated (<span class="number">0</span>.<span class="number">2030</span>s) ============================================
-</code></pre><p>编辑Layouts:app/views/layouts/admin.rhtml  </p>
-<pre><code><span class="xml"><span class="doctype">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
-<span class="tag">&lt;<span class="title">html</span>&gt;</span>
-<span class="tag">&lt;<span class="title">head</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">title</span>&gt;</span>Admin: </span>&lt;%=<span class="ruby"> controller.action_name </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">title</span>&gt;</span>
-  </span>&lt;%=<span class="ruby"> stylesheet_link_tag <span class="string">'scaffold'</span>, <span class="string">'depot'</span> </span>%&gt;<span class="xml">
-<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
-<span class="tag">&lt;<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;<span class="title">p</span> <span class="attribute">style</span>=<span class="value">"color: green"</span>&gt;</span></span>&lt;%=<span class="ruby"> flash[<span class="symbol">:notice</span>] </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">p</span>&gt;</span>
-</span>&lt;%=<span class="ruby"> <span class="keyword">yield</span> <span class="symbol">:layout</span> </span>%&gt;<span class="xml">
-<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">html</span>&gt;</span></span>
-</code></pre><p>编辑：app/views/admin/list.rhtml</p>
-<pre><code><span class="xml"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"product-list"</span>&gt;</span>
-  <span class="tag">&lt;<span class="title">h1</span>&gt;</span>Product Listing<span class="tag">&lt;/<span class="title">h1</span>&gt;</span>
-
-  <span class="tag">&lt;<span class="title">table</span> <span class="attribute">cellpadding</span>=<span class="value">"5"</span> <span class="attribute">cellspacing</span>=<span class="value">"0"</span>&gt;</span>
-  </span>&lt;%<span class="ruby"> <span class="keyword">for</span> product <span class="keyword">in</span> <span class="variable">@products</span> </span>%&gt;<span class="xml">
-    <span class="tag">&lt;<span class="title">tr</span> <span class="attribute">valign</span>=<span class="value">"top"</span> <span class="attribute">class</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> cycle(<span class="string">'list-line-odd'</span>, <span class="string">'list-line-even'</span>) </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
-
-      <span class="tag">&lt;<span class="title">td</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">img</span> <span class="attribute">class</span>=<span class="value">"list-image"</span> <span class="attribute">src</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> product.image_url </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>/&gt;</span>
-      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-
-      <span class="tag">&lt;<span class="title">td</span> <span class="attribute">width</span>=<span class="value">"60%"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">span</span> <span class="attribute">class</span>=<span class="value">"list-title"</span>&gt;</span></span>&lt;%=<span class="ruby"> h(product.title) </span>%&gt;<span class="xml"><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">br</span> /&gt;</span>
-        </span>&lt;%=<span class="ruby"> h(truncate(product.description, <span class="number">80</span>)) </span>%&gt;<span class="xml">
-      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-
-      <span class="tag">&lt;<span class="title">td</span> <span class="attribute">class</span>=<span class="value">"list-actions"</span>&gt;</span>
-        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Show'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'show'</span>, <span class="symbol">:id</span> =&gt; product </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">br</span>/&gt;</span>
-        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Edit'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'edit'</span>, <span class="symbol">:id</span> =&gt; product </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">br</span>/&gt;</span>
-        </span>&lt;%=<span class="ruby"> link_to <span class="string">'Destroy'</span>, { <span class="symbol">:action</span>  =&gt; <span class="string">'destroy'</span>, <span class="symbol">:id</span> =&gt; product },
-                                 <span class="symbol">:confirm</span> =&gt; <span class="string">"Are you sure?"</span>,
-                                 <span class="symbol">:method</span>  =&gt; <span class="symbol">:post</span> </span>%&gt;<span class="xml">
-      <span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
-  </span>&lt;%<span class="ruby"> <span class="keyword">end</span> </span>%&gt;<span class="xml">
-  <span class="tag">&lt;/<span class="title">table</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-
-</span>&lt;%=<span class="ruby">  <span class="keyword">if</span> <span class="variable">@product_pages</span>.current.previous 
-       link_to(<span class="string">"Previous page"</span>, { <span class="symbol">:page</span> =&gt; <span class="variable">@product_pages</span>.current.previous })
-     <span class="keyword">end</span>
-</span>%&gt;<span class="xml">
-</span>&lt;%=<span class="ruby"> <span class="keyword">if</span> <span class="variable">@product_pages</span>.current.<span class="keyword">next</span> 
-      link_to(<span class="string">"Next page"</span>, { <span class="symbol">:page</span> =&gt; <span class="variable">@product_pages</span>.current.<span class="keyword">next</span> })
-    <span class="keyword">end</span>
-</span>%&gt;<span class="xml">
-
-<span class="tag">&lt;<span class="title">br</span> /&gt;</span>
-
-</span>&lt;%=<span class="ruby"> link_to <span class="string">'New product'</span>, <span class="symbol">:action</span> =&gt; <span class="string">'new'</span> </span>%&gt;<span class="xml"></span>
-</code></pre><p>参考：<br><a href="http://www.rubyonrails.org/down" target="_blank" rel="external">http://www.rubyonrails.org/down</a><br>书籍《Agile Web Development with Rails》2nd Edition</p>
-<p>另，JSR 315: Java Servlet 3.0 Specification under review at JCP：<a href="http://jcp.org/en/jsr/detail?id=315可以看到Servlet" target="_blank" rel="external">http://jcp.org/en/jsr/detail?id=315可以看到Servlet</a> 3.0的规范中要涉及到的一些东西。</p>
+        <p>JNI即是Java Native Interface，主要用来Java和其他语言之间的交互，多半是和平台依赖的调用、其他高级语言的库甚至是低级语言交互。相信大家平时在JDK中看到很多native的方法，但是自己写JNI应用的会确很少。这次因为在进行开发中，遇到需要Java调用一个现成的成熟的功能完善的C语言应用库，因此 JNI便成了Java和C库之间的桥的功能。既然是初探，那么下面我们就从HelloWorld开始吧：虽然Java是一个跨平台的语言，但是C语言是一个和平台密切相关的语言；所以针对Unix、Linux、Windows等不同的操作系统，C语言的预编译，动态库的创建等都有一些差别，也需要我们分别进行处理之。下面仅基于Sun的Unix平台Sun Solaris开发为例。<br>1.首先声明第一个Java native程序：HelloWorld.java。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">HelloWorld</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> &#123;</span><br><span class="line">        init();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> native <span class="keyword">int</span> <span class="title">hello</span>(<span class="params"></span>)</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">sayHello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> hello();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * @param args</span><br><span class="line">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>&#123;</span><br><span class="line">        HelloWorld hw = <span class="keyword">new</span> HelloWorld();</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Say in Java:"</span> + hw.sayHello());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">init</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Starting to load HelloWorld lib."</span>);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            System.loadLibrary(<span class="string">"HelloWorld"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">            System.<span class="keyword">out</span>.println(<span class="string">"Load unsuccessfully."</span>);</span><br><span class="line">            t.printStackTrace();</span><br><span class="line">            System.exit(-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        System.<span class="keyword">out</span>.println(<span class="string">"Load successfully."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>2.编译该Java文件。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">javac</span> <span class="tag">HelloWorld</span><span class="class">.java</span></span><br></pre></td></tr></table></figure></p>
+<p>3.生成相应的C语言的HelloWorld.h头文件，javah HelloWorld，头文件内容如下：(其中，static Java方法和非static Java方法经过javah -jni生成的C头文件是有区别的，差异在于参数，static Java方法生成的相应的C方法的第二个参数是jclass类型，非static Java方法生成的相应的C方法的第二个参数是jobject类型。)<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">more</span> HelloWorld.<span class="literal">h</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* DO NOT EDIT THIS FILE - it is machine generated */</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;jni.h&gt;</span></span><br><span class="line"><span class="comment">/* Header for class HelloWorld */</span></span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#ifndef _Included_HelloWorld</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> _Included_HelloWorld</span></span><br><span class="line"><span class="preprocessor">#ifdef __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">"C"</span> &#123;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="comment">/*</span><br><span class="line"> * Class:     HelloWorld</span><br><span class="line"> * Method:    hello</span><br><span class="line"> * Signature: ()I</span><br><span class="line"> */</span></span><br><span class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Java_HelloWorld_hello</span></span><br><span class="line">  <span class="params">(JNIEnv *, jobject)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#ifdef __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="number">4.</span>开始编写第一个c语言的JNI的本地(native)方法:</span><br><span class="line">vi HelloWorld.c</span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;jni.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "HelloWorld.h"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="function">JNIEXPORT jint JNICALL <span class="title">Java_HelloWorld_hello</span></span><br><span class="line"><span class="params">(JNIEnv* env, jobject target)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"Hello World in C program!!!\n"</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.生成Unix下的动态库.so文件：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cc</span> -<span class="keyword">G</span> -I. -I<span class="label">$JAVA_HOME</span>/<span class="keyword">include</span> -I<span class="label">$JAVA_HOME</span>/<span class="keyword">include</span>/solaris HelloWorld.c -o libHelloWorld.<span class="keyword">so</span></span><br></pre></td></tr></table></figure></p>
+<p>在当前目录下看到新生成的libHelloWorld.so文件。也许你会注意到我们在Java程序中System.loadLibrary()加载的是库HelloWorld，那么这其实是一个命名的规范而已。以lib开头的.so文件即是Unix下的动态库，而JNI加载器通过HelloWorld这个名字实际上希望加载的动态库是libHelloWorld.so。<br>6.设置环境变量，查看LD_LIBRARY_PATH并设置：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">vi</span> <span class="class">.cshrc</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">setenv</span> LD_LIBRARY_PATH <span class="string">'.:/usr/local/lib:<span class="variable">$LD_LIBRARY_PATH</span>'</span></span><br><span class="line">source .cshrc</span><br></pre></td></tr></table></figure>
+<p>这个环境变量设置的是Java的动态库加载器需要加载的C动态库所在的路径。因此，我们生成的libHelloWorld.so一定要在这个环境变量中设置，在这个例子中我就把当前目录.加到环境变量LD_LIBRARY_PATH了:)<br>7.执行HelloWorld文件，java HelloWorld，在标准输出上看到：<br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Starting to load HelloWorld lib.</span><br><span class="line">Load successfully.</span><br><span class="line">Hello World in C program!!!</span><br><span class="line"><span class="keyword">Say</span> in Java:2</span><br></pre></td></tr></table></figure></p>
+<p>一切Okey,如此的easy,一阵狂喜！接下来就是将这个例子运用于JNI的开发之中了。</p>
+<p>Resource:<br>《Java Native Interface: Programmer’s Guide and Specification》<br><a href="http://java.sun.com/docs/books/jni/html/start.html#27008" target="_blank" rel="external">http://java.sun.com/docs/books/jni/html/start.html#27008</a><br><a href="http://linuxmafia.com/faq/Admin/ld-lib-path.html" target="_blank" rel="external">http://linuxmafia.com/faq/Admin/ld-lib-path.html</a><br><a href="https://www6.software.ibm.com/developerworks/cn/education/java/j-jni/tutorial/j-jni-2-15.html" target="_blank" rel="external">https://www6.software.ibm.com/developerworks/cn/education/java/j-jni/tutorial/j-jni-2-15.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/RubyOnRails实战/" data-id="cis67bj9k0096kclm0huvs2c9" class="article-share-link">Share</a>
+      <a data-url="http://navigating.github.io/2008/JNI实战/" data-id="cishktfsi008kmolmps0jhc6d" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JNI/">JNI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
 
-
-  
-    <article id="post-2007/Google-Guice实战" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/Google-Guice实战/" class="article-date">
-  <time datetime="2007-05-31T03:54:49.000Z" itemprop="datePublished">2007-05-31</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/Google-Guice实战/">Google Guice实战</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Guice(pronounced “juice”)发布了1.0版本.<br>首先看看Guice的定位：an ultra-lightweight, next-generation dependency injection container for Java 5 and later.<br>这是一个基于Java 5及后续版本的轻量级依赖注入容器。Martin Fowler关于依赖注入的精彩讨论参见：<a href="http://www.martinfowler.com/articles/injection.html#InversionOfControl" target="_blank" rel="external">http://www.martinfowler.com/articles/injection.html#InversionOfControl</a><br>在这篇讨论中涉及到几种注入方式：Constructor Injection、Setter Injection、Interface Injection;<br>实际应用开发中依赖的注入问题自始至终都伴随着我们，当我们走过了最简单直接的手动注入、运用模式进行注入，到依赖于框架，当前成熟的框架众多，例如：Spring IOC、PicoContainer、Hivemind等；那么Guice作为一个依赖注入的framework，又是怎么定位自己的呢？其special的地方又在哪儿呢？我们首先看一个非常简单的例子：<br>对于注入描述的类如下：</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
-    <span class="keyword">public</span> <span class="keyword">void</span> configure(Binder binder) {
-        binder.bind(Service.<span class="keyword">class</span>).to(ServiceImpl.<span class="keyword">class</span>).<span class="keyword">in</span>(Scopes.SINGLETON);
-    }
-}
-</code></pre><p>依赖注入发生的地方：</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>{
-
-    <span class="keyword">private</span> <span class="keyword">final</span> Service service;
-
-    <span class="annotation">@Inject</span>
-    <span class="function"><span class="keyword">public</span> <span class="title">Client</span><span class="params">(Service service)</span> </span>{
-        <span class="keyword">this</span>.service = service;
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{
-        service.go();
-    }
-}
-</code></pre><p>从这个例子我们可以清晰看出，Guice的依赖注入已经不同于以往的三种注入模式了，Okey，你已经看到了Guice充分使用了Java的新特性annotation来进行依赖注入的，已经完全跨越了Constructor Injection、Setter Injection、Interface Injection的概念了。这样，依赖注入只是需要一个或者多个annotation而已，一切搞定。<br>下一步我看看Guice这个Framework是要如何进行依赖注入的？<br>我们首先看看Guice的Architecture.</p>
-<pre><code>public class MyModule implements Module {
-   <span class="keyword"> public</span> void<span class="function"> configure(</span>Binder binder<span class="function">)</span> {
-        // Bind Foo to FooImpl. Guice will create a<span class="instruction"> new
-</span>        //<span class="instruction"> instance </span>of FooImpl for every injection.
-       <span class="function"> binder.bind(</span>Foo.class<span class="function">)</span>.to(FooImpl.class<span class="function">)</span>;
-
-        // Bind Bar to an<span class="instruction"> instance </span>of Bar.
-        Bar bar =<span class="instruction"> new </span>Bar(<span class="function">)</span>;
-       <span class="function"> binder.bind(</span>Bar.class<span class="function">)</span>.toInstance(bar<span class="function">)</span>;
-    }
-}
-</code></pre><p>该部分代码的sequence diagram如下：</p>
-<p>运行时Guice的依赖注入的绑定器structure如下：</p>
-<p>很明显的看到，一个注入的绑定关联主键Key、Scope、Provider；其中Key包含了依赖的Type和Annotation.<br>看到了Guice的简单绑定，一定会有一个疑问：就是一个类型的多个绑定怎么实现？Guice是运行Annotation binding来解决这个问题的。<br>例如绑定代码如下：</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingModule</span> <span class="keyword">implements</span> <span class="title">Module</span> {</span>
-
-    <span class="keyword">public</span> <span class="typename">void</span> configure(Binder binder) {
-        binder.bind(IService.<span class="keyword">class</span>).annotatedWith(Blue.<span class="keyword">class</span>).to(BlueService.<span class="keyword">class</span>);
-
-    }
-
-}
-注入代码如下：
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BindingClient</span> {</span>
-    <span class="comment">// @Inject</span>
-    <span class="comment">// @Blue</span>
-    <span class="comment">// private IService service;</span>
-
-    <span class="keyword">private</span> IService service;
-
-    <span class="annotation">@Inject</span>
-    <span class="keyword">public</span> <span class="typename">void</span> injectService(<span class="annotation">@Blue</span> IService service) {
-        <span class="keyword">this</span>.service = service;
-    }
-
-    <span class="keyword">public</span> <span class="typename">void</span> go() {
-        <span class="keyword">this</span>.service.go();
-    }
-}
-annotation部分代码：
-
-<span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)
-<span class="annotation">@Target</span>({ElementType.FIELD, ElementType.PARAMETER})
-<span class="annotation">@BindingAnnotation</span>
-<span class="keyword">public</span> <span class="annotation">@interface</span> Blue {
-
-}
-</code></pre><p>如果再复杂一些，Guice还支持有属性的annotation:<br>绑定代码</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
-
-<span class="comment">/*
-* (non-Javadoc)
-* 
-* @see com.google.inject.Module#configure(com.google.inject.Binder)
-*/</span>
-<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(Binder binder)</span> </span>{
-    binder.bind(IPerson.class).annotatedWith(<span class="keyword">new</span> NamedAnnotation(<span class="string">"Bob"</span>)).to(Bob.class);
-}
-
-}
-注入代码：
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedClient</span> </span>{
-
-    <span class="annotation">@Inject</span>
-    <span class="annotation">@Named</span>(<span class="string">"Bob"</span>)
-    <span class="keyword">private</span> IPerson person;
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">say</span><span class="params">()</span></span>{
-        <span class="keyword">this</span>.person.say();
-    }
-}
-annotation代码：
-
-<span class="annotation">@Retention</span>(RetentionPolicy.RUNTIME)
-<span class="annotation">@Target</span>({ElementType.FIELD, ElementType.PARAMETER})
-<span class="annotation">@BindingAnnotation</span>
-<span class="keyword">public</span> <span class="annotation">@interface</span> Named {
-    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;
-}
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">NamedAnnotation</span> <span class="keyword">implements</span> <span class="title">Named</span> </span>{
-
-    <span class="keyword">private</span> String value;
-
-    <span class="function"><span class="keyword">public</span> <span class="title">NamedAnnotation</span><span class="params">(String value)</span></span>{
-        <span class="keyword">this</span>.value = value;
-    }
-    <span class="comment">/*
-    * (non-Javadoc)
-    * 
-    * @see com.neusoft.anno.Named#value()
-    */</span>
-    <span class="function"><span class="keyword">public</span> String <span class="title">value</span><span class="params">()</span> </span>{
-        <span class="keyword">return</span> value;
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>{
-        <span class="keyword">return</span> <span class="number">127</span> * <span class="string">"value"</span>.hashCode() ^ value.hashCode();
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>{
-    <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Named))
-        <span class="keyword">return</span> <span class="keyword">false</span>;
-        Named other = (Named) o;
-        <span class="keyword">return</span> value.equals(other.value());
-    }
-
-    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>{
-        <span class="keyword">return</span> <span class="string">"@"</span> + Named.class.getName() + <span class="string">"(value="</span> + value + <span class="string">")"</span>;
-    }
-
-    <span class="comment">/*
-    * (non-Javadoc)
-    * 
-    * @see java.lang.annotation.Annotation#annotationType()
-    */</span>
-    <span class="function"><span class="keyword">public</span> Class <span class="title">annotationType</span><span class="params">()</span> </span>{
-        <span class="keyword">return</span> Named.class;
-    }
-
-}
-</code></pre><p>通过这几个例子，可以清晰看到，Guice应用annotation进行注入的关联的，用module将依赖关系组装起来，提供给客户端代码进行使用；而且annotation是可以自由定制的，支持灵活扩展的。</p>
-<p>Guice本身也支持实现类的直接绑定：</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MixerModule</span> <span class="keyword">implements</span> <span class="title">Module</span> </span>{
-
-    <span class="comment">/*
-    * (non-Javadoc)
-    * 
-    * @see com.google.inject.Module#configure(com.google.inject.Binder)
-    */</span>
-    <span class="keyword">public</span> <span class="keyword">void</span> configure(Binder binder) {
-        binder.bind(Concrete.<span class="keyword">class</span>);
-
-    }
-
-}
-</code></pre><p>Guice有一种隐式绑定，其方法是这样，针对一个接口，如果缺少显式绑定，Guice 会寻找一个指向具体实现的@ImplementedBy标注。</p>
-<pre><code><span class="annotation">@ImplementedBy</span>(GoodNightImpl.class)
-    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IGoodNight</span> </span>{
-
-    <span class="function"><span class="keyword">void</span> <span class="title">goodNight</span><span class="params">()</span></span>;
-    }
-
-    <span class="annotation">@Singleton</span>
-    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GoodNightImpl</span> <span class="keyword">implements</span> <span class="title">IGoodNight</span> </span>{
-
-    <span class="comment">/*
-    * (non-Javadoc)
-    * 
-    * @see com.neusoft.nobinding.IGoodNight#goodNight()
-    */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">goodNight</span><span class="params">()</span> </span>{
-        System.out.println(<span class="string">"Good night!"</span>);
-    }
-
-}
-</code></pre><p>那么，Provider是怎么回事呢？“有时对于每次注入，客户代码需要某个依赖的多个实例。其它时候，客户可能不想在一开始就真地获取对象，而是等到注入后的某个时候再获取。对于任意绑定类型 T，你可以不直接注入 T 的实例，而是注入一个 Provider，然后在需要的时候调用 Provider.get()”因此，可以使用Provider去真正的来创建依赖的对象实例，直到需要的时候才创建客户代码需要的实例。</p>
-<p>Provider等绑定代码：</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetModule</span> <span class="keyword">implements</span> <span class="title">Module</span> {</span>
-
-    <span class="comment">/*
-    * (non-Javadoc)
-    * 
-    * @see com.google.inject.Module#configure(com.google.inject.Binder)
-    */</span>
-    <span class="keyword">public</span> <span class="typename">void</span> configure(Binder binder) {
-        binder.bind(IService.<span class="keyword">class</span>).to(WidgetService.<span class="keyword">class</span>).<span class="keyword">in</span>(Scopes.SINGLETON);
-        binder.bind(Widget.<span class="keyword">class</span>).toProvider(WidgetProvider.<span class="keyword">class</span>);
-    }
-
-}
-Provider的注入：
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Widget</span> {</span>
-    <span class="keyword">private</span> IService service;
-
-    <span class="annotation">@Inject</span> Provider provider;
-
-    <span class="keyword">public</span> Widget(IService service){
-        <span class="keyword">this</span>.service = service;
-    }
-
-    <span class="keyword">public</span> <span class="typename">void</span> go(){
-        <span class="keyword">this</span>.service.go();
-    }
-}
-Provider的实现：
-
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetProvider</span> <span class="keyword">implements</span> <span class="title">Provider</span> {</span>
-
-    <span class="keyword">final</span> IService service;
-
-    <span class="annotation">@Inject</span>
-    WidgetProvider(IService service) {
-        <span class="keyword">this</span>.service = service;
-    }
-
-    <span class="keyword">public</span> Widget get() {
-        <span class="keyword">return</span> <span class="keyword">new</span> Widget(service);
-    }
-
-}
-</code></pre><p>Service的接口和实现：</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IService</span> </span>{
-
-    <span class="function"><span class="keyword">void</span> <span class="title">go</span><span class="params">()</span></span>;
-
-}
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetService</span> <span class="keyword">implements</span> <span class="title">IService</span> </span>{
-
-    <span class="comment">/* (non-Javadoc)
-    * @see com.neusoft.service.IService#go()
-    */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">go</span><span class="params">()</span> </span>{
-        System.out.println(<span class="string">"Widget Service Hello."</span>);
-    }
-
-}
-</code></pre><p>客户代码：</p>
-<pre><code><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WidgetApplication</span> </span>{
-
-    <span class="comment">/**
-    * @param args
-    */</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
-        Injector injector = Guice.createInjector(<span class="keyword">new</span> WidgetModule());
-        Widget widget = injector.getInstance(Widget.<span class="keyword">class</span>);
-        widget.go();
-    }
-
-}
-</code></pre><p>这个例子完全表达出了Provider的价值所在。<br>另外，Guice也提供了Constant Values以及Converting Stings的支持：<br>Guice会针对Primitive types、primitive wrapper types、Strings、Enums、Classes类型进行类型的自动判断绑定机制。对于Primitive types、primitive wrapper types,如果 Guice 仍然无法找到一个的显式绑定，它会去找一个拥有相同绑定标注的常量 String 绑定，并试图将字符串转换到相应的值。<br>这就是一个Guice如何进行依赖注入的一个基本的思路，可以看到Guice的代码量十分少，是一个不错的依赖注入的方案，也将会推动依赖注入的进步。<br>参考：<br>Guice项目：<a href="http://code.google.com/p/google-guice/" target="_blank" rel="external">http://code.google.com/p/google-guice/</a><br>Guice中文文档：<a href="http://docs.google.com/View?docid=dqp53rg_3hjf3ch" target="_blank" rel="external">http://docs.google.com/View?docid=dqp53rg_3hjf3ch</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Google-Guice实战/" data-id="cis67bj9z009gkclmb8j9qhft" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/走向Miami-原名：重返Miami" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/走向Miami-原名：重返Miami/" class="article-date">
-  <time datetime="2007-05-20T03:53:21.000Z" itemprop="datePublished">2007-05-20</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/生活/">生活</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/走向Miami-原名：重返Miami/">走向Miami(原名：重返Miami)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>为什么重返Miami，在自己内心深处，不知道什么是出路的时候，这不是一种逃避，是一种面对，但不是“重新”，寻找到内心很多寂寥，若有若无的种种境地。<br>在飞机在北太平洋上空，在强气流，在阳光所洒在的云层中穿梭的时候，我多么强烈的意识到一个人是必须要面对人的一生必须要面对的许许多多事情的。如同人最后一定要离开一个世界一样，无所谓失败，无所谓失去，无所谓面对。我想我是太执著于在自己过去的阴影之下，太过于执著于一种心情。<br>“许多人生活在‘其实我很希望。。。只是很可惜。。。’的模式中，找借口完全接触不到你的生命，使你不能经历成长的喜悦。只有真刀真枪地面对自己，才了解生命和幸福的深度。”当我看到一个朋友的签名的时候，不禁也想起另外一个朋友的话，“如果你要找借口，一百个你都能找到。”<br>（翻开我的blog和自己的心情，就如同一个朋友曾经一语道破为如同“失恋”的心态。悲观的心态可能有积极的人生吗?）“先知，先觉，先行”，王阳明先生“知行合一”。无论多少心情，多少道理，都不如行动来的猛烈。<br>有梦想，有目标，究竟每一天能有多少东西能够沉淀下来？为了梦想，为了目标。““无产阶级失去的只是枷锁”，如果人的一生有枷锁，就是一个人的心；最难改变的是性格中的不肯改变。准备好了吗，改变一切不肯改变的？<br>重返Miami，在于能够释放自己，释放自己平和稳定的心境，放下、放松；真刀真枪的面对自己；改变不肯改变的自己；在自己的内心寻找到自己。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/走向Miami-原名：重返Miami/" data-id="cis67bj89008mkclmcynboefo" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2007/Java-5-0的Instrumentation特性" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2007/Java-5-0的Instrumentation特性/" class="article-date">
-  <time datetime="2007-05-19T03:30:36.000Z" itemprop="datePublished">2007-05-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/技术/">技术</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2007/Java-5-0的Instrumentation特性/">Java 5.0的Instrumentation特性</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java 5发布有一段时间了，Instrumentation这个feature是Java 5新提供的。其方式是通过修改字节码的方式使得Java开发人员能够操作类。官方文档说主要是给工具提供修改应用的状态、行为使用的:)<br>先来个简单的例子看看到底什么是Instrumentation:<br>在JSE 1.5.0的Javadoc的看到java.lang.instrument仅有两个接口ClassFileTransformer和Instrumentation。我们就看看着两个接口的用法：</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Greeting</span> <span class="title">implements</span> <span class="title">ClassFileTransformer</span> {
-
-    <span class="comment">//字节码转换在这个方法中进行。</span>
-    <span class="keyword">public</span> <span class="keyword">byte</span>[] transform(ClassLoader arg0, String classname, Class arg2, ProtectionDomain arg3, <span class="keyword">byte</span>[] arg4)
-    throws IllegalClassFormatException {
-        System.<span class="keyword">out</span>.printf(<span class="string">"hello:"</span> + classname);
-        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">byte</span>[]{};
-    }
-
-    <span class="comment">//options是通过命令行传递给虚拟机的参数。</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">premain</span>(<span class="params">String options, Instrumentation ins</span>) </span>{
-        <span class="keyword">if</span> (options != <span class="keyword">null</span>) {
-            System.<span class="keyword">out</span>.printf(<span class="string">" I've been called with options: \"%s\"\n"</span>, options);
-        } <span class="keyword">else</span>
-            System.<span class="keyword">out</span>.println(<span class="string">" I've been called with no options."</span>);
-            ins.addTransformer(<span class="keyword">new</span> Greeting());
-        }
-
-    }
-
-    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Sample</span> {
-
-    <span class="comment">/**
-    * @param args
-    */</span>
-    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>) </span>{
-        (<span class="keyword">new</span> Sample()).hello();
-
-    }
-
-    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">hello</span>(<span class="params"></span>) </span>{
-        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) {
-        <span class="keyword">int</span> index =<span class="number">0</span>;
-        index++;
-        }
-    }
-
-}
-</code></pre><p>使用命令行参数的命令行：</p>
-<pre><code><span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">Greeting.jar=<span class="string">"Hello, Sample"</span> Sample</span></span>
-</code></pre><p>因此下一步是需要打个jar包，jar包中包含META-INF/MANIFEST.MF和Class文件。<br>其中META-INF/MANIFEST.MF的内容如下：<br>    Manifest-Version: 1.0<br>    Premain-Class: Timing</p>
-<p>包含的类文件有：Greeting.class和Sample.class<br>打包：</p>
-<pre><code>jar cvfM greeting<span class="class">.jar</span> *
-</code></pre><p>输出：<br>    adding: Greeting.class(in = 1774) (out= 869)(deflated 51%)<br>    adding: META-INF/(in = 0) (out= 0)(stored 0%)<br>    adding: META-INF/MANIFEST.MF(in = 44) (out= 46)(deflated -4%)<br>    adding: Sample.class(in = 556) (out= 371)(deflated 33%)</p>
-<pre><code>运行命令行：
-
-<span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">greeting.jar=<span class="string">"Hello,Sample"</span> Greeting</span></span>
-</code></pre><p>控制台输出：<br>    I’ve been called with options: “Hello,Sample”</p>
-<p>运行命令行：</p>
-<pre><code><span class="tag">java</span> <span class="rule"><span class="attribute">-javaagent</span>:<span class="value">greeting.jar=<span class="string">"Hello,Sample"</span> Sample</span></span>
-</code></pre><p>控制台输出：<br>    I’ve been called with options: “Hello,Sample”<br>    hello:Sample</p>
-<p>通过这个例子估计Instrutment API使用的方法已经基本上有了个理解了。<br>下面就是举一个用apache bcel构造bytecode的Instrutment的实际的例子：</p>
-<p>使用 instrumentation ，使用Apache 开源项目 BCEL修改bytecode，实现用于计算一个方法运行时间的功能。这种方式，用于性能测量的语句与业务逻辑完全分离，同时也可以用于测量任意类的任意方法的 运行时间，提高了代码的重用性。</p>
-<pre><code><span class="keyword">import</span> java.io.<span class="type">ByteArrayOutputStream</span>;
-<span class="keyword">import</span> java.io.<span class="type">IOException</span>;
-<span class="keyword">import</span> java.lang.instrument.<span class="type">ClassFileTransformer</span>;
-<span class="keyword">import</span> java.lang.instrument.<span class="type">IllegalClassFormatException</span>;
-<span class="keyword">import</span> java.lang.instrument.<span class="type">Instrumentation</span>;
-
-<span class="keyword">import</span> org.apache.bcel.<span class="type">Constants</span>;
-<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">ClassParser</span>;
-<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">JavaClass</span>;
-<span class="keyword">import</span> org.apache.bcel.classfile.<span class="type">Method</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ClassGen</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ConstantPoolGen</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionConstants</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionFactory</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">InstructionList</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">MethodGen</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">ObjectType</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">PUSH</span>;
-<span class="keyword">import</span> org.apache.bcel.<span class="keyword">generic</span>.<span class="type">Type</span>;
-
-public class <span class="type">Timing</span> implements <span class="type">ClassFileTransformer</span> {
-
-    private <span class="type">String</span> methodName;
-
-    private <span class="type">Timing</span>(<span class="type">String</span> methodName) {
-        this.methodName = methodName;
-        <span class="type">System</span>.<span class="keyword">out</span>.println(methodName);
-    }
-
-    public byte[] transform(<span class="type">ClassLoader</span> loader, <span class="type">String</span> className, <span class="type">Class</span> cBR, java.security.<span class="type">ProtectionDomain</span> pD, byte[] classfileBuffer) throws <span class="type">IllegalClassFormatException</span> {
-        <span class="keyword">try</span> {
-            <span class="type">ClassParser</span> cp = new <span class="type">ClassParser</span>(new java.io.<span class="type">ByteArrayInputStream</span>(classfileBuffer), className + <span class="string">".java"</span>);
-            <span class="type">JavaClass</span> jclas = cp.parse();
-            <span class="type">ClassGen</span> cgen = new <span class="type">ClassGen</span>(jclas);
-            <span class="type">Method</span>[] methods = jclas.getMethods();
-            <span class="type">int</span> index;
-            <span class="keyword">for</span> (index = <span class="number">0</span>; index &lt; methods.length; index++) {
-                <span class="keyword">if</span> (methods[index].getName().equals(methodName)) {
-                    <span class="keyword">break</span>;
-                }
-            }
-
-            <span class="keyword">if</span> (index &lt; methods.length) {
-                addTimer(cgen, methods[index]);
-                <span class="type">ByteArrayOutputStream</span> bos = new <span class="type">ByteArrayOutputStream</span>();
-                cgen.getJavaClass().dump(bos);
-                <span class="keyword">return</span> bos.toByteArray();
-            }
-            <span class="type">System</span>.err.println(<span class="string">"Method "</span> + methodName + <span class="string">" not found in "</span> + className);
-            <span class="type">System</span>.exit(<span class="number">0</span>);
-
-        } catch (<span class="type">IOException</span> e) {
-            <span class="type">System</span>.err.println(e);
-            <span class="type">System</span>.exit(<span class="number">0</span>);
-        }
-        <span class="keyword">return</span> null; // <span class="type">No</span> transformation required
-    }
-
-    private <span class="keyword">static</span> <span class="type">void</span> addTimer(<span class="type">ClassGen</span> cgen, <span class="type">Method</span> <span class="keyword">method</span>) {
-
-        // <span class="type">set</span> up the construction tools
-        <span class="type">InstructionFactory</span> ifact = new <span class="type">InstructionFactory</span>(cgen);
-        <span class="type">InstructionList</span> ilist = new <span class="type">InstructionList</span>();
-        <span class="type">ConstantPoolGen</span> pgen = cgen.getConstantPool();
-        <span class="type">String</span> cname = cgen.getClassName();
-        <span class="type">MethodGen</span> wrapgen = new <span class="type">MethodGen</span>(<span class="keyword">method</span>, cname, pgen);
-        wrapgen.setInstructionList(ilist);
-
-        // rename a copy <span class="keyword">of</span> the original <span class="keyword">method</span>
-        <span class="type">MethodGen</span> methgen = new <span class="type">MethodGen</span>(<span class="keyword">method</span>, cname, pgen);
-        cgen.removeMethod(<span class="keyword">method</span>);
-        <span class="type">String</span> iname = methgen.getName() + <span class="string">"_timing"</span>;
-        methgen.setName(iname);
-        cgen.addMethod(methgen.getMethod());
-        <span class="type">Type</span> <span class="literal">result</span> = methgen.getReturnType();
-
-        // compute the size <span class="keyword">of</span> the calling parameters
-        <span class="type">Type</span>[] parameters = methgen.getArgumentTypes();
-        <span class="type">int</span> stackIndex = methgen.isStatic() ? <span class="number">0</span> : <span class="number">1</span>;
-        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; parameters.length; i++) {
-            stackIndex += parameters[i].getSize();
-        }
-
-        // save time prior to invocation
-        ilist.append(ifact.createInvoke(<span class="string">"java.lang.System"</span>, <span class="string">"currentTimeMillis"</span>, <span class="type">Type</span>.<span class="type">LONG</span>, <span class="type">Type</span>.<span class="type">NO_ARGS</span>, <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>));
-        ilist.append(<span class="type">InstructionFactory</span>.createStore(<span class="type">Type</span>.<span class="type">LONG</span>, stackIndex));
-
-        // call the wrapped <span class="keyword">method</span>
-        <span class="type">int</span> offset = <span class="number">0</span>;
-        short invoke = <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>;
-        <span class="keyword">if</span> (!methgen.isStatic()) {
-            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="type">Type</span>.<span class="type">OBJECT</span>, <span class="number">0</span>));
-            offset = <span class="number">1</span>;
-            invoke = <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>;
-        }
-        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; parameters.length; i++) {
-            <span class="type">Type</span> <span class="keyword">type</span> = parameters[i];
-            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="keyword">type</span>, offset));
-            offset += <span class="keyword">type</span>.getSize();
-        }
-        ilist.append(ifact.createInvoke(cname, iname, <span class="literal">result</span>, parameters, invoke));
-
-        // store <span class="literal">result</span> <span class="keyword">for</span> <span class="keyword">return</span> later
-        <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">Type</span>.<span class="type">VOID</span>) {
-            ilist .append(<span class="type">InstructionFactory</span>.createStore(<span class="literal">result</span>, stackIndex + <span class="number">2</span>));
-        }
-
-        // print time required <span class="keyword">for</span> <span class="keyword">method</span> call
-        ilist.append(ifact.createFieldAccess(<span class="string">"java.lang.System"</span>, <span class="string">"out"</span>, new <span class="type">ObjectType</span>(<span class="string">"java.io.PrintStream"</span>), <span class="type">Constants</span>.<span class="type">GETSTATIC</span>));
-        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">DUP</span>);
-        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">DUP</span>);
-        <span class="type">String</span> text = <span class="string">"Call to method "</span> + methgen.getName() + <span class="string">" took "</span>;
-        ilist.append(new <span class="type">PUSH</span>(pgen, text));
-        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"print"</span>, <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">STRING</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
-        ilist.append(ifact.createInvoke(<span class="string">"java.lang.System"</span>, <span class="string">"currentTimeMillis"</span>, <span class="type">Type</span>.<span class="type">LONG</span>, <span class="type">Type</span>.<span class="type">NO_ARGS</span>, <span class="type">Constants</span>.<span class="type">INVOKESTATIC</span>));
-        ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="type">Type</span>.<span class="type">LONG</span>, stackIndex));
-        ilist.append(<span class="type">InstructionConstants</span>.<span class="type">LSUB</span>);
-        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"print"</span>,
-        <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">LONG</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
-        ilist.append(new <span class="type">PUSH</span>(pgen, <span class="string">" ms."</span>));
-        ilist.append(ifact.createInvoke(<span class="string">"java.io.PrintStream"</span>, <span class="string">"println"</span>, <span class="type">Type</span>.<span class="type">VOID</span>, new <span class="type">Type</span>[] { <span class="type">Type</span>.<span class="type">STRING</span> }, <span class="type">Constants</span>.<span class="type">INVOKEVIRTUAL</span>));
-
-        // <span class="keyword">return</span> <span class="literal">result</span> <span class="keyword">from</span> wrapped <span class="keyword">method</span> call
-        <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">Type</span>.<span class="type">VOID</span>) {
-            ilist.append(<span class="type">InstructionFactory</span>.createLoad(<span class="literal">result</span>, stackIndex + <span class="number">2</span>));
-        }
-        ilist.append(<span class="type">InstructionFactory</span>.createReturn(<span class="literal">result</span>));
-
-        // finalize the constructed <span class="keyword">method</span>
-        wrapgen.stripAttributes(<span class="literal">true</span>);
-        wrapgen.setMaxStack();
-        wrapgen.setMaxLocals();
-        cgen.addMethod(wrapgen.getMethod());
-        ilist.dispose();
-    }
-
-    public <span class="keyword">static</span> <span class="type">void</span> premain(<span class="type">String</span> options, <span class="type">Instrumentation</span> ins) {
-        <span class="keyword">if</span> (options != null) {
-            ins.addTransformer(new <span class="type">Timing</span>(options));
-        } <span class="keyword">else</span> {
-            <span class="type">System</span>.<span class="keyword">out</span>.println(<span class="string">"Usage: java -javaagent:Timing.jar=\"class:method\""</span>);
-            <span class="type">System</span>.exit(<span class="number">0</span>);
-        }
-
-    }
-}
-</code></pre><p>打jar包:</p>
-<pre><code>$ jar cvfM timing<span class="class">.jar</span> *
-</code></pre><p>输出：<br>    adding: META-INF/(in = 0) (out= 0)(stored 0%)<br>    adding: META-INF/MANIFEST.MF(in = 44) (out= 46)(deflated -4%)<br>    adding: Sample.class(in = 556) (out= 371)(deflated 33%)<br>    adding: Timing.class(in = 7372) (out= 3442)(deflated 53%)</p>
-<p>运行命令行：</p>
-<pre><code>$ java -classpath bcel-<span class="number">5.2</span><span class="class">.jar</span> -javaagent:timing.jar=<span class="string">"hello"</span> Sample
-</code></pre><p>输出：<br>    hello<br>    Call to method hello_timing took 2047 ms.</p>
-<p>运行命令：</p>
-<pre><code>$ java -classpath bcel-<span class="number">5.2</span><span class="class">.jar</span> -javaagent:timing.jar=<span class="string">"main"</span> Sample
-</code></pre><p>输出：<br>    main<br>    Call to method main_timing took 2469 ms.</p>
-<p>通过这段代码，基本能够了解Instrument的用处之一了:)</p>
-<p>参考：<a href="http://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/java/j-lo-instrumentation/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://navigating.github.io/2007/Java-5-0的Instrumentation特性/" data-id="cis67bj9z009bkclmnqknvuxf" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -1249,7 +513,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/7/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/9/">Next &raquo;</a>
     </nav>
   
 </section>
@@ -1260,7 +524,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">75</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">88</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书/">读书</a><span class="category-list-count">25</span></li></ul>
     </div>
   </div>
 
@@ -1269,7 +533,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Ambari/" style="font-size: 11.11px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.33px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.33px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15.56px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 10px;">Flume</a> <a href="/tags/Google/" style="font-size: 11.11px;">Google</a> <a href="/tags/HBase/" style="font-size: 14.44px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.67px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.11px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.11px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 18.89px;">Java</a> <a href="/tags/Kafka/" style="font-size: 11.11px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 13.33px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.22px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.11px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.11px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 17.78px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.11px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.11px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
+      <a href="/tags/Agile/" style="font-size: 10px;">Agile</a> <a href="/tags/Ambari/" style="font-size: 11.25px;">Ambari</a> <a href="/tags/Android/" style="font-size: 13.75px;">Android</a> <a href="/tags/Annotation/" style="font-size: 10px;">Annotation</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/Architecture/" style="font-size: 13.75px;">Architecture</a> <a href="/tags/BigData/" style="font-size: 20px;">BigData</a> <a href="/tags/CDH/" style="font-size: 15px;">CDH</a> <a href="/tags/Cassandra/" style="font-size: 10px;">Cassandra</a> <a href="/tags/Cloudera/" style="font-size: 10px;">Cloudera</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Flume/" style="font-size: 11.25px;">Flume</a> <a href="/tags/G1/" style="font-size: 10px;">G1</a> <a href="/tags/Google/" style="font-size: 11.25px;">Google</a> <a href="/tags/HBase/" style="font-size: 16.25px;">HBase</a> <a href="/tags/HDP/" style="font-size: 16.25px;">HDP</a> <a href="/tags/HQueue/" style="font-size: 10px;">HQueue</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Hive/" style="font-size: 11.25px;">Hive</a> <a href="/tags/Impala/" style="font-size: 10px;">Impala</a> <a href="/tags/JAVA/" style="font-size: 10px;">JAVA</a> <a href="/tags/JNI/" style="font-size: 10px;">JNI</a> <a href="/tags/JUnit/" style="font-size: 11.25px;">JUnit</a> <a href="/tags/JVM/" style="font-size: 11.25px;">JVM</a> <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Kafka/" style="font-size: 12.5px;">Kafka</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/MapR/" style="font-size: 10px;">MapR</a> <a href="/tags/MongoDB/" style="font-size: 15px;">MongoDB</a> <a href="/tags/NIO/" style="font-size: 12.5px;">NIO</a> <a href="/tags/Netty/" style="font-size: 11.25px;">Netty</a> <a href="/tags/NoSQL/" style="font-size: 10px;">NoSQL</a> <a href="/tags/Oozie/" style="font-size: 10px;">Oozie</a> <a href="/tags/Performance/" style="font-size: 10px;">Performance</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Review/" style="font-size: 10px;">Review</a> <a href="/tags/Ruby/" style="font-size: 10px;">Ruby</a> <a href="/tags/SOA/" style="font-size: 10px;">SOA</a> <a href="/tags/SQL-on-Hadoop/" style="font-size: 11.25px;">SQL on Hadoop</a> <a href="/tags/Spark/" style="font-size: 18.75px;">Spark</a> <a href="/tags/Storm/" style="font-size: 10px;">Storm</a> <a href="/tags/Tez/" style="font-size: 10px;">Tez</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/XP/" style="font-size: 11.25px;">XP</a> <a href="/tags/blog/" style="font-size: 10px;">blog</a> <a href="/tags/github/" style="font-size: 10px;">github</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/iStream/" style="font-size: 10px;">iStream</a>
     </div>
   </div>
 
@@ -1283,6 +547,62 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/[128]简报：大数据Hadoop动态-2016Q3/">[128]简报：大数据Hadoop动态 - 2016Q3</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[127]简报：大数据产品分析 - 基于位置的用户行为/">[127]简报：大数据产品分析 - 基于位置的用户行为</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[126]JAVA虚拟机：G1/">[126]JAVA虚拟机：G1</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[125]简报：TalkingData产品分析 - 2016Q2/">[125]简报：TalkingData产品分析 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[124]简报：机器学习 & 深度学习 & 人工智能 & BI & 数据挖掘 - 2016Q2/">[124]简报：机器学习 &amp; 深度学习 &amp; 人工智能 &amp; BI &amp; 数据挖掘 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[123]简报：开源流计算框架 - 201605/">[123]简报：开源流计算框架 - 201605</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[122]大数据之电信运营商案例/">[122]大数据之电信运营商案例</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[121]敏捷之如何切分用户故事/">[121]敏捷之如何切分用户故事</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[119]简报：大数据OLAP - 2016Q2/">[119]简报：大数据OLAP - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[120]学习《Thoughtworks技术雷达201604》/">[120]学习《Thoughtworks技术雷达201604》</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[118]HDFS Snapshot/">[118]HDFS Snapshot</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[117]学习《Real-Time Event Streaming What Are Your Options》/">[117]学习《Real-Time Event Streaming What Are Your Options》</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[116]简报：大数据Hadoop动态 - 2016Q2/">[116]简报：大数据Hadoop动态 - 2016Q2</a>
+          </li>
+        
+          <li>
+            <a href="/2016/[115]简报：大数据Hadoop动态 - 2016Q1/">[115]简报：大数据Hadoop动态 - 2016Q1</a>
+          </li>
         
           <li>
             <a href="/2015/大数据动态之2015Q4/">大数据动态之2015Q4</a>
@@ -1308,62 +628,6 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
             <a href="/2015/Oozie：入门概述/">Oozie：入门概述</a>
           </li>
         
-          <li>
-            <a href="/2015/大数据技术百度指数201508/">大数据技术百度指数201508</a>
-          </li>
-        
-          <li>
-            <a href="/2015/大数据动态之201508/">大数据动态之201508</a>
-          </li>
-        
-          <li>
-            <a href="/2015/SparkOnHBase-Cloudera/">SparkOnHBase(Cloudera)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《Hadoop生态技术在阿里全网商品搜索实战》/">学习《Hadoop生态技术在阿里全网商品搜索实战》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/Hadoop发行版(2015第二季)/">Hadoop发行版(2015第二季)</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《七牛是如何搞定每天500亿条日志的》/">学习《七牛是如何搞定每天500亿条日志的》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/学习《腾讯在Spark上的应用与实践优化》/">学习《腾讯在Spark上的应用与实践优化》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/13-14年收集的大数据的一些技术架构图/">13~14年收集的大数据的一些技术架构图</a>
-          </li>
-        
-          <li>
-            <a href="/2015/读《微软研发制胜策略》/">读《微软研发制胜策略》</a>
-          </li>
-        
-          <li>
-            <a href="/2015/大数据动态之201507/">大数据动态之201507</a>
-          </li>
-        
-          <li>
-            <a href="/2015/使用Hexo搭建Github静态博客/">使用Hexo搭建Github静态博客</a>
-          </li>
-        
-          <li>
-            <a href="/2015/hello-world/">Hello World</a>
-          </li>
-        
-          <li>
-            <a href="/2015/Hadoop-2-7-1-发布/">Hadoop 2.7.1 发布</a>
-          </li>
-        
-          <li>
-            <a href="/2015/读《Deploying-Apache-Kafka-A-Practical-FAQ》/">读《Deploying Apache Kafka: A Practical FAQ》</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -1373,7 +637,7 @@ public class <span class="type">Timing</span> implements <span class="type">Clas
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">四月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">十月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">九月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/08/">八月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/06/">六月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/05/">五月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">八月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/11/">十一月 2011</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">十月 2011</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03/">三月 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/11/">十一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/08/">八月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/06/">六月 2010</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/05/">五月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/04/">四月 2010</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/03/">三月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/01/">一月 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/04/">四月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/11/">十一月 2007</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/08/">八月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/07/">七月 2007</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/06/">六月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/05/">五月 2007</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/03/">三月 2007</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/12/">十二月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/11/">十一月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/10/">十月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/08/">八月 2006</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2006/04/">四月 2006</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/09/">九月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/08/">八月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/05/">五月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/02/">二月 2005</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2005/01/">一月 2005</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/12/">十二月 2004</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/11/">十一月 2004</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/10/">十月 2004</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2004/09/">九月 2004</a><span class="archive-list-count">4</span></li></ul>
     </div>
   </div>
 
